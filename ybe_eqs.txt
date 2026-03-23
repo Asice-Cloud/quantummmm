@@ -1,0 +1,13 @@
+num_equations=12
+Eq1: 4*re(b)*re(a*d) - 4*re(c)*re(a*d) - 4*im(b)*im(a*d) + 4*im(c)*im(a*d)
+Eq2: 4*re(b)*im(a*d) - 4*re(c)*im(a*d) + 4*re(a*d)*im(b) - 4*re(a*d)*im(c)
+Eq3: -4*re(b)*re(a*d) + 4*re(c)*re(a*d) + 4*im(b)*im(a*d) - 4*im(c)*im(a*d)
+Eq4: -4*re(b)*im(a*d) + 4*re(c)*im(a*d) - 4*re(a*d)*im(b) + 4*re(a*d)*im(c)
+Eq5: -4*re(a)*re(b*c) + 4*re(d)*re(b*c) + 4*im(a)*im(b*c) - 4*im(d)*im(b*c)
+Eq6: -4*re(a)*im(b*c) + 4*re(d)*im(b*c) - 4*re(b*c)*im(a) + 4*re(b*c)*im(d)
+Eq7: -4*re(a*b*c) + 4*re(a*b*d) + 4*re(a*c*d) - 4*re(b*c*d)
+Eq8: -4*im(a*b*c) + 4*im(a*b*d) + 4*im(a*c*d) - 4*im(b*c*d)
+Eq9: 4*re(a)*re(b*c) - 4*re(d)*re(b*c) - 4*im(a)*im(b*c) + 4*im(d)*im(b*c)
+Eq10: 4*re(a)*im(b*c) - 4*re(d)*im(b*c) + 4*re(b*c)*im(a) - 4*re(b*c)*im(d)
+Eq11: 4*re(a*b*c) - 4*re(a*b*d) - 4*re(a*c*d) + 4*re(b*c*d)
+Eq12: 4*im(a*b*c) - 4*im(a*b*d) - 4*im(a*c*d) + 4*im(b*c*d)
