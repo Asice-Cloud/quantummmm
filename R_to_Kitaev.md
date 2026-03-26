@@ -321,6 +321,27 @@ Eq12: 4*im(a*b*c) - 4*im(a*b*d) - 4*im(a*c*d) + 4*im(b*c*d)
 
 
 
+### 附录：简单验证
+
+主要是验证微观参数是否按线性关系映射到有效 Kitaev 链，即$ t ∝ (b+c)、Δ ∝ (b−c)、μ ≈ 4d + μ0$，以及模型是否能重现 Kitaev 链的拓扑性质与 Majorana 零模。
+
+使用模型中的$(a,b,c,d,\mu_0)$去构建了 4x4 BdG single-particle Hamiltonian ,然后尝试验证能否复现这些极限情况。
+
+1.k‑space能隙随化学势 μ 的最小正能量曲线，在 |μ|≈2|t| 间隙闭合
+
+![image-20260326152420884](/home/asice-cloud/.config/Typora/typora-user-images/image-20260326152420884.png)
+
+2.以及验证拓扑不变量（winding 在拓扑区取非零值，在相界变为 0；Pfaffian 符号应在相界翻转，两者一致则验证良好）
+
+![image-20260326152706049](/home/asice-cloud/.config/Typora/typora-user-images/image-20260326152706049.png)
+
+3. 绘制测得的有效参数 t_eff 对 (b+c) 以及 Δ_eff 对 (b−c) 的散点并画线性拟合。JSON 包含拟合斜率/截距/R²
+
+![image-20260326153029818](/home/asice-cloud/.config/Typora/typora-user-images/image-20260326153029818.png)
+
+![image-20260326153035767](/home/asice-cloud/.config/Typora/typora-user-images/image-20260326153035767.png)
 
 
+
+然后其实本来想结合一下文献，看看能不能用现有模型通过一些变换然后和文献匹配， 昨天使用了Non-Abelian statistics of Majorana zero modes in the presence of an Andreev bound state 这个学长的文献，然后用现在的模型是可以推导出类似的结论，就是减小杂化或缩短交换时间等可降低动力学相位 Θ的累计，提高与理想拓扑交换的重合。但是我这边没法恢复回来，暂时没有复现可恢复高保真的效果。所以这一部分现在没有整理完，之后再换种思路试试怎么做变换。
 
