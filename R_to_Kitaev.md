@@ -268,6 +268,48 @@ $$t\propto 2,\quad \Delta\propto 0,$$
 $$t\propto 0,\quad \Delta\propto 2,$$
 即纯配对项（最大化 p‑wave 配对）。
 
+### 从 R 到 braid operator 的显式例子
+(based on article from cwq)
+
+下面给出把局域 $R_{i,i+1}$（经 Jordan–Wigner 映射得到的 Majorana 双线性）映射到一个典型 braid 生成子 $U=\exp\big((\pi/4)\,\gamma_a\gamma_b\big)$ 的代数路径与具体示例参数。
+
+1) Majorana 双线性记号：若全局哈密顿密度写为
+$$
+H=\frac{i}{2}\sum_{a<b}A_{ab}\,\gamma_a\gamma_b,
+$$
+则短时间演化产生的算符为
+$$
+U(\tau)=e^{-iH\tau}=\exp\Big(-i\frac{\tau i}{2}A_{ab}\gamma_a\gamma_b+\cdots\Big)=\exp\Big(\frac{\tau A_{ab}}{2}\,\gamma_a\gamma_b+\cdots\Big).
+$$
+要得到理想的 braid 生成子 $\exp\big((\pi/4)\gamma_a\gamma_b\big)$，需要单对主耦合满足
+$$
+\frac{\tau A_{ab}}{2}=\frac{\pi}{4},\qquad\text{且其它 }A_{a'b' }\approx0.
+$$
+
+2) 代数映射（参考本文前述识别）：对于两格点单元（Majorana 顺序取为 $\gamma_1,\gamma_2,\gamma_3,\gamma_4$），有
+$$
+A_{23}=\frac{t+\Delta}{2},\qquad A_{14}=\frac{\Delta-t}{2},\qquad A_{12}= -\frac{\mu}{2},\; A_{34}=-\frac{\mu}{2}.
+$$
+
+3) 示例参数（简单明确的例子）：取
+$$
+a=0,\quad d=0,\quad b=1,\quad c=0.
+$$
+此时 $t=b+c=1,\;\Delta=b-c=1$，因此
+$$
+A_{23}=\frac{t+\Delta}{2}=1,\qquad A_{14}=\frac{\Delta-t}{2}=0,\qquad A_{12}=A_{34}=0.
+$$
+选择演化时长 $\tau=\pi/2$，则 $\tau A_{23}/2=\pi/4$，得到
+$$
+U(\tau)=\exp\big((\pi/4)\,\gamma_2\gamma_3\big),
+$$
+即理想的交换生成子（不含额外耦合或全局相位）。
+
+4) 注记与限制：
+- 要实现上述理想化映射，必须保证其它 Majorana 对的耦合在演化期间可以被抑制（例如通过参数选择或断续脉冲）；若存在显著的额外耦合，所得 $U$ 会包含额外因子，破坏纯粹的 braid 操作。
+- 物理上还需保证存在零能马约拉那模与能隙（以保证在绝热交换过程中态空间的正确性）；直接由局域 $R$ 的一次演化构造代数上的 braid 操作在实现上是必要但非充分条件。
+
+
 
 
 ### **附录：YBE 代数约束与典型物理情形**
