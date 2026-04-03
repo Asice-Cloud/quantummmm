@@ -200,25 +200,25 @@ $$
 1. **拓扑设置与编码 Hilbert 空间**
 
 	 - 取一个 genus 2 的双曲曲面 $\Sigma_{g=2}$，在每个 handle 上放两只 Ising 任意子 $\sigma$，一共四个 punctures：
-     $$
+    $$
 		 X=\{\sigma_1,\sigma_2\ \text{(第一把手)},\;\sigma_3,\sigma_4\ \text{(第二把手)}\}.
-		 $$
+	$$
 	 - 在 TQFT 层面，选一个“沿两把手展开”的纤维树基，把每一对 $\sigma_1,\sigma_2$ 和 $\sigma_3,\sigma_4$ 各自视作一条“局部线”，其总融合道标记为
 	$$
 		 a \in\{1,\psi\}\quad(\sigma_1\times\sigma_2\to a),\qquad
 		 b \in\{1,\psi\}\quad(\sigma_3\times\sigma_4\to b).
-		 $$
+	$$
 	 - 再要求总电荷为真空，则 $(a,b)$ 只能取满足 $a\times b=1$ 的组合，例如 $(a,b)=(1,1)$ 或 $(\psi,\psi)$，它们张成一个 2 维编码子空间，可用于编码 1 个逻辑 qubit：
     $$
 		 |0_L\rangle\equiv|a=1,b=1\rangle,\quad
 		 |1_L\rangle\equiv|a=\psi,b=\psi\rangle.
-		 $$
+	$$
 
 2. **选定一条非平凡曲线 $\gamma$ 及其 Dehn twist**
 
 	 - 选取一条简单闭合曲线 $\gamma$，绕过第一把手及其上的 $\sigma_1,\sigma_2$，但不经过第二把手和 $\sigma_3,\sigma_4$。在双曲度量下，这可以取为第一把手上的一条短测地线的平滑代表。
 	 - 在 Ising TQFT 中，沿 $\gamma$ 的 Dehn twist $T_\gamma$ 的作用，相当于对“$\gamma$ 内所见到的总拓扑电荷”乘以对应的 topological spin。由于 $\gamma$ 包围的是第一对 $\sigma_1,\sigma_2$ 的融合道 $a$，故在基 $\{|a,b\rangle\}$ 上，$T_\gamma$ 的作用为
-	 
+	
     $$
 		 \rho_{\mathrm{Ising}}(T_\gamma)\,|a,b\rangle
 		 = \theta_a\,|a,b\rangle,
@@ -227,10 +227,10 @@ $$
 	 - 在我们选定的逻辑基 $\{|0_L\rangle,|1_L\rangle\}$ 下，对应的矩阵就是
 	
     $$
-		 \rho_{\mathrm{Ising}}(T_\gamma)
+	\rho_{\mathrm{Ising}}(T_\gamma)
 		 =
 		 \begin{pmatrix}
-			 	heta_1 & 0 \\
+			 	\theta_1 & 0 \\
 			 0 & \theta_\psi
 		 \end{pmatrix}
 		 =
@@ -238,10 +238,9 @@ $$
 			 1 & 0 \\
 			 0 & -1
 		 \end{pmatrix},
-		 $$
+	$$
 
-
-	即一个对角的 $Z$ 型相位门（忽略整体相位和可能的基变换）。
+即一个对角的 $Z$ 型相位门（忽略整体相位和可能的基变换）。
 
 3. **作为 R+$\mathbb Z_2$ 模型的“目标门”**
 
@@ -258,78 +257,78 @@ $$
 1. **沿 $\gamma$ 离散化并定义边算符**
 
 	 取一条离散格点上的简单闭合路径 $\gamma$，包含一串有序边
-	   $$
+	$$
 	   \gamma:\ e_1=(i_1j_1),\ e_2=(i_2j_2),\dots, e_L=(i_Lj_L),
-	   $$
+	$$
 	   满足 $j_k=i_{k+1}$（索引 mod $L$），即这些边首尾相接组成一圈。
 	 在每条边上，我们已经在前文中引入了 Majorana 双线性
-	   $$
+	$$
 	   K_{e_k}=\gamma_{i_k}\gamma_{j_k},\qquad u_{e_k}=\pm1,
-	   $$
+	$$
 	并定义了局域幺正元件
-	   $$
+	$$
 	   U_{e_k}(u_{e_k})=\exp\Big(\frac{\pi}{4}\,u_{e_k}\,K_{e_k}\Big)
 	   =\exp\Big(\frac{\pi}{4}\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k}\Big).
-	   $$
+	$$
 
 2. **目标幺正：沿 $\gamma$ 的理想 Dehn twist 算符**
 
 	在前面的抽象讨论里，我们已经把沿 $\gamma$ 的 Dehn twist 表示为某种 path-ordered 的乘积。为了给出一个简单而解析的目标，我们在格点水平上取
-	   $$
+	$$
 	   U_\gamma^{\mathrm{(ideal)}}
 	   \,=\, \prod_{k=1}^L U_{e_k}(u_{e_k})
 	   \,=\, \prod_{k=1}^L \exp\Big(\frac{\pi}{4}\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k}\Big),
-	   $$
+	$$
 	其在零模子空间上的投影 $P_{\mathrm{top}}U_\gamma^{\mathrm{(ideal)}}P_{\mathrm{top}}$ 被期望与 $\rho_{\mathrm{Ising}}(T_\gamma)$ 同构。
 
 3. **时间依赖哈密顿量 $H(t)$ 的构造**
 
 	 将总演化时间区间 $[0,T]$ 均分成 $L$ 段：
-	   $$
+	$$
 	   0=t_0<t_1<\cdots<t_L=T,\qquad t_k-t_{k-1}=\Delta t=T/L.
-	   $$
+	$$
 	 在第 $k$ 段时间 $t\in[t_{k-1},t_k]$ 内，只打开第 $k$ 条边上的额外耦合项，其余边保持背景值不变：
-	   $$
+	$$
 	   H(t)
 	   \,=\, H_{\mathrm{bg}} 
 	    \, +\, i\,\lambda_k(t)\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k},
-	   $$
+	$$
 	   其中 $H_{\mathrm{bg}}$ 是保持系统在 Ising 相区、bulk 有隙的背景哈密顿量，$\lambda_k(t)$ 是一个在 $[t_{k-1},t_k]$ 支持的光滑函数，在区间外为 0。
 	 要求每一段的时间积分满足
-	   $$
+	$$
 	   \int_{t_{k-1}}^{t_k}\!\lambda_k(t)\,dt
 	   \,=\, \frac{\pi}{4},\qquad k=1,\dots,L.
-	   $$
+	$$
 	这样，在绝热近似下，第 $k$ 段演化在零模子空间上实现的幺正近似为
-	   $$
+	$$
 	   U_k\;\approx\;\exp\Big(\frac{\pi}{4}\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k}\Big)
 	   \,=\,U_{e_k}(u_{e_k}).
-	   $$
+	$$
 
 4. **总演化与 Dehn twist 的对应**
 
 	 把所有时间段串联起来，得到总演化算符
-	   $$
+	$$
 	   U(T,0)
 	   \,=\,\mathcal T\exp\Big(-i\int_0^T\!H(t)\,dt\Big)
 	   \;\approx\;\prod_{k=1}^L U_{e_k}(u_{e_k})
 	   \,=\,U_\gamma^{\mathrm{(ideal)}},
-	   $$
+	$$
 	其中 $\mathcal T$ 表示时间排序。
 
 	在零模/拓扑简并子空间上，我们考虑
-	   $$
+	$$
 	   U_\gamma^{\mathrm{(top)}}
 	   \,=\,P_{\mathrm{top}}\,U(T,0)\,P_{\mathrm{top}} 
 	   \;\simeq\;P_{\mathrm{top}}\,U_\gamma^{\mathrm{(ideal)}}\,P_{\mathrm{top}},
-	   $$
+	$$
 	并用前文的幺正同构 $W(p)$ 把它与 Ising TQFT 的表示比较：
-	   $$
+	$$
 	   W(p)\,U_\gamma^{\mathrm{(top)}}\,W(p)^{-1}
 	   \;\simeq\;\rho_{\mathrm{Ising}}(T_\gamma).
-	   $$
+	$$
 	 在我们选定的 genus 2 编码例子中，这个作用在逻辑基 $\{|0_L\rangle,|1_L\rangle\}$ 上即近似为
-	   $$
+	$$
 	   U_\gamma^{\mathrm{(logical)}}
 	   \;\sim\;
 	   \begin{pmatrix}
@@ -337,7 +336,7 @@ $$
 	     0 & -1
 	   \end{pmatrix}
 	   \quad(\text{忽略整体相位与微小非绝热修正}).
-	   $$
+	$$
 
 从而，我们就得到了一个完全解析的“沿 $\gamma$ 改耦合”的理想路径示意：
 
@@ -447,7 +446,6 @@ YBE 主要保证的是“可积性”：可以构造 commuting transfer matrix�
 	- 以及进一步流向“非拓扑”的区域（bulk gap 闭合、Chern 数变号），从而观测 Dehn twist 门如何从拓扑保护走向对微观路径的敏感依赖。
 
 这样，你现在的 R+\(\mathbb Z_2\)+Dehn twist 框架，不仅可以在 YBE 解上构造“极端干净”的拓扑门，也自然提供了一条路线去系统地研究：一旦放松 YBE 约束、或让局域耦合变强，拓扑量子门是如何被破坏、拓扑相图又是如何在 $(a,b,c,d)$ 空间里发生重组的。
-
 
 
 
