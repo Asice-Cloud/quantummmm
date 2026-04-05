@@ -43,7 +43,7 @@
 	  - 数值对角化 $\mathcal H$，提取零模及近零能本征态；
 	  - 将低能 Hilbert 空间写为 Majorana 模式 $\{\gamma_a\}$ 的有效哈密顿
 		 $$H_{\text{eff}} = \frac i2\sum_{a<b}A_{ab}\gamma_a\gamma_b,$$
-		 记录 $A_{ab}(a,b,c,d)$，用以表征有效耦合结构。
+		  记录 $A_{ab}(a,b,c,d)$，用以表征有效耦合结构。
 
 6. **mapping class / Dehn‑like 操作的格点实现**
 	- 选取若干代表性的闭曲线/操作 $\gamma$：
