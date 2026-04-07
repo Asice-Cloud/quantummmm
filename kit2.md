@@ -1,148 +1,141 @@
-### Majorana 与 Z2 规范场映射
+### R to 2D: Majorana 与 Z2 规范场映射
 
-背景（精炼）：在二维 Kitaev‑型模型中，常在每个格点引入四个 Majorana 算符 $b^x,b^y,b^z,c$ 并以 $\sigma^a=i b^a c$ 表示自旋。任一键向的二体项 $\sigma^a_i\sigma^a_j$ 可写成链路 Z2 变量 $u_{ij}$ 与物质 Majorana $c$ 的二次项的乘积（推荐约定 $u_{ij}=-i b^a_i b^a_j$，从而 $\sigma^a_i\sigma^a_j=u_{ij}(i c_i c_j)$）。在纯键向二体哈密顿中 $u_{ij}$ 是守恒的，格面 Wilson 环 $W_p=\prod_{(ij)\in p}u_{ij}$ 描述通量（vison）；若加入混合键或横场，$u_{ij}$ 取得动力学，问题变为 Majorana 与 Z2 规范场耦合。相比之下，U(1)/SU(2) 等连续规范常出现在 slave‑particle 构造或 gapless spin liquid 的描述中，会产生光子或更复杂的规范动力学，但分析与数值开销更大。把
+起点：在二维 Kitaev‑型模型中，常在每个格点引入四个 Majorana 算符 $b^x,b^y,b^z,c$ 并以 $\sigma^a=i b^a c$ 表示自旋。任一键向的二体项 $\sigma^a_i\sigma^a_j$ 可写成链路 Z2 变量 $u_{ij}$ 与物质 Majorana $c$ 的二次项的乘积（推荐约定 $u_{ij}=-i b^a_i b^a_j$，从而 $\sigma^a_i\sigma^a_j=u_{ij}(i c_i c_j)$）。在纯键向二体哈密顿中 $u_{ij}$ 是守恒的，格面 Wilson 环 $W_p=\prod_{(ij)\in p}u_{ij}$ 描述通量（vison）；若加入混合键或横场，$u_{ij}$ 取得动力学，问题变为 Majorana 与 Z2 规范场耦合。相比之下，U(1)/SU(2) 等连续规范常出现在 slave‑particle 构造或 gapless spin liquid 的描述中，会产生光子或更复杂的规范动力学，但分析与数值开销更大。把
 $R_{ij}=aI + b\sigma^x_i\sigma^x_j +c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$
 映到蜂窝格时，通常将 $b,c,d$ 对应为 $J_x,J_y,J_z$，a 为能量偏移；这一映射是研究 Majorana 零模与拓扑相的自然起点。
 
 
 
-本文前面讨论了通过 Jordan–Wigner 将自旋链映为 Kitaev‑型 BdG 的方法。下面给出在二维或更通用格子上更为有用且局域性的另一种映射：Majorana + Z2 规范场（Kitaev 蜂窝模型的标准做法）的完整理论与数值实现要点，并说明如何把文中给出的局域算符 $R_{i,j}=aI + b\sigma^x_i\sigma^x_j + c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$ 用该框架处理。
+前面讨论了通过 Jordan–Wigner 将自旋链映为 Kitaev‑型 BdG 的方法。下面给出在二维或更通用格子上更为有用且局域性的另一种映射：Majorana + Z2 规范场（Kitaev 蜂窝模型的标准做法）的完整理论与数值实现要点，并说明如何把文中给出的局域算符 $R_{i,j}=aI + b\sigma^x_i\sigma^x_j + c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$ 用该框架处理。
 
-1) 定义与表示
 
-- 在每个格点 $j$ 引入四个 Majorana 算子 $b^x_j,b^y_j,b^z_j,c_j$，满足
-    $$
-    \{b^\alpha_j,b^\beta_k\}=2\delta_{jk}\delta_{\alpha\beta},\qquad \{c_j,c_k\}=2\delta_{jk}.
-    $$
 
-- 用下列映射表示自旋算符：
-    $$
-    \sigma^a_j = i\,b^a_j c_j,\qquad a\in\{x,y,z\}.
-    $$
+**定义与表示**
 
-- 引入局域物理约束（投影到物理子空间）：
-    $$
-    D_j\equiv b^x_j b^y_j b^z_j c_j = +1,
-    $$
-    该约束保障 Majorana 表示与原来的自旋 Hilbert 空间等价（需要在计算可观测量时实施投影或只考虑受约束的态）。
-
-2) 链路 Z2 变量与 Hamiltonian 的变换
-
--- 对一根类型为 $a$ 的键 $(i,j)$ 定义链路算符：
+在每个格点 $j$ 引入四个 Majorana 算子 $b^x_j,b^y_j,b^z_j,c_j$，满足
 $$
-    u_{ij}\equiv -i\,b^a_i b^a_j,\qquad u_{ij}^2=1.
+\{b^\alpha_j,b^\beta_k\}=2\delta_{jk}\delta_{\alpha\beta},\qquad \{c_j,c_k\}=2\delta_{jk}.
+$$
+用下列映射表示自旋算符：
+$$
+\sigma^a_j = i\,b^a_j c_j,\qquad a\in\{x,y,z\}.
+$$
+引入局域物理约束（投影到物理子空间）：
+$$
+D_j\equiv b^x_j b^y_j b^z_j c_j = +1,
+$$
+该约束保障 Majorana 表示与原来的自旋 Hilbert 空间等价（需要在计算可观测量时实施投影或只考虑受约束的态）。
+
+**链路 Z2 变量与 Hamiltonian 的变换**
+
+对一根类型为 $a$ 的键 $(i,j)$ 定义链路算符：
+$$
+u_{ij}\equiv -i\,b^a_i b^a_j,\qquad u_{ij}^2=1.
 $$
 
-- 使用上面映射，有
-    $$
-    \begin{align*}
-    \sigma^a_i\sigma^a_j &= (i b^a_i c_i)(i b^a_j c_j) \\
-    &= (i b^a_i b^a_j)\,(i c_i c_j) = u_{ij}\,(i c_i c_j).
-    \end{align*}
-    $$
-
-- 因此任意只含形如 $\sigma^a_i\sigma^a_j$ 的哈密顿量都可以寫为“链路 Z2 变量乘以 Majorana $c$ 间的二次形式”：
-    $$H=\sum_{\langle i,j\rangle} J^{(a)}_{ij}\,\sigma^a_i\sigma^a_j = \sum_{\langle i,j\rangle} J^{(a)}_{ij}\,u_{ij}\,(i c_i c_j).$$
-
-    11) 符号约定与算符顺序的严格推导（细节）
-
-    在实际推导和数值实现中，算符的反对易性和重排顺序会引入可观的符号差别；文献中对链路变量 $u_{ij}$ 的具体约定也有不同。这里给出一步一步的代数推导以消除歧义，并推荐一个一致的约定以便在实现时避免负号错误。
-
-    令局域 Majorana 算符为
-    $$
-    A=b^a_i, B=c_i,	C=b^a_j, D=c_j
-    $$
-    其中所有 Majorana 间满足反对易关系 $XY=-YX$ （若 $X\neq Y$）。自旋算符按映射写为 $\sigma^a_i = i A B$，$\sigma^a_j = i C D$。则
-    $$
-    \begin{align*}
-    \sigma^a_i\sigma^a_j &= (iAB)(iCD) = (i\cdot i)\, A B C D = - A B C D.
-    \end{align*}
-    $$
-
-    由于 Majorana 间反对易，把 $B$ 与 $C$ 交换会获得负号：
-    $$
-    \begin{align*}
-    A B C D &= - A C B D.
-    \end{align*}
-    $$
-    于是
-    $$
-    \begin{align*}
-    \sigma^a_i\sigma^a_j &= -(- A C B D) = A C B D = (b^a_i b^a_j)(c_i c_j).
-    \end{align*}
-    $$
-
-    现在定义链路算符时要小心 i 因子的放置。两种常见约定：
-
-    - 约定 1：$u_{ij}=i b^a_i b^a_j$。代入得
-
-    $$
-    \begin{align*}
-        u_{ij}(i c_i c_j) &= (i b_i b_j)(i c_i c_j) = (i\cdot i)\, b_i b_j c_i c_j = - b_i b_j c_i c_j = -\sigma^a_i\sigma^a_j.
-        \end{align*}
-    $$
-
-    即此时 $ \sigma^a_i\sigma^a_j = - u_{ij}(i c_i c_j)$。
-
-    - 约定 2（推荐）：$u_{ij}=-i b^a_i b^a_j$。代入得
-        $$
-        \begin{align*}
-        u_{ij}(i c_i c_j) &= (-i b_i b_j)(i c_i c_j) = (-i\cdot i)\, b_i b_j c_i c_j = + b_i b_j c_i c_j = \sigma^a_i\sigma^a_j.
-        \end{align*}
-        $$
-        这使得书写更简洁：
-        $$\sigma^a_i\sigma^a_j = u_{ij}\,(i c_i c_j)\qquad(\text{with }u_{ij}=-i b^a_i b^a_j).$$
-
-    结论与实现要点：
-
-    - 乘法始终是算符乘积，即在全 Hilbert 空间中等价于相应的张量积嵌入；在局域算符之间交换顺序会带来负号（Majorana 反对易）。
-    - 为避免在推导与代码中多处补符号，建议统一采用 $u_{ij}=-i b^a_i b^a_j$ 的约定，这样可以把原式直接写为 $\sigma^a_i\sigma^a_j = u_{ij}(i c_i c_j)$，并在数值构造 $A$ 矩阵時按此约定给出元素符号。
-    - 若你的实现或参考文献采用 $u_{ij}=+i b^a_i b^a_j$，只需在对角化或能量比较时保留该额外的全体负号（相当于把所有 $J_{ij}$ 改号），但更好的做法是统一约定并在文档头部注明。
-
-    
-
-3) 守恒量、flux 与可解性
-
-- 在纯 Kitaev‑型哈密顿量（仅含上述键各向异性二体项）中，所有链路算符 $u_{ij}$ 与 $H$ 对易，因此每个 $u_{ij}$ 是守恒的二值自由度——这把多体问题分解为若干“在固定 $\{u\}$ 背景下的自由 Majorana 问题”。
-- 定义回路流子（plaquette flux）
-    $$W_p=\prod_{(ij)\in p} u_{ij},$$
-    这是局域守恒量，$W_p=-1$ 描述格点上的漩涡/vison。
-- 基态通常对应某个 flux 配置（例如蜂窝格的无磁通格局），找基态等价于在所有 $u$ 配置中比较自由 Majorana 的能量。
-
-4) Majorana 二次形式与对角化（数值实现）
-
-- 将 $H$ 写为标准的 Majorana 二次形式：
-    $$H=\frac i4\sum_{i,j} A_{ij} c_i c_j,$$
-    其中 $A$ 为实反对称矩阵，元素由 $J_{ij}u_{ij}$ 给出（具体常数因子依定义而定）。
-- 对 $A$ 做实反对称矩阵的谱分解（奇异值/对角化）可以得到成对的本征能量 $\pm\epsilon_n$；零能模（Majorana 零模）以及能隙信息可由此直接读取。标准做法是将 $iA$ 对角化为实对称矩阵或构造 BdG 形式得到配对谱。
-
-5) 投影与物理态
-
-- 虽然 $b^\alpha,c$ 在扩大 Hilbert 空间中是自由算符，但物理算符要满足 $D_j=+1$ 的约束。对许多数值计算（能带、局域态、Chern 数）而言，可以先在固定 $u$ 背景下对 $A$ 对角化并计算能量，再通过比较不同 flux 配置的能量来确定物理基态配置；严格计算物理态期望值时需对 $D_j$ 投影。
-
-6) 当 $u_{ij}$ 失去守恒（规范动力学）时
-
-- 若哈密顿量加入破坏可积性的项（例如混合的 $\sigma^\alpha_i\sigma^\beta_j$、某些三体/四体耦合或横场项），$[u_{ij},H]\neq0$，此时 $u_{ij}$ 变成具有动力学的 Z2 变量，问题变成“Majorana 与 Z2 格点规范场耦合的相互作用系统”。此情形通常无法解析，需要平均场、蒙特卡洛、DMRG/PEPS 等数值手段处理。
-
-7) 与文中 $R_{i,j}$ 的衔接
-
-- 定义的局域算符
-    $$R_{ij}=aI + b\sigma^x_i\sigma^x_j + c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$$
-    中，按上述映射每个二体项均可写成 $u^{(a)}_{ij}(i c_i c_j)$（不同键类型 $a$ 用不同的 $u$）。常数 $a$ 只贡献恒定能量偏移。对于任一单一成分的键项 $\sigma^a_i\sigma^a_j$，Majorana 映射保持为二次形式；只有当引入混合键（如 $\sigma^x_i\sigma^y_j$）、Heisenberg 型 $\sigma_i\cdot\sigma_j$、外场或某些多体项时，才可能导致 $u_{ij}$ 失守恒或在费米表示产生四费米及更高阶项，从而使问题变得更复杂。
+使用上面映射，有
+$$
+\begin{align*}
+\sigma^a_i\sigma^a_j &= (i b^a_i c_i)(i b^a_j c_j) \\
+&= (i b^a_i b^a_j)\,(i c_i c_j) = u_{ij}\,(i c_i c_j).
+\end{align*}
+$$
+因此任意只含形如 $\sigma^a_i\sigma^a_j$ 的哈密顿量都可以写为“链路 Z2 变量乘以 Majorana $c$ 间的二次形式”：
+$$H=\sum_{\langle i,j\rangle} J^{(a)}_{ij}\,\sigma^a_i\sigma^a_j = \sum_{\langle i,j\rangle} J^{(a)}_{ij}\,u_{ij}\,(i c_i c_j).$$
 
 
-9) 优点与限制回顾
 
-- 优点：在二维（或一般非一维格子）上保持局域性（避免 JW 的长串），把多体自旋问题分解为“Z2 规范场 × 自由 Majorana”问题，便于解析求解与数值实现（对角化规模更小）。
-- 限制：必须处理局域投影约束 $D_j=+1$；当加入破坏可积性的项时，$u_{ij}$ 取得动力学，问题复杂度急剧上升，需要更强的数值方法。
+**符号约定与算符顺序的严格推导**
 
-10) 延伸：从可积 R 到带谱参数 R(u)
+在实际推导和数值实现中，算符的反对易性和重排顺序会引入可观的符号差别；文献中对链路变量 $u_{ij}$ 的具体约定也有不同。这里给出一步一步的代数推导以消除歧义，并推荐一个一致的约定以便在实现时避免负号错误。
 
-- 若希望在代数可积框架下控制二维参数族，可以尝试寻找带谱参数的 R(u) 并将其嵌入格上，但在二维保持严格可积通常不可行；更实际的是用上面 Majorana+Z2 框架在二维上分析拓扑相并用数值验证 R 参数对拓扑相的影响。
+令局域 Majorana 算符为
+$$
+A=b^a_i, B=c_i,	C=b^a_j, D=c_j
+$$
+其中所有 Majorana 间满足反对易关系 $XY=-YX$ （若 $X\neq Y$）。自旋算符按映射写为 $\sigma^a_i = i A B$，$\sigma^a_j = i C D$。则
+$$
+\begin{align*}
+\sigma^a_i\sigma^a_j &= (iAB)(iCD) = (i\cdot i)\, A B C D = - A B C D.
+\end{align*}
+$$
+
+由于 Majorana 间反对易，把 $B$ 与 $C$ 交换会获得负号：
+$$
+\begin{align*}
+A B C D &= - A C B D.
+\end{align*}
+$$
+于是
+$$
+\begin{align*}
+\sigma^a_i\sigma^a_j &= -(- A C B D) = A C B D = (b^a_i b^a_j)(c_i c_j).
+\end{align*}
+$$
+
+现在定义链路算符时要小心 i 因子的放置。约定：
+
+$u_{ij}=-i b^a_i b^a_j$。代入得
+$$
+\begin{align*}
+u_{ij}(i c_i c_j) &= (-i b_i b_j)(i c_i c_j) = (-i\cdot i)\, b_i b_j c_i c_j = + b_i b_j c_i c_j = \sigma^a_i\sigma^a_j.
+\end{align*}
+$$
+这使得书写更简洁：
+$$\sigma^a_i\sigma^a_j = u_{ij}\,(i c_i c_j)\qquad(\text{with }u_{ij}=-i b^a_i b^a_j).$$
+
+结论与实现要点：
+
+- 乘法始终是算符乘积，即在全 Hilbert 空间中等价于相应的张量积嵌入；在局域算符之间交换顺序会带来负号（Majorana 反对易）。
+- 统一采用 $u_{ij}=-i b^a_i b^a_j$ 的约定，这样可以把原式直接写为 $\sigma^a_i\sigma^a_j = u_{ij}(i c_i c_j)$，并在数值构造 $A$ 矩阵時按此约定给出元素符号。
+
+
+
+**守恒量、flux 与可解性**
+
+在纯 Kitaev‑型哈密顿量（仅含上述键各向异性二体项）中，所有链路算符 $u_{ij}$ 与 $H$ 对易，因此每个 $u_{ij}$ 是守恒的二值自由度——这把多体问题分解为若干“在固定 $\{u\}$ 背景下的自由 Majorana 问题”。
+
+定义回路流子（plaquette flux）$W_p=\prod_{(ij)\in p} u_{ij},$$
+这是局域守恒量，$W_p=-1$ 描述格点上的漩涡/vison。
+
+基态通常对应某个 flux 配置（例如蜂窝格的无磁通格局），找基态等价于在所有 $u$ 配置中比较自由 Majorana 的能量。
+
+
+
+**Majorana 二次形式与对角化**（数值实现）
+
+将 $H$ 写为标准的 Majorana 二次形式：
+$$H=\frac i4\sum_{i,j} A_{ij} c_i c_j,$$
+其中 $A$ 为实反对称矩阵，元素由 $J_{ij}u_{ij}$ 给出（具体常数因子依定义而定）。
+
+对 $A$ 做实反对称矩阵的谱分解（奇异值/对角化）可以得到成对的本征能量 $\pm\epsilon_n$；零能模（Majorana 零模）以及能隙信息可由此直接读取。标准做法是将 $iA$ 对角化为实对称矩阵或构造 BdG 形式得到配对谱。
+
+
+
+**投影与物理态**
+
+虽然 $b^\alpha,c$ 在扩大 Hilbert 空间中是自由算符，但物理算符要满足 $D_j=+1$ 的约束。对许多数值计算（能带、局域态、Chern 数）而言，可以先在固定 $u$ 背景下对 $A$ 对角化并计算能量，再通过比较不同 flux 配置的能量来确定物理基态配置；严格计算物理态期望值时需对 $D_j$ 投影。
+
+
+
+当 $u_{ij}$ 失去守恒（规范动力学）时:
+
+若哈密顿量加入破坏可积性的项（例如混合的 $\sigma^\alpha_i\sigma^\beta_j$、某些三体/四体耦合或横场项），$[u_{ij},H]\neq0$，此时 $u_{ij}$ 变成具有动力学的 Z2 变量，问题变成“Majorana 与 Z2 格点规范场耦合的相互作用系统”。此情形通常无法解析，需要平均场、蒙特卡洛、DMRG/PEPS 等数值手段处理。
+
+
+
+**与文中 $R_{i,j}$ 的衔接**:
+
+定义的局域算符
+$R_{ij}=aI + b\sigma^x_i\sigma^x_j + c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$$中，按上述映射每个二体项均可写成 $$u^{(a)}_{ij}(i c_i c_j)$（不同键类型 $a$ 用不同的 $u$）。常数 $a$ 只贡献恒定能量偏移。对于任一单一成分的键项 $\sigma^a_i\sigma^a_j$，Majorana 映射保持为二次形式；只有当引入混合键（如 $\sigma^x_i\sigma^y_j$）、Heisenberg 型 $\sigma_i\cdot\sigma_j$、外场或某些多体项时，才可能导致 $u_{ij}$ 失守恒或在费米表示产生四费米及更高阶项，从而使问题变得更复杂。
+
+延伸：从可积 R 到带谱参数 R(u)
+
+若希望在代数可积框架下控制二维参数族，可以尝试寻找带谱参数的 R(u) 并将其嵌入格上，但在二维保持严格可积通常不可行；更实际的是用上面 Majorana+Z2 框架在二维上分析拓扑相并用数值验证 R 参数对拓扑相的影响。
 
 ### 蜂窝格上 R_{ij} 的动量空间推导
 
-下面把把你的局域算符
+下面把局域算符
 $$
 R_{ij}=aI + b\,\sigma^x_i\sigma^x_j + c\,\sigma^y_i\sigma^y_j + d\,\sigma^z_i\sigma^z_j
 $$
@@ -150,31 +143,31 @@ $$
 
 1) 坐标与最近邻向量（约定）
 
-- 取蜂窝格的两个子格为 A,B。定义从 A 指向其三个最近邻 B 的位移向量（常用规范，格常数取 1）：
-    $$
-    \delta_x=(0,1),\qquad \delta_y=(\tfrac{\sqrt3}{2},-\tfrac12),\qquad \delta_z=(-\tfrac{\sqrt3}{2},-\tfrac12).
-    $$
-    （若你使用不同坐标系，只需在 $k\cdot\delta$ 中代入相应向量即可。）
+取蜂窝格的两个子格为 A,B。定义从 A 指向其三个最近邻 B 的位移向量（常用规范，格常数取 1）：
+$$
+\delta_x=(0,1),\qquad \delta_y=(\tfrac{\sqrt3}{2},-\tfrac12),\qquad \delta_z=(-\tfrac{\sqrt3}{2},-\tfrac12).
+$$
+（若你使用不同坐标系，只需在 $k\cdot\delta$ 中代入相应向量即可。）
 
 2) 参数映射与复结构函数
 
-- 把 $b,c,d$ 分别映射为三类键的耦合强度：
-    $$
-    J_x=b,\qquad J_y=c,\qquad J_z=d.
-    $$
+把 $b,c,d$ 分别映射为三类键的耦合强度：
+$$
+J_x=b,\qquad J_y=c,\qquad J_z=d.
+$$
 
-    补充说明（局域参数映射）：
+补充说明（局域参数映射）：
 
-    把一般的局域键写作
-    $$
-    R_{ij}=aI + b\,\sigma^x_i\sigma^x_j + c\,\sigma^y_i\sigma^y_j + d\,\sigma^z_i\sigma^z_j,
-    $$
-    在蜂窝格中按边的类型分配系数：若某条边为 $x$‑键则取 $J_x=b$；若为 $y$‑键取 $J_y=c$；为 $z$‑键取 $J_z=d$。其中常数 $a$ 只产生整体能量偏移或化学势修正，不进入 Majorana 的最近邻二次项。
+把一般的局域键写作
+$$
+R_{ij}=aI + b\,\sigma^x_i\sigma^x_j + c\,\sigma^y_i\sigma^y_j + d\,\sigma^z_i\sigma^z_j,
+$$
+在蜂窝格中按边的类型分配系数：若某条边为 $x$‑键则取 $J_x=b$；若为 $y$‑键取 $J_y=c$；为 $z$‑键取 $J_z=d$。其中常数 $a$ 只产生整体能量偏移或化学势修正，不进入 Majorana 的最近邻二次项。
 
-- 定义复函数
-    $$
-    f(\mathbf{k})=J_x e^{i\mathbf{k}\cdot\delta_x} + J_y e^{i\mathbf{k}\cdot\delta_y} + J_z e^{i\mathbf{k}\cdot\delta_z}.
-    $$
+定义复函数
+$$
+f(\mathbf{k})=J_x e^{i\mathbf{k}\cdot\delta_x} + J_y e^{i\mathbf{k}\cdot\delta_y} + J_z e^{i\mathbf{k}\cdot\delta_z}.
+$$
 
 3) Majorana 二次矩阵 $A(\mathbf{k})$（无磁通扇区）
 
