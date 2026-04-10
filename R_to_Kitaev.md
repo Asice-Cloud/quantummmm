@@ -251,6 +251,7 @@ $$
 
 总结就是，张量积形式体现算符是局域的两体算符；b,c 控制二次自由部分（hopping/pairing → 对应邻位 Majorana 双线性），d 同时生成化学势修正与最近邻相互作用（四费米）
 
+R(a,b,c,d) 是“纤维上的离散平行移动元 + YBE 代数平坦性” (kit3 and kit4)
 
 
 **示例(ai 生成)**
@@ -269,8 +270,6 @@ $$t\propto 0,\quad \Delta\propto 2,$$
 即纯配对项（最大化 p‑wave 配对）。
 
 ### 从 R 到 braid operator 的显式例子
-(based on article from cwq)
-
 下面给出把局域 $R_{i,i+1}$（经 Jordan–Wigner 映射得到的 Majorana 双线性）映射到一个典型 braid 生成子 $U=\exp\big((\pi/4)\,\gamma_a\gamma_b\big)$ 的代数路径与具体示例参数。
 
 1) Majorana 双线性记号：若全局哈密顿密度写为
@@ -308,72 +307,6 @@ $$
 4) 注记与限制：
 - 要实现上述理想化映射，必须保证其它 Majorana 对的耦合在演化期间可以被抑制（例如通过参数选择或断续脉冲）；若存在显著的额外耦合，所得 $U$ 会包含额外因子，破坏纯粹的 braid 操作。
 - 物理上还需保证存在零能马约拉那模与能隙（以保证在绝热交换过程中态空间的正确性）；直接由局域 $R$ 的一次演化构造代数上的 braid 操作在实现上是必要但非充分条件。
-
-
-### 2D 上由 $R$ 构造编织量子门的通用配方
-
-上面的例子是在“两个格点 + 4 个 Majorana”的小系统里，把局域 $R_{i,i+1}$ 选参后做一次时间演化，得到理想的单步交换门
-$$
-U_{i,i+1}(\tau)=\exp\Big(\frac{\pi}{4}\gamma_2\gamma_3\Big).
-$$
-在二维格点图上，只要能在一条边 $(i,j)$ 的局部 Hilbert 空间里复制同样的 Majorana 结构与参数选择，就可以把这一步推广为“沿一条边移动零模/实现一次 braid 生成元”的量子门。
-
-**(1) 单边上的通用构造**
-
-给定一条边 $(i,j)$ 上的局域算符
-$$
-R_{ij}(a,b,c,d)=aI+b\,\sigma^x_i\sigma^x_j+c\,\sigma^y_i\sigma^y_j+d\,\sigma^z_i\sigma^z_j,
-$$
-沿用前文的 1D 映射，可以在该边对应的 4 个 Majorana（记为 $\gamma_1,\gamma_2,\gamma_3,\gamma_4$）上写成
-$$
-H_{ij}=\frac{i}{2}\sum_{a<b}A_{ab}\,\gamma_a\gamma_b,
-$$
-其中（同 1D 两格点单元的识别）
-$$
-A_{23}=\frac{t+\Delta}{2},\qquad A_{14}=\frac{\Delta-t}{2},\qquad A_{12}=A_{34}=-\frac{\mu}{2},
-$$
-而
-$$
-t\propto(b+c),\qquad\Delta\propto(b-c),\qquad\mu\text{ 由 }a,d\text{ 的线性项给出}.
-$$
-
-若希望在这条边上实现一个“几乎理想的” Majorana 交换门 $U_{ij}^{(\text{braid})}$，则可以：
-
-- 选择 $(a,b,c,d)$ 使得某一对 Majorana（例如 $\gamma_2,\gamma_3$）的耦合 $A_{23}$ 为主，而 $A_{14},A_{12},A_{34}$ 尽可能小（甚至为 0）——上面的示例参数 $a=0,d=0,b=1,c=0$ 就给出了 $A_{23}=1,A_{14}=A_{12}=A_{34}=0$；
-- 在演化时段内只在这条边上打开对应的 $H_{ij}$，并选取演化时间
-    $$
-    	au=\frac{\pi}{2A_{23}},
-    $$
-    这样主耦合产生的角度满足 $\tau A_{23}/2=\pi/4$，得到
-    $$
-    U_{ij}(\tau)=e^{-iH_{ij}\tau}\approx\exp\Big(\frac{\pi}{4}\gamma_2\gamma_3\Big)
-    $$
-    （忽略由残余小耦合产生的微小纠正）。
-
-在二维任何一条边 $(i,j)$ 上，只要局域 Majorana 排列和参数选择复制了这一结构，就可以把 $U_{ij}(\tau)$ 看作“沿该边的一步 braid 生成元”。
-
-**(2) 沿二维路径串联成完整辫子**
-
-在二维格上考虑一条最近邻路径
-$$
-\gamma: p_0\to p_1\to\cdots\to p_n,
-$$
-每一步 $(p_k,p_{k+1})$ 都是一条格边。对每条边重复上面的单边构造：
-
-- 对边 $(p_k,p_{k+1})$ 选取 $(a,b,c,d)$，只在这一边上打开相应的 $H_{p_k p_{k+1}}$；
-- 以 $\tau_k=\pi/(2A_{ab}^{(k)})$ 的时间演化（其中 $A_{ab}^{(k)}$ 是该边上主耦合 Majorana 对的系数），得到单步 gate
-    $$
-    U_{p_k p_{k+1}}\approx\exp\Big(\pm\frac{\pi}{4}\gamma_{(k)}\gamma_{(k+1)}\Big).
-    $$
-
-则整条路径的编织算符为有序乘积
-$$
-U_\gamma=\prod_{k=0}^{n-1}U_{p_k p_{k+1}}\;\approx\;\prod_{k=0}^{n-1}\exp\Big(\pm\frac{\pi}{4}\gamma_{(k)}\gamma_{(k+1)}\Big),
-$$
-在“其它耦合都被抑制，演化足够绝热”的假设下，它在零模简并子空间中正是把一个任何子/涡核沿路径 $\gamma$ 搬运的 braid gate。若 $\gamma$ 是绕着另一个任何子的一条闭合路径，这个 $U_\gamma$ 就是对应的编织操作。
-
-这给出了一条从“常数 R(a,b,c,d)” → “局部 Majorana 双线性 H_{ij}” → “单边 braid gate U_{ij}(\tau)” → “二维路径上的整体辫子算符 U_\gamma” 的具体、可操作配方。
-
 
 
 ### **附录：YBE 代数约束与典型物理情形**

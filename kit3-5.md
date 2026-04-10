@@ -454,12 +454,25 @@ $$
 $$
 U_R[\Gamma]=\mathcal P\exp\Big(-\int_\Gamma A\Big),
 $$
+
+这里的 $\mathcal P$ 是 “路径有序算符”（path ordering operator）。即沿着路径 $\Gamma$ 的不同点上，联络 (A(x)) 一般是彼此不对易的矩阵，所以不能简单写成普通的指数 $\exp(-\int_\Gamma A)$。
+$\mathcal P $要求在展开成级数时，把靠近路径起点的 (A) 放在右边、靠近终点的放在左边，即按路径参数的顺序排列：
+
+$$
+\mathcal P e^{-\int_\Gamma A}
+= 1 + \int_0^1 dt_1,(-A(t_1))
+
+\int_0^1 dt_2\int_0^{t_2} dt_1,(-A(t_2))(-A(t_1)) + \cdots
+$$
+
+所以一句话：$\mathcal P$ 表示“按沿 $\Gamma$ 的行进顺序把矩阵 (A) 排列起来再做指数”，这就是非阿贝尔 Berry 联络的平行移动/holonomy。
+
 它可以看成是若干“局部 2‑胞”的 holonomy 的乘积。例如：
 
 在辫子群 2‑维 CW 复形中，一条“绕 braid 关系 2‑胞”的回路正是
-	$$
+$$
 	\sigma_i\sigma_{i+1}\sigma_i(\sigma_{i+1}\sigma_i\sigma_{i+1})^{-1},
-	$$
+$$
 
 它的 holonomy 就是我们在离散联络中定义的曲率元
 	$$

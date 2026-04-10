@@ -226,7 +226,7 @@ $$
 	其中 $\theta_1=1,\ \theta_\psi=-1$ 是 Ising 理论中 $1$ 和 $\psi$ 的 topological spin（此处忽略整体相位）。
 	 - 在我们选定的逻辑基 $\{|0_L\rangle,|1_L\rangle\}$ 下，对应的矩阵就是
 	
-    $$
+$$
 	\rho_{\mathrm{Ising}}(T_\gamma)
 		 =
 		 \begin{pmatrix}
@@ -260,12 +260,13 @@ $$
 	$$
 	   \gamma:\ e_1=(i_1j_1),\ e_2=(i_2j_2),\dots, e_L=(i_Lj_L),
 	$$
-	   满足 $j_k=i_{k+1}$（索引 mod $L$），即这些边首尾相接组成一圈。
+
+满足 $j_k=i_{k+1}$（索引 mod $L$），即这些边首尾相接组成一圈。
 	 在每条边上，我们已经在前文中引入了 Majorana 双线性
 	$$
 	   K_{e_k}=\gamma_{i_k}\gamma_{j_k},\qquad u_{e_k}=\pm1,
 	$$
-	并定义了局域幺正元件
+并定义了局域幺正元件
 	$$
 	   U_{e_k}(u_{e_k})=\exp\Big(\frac{\pi}{4}\,u_{e_k}\,K_{e_k}\Big)
 	   =\exp\Big(\frac{\pi}{4}\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k}\Big).
@@ -287,19 +288,19 @@ $$
 	$$
 	   0=t_0<t_1<\cdots<t_L=T,\qquad t_k-t_{k-1}=\Delta t=T/L.
 	$$
-	 在第 $k$ 段时间 $t\in[t_{k-1},t_k]$ 内，只打开第 $k$ 条边上的额外耦合项，其余边保持背景值不变：
+在第 $k$ 段时间 $t\in[t_{k-1},t_k]$ 内，只打开第 $k$ 条边上的额外耦合项，其余边保持背景值不变：
 	$$
 	   H(t)
 	   \,=\, H_{\mathrm{bg}} 
 	    \, +\, i\,\lambda_k(t)\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k},
 	$$
-	   其中 $H_{\mathrm{bg}}$ 是保持系统在 Ising 相区、bulk 有隙的背景哈密顿量，$\lambda_k(t)$ 是一个在 $[t_{k-1},t_k]$ 支持的光滑函数，在区间外为 0。
+其中 $H_{\mathrm{bg}}$ 是保持系统在 Ising 相区、bulk 有隙的背景哈密顿量，$\lambda_k(t)$ 是一个在 $[t_{k-1},t_k]$ 支持的光滑函数，在区间外为 0。
 	 要求每一段的时间积分满足
 	$$
 	   \int_{t_{k-1}}^{t_k}\!\lambda_k(t)\,dt
 	   \,=\, \frac{\pi}{4},\qquad k=1,\dots,L.
 	$$
-	这样，在绝热近似下，第 $k$ 段演化在零模子空间上实现的幺正近似为
+这样，在绝热近似下，第 $k$ 段演化在零模子空间上实现的幺正近似为
 	$$
 	   U_k\;\approx\;\exp\Big(\frac{\pi}{4}\,u_{e_k}\,\gamma_{i_k}\gamma_{j_k}\Big)
 	   \,=\,U_{e_k}(u_{e_k}).
@@ -307,27 +308,27 @@ $$
 
 4. **总演化与 Dehn twist 的对应**
 
-	 把所有时间段串联起来，得到总演化算符
-	$$
+把所有时间段串联起来，得到总演化算符
+$$
 	   U(T,0)
 	   \,=\,\mathcal T\exp\Big(-i\int_0^T\!H(t)\,dt\Big)
 	   \;\approx\;\prod_{k=1}^L U_{e_k}(u_{e_k})
 	   \,=\,U_\gamma^{\mathrm{(ideal)}},
 	$$
-	其中 $\mathcal T$ 表示时间排序。
+其中 $\mathcal T$ 表示时间排序。
 
-	在零模/拓扑简并子空间上，我们考虑
+在零模/拓扑简并子空间上，我们考虑
 	$$
 	   U_\gamma^{\mathrm{(top)}}
 	   \,=\,P_{\mathrm{top}}\,U(T,0)\,P_{\mathrm{top}} 
 	   \;\simeq\;P_{\mathrm{top}}\,U_\gamma^{\mathrm{(ideal)}}\,P_{\mathrm{top}},
 	$$
-	并用前文的幺正同构 $W(p)$ 把它与 Ising TQFT 的表示比较：
+并用前文的幺正同构 $W(p)$ 把它与 Ising TQFT 的表示比较：
 	$$
 	   W(p)\,U_\gamma^{\mathrm{(top)}}\,W(p)^{-1}
 	   \;\simeq\;\rho_{\mathrm{Ising}}(T_\gamma).
 	$$
-	 在我们选定的 genus 2 编码例子中，这个作用在逻辑基 $\{|0_L\rangle,|1_L\rangle\}$ 上即近似为
+在我们选定的 genus 2 编码例子中，这个作用在逻辑基 $\{|0_L\rangle,|1_L\rangle\}$ 上即近似为
 	$$
 	   U_\gamma^{\mathrm{(logical)}}
 	   \;\sim\;

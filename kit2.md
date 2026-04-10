@@ -1,8 +1,13 @@
 ### R to 2D: Majorana 与 Z2 规范场映射
 
-起点：在二维 Kitaev‑型模型中，常在每个格点引入四个 Majorana 算符 $b^x,b^y,b^z,c$ 并以 $\sigma^a=i b^a c$ 表示自旋。任一键向的二体项 $\sigma^a_i\sigma^a_j$ 可写成链路 Z2 变量 $u_{ij}$ 与物质 Majorana $c$ 的二次项的乘积（推荐约定 $u_{ij}=-i b^a_i b^a_j$，从而 $\sigma^a_i\sigma^a_j=u_{ij}(i c_i c_j)$）。在纯键向二体哈密顿中 $u_{ij}$ 是守恒的，格面 Wilson 环 $W_p=\prod_{(ij)\in p}u_{ij}$ 描述通量（vison）；若加入混合键或横场，$u_{ij}$ 取得动力学，问题变为 Majorana 与 Z2 规范场耦合。相比之下，U(1)/SU(2) 等连续规范常出现在 slave‑particle 构造或 gapless spin liquid 的描述中，会产生光子或更复杂的规范动力学，但分析与数值开销更大。把
+**本节目标与思路概览**  
+- 起点：1D 中我们从 Yang–Baxter 的两体算符 $R$ 出发，在链的每条最近邻边 $(i,i+1)$ 上放 $R_{i,i+1}$，通过 Jordan–Wigner 得到 Kitaev‑型 BdG 链。  
+- 2D 推广：在二维方格或蜂窝格上，**仍然只在图的最近邻边 $(i,j)$ 上放同一个两体 $R$**（在自旋记号下写成 $R_{ij}=aI+b\sigma^x_i\sigma^x_j+\cdots$），并用 Majorana+Z2 规范场语言重写为链路变量 $u_{ij}$ 乘端点 Majorana 的二次项。  
+- 远程算符：真正“远程”的作用以两种形式出现：一是在操作层面由最近邻门序列拼出的复合幺正门（见 kit2-2），二是在 2D+Z2 框架中作为“端点 $i,j$ + 路径串 $u_\gamma$”的字符串算符，用来描述编织与拓扑依赖性。  
+
+下面先在 2D 上给出标准的 Majorana+Z2 规范场表示，再说明如何把 1D 中用到的局域算符
 $R_{ij}=aI + b\sigma^x_i\sigma^x_j +c\sigma^y_i\sigma^y_j + d\sigma^z_i\sigma^z_j$
-映到蜂窝格时，通常将 $b,c,d$ 对应为 $J_x,J_y,J_z$，a 为能量偏移；这一映射是研究 Majorana 零模与拓扑相的自然起点。
+安放到蜂窝格的最近邻边上，并讨论得到的谱与拓扑相。
 
 
 

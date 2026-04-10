@@ -1,5 +1,14 @@
 ### 从 1D R→Kitaev 链 到 2D Z2 规范推广（具体例子）
 
+**本节目标**  
+- 先回顾 1D 中从局域
+    $$R_{i,i+1}=aI+b\,\sigma^x_i\sigma^x_{i+1}+c\,\sigma^y_i\sigma^y_{i+1}+d\,\sigma^z_i\sigma^z_{i+1}$$
+    到 Kitaev 链参数 $(t,\Delta,\mu)$ 的映射；
+- 再把同一个两体 $R$ 放到二维图的最近邻边 $(i,j)$ 上，用 Majorana+Z2 规范场写成链路变量 $u_{ij}$ 乘端点 Majorana 的二次项，构造 2D 拓扑超导模型；
+- 最后说明在这个框架下，“远程算符”出现为：
+    1) 由最近邻操作串成的复合幺正门 $R^{(\text{gate})}_{ij}$，以及  
+    2) 在 2D+Z2 语言中带有路径串 $u_\gamma$ 的 Majorana 长程字符串算符 $B_{ij}(\gamma)=u_\gamma(i c_i c_j)$，与编织路径一一对应。
+
 这一节把前面 1D 中的
 $$
 R_{i,i+1}=aI+b\,\sigma^x_i\sigma^x_{i+1}+c\,\sigma^y_i\sigma^y_{i+1}+d\,\sigma^z_i\sigma^z_{i+1}
@@ -31,41 +40,38 @@ $$
 t\propto (b+c),\qquad \Delta\propto (b-c),\qquad \mu\ \text{由 }a,d\text{ 的线性项给出}.
 $$
 
-#### 1.5 从相邻 $R_{i,i+1}$ 到一般 $R_{ij}$ 的两种视角
+#### 1.5 从相邻 $R_{i,i+1}$ 到图上一条边的 $R_{ij}$
 
-**算符嵌入（自旋层面）**  
+**算符嵌入 vs. 模型的图结构**  
 起点是 R_to_Kitaev 里定义在 $V\otimes V$ 上的
 $$
-    R=aI + b\,\sigma^x\otimes\sigma^x + c\,\sigma^y\otimes\sigma^y + d\,\sigma^z\otimes\sigma^z,
-    $$
-把它嵌入到链上时，$R_{i,i+1}$ 只是把这两个 $\sigma$ 放在槽位 $(i,i+1)$ 上的一种选择：
-    $$
-    R_{i,i+1}=aI + b\,\sigma^x_i\sigma^x_{i+1}+c\,\sigma^y_i\sigma^y_{i+1}+d\,\sigma^z_i\sigma^z_{i+1}.
-    $$
-同理，对于任意两点 $i<j$，可以纯粹在自旋 Hilbert 空间里定义
-    $$
-    R_{ij}=aI + b\,\sigma^x_i\sigma^x_j + c\,\sigma^y_i\sigma^y_j + d\,\sigma^z_i\sigma^z_j,
-    $$
-只是把两个 Pauli 算符放到了第 $i$、$j$ 个槽位上，其它位置全是 $I$。这一推广与是否相邻无关，是最直接的“从 $R_{i,i+1}$ 到 $R_{ij}$”。
+R=aI + b\,\sigma^x\otimes\sigma^x + c\,\sigma^y\otimes\sigma^y + d\,\sigma^z\otimes\sigma^z.
+$$
+在 1D 自旋链上，底层“图”是一条线，只有边 $(i,i+1)$。把 $R$ 嵌入到链上时，
+$$
+R_{i,i+1}=aI + b\,\sigma^x_i\sigma^x_{i+1}+c\,\sigma^y_i\sigma^y_{i+1}+d\,\sigma^z_i\sigma^z_{i+1}
+$$
+表示“在这条最近邻边 $(i,i+1)$ 上作用 $R$”，这就是哈密顿量中真正出现的局域两体项。形式上当然可以在 Hilbert 空间里对任意 $i<j$ 定义
+$$
+R_{ij}=aI + b\,\sigma^x_i\sigma^x_j + c\,\sigma^y_i\sigma^y_j + d\,\sigma^z_i\sigma^z_j,
+$$
+作为“长程两体算符”，但在 1D Kitaev 链的物理模型中，我们的哈密顿量 $H=\sum_i R_{i,i+1}$ 只在图的最近邻边上取和，并不真正包含这些远程 $R_{ij}$。
 
-**实现/构造（1D 链上用相邻交换生成远程算符）**  
-在 1D 中，若要用“相邻的门/相邻 R” 来实现作用在远距 $(i,j)$ 上的同样形式的算符，可以利用交换算符序列。设 $S_{k,k+1}$ 是把第 $k$ 和 $k+1$ 个格点对调的某个局域算符（例如由一串局域 R 或 SWAP 门构成），定义
-    $$
-    S_{i\to j}=S_{j-1,j}\,S_{j-2,j-1}\cdots S_{i,i+1},
-    $$
-它把第 $i$ 个格点搬运到第 $j$ 个位置。则可以用
-    $$
-    R_{ij}=S_{i\to j}\,R_{j-1,j}\,S_{i\to j}^{\dagger}
-    $$
-来“生成”一个等效的远距 $R_{ij}$：先用相邻交换把端点搬到相邻，再在 $(j-1,j)$ 上作用原来的 $R$，最后交换回来。这一写法在算符代数层面等价于直接写自旋算符的 $R_{ij}=aI+\cdots$，但有利于在“只能做最近邻操作”的物理实现/数值模拟中构造远距作用。
+**用最近邻操作实现等效远程作用（门序列的意义）**  
+若只在“操作/量子门”的层面希望在远距 $(i,j)$ 上实现同样形式的两体变换，而底层硬件或模型只允许最近邻 $R_{k,k+1}$，可以利用交换算符序列。设 $S_{k,k+1}$ 是把第 $k$ 和 $k+1$ 个格点对调的某个局域算符（例如由一串局域 R 或 SWAP 门构成），定义
+$$
+S_{i\to j}=S_{j-1,j}\,S_{j-2,j-1}\cdots S_{i,i+1},
+$$
+它把第 $i$ 个格点搬运到第 $j$ 个位置。则门序列
+$$
+R^{\text{(gate)}}_{ij}=S_{i\to j}\,R_{j-1,j}\,S_{i\to j}^{\dagger}
+$$
+在算符代数层面等价于一个只作用在 $(i,j)$ 上的两体变换，但这是由若干最近邻操作拼出来的**复合幺正门**，而不是哈密顿量中的单个局域密度。
 
 **费米/JW 视角与后文 Z2 规范的联系**  
-把上面的 $R_{ij}$ 代入 Jordan–Wigner 后，如果 $i,j$ 不相邻，中间会出现一个从 $i$ 到 $j$ 的长串 $e^{i\pi\sum_{k=i}^{j-1}n_k}$，等价于“沿路径的 Z2 链变量乘积”。这正是后文在二维中引入 Z2 链变量 $u_{ij}$、并把远距作用写成“路径上 $u$ 的乘积 × 端点的 Majorana 二次项”的动机：
-- 在 1D，可以把 $R_{ij}$ 看成沿着链上一条固定路径的 JW 串；
+若在 1D 中直接把上面的抽象 $R_{ij}$ 代入 Jordan–Wigner，则当 $i,j$ 不相邻时，中间会出现从 $i$ 到 $j$ 的长串 $e^{i\pi\sum_{k=i}^{j-1}n_k}$，等价于“沿路径的 Z2 链变量乘积”。这正是后文在二维中引入 Z2 链变量 $u_{ij}$、并把远程作用写成“路径上 $u$ 的乘积 × 端点的 Majorana 二次项”的动机：在 1D，可以把这类长程 $R_{ij}$ 看成沿链上一条固定路径的 JW 串；在 2D，则将这条路径推广为一般格上的路径 $\gamma:i\rightsquigarrow j$，并用 $\prod_{(kl)\in\gamma}u_{kl}$ 来封装路径依赖的符号与拓扑信息。
 
-- 在 2D，将这条路径推广为一般格上的路径 $\gamma:i\rightsquigarrow j$，并用 $\prod_{(kl)\in\gamma}u_{kl}$ 来封装路径依赖的符号与拓扑信息。
-
-下面第 2 节起，我们就在二维方格/蜂窝格上显式构造带 Z2 链变量的版本，用同一组 $(a,b,c,d)$ 或其导出的 $(t,\Delta,\mu)$ 在 2D 中分析拓扑 Majorana 模式。
+下面第 2 节起，我们就在二维方格/蜂窝格上显式构造带 Z2 链变量的版本：此时 $R_{ij}$ 只放在二维图的最近邻边 $(i,j)$ 上，用同一组 $(a,b,c,d)$ 或其导出的 $(t,\Delta,\mu)$ 在 2D 中分析拓扑 Majorana 模式。
 
 #### 2. 在二维方格上加入 Z2 链变量
 
