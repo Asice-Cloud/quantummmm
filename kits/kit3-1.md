@@ -258,7 +258,7 @@ $$
 $$
 给出，对 Ising 粒子为
 $$
-	heta_1=1,\qquad \theta_\psi=-1,\qquad \theta_\sigma=e^{i\pi/8},
+\theta_1=1,\qquad \theta_\psi=-1,\qquad \theta_\sigma=e^{i\pi/8},
 $$
 即共形权重 $h_1=0,\ h_\psi=1/2,\ h_\sigma=1/16$。这与 $R^{\sigma\sigma}$ 的本征相位一致（相差 F‑重排与整休系数）。
 

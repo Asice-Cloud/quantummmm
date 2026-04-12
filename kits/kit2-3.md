@@ -26,7 +26,7 @@
 - 费米/Majorana 展开下的 $R_{ij}$：用 Jordan–Wigner（1D）或四 Majorana + Z2 规范场（2D）映射，把 $R_{ij}^{(\text{spin})}$ 展开为
 $$
 	R_{ij} = C_{ij}\,I + D_{ij}^{(\text{dens})} + Q_{ij}^{(2)}(c,\gamma)\,\Xi_{ij},
-	$$
+$$
 其中：
 - $C_{ij}\,I$ 是常数项；
 - $D_{ij}^{(\text{dens})}$ 收集所有“密度/四费米”项，如 $n_in_j,\ n_i,\ n_j$ 等；
@@ -65,7 +65,7 @@ $$
 $$
 	Q_{i,i+1}^{(2)}(c)= (b+c)(c_i^{\dagger}c_{i+1}+c_{i+1}^{\dagger}c_i)
 	+(b-c)(c_i^{\dagger}c_{i+1}^{\dagger}+c_{i+1}c_i),
-	$$
+$$
 对应 Kitaev 链里的 hopping 和 pairing。
 
 对远程 $j>i+1$，由 Jordan–Wigner 映射
@@ -217,7 +217,7 @@ $$
 在零模简并子空间中，$U_\gamma$ 与字符串算符 $B_{ij}(\gamma)$ 一起，描述了“沿路径搬运/绕圈”对态空间的非平庸作用，两者是本工作中讨论远程算符与 2D 编织的两个互补视角。
 
 用
-$$ 
+$$
 \sigma^x=\sigma^++\sigma^-,\qquad \sigma^y=\frac{\sigma^+-\sigma^-}{i}
 $$
 
