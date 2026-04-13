@@ -1,368 +1,304 @@
-### 命题：任意 braid 在拓扑相中可等价为空间几何操作（Dehn twist 组合）
+holonomy（回转/回环单连）是指在带联络的纤维丛或流形上把纤维沿某条闭合路径做平行移动后所得到的纤维自同构（变换）。所有闭路的这些变换构成的群称为 holonomy 群
 
-本节在纯拓扑 → TQFT → 本文 R = exp(iH\_P) / Berry 框架三个层次上，给出以下命题的严谨表述与推导骨架。
+##### 补充（平直联络与拓扑表示）
 
-> **命题（物理版）.** 在一个带谱隙的 2+1 维拓扑相中，
-> 给定任意 braid word $\beta\in B_n$，存在一族 Hamiltonian‑level 的纯空间操作（由 Dehn twist / 几何畸变 / 局域 $R=e^{iH_P}$ 门重构给出），
-> 使得在零模/编码子空间上，其非阿贝尔 Berry holonomy 与沿时间编织任意子的 holonomy 等价（在 SU(2) 内共轭，误差由曲率/YBE 偏差、非绝对慢走与离散化精度控制）。
-
-下面依次在三个层次上论证：
-
-1. 纯拓扑：$B_n \cong \mathrm{MCG}(D_n,\partial D)$，且 $\mathrm{MCG}$ 由 Dehn twist 生成；
-2. TQFT：世界线 braid 表示与 mapping class 表示一致；
-3. R/Berry：在 R = exp(iH\_P) 框架中构造空间操作并用 Berry 几何控制误差。
-
----
-
-#### 1. 纯拓扑层：辫群与 Dehn twist 生成的 mapping class group 等价
-
-记 $D\subset\mathbb R^2$ 为闭圆盘，$\{p_1,\dots,p_n\}\subset\mathrm{int}(D)$ 为 n 个标记点。我们考虑保持边界点集 $\partial D$ 不动的同胚的同伦类：
+当联络的曲率 $F$ 在考虑的区域上严格为零（平直），则沿闭合曲线的平行搬运（holonomy）只依赖于曲线的同伦类；记联络为 $A$，闭合曲线 $\gamma$ 的 holonomy 写为
 $$
-\mathrm{MCG}(D_n,\partial D)
- := \pi_0\bigl(\{f:D\to D\mid f\text{为同胚},\ f(\partial D)=\partial D,\ f(\{p_i\})=\{p_i\}\}\bigr).
+U[\gamma]=\mathcal P\exp\Big(\oint_\gamma A\Big).
 $$
-
-另一方面，n 股辫群 $B_n$ 定义为 n 个点在区间 $[0,1]$ 上的编织同伦类。
-
-**定理 1.1（经典同构，见 Birman 等）.** 有自然同构
+利用非阿贝尔 Stokes（面次序指数），可以把它写成所围曲面 $S$ 上曲率的面次序指数：
 $$
-\Phi: B_n \simeq  \mathrm{MCG}(D_n,\partial D).
+U[\gamma]=\mathcal P_S\exp\Big(\iint_S F\Big).
 $$
+若 $F\equiv0$，右侧对任意两個以同一同伦类为边界的填充面均相同，故 $U[\gamma]$ 仅取决于 $[\gamma]$（同伦类）。在参数空间或带标记点的配置空间情形，基礎群 $\pi_1$ 即为编织群（braid group）；在带洞的曲面情形，相关的是映射类群（mapping class group）。因此平直联络直接给出这些群在零模子空间上的表示：每个同伦类对应一个幺正算符，并且该算符由拓扑资料确定，成为拓扑不变量。
 
-*思路.*
+若曲率不是严格为零但在该子空间上为标量倍的单位算子（即 $F(x)=\lambda(x)I$，称为中心化曲率），则面次序指数退化为一个标量因子乘以单位算符，holonomy 仍由同伦类决定，但只给出群的投影表示（projective representation），这在带整体相位不可观测时很常见。
 
-- 从一个 braid worldline 配置出发，把时间方向压缩，将其投影到空间圆盘上，得到一个保持边界的同胚的同伦类；
-- 反过来，从一个 mapping class 出发，可构造等价的“点在时间中运动”的轨迹；
-- 这两个构造互为逆，且群结构（连接、复合）对应。
+若 $F$ 既不为零也不在中心，則 holonomy 会依赖所选填充面的具体几何，从而不再是仅由同伦类决定的拓扑量。
 
-因此，拓扑上任意 braid word $\beta\in B_n$ 都等价于某个 mapping class $[f]\in \mathrm{MCG}(D_n,\partial D)$。
+直观举例：在 Ising‑型或任意子系统中，若在有效基态子空间上联接近似平直，则绕粒子交换的闭环给出的 $U[\gamma]$ 正是 braid group 的矩阵表示；在曲面上对基圈做 Dehn twist，得到的矩阵即映射类群的表示（half‑twist / Dehn twist 矩阵），这些矩阵在联接平直或曲率中心化时只由拓扑数据决定。
 
-接下来考虑 mapping class group 的生成元。
+简明示例（Ising 任何子）:
 
-**定义 1.2（Dehn twist）.** 对一条简单闭曲线 $c\subset D_n$，沿着 $c$ 取一个窄带邻域，将其切开，在一侧沿曲线方向旋转 $2\pi$ 后再粘回，得到新的曲面同胚。其同伦类记为 $T_c\in\mathrm{MCG}(D_n,\partial D)$，称为沿 $c$ 的 Dehn twist。
+- 交换两个 $\sigma$ 任何子（按融合基底 $\\{1,\psi\\}$）的 Braid 矩阵为对角形式：
+	$$
+	B_{\sigma\sigma}=\mathrm{diag}(R^{\sigma\sigma}_1,\;R^{\sigma\sigma}_\psi)=\mathrm{diag}(e^{-i\pi/8},\;e^{3i\pi/8}).
+	$$
+	这里 $R^{\sigma\sigma}_a$ 是交换两個 $\sigma$ 后若它们融合到通道 $a\in\{1,\psi\}$ 得到的相因子。
 
-**定理 1.3（Dehn–Lickorish 生成定理的球面多穿孔版本）.** 对于多穿孔圆盘（或等价的球面带标记点），存在有限族简单闭曲线 $\{c_j\}$，使得
+- Dehn twist / half‑twist（绕单个任何子做 $2\pi$ 自旋）由拓扑自旋 $\theta_a$ 给出：例如
+	$$
+	\theta_\sigma=e^{i\pi/8},\qquad \theta_\psi=-1,\qquad \theta_1=1.
+	$$ 
+	因此在对应的零模子空间上，绕包含某个任何子的圈做 Dehn twist 会乘以相应的 $\theta$（若作用在局域标记的子空间上则为标量因子），这就是映射类群元素在该子空间上的具体实现。
+
+该示例展示了平直或中心化曲率下 holonomy 如何退化为由拓扑自旋和 $R$‑相位组成的群表示（或投影表示）。
+
+##### 关于 $H_P$ 的精确定义与分解必要性（补充说明）
+
+为便于后续的引理和误差估计，并与最初的三项分解保持一致，我们把每个局域生成元写成三部分的严格分解：
 $$
-\mathrm{MCG}(D_n,\partial D)
- = \langle T_{c_j}^{\pm1}\mid j\in J\rangle
-$$
-即任意 mapping class 都可写成有限个 Dehn twist 的乘积。
-
-同构 $\Phi$ 与生成定理合并即得：
-
-> **推论 1.4（纯拓扑版主命题）.** 对任意 braid word $\beta\in B_n$，存在简单闭曲线 $c_1,\dots,c_m$ 及符号 $\varepsilon_k=\pm1$，使得
-> $$
-> \Phi(\beta) = [f] = T_{c_1}^{\varepsilon_1}\cdots T_{c_m}^{\varepsilon_m}\in\mathrm{MCG}(D_n,\partial D).
-> $$
-> 换言之，每一个 braid 都等价于有限个 Dehn twist 的组合，而每个 Dehn twist 是一个**纯空间几何操作**。
-
-这一步纯拓扑论证不涉及任何量子物理，仅说明“时间中的编织”和“空间中的扭转”在 mapping class group 意义下是同一个对象的不同代表。
-
----
-
-#### 2. TQFT 层：世界线 braid 表示与 mapping class 表示一致
-
-现在假设给定一个 2+1 维拓扑量子场论（如 Reshetikhin–Turaev 型 TQFT），在一个带 n 个穿孔的空间截面上，其 Hilbert 空间记为
-$$
-\mathcal H_0(D_n; \{\sigma_i\}),
-$$
-其中 $\sigma_i$ 是附着在各穿孔上的 anyon 类型（例如 Ising TQFT 中的 $\sigma$）。
-
-在这样的 TQFT 中，存在两种等价的幺正表示构造：
-
-1. **世界线表示**：
-	 - 把 braid $\beta\in B_n$ 画成 2+1 维时空中的 worldlines；
-	 - 按照 F,R‑符号的 Reshetikhin–Turaev 规则计算振幅，得到
-		 $$
-		 \rho_{\mathrm{WL}}(\beta)\in U(\mathcal H_0).
-		 $$
-
-2. **mapping class 表示**：
-	 - 把 mapping class $[f]\in\mathrm{MCG}(D_n,\partial D)$ 看作“空间手术”操作：切‑扭‑粘；
-	 - 由 3D TQFT 的公理，该操作诱导
-		 $$
-		 \rho_{\mathrm{MCG}}([f])\in U(\mathcal H_0).
-		 $$
-
-标准 TQFT 结构（见 Reshetikhin–Turaev、Walker 等）告诉我们：
-
-**定理 2.1（表示一致性）.** 在上述构造下，有
-$$
-\rho_{\mathrm{WL}}(\beta) = \rho_{\mathrm{MCG}}(\Phi(\beta))
-$$
-至多差一个整体 U(1) 相位。这意味着：
-
-- “时间中沿 worldlines 编织 anyon” 与
-- “在空间截面上做对应的 mapping class（Dehn twist word）”
-
-在 Hilbert 空间上给出的是**同一个幺正表示**。
-
-结合推论 1.4 即得：
-
-> **推论 2.2（TQFT 版主命题）.** 在任意 2+1 维 TQFT 中，对任意 braid word $\beta\in B_n$，存在简单闭曲线 $c_k$ 及符号 $\varepsilon_k$，使得在 $\mathcal H_0$ 上有
-> $$
-> \rho_{\mathrm{WL}}(\beta) = \rho_{\mathrm{MCG}}\Bigl(\prod_k T_{c_k}^{\varepsilon_k}\Bigr)
-> $$
-> （至多差一整体相位）。
->
-> 也就是说，在 TQFT 的层面 **“时间中的 braid” 与若干“空间 Dehn twist” 的组合本来就是同一类幺正操作。**
-
----
-
-#### 3. R = exp(iH\_P) / Berry 层：从抽象表示到具体 Hamiltonian 空间操作
-
-我们现在转到具体的晶格拓扑相，实现上述 TQFT 的 Hilbert 空间与幺正表示。假设：
-
-1. 有一个局域自旋/费米体系，其低能有效理论实现了某个拓扑序，对应的零模/编码子空间为 $\mathcal H_0$；
-
-2. 在每条键 $\langle ij\rangle$ 上有一个两体生成元
-$$
-	 H_P^{(ij)} = \sum_{a,b} c_{ab}^{(ij)}\,\sigma_a\otimes\sigma_b,\qquad R_{ij}=e^{iH_P^{(ij)}};
-$$
-
-3. 总哈密顿量 $H(\lambda)$ 由这些 $H_P^{(ij)}(\lambda)$ 组成，参数 $\lambda$ 取值在某个带谱隙的参数空间 $\Omega$ 内。
-
-这里的哈密顿量有两层物理意义：
-
-- “上层”：$H(\lambda)$ 只是一个具体晶格模型，用来实现给定的 2+1 维 TQFT。它的零模/编码子空间 
-$\mathcal H_0(\lambda)$ 携带了前两节讨论的 braid/MCG 幺正表示；
-- “下层”：每个局域块 $H_P^{(ij)}$ 描述的是微观上的配对、跳跃、规范约束等局域物理。我们在别处把它写成
-$$
-	H_P^{(ij)} \simeq H_{\mathrm{quad}}^{(ij)} + H_{\mathrm{int}}^{(ij)} + H_{\mathrm{gauge}}^{(ij)},
-$$
-
-并不是为命题额外增加一个假设，而是一种“解读”模型的方式：$H_{\mathrm{quad}}$ 选出 Kitaev/p+ip/honeycomb 那个拓扑通道，$H_{\mathrm{int}}, H_{\mathrm{gauge}}$ 则是偏离理想可积/YBE 点的局域扰动，它们用来定义 $\varepsilon_{\mathrm{YBE}}$、复杂度曲率等。**braid 可以变成空间几何操作** 这一结论只要求 $H(\lambda)$ 局域、带谱隙并实现目标 TQFT，与这三部分的具体形式无关；分解本身只是为了在具体模型里看清“谁在做拓扑事、谁只是扰动”。
-
-前面的 kit-new/kit-new2/kit-new3 已经说明：
-
-- 每个 $H_P^{(ij)}$ 在 JW/Majorana 映射后自然分解为:
-$H_{\mathrm{quad}} + H_{\mathrm{int}} + H_{\mathrm{gauge}}$，前者给出 BdG 拓扑结构，后者描述偏离可积/平坦的扰动；
-
-- YBE / classical YBE 在 $H_P$ 空间中刻画出可积/近平坦子流形，使 Berry 曲率 $F$ 小，保证 holonomy 对路径同伦“刚性”。
-
-对参数空间 $\Omega$ 中的路径 $\gamma$，其 Berry holonomy 定义为
-$$
-U[\gamma] = \mathcal P\exp\Bigl(-\int_\gamma A\Bigr),\qquad
- A_\mu(X) = iP\,\partial_\mu P\,P,\qquad
-$$
-（$P$ 为投影到 $\mathcal H_0(\lambda)$）。在配置空间的语境下，$\gamma$ 可以理解为：
-
-- A. 随时间移动缺陷/序参量纹理的路径（worldline 图像）；
-- B. 在空间上重写配对图 / Kekulé 畸变 / branch cut 的路径（空间操作）。
-
-第 6 节中已给出如下形式的主不等式（略去常数）：
-$$
-\bigl\|U_{\mathrm{spatial}} - e^{i\phi}U_{\mathrm{top}}\bigr\|
-\;\lesssim\; \varepsilon_{\mathrm{YBE}} + \kappa\,\mathcal A_{\gamma,\gamma'} + \varepsilon_{\mathrm{adiab}} + \varepsilon_{\mathrm{Trotter}},
+H_P^{(ij)} = H_{\mathrm{quad}}^{(ij)} + H_{\mathrm{int}}^{(ij)} + H_{\mathrm{string}}^{(ij)},
 $$
 其中：
+- $H_{\mathrm{quad}}$ 是二次（BdG）主项，易于 JW 映射与对角化，决定基态子空间与基准谱隙 $\Delta_0$；
+- $H_{\mathrm{int}}$ 是局域的多体相互作用项（例如四费米），通常以算符范数 $\epsilon_{\mathrm{int}}:=\|\sum_{\langle ij\rangle}H_{\mathrm{int}}^{(ij)}\|$ 作为量化；
+- $H_{\mathrm{string}}$（含此前称为 $H_{\mathrm{gauge}}$ 的串/规范项）包含 JW‑string 或非局域串项，其整體范數以 $\epsilon_{\mathrm{str}}:=\|\sum_{\langle ij\rangle}H_{\mathrm{string}}^{(ij)}\|$ 量化。
 
-- $U_{\mathrm{top}}$ 对应抽象 TQFT 中的 $\rho_{\mathrm{WL}}(\beta)$ 或 $\rho_{\mathrm{MCG}}([f])$；
-- $U_{\mathrm{spatial}}$ 是由有限轮局域 $R=e^{iH_P}$ 门、配对图重写或 Kekulé/Dirac 畸变构成的空间操作；
-- $\varepsilon_{\mathrm{YBE}}$ 测量所选 $H_P$ 偏离可积/平坦子流形的程度；
-- $\kappa$ 为 Berry 曲率上界，$\mathcal A_{\gamma,\gamma'}$ 为两条同伦路径间“填充面积”；
-- $\varepsilon_{\mathrm{adiab}}$ 来自时间演化不完全 adiabatic；
-- $\varepsilon_{\mathrm{Trotter}}$ 来自用离散 R 门近似连续生成元的误差。
-
-这一不等式的证明骨架依赖于四个引理：
-
-1. **引理 A（平坦/近平坦联络下的路径同伦稳定性）**：在 $\|F\|\le\kappa$ 区域内，同伦路径给出 holonomy 之差 $\sim\kappa\times$ 填充面积；
-2. **引理 B（adiabatic 时间演化与 Berry holonomy 等价）**：在带谱隙的情形，真实时间演化与 Berry holonomy 只差 $\varepsilon_{\mathrm{adiab}}$；
-3. **引理 C（F,R‑word 与 e^{iH_P} 嵌入一致性）**：在理想可积点上，$e^{iH_P^{(0)}}$ 在 $\mathcal H_0$ 上等同于 TQFT 的 R‑符号，小扰动下拓扑表示稳定；
-4. **引理 D（空间重构电路逼近 quasi‑adiabatic 演化）**：quasi‑adiabatic 生成元可由有限轮局域 R 门逼近，误差 $\varepsilon_{\mathrm{Trotter}}$ 可控。
-
-下面将上述四个引理的内容和主不等式的拼接过程展开说明。
-
-##### 3.1 设定与记号
-
-令参数/配置空间为光滑流形 $\Omega$，对每个 $X\in\Omega$ 有带谱隙的哈密顿量 $H(X)$，其零模/编码子空间投影为
+定義總微擾範數
 $$
-P(X): \mathcal H \to \mathcal H_0(X),\qquad P^2=P=P^\dagger.
-$$
-在 $\Omega$ 上定义 Berry 联络与曲率
-$$
- A_\mu(X) = iP\,\partial_\mu P\,P,\qquad
-F_{\mu\nu}(X) = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]
-						 = P[\partial_\mu P,\partial_\nu P]P.
-$$
-对任意光滑路径 $\gamma:[0,1]\to\Omega$，Berry holonomy 定义为
-$$
-U[\gamma] = \mathcal P\exp\Bigl(-\int_0^1 A_\mu(X(t))\,\dot X^\mu(t)\,\mathrm dt\Bigr).
-$$
-我们假设在考虑的区域内存在统一界
-$$
-\|F_{\mu\nu}(X)\| \le \kappa,\qquad \forall X\in \Omega.
+\epsilon_{\mathrm{tot}} := \epsilon_{\mathrm{int}} + \epsilon_{\mathrm{str}}.
 $$
 
-设 $\gamma$ 是“理想世界线”路径（anyon 真实编织或 TQFT 抽象路径），$\gamma'$ 是通过空间重构/Kekulé/Dirac 畸变等实现的“空间操作路径”。二者端点相同，且在保持谱隙的区域内同伦。记 $S$ 为两条路径围成的有向曲面，其面积为 $\mathcal A_{\gamma,\gamma'}$。
+下面按原來四個引理說明各項的作用與如何把之前的 $\epsilon,\Delta_0$ 替換為三項範數：
 
-##### 3.2 引理 A：近平坦联络下的路径同伦稳定性
+- 引理 B（绝热性）和绝热误差估计：
+	- 需要基态间隙下界 $\Delta\gtrsim\Delta_0-\epsilon_{\mathrm{tot}}>0$；
+	- 絕熱誤差中 $\varepsilon_{\mathrm{adiab}}$ 的主要項仍由 $H_{\mathrm{quad}}$ 的時間導數控制（$\|\dot H_{\mathrm{quad}}\|/\Delta^2$），但 $H_{\mathrm{int}}$ 和 $H_{\mathrm{string}}$ 的存在會引入 $O(\epsilon_{\mathrm{tot}}/\Delta)$ 的修正。
 
-**引理 A.** 若 $\|F\|\le\kappa$，则存在常数 $C_A$，使得对任意同伦的两条路径 $\gamma,\gamma'$，有
+- 引理 C（$e^{iH_P}$ 在 $\mathcal H_0$ 上逼近 R‑符号）：
+	- 要求 $e^{iH_{\mathrm{quad}}^{(ij)}}$ 在編碼子空間上提供理想的 R‑表示；
+	- 小範數的 $H_{\mathrm{int}},H_{\mathrm{string}}$ 會把這一表示擾動，量級為 $O(\epsilon_{\mathrm{tot}}/\Delta_0)$，因此引理 C 的技術假設可寫為 $\epsilon_{\mathrm{tot}}/\Delta_0\ll1$。
+
+- 引理 D（quasi‑adiabatic 生成元與電路逼近）：
+	- quasi‑adiabatic 生成元的局域性、衰減速率與截斷半徑主要由 $H_{\mathrm{quad}}$ 決定；
+	- 在把連續生成元用有限輪 $R=e^{iH_P}$ 門逼近時，$H_{\mathrm{int}}$ 和 $H_{\mathrm{string}}$ 對 Trotter 誤差和局域截斷的影響可通過 $\epsilon_{\mathrm{tot}}$ 估算並作為次要修正。
+
+- 引理 A（Berry 曲率与平坦性估计）：
+	- 曲率 $F$ 的主贡献來自 $H_{\mathrm{quad}}$ 對投影的導數；若在 YBE/可积子流形附近 $H_{\mathrm{quad}}$ 產生小 $\partial P$，那麼
+		$$\|F\|\lesssim O\big(\|\partial H_{\mathrm{quad}}\|/\Delta_0^2\big) + O\big(\epsilon_{\mathrm{tot}}/\Delta_0^2\big),$$
+		因而 $\kappa=\kappa_0+O(\epsilon_{\mathrm{tot}}/\Delta_0^2)$。
+
+此外，对各项的物理影响可以总结为：
+
+- $H_{\mathrm{quad}}$：二次（BdG）主项；决定低能 A 矩阵、零模存在与体间隙 $\Delta_0$；在投影后直接產生 $so(2N)$ 聯絡的主贡献，易于解析与数值对角化；
+- $H_{\mathrm{int}}$：纯四费米或更高次相互作用；会产生能谱重整化、零模能级劈裂或有效交換（非平凡的多体修正），并在微扰理论中以 $O(\epsilon)$ 改变 Berry 联络与 holonomy；
+- $H_{\mathrm{gauge}}$：常数项、化学势修正和含 JW‑string 的非局域項（在费米子基底上表现为串项）；其主要影响是改变局域占据数与边界条件，并可能引入非局域耦合，需在设计门序列时尽量抑制或補償。
+
+数值实现方面，你已有的脚本正是按此思想把 $H_0$ 作为二次可解部分、把 $V$ 当作扰动计算 $\Delta$、$\|V\|$ 与 $\eta=\|V\|/\Delta$ 并据此评估 BdG 近似的有效性——这在证明中作为量化假设出现。
+
+因此在证明语境下，建议在每个引用上述引理的陈述处明确添加一条技术假设：存在三项分解
 $$
-\bigl\|U[\gamma']-U[\gamma]\bigr\| \le C_A\,\kappa\,\mathcal A_{\gamma,\gamma'}.
+H=H_{\mathrm{quad}} + H_{\mathrm{int}} + H_{\mathrm{string}}
 $$
+且 $\epsilon_{\mathrm{tot}}=\|H_{\mathrm{int}}\|+\|H_{\mathrm{string}}\| \ll \Delta_0$。有了该假设，所有引理的常数与误差项可被写成 $O(\epsilon_{\mathrm{tot}})$ 或 $O(\epsilon_{\mathrm{tot}}/\Delta_0)$ 的形式，从而完成定量的估计链。
 
-*证明思路.* 这是非阿贝尔 Stokes 公式的一个定量化版本。
 
-- 由 Berry 联络的 Wilson 线定义和 path‑ordering，可将 $U[\gamma']U[\gamma]^{-1}$ 写成沿着由 $\gamma$、$\gamma'$ 和若干“连接线”组成的闭合回路 $\partial S$ 的 Wilson 环；
 
-- 非阿贝尔 Stokes 定理给出
+
+*證明（較完整的技術推導草稿）.*
+
+設 $H_0:=\sum_{\langle ij\rangle}H_P^{(0,ij)}$ 為理想可積點的累積局域生成元，實際哈密頓為 $H=H_0+V$，其中 $V=\sum_{\langle ij\rangle}V^{(ij)}$。令 $\Delta_0$ 為 $H_0$ 的基態-激發譜隙，假定 $\|V\|=\epsilon<\Delta_0/2$，則下述推導成立。
+
+步驟 1（Duhamel 展開）—— 對單個局域門的指數差採用 Duhamel 展開：
 $$
-	U[\partial S] = \mathcal P\exp\Bigl(-\int_S F + \text{更高阶对易项}\Bigr);
+e^{i(H_0+V)}-e^{iH_0}=i\int_0^1 e^{i(1-s)H_0} V e^{is(H_0+V)}\,ds.
 $$
+將兩邊在基態投影 $P_0$ 上夾住，並用算符範數不等式得到粗略界 $\|P_0(e^{i(H_0+V)}-e^{iH_0})P_0\|\le\|V\|$。為獲得 $\Delta_0$ 的縮放，我們要利用 $V$ 與基態-激發間的弱耦合性。
 
-- 在 $\|F\|\le\kappa$ 且 $\mathcal A_{\gamma,\gamma'}$ 有上界的情形下，可用 Dyson 展开把算符指数与 $F$ 的积分联系起来，得到
-	$$
-	\|U[\partial S]-\mathbb 1\| \lesssim \kappa\,\mathcal A_{\gamma,\gamma'},
-	$$
-	再利用三角不等式与 $\|U[\gamma]\|=1$ 得到引理结论。
-
-物理上，这说明在曲率有界的近平坦联络下，同伦的两条路径给出的 holonomy 之差被“曲率上界 × 填充面积”控制，从而确保在 YBE/近平坦子流形附近，空间变形路径与世界线路径的 Berry 相位/矩阵几乎相同。
-
-##### 3.3 引理 B：adiabatic 时间演化与 Berry holonomy
-
-**引理 B.** 设 $H(X(t))$ 是一条光滑、谱隙 $\Delta>0$ 统一有界的时间参数路径，对应的时间演化算符为 $U_{\mathrm{dyn}}(t)$。若演化足够慢（总演化时间 $T$ 足够大），则存在常数 $C_B$ 使得
+步驟 2（Schrieffer–Wolff / 解析重整化）—— 構造準局域反對角生成元 $S$ 使得
 $$
-\bigl\|U_{\mathrm{dyn}}(T)P(X(0)) - U[\gamma]P(X(0))\bigr\| \le C_B\,\varepsilon_{\mathrm{adiab}},
+e^{S}(H_0+V)e^{-S}=H_0^{\mathrm{eff}}+R,
 $$
-其中 $\varepsilon_{\mathrm{adiab}} \sim \mathcal O(\|\dot H\|/\Delta^2)$ 之类的 adiabatic 小参数。
-
-*证明思路.* 这是 adiabatic 定理的标准形式（Kato、Avron–Seiler–Yaffe 等）：
-
-- 利用瞬时本征态展开，将时间演化分解为 dynamical 相位与几何相位；
-- adiabatic 极限下，跃迁到激发态的幅度受 $\|\dot H\|/\Delta^2$ 控制；
-- 限制到初态在基态/零模子空间的情形，激发态贡献可忽略，剩下的几何部分正是 Berry holonomy，误差给出上式中的 $\varepsilon_{\mathrm{adiab}}$。
-
-因此，真实的绝热时间演化在编码子空间上与 Berry holonomy 等价，只差一个可控小量。
-
-##### 3.4 引理 C：F,R‑数据与 e^{iH_P} 嵌入的一致性
-
-**引理 C.** 在理想可积点 $H_P^{(0)}$ 上，对每一条键 $(ij)$，存在 $H_P^{(0,ij)}$ 使得
+其中 $H_0^{\mathrm{eff}}$ 作用在基態子空間上的有效哈密頓與 $H_0$ 等價（高階修正被吸收），殘餘項 $R=O(\epsilon^2/\Delta_0)$。典型地有 $\|S\|\lesssim O(\epsilon/\Delta_0)$ 且 $S$ 準局域。由此可得
 $$
-R_{ij}^{(0)} := e^{iH_P^{(0,ij)}}\big|_{\mathcal H_0}
+e^{i(H_0+V)}\big|_{\mathcal H_0}=U_{\mathrm{SW}}\,e^{iH_0^{\mathrm{eff}}}\,U_{\mathrm{SW}}^{-1} + O\Big(\frac{\epsilon^2}{\Delta_0^2}\Big),
 $$
-在编码子空间 $\mathcal H_0$ 上实现 TQFT 给出的 R‑矩阵；同时，若 $H_P^{(ij)}=H_P^{(0,ij)}+V^{(ij)}$ 的扰动满足 $\|V^{(ij)}\|\le\epsilon$ 且沿整条路径谱隙保持，则对应的 Berry holonomy 与理想 TQFT 表示相差至多
-$$
-\varepsilon_{\mathrm{YBE}} \lesssim C_C\,\epsilon
-$$
-（可能再乘以路径总“长度”）。
+其中 $U_{\mathrm{SW}}=e^{S}$ 為準局域酉，且 $\|U_{\mathrm{SW}}-I\|\lesssim O(\epsilon/\Delta_0)$。
 
-*证明思路.*
-
-- 在理想可积点，局域哈密顿量由某个量子群或模块范畴的 R‑矩阵生成，构造上保证 $e^{iH_P^{(0)}}$ 在零模子空间上等同于范畴 R‑符号的表示；
-- 沿 YBE/可积流形的小扰动 $V$ 不会闭合谱隙，且其对低能有效理论只产生平滑的、局域的重整化；
-- 由稳定性定理（Hastings–Wen topological order stability 等），拓扑量子数与非阿贝尔统计在小局域扰动下不变；
-- 因此，$e^{iH_P}$ 在 $\mathcal H_0$ 上的表示与理想 R‑表示之间的差异由扰动范数和路径长度控制，给出 $\varepsilon_{\mathrm{YBE}}$ 项。
-
-物理上，这一项衡量我们在 $H_P$ 空间中“对于理想 YBE/可积点的偏离程度”，也是 classical YBE / 平坦子流形偏离的定量化。
-
-##### 3.5 引理 D：空间重构电路逼近 quasi‑adiabatic 演化
-
-**引理 D.** 设存在一个 quasi‑adiabatic 生成元 $K(t)$，它是由局域算符指数衰减加权积分得到的（Hastings–Wen 方案），使得
+步驟 3（投影穩定性與拓撲序穩定性定理）—— Hastings–Wen 及 Bravyi–Hastings–Michalakis 的穩定性結果給出更嚴格的算符界：存在一個準局域酉 $U_{\mathrm{qa}}$ 使得
 $$
-U_{\mathrm{QA}} = \mathcal T\exp\Bigl(-i\int_0^T K(t)\,\mathrm dt\Bigr)
+\|U_{\mathrm{qa}}P_0U_{\mathrm{qa}}^{-1}-P\| \lesssim C\frac{\epsilon}{\Delta_0},
 $$
-在编码子空间上实现沿路径 $\gamma'$ 的 adiabatic/Berry 演化。则对任意给定精度 $\delta>0$，可以构造有限轮局域 R‑门电路 $U_{\mathrm{spatial}}$，使得
+因此基於此變換，$e^{i(H_0+V)}$ 在實際基態子空間與 $e^{iH_0}$ 在理想基態子空間上的表示相差 $O(\epsilon/\Delta_0)$。
+
+步驟 4（路徑累積）—— 若一段空間重構路徑需要施加 $L$ 個局域門，保守地把每個局域門的基態子空間誤差線性累加，得到
 $$
-\bigl\|U_{\mathrm{spatial}}-U_{\mathrm{QA}}\bigr\| \le \varepsilon_{\mathrm{Trotter}} \le \delta.
+\varepsilon_{\mathrm{YBE}} \lesssim C_Y\,L\,\frac{\epsilon}{\Delta_0} + O\Big(\frac{\epsilon^2}{\Delta_0^2}\Big).
 $$
 
-*证明思路.*
+結論：在 $\epsilon/\Delta_0\ll1$ 的物理範圍內，上述步驟給出了從局域微擾到 R‑表示偏差的可量化界（常數 $C_Y$ 與局域性尺度、格點幾何與路徑長度有關）。這就導出命題所述的比例關係，並可作為數值判據與穩定性檢驗的依據。
 
-- quasi‑adiabatic 生成元 $K(t)$ 是局域和的积分，满足 Lieb–Robinson 速度界，因而可在空间上分块、在时间上离散；
-- 用 Trotter–Suzuki 分解将时间序列上的指数拆分为各个局域块的指数乘积；
-- 每一块指数 $e^{-i h_\alpha \Delta t}$ 可由有限轮局域 $R=e^{iH_P}$ 门近似实现（通过门集完备性或直接识别）；
-- 误差由标准 Trotter 估计控制，随时间步长 $\Delta t$ 和分块截断尺度衰减，从而给出 $\varepsilon_{\mathrm{Trotter}}$。
 
-这一步把“连续的 quasi‑adiabatic 演化”真正压缩为“有限深度、有限范围的空间重构电路”，具体形式可以是配对图重写、Kekulé 模式拨动、branch cut/涡旋线段的重新排布等。
 
-##### 3.6 主不等式的拼接
 
-最后说明如何由上述四个引理得到主不等式。分几步进行：
-
-1. **理想拓扑门 vs 理想 Berry holonomy.**
-
-- 在 TQFT 层，有
-		 $$U_{\mathrm{top}} \simeq \rho_{\mathrm{WL}}(\beta) = \rho_{\mathrm{MCG}}(\Phi(\beta)), $$
-		 其中 $\simeq$ 忽略整体相位；
-
-- 在理想可积点，由引理 C 和 B，可在某条“世界线路径” $\gamma$ 上构造理想哈密顿量 $H^{(0)}(X)$，其 adiabatic/Berry 演化 $U[\gamma]$ 在编码子空间上等同于 $U_{\mathrm{top}}$，至多差一个 $\varepsilon_{\mathrm{YBE}}+\varepsilon_{\mathrm{adiab}}$ 的小量。
-
-2. **世界线路径 vs 空间路径.**
-
-- 在参数/配置空间中构造对应的空间操作路径 $\gamma'$（用 Dehn twist、配对图重写、Kekulé/Dirac 纹理变形等实现），保证 $\gamma$ 与 $\gamma'$ 在保持谱隙的区域内同伦；
-
-- 由引理 A，二者 Berry holonomy 差异满足
-	$$
-		 \bigl\|U[\gamma']-U[\gamma]\bigr\| \lesssim \kappa\,\mathcal A_{\gamma,\gamma'}.
-	$$
-
-3. **理想 Berry vs quasi‑adiabatic/电路实现.**
-
-- 由引理 B 和 quasi‑adiabatic 构造，可用 $U_{\mathrm{QA}}$ 逼近 $U[\gamma']$，误差吸收到 $\varepsilon_{\mathrm{adiab}}$；
-
-- 再由引理 D，用有限轮 R‑门电路 $U_{\mathrm{spatial}}$ 逼近 $U_{\mathrm{QA}}$，误差记为 $\varepsilon_{\mathrm{Trotter}}$。
-
-4. **三角不等式合并误差.** 将上述三步的偏差用三角不等式串联：
-$$
-	 \begin{aligned}
-	 \bigl\|U_{\mathrm{spatial}}-e^{i\phi}U_{\mathrm{top}}\bigr\|
-	 &\le \bigl\|U_{\mathrm{spatial}}-U_{\mathrm{QA}}\bigr\|
-			 + \bigl\|U_{\mathrm{QA}}-U[\gamma']\bigr\|
-			 + \bigl\|U[\gamma']-U[\gamma]\bigr\|\\
-	 &\quad + \bigl\|U[\gamma]-e^{i\phi}U_{\mathrm{top}}\bigr\| \\
-	 &\lesssim \varepsilon_{\mathrm{Trotter}} + \varepsilon_{\mathrm{adiab}} + \kappa\,\mathcal A_{\gamma,\gamma'} + \varepsilon_{\mathrm{YBE}}.
-	 \end{aligned}
-$$
-
-这就得到开头给出的主不等式形式。
-
-把纯拓扑层的 $B_n\cong\mathrm{MCG}(D_n)$、TQFT 层的 $\rho_{\mathrm{WL}}=\rho_{\mathrm{MCG}}\circ\Phi$ 与上述 R/Berry 层的误差估计结合，即得本文物理版命题：
-
-> 任意 braid $\beta$ 在 TQFT 中对应的拓扑门 $U_{\mathrm{top}}$ 都可以在具体晶格拓扑相中通过一族**几何/空间操作**实现：包括 Dehn twist、branch cut/Kekulé/Dirac 涡旋畸变、配对图重写以及局域 R = exp(iH\_P) 门电路。只要所选 $H_P$ 方向处在 YBE/近平坦子流形附近，且操作过程保持谱隙不闭合，这些空间操作在零模/编码子空间上与“时间中的 braid”给出同一个 SU(2) 共轭类的幺正，误差由上式中的四项可控。
-
-从而，从严格意义上的纯数学层面（mapping class group 与 Dehn twist）到 TQFT 表示，再到具体 Hamiltonian 级别的 R = exp(iH\_P) 实现，我们完成了“braid 可以被变形成空间操作”的命题的完整链路：
-
-- braid = mapping class（定理 1.1）；
-- mapping class 由 Dehn twist 生成（定理 1.3）；
-- TQFT 中世界线 braid 表示 = mapping class 表示（定理 2.1）；
-- R = exp(iH\_P) + Berry 几何为这些 mapping class 提供了具体的空间操作实现，并在近平坦联络下保证 holonomy 的同伦刚性。
 
 ---
 
-#### 4. 参考文献与进一步阅读（对应各层关键工具）
+##### 3.7 量化推导：从三项分解到各误差项的显式界
 
-这里汇总若干与上文定理/引理直接相关的经典文献，作为“外部黑箱”的出处和进一步阅读方向。
+下面给出完整且一致的推导链，展示如何把 $H=H_{\mathrm{quad}}+H_{\mathrm{int}}+H_{\mathrm{string}}$ 的分解转化为引理 A–D 中的量化界，并据此判断哪一项主导、哪一项可视为微扰。
 
-- **辫群、mapping class group 与 Dehn twist 生成**  
-	- J. S. Birman, *Braids, Links, and Mapping Class Groups*, Annals of Mathematics Studies 82, Princeton Univ. Press (1974).  
-	- B. Farb and D. Margalit, *A Primer on Mapping Class Groups*, Princeton Univ. Press (2011)，特别是关于 \(B_n \cong \mathrm{MCG}(D_n,\partial D)\) 与 Dehn–Lickorish 生成定理的章节。
+1) 投影与导数的谱表示与界
 
-- **Reshetikhin–Turaev 型 TQFT 与世界线/MCG 表示**  
-	- N. Reshetikhin and V. G. Turaev, *Invariants of 3-manifolds via link polynomials and quantum groups*, Invent. Math. 103, 547–597 (1991).  
-	- V. G. Turaev, *Quantum Invariants of Knots and 3-Manifolds*, de Gruyter (1994/2010).  
-	- B. Bakalov and A. Kirillov Jr., *Lectures on Tensor Categories and Modular Functors*, AMS (2001)，关于模范畴、F/R‑符号与 MCG 表示的统一框架。
+令 $P$ 为 $H$ 的基态（或基态简并子空间）投影。用围绕基态谱的复曲线 $\Gamma$ 有
+$$
+P=-\frac{1}{2\pi i}\oint_{\Gamma}(z-H)^{-1}\,dz.
+$$
+对参数求导得到
+$$
+\partial_\mu P = -\frac{1}{2\pi i}\oint_{\Gamma}(z-H)^{-1}(\partial_\mu H)(z-H)^{-1}\,dz.
+$$
+若曲线与谱的距离下界为 $\Delta/2$，则 $\|(z-H)^{-1}\|\le 2/\Delta$，从而（忽略常数因子）可得常用界
+$$
+\|\partial_\mu P\| \lesssim \frac{\|\partial_\mu H\|}{\Delta}.
+$$
 
-- **Berry 相、非阿贝尔 Berry 联络与几何解释**  
-	- B. Simon, *Holonomy, the quantum adiabatic theorem, and Berry's phase*, Phys. Rev. Lett. 51, 2167–2170 (1983).  
-	- F. Wilczek and A. Zee, *Appearance of Gauge Structure in Simple Dynamical Systems*, Phys. Rev. Lett. 52, 2111–2114 (1984)，给出非阿贝尔 Berry 联络与曲率的标准形式。
+2) 曲率的尺度
 
-- **绝热定理与编码子空间上的 adiabatic 演化**  
-	- T. Kato, *On the adiabatic theorem of quantum mechanics*, J. Phys. Soc. Jpn. 5, 435–439 (1950).  
-	- J. E. Avron, R. Seiler and L. G. Yaffe, *Adiabatic theorems and applications to the quantum Hall effect*, Commun. Math. Phys. 110, 33–49 (1987).  
-	- S. Teufel, *Adiabatic Perturbation Theory in Quantum Dynamics*, Lecture Notes in Mathematics 1821, Springer (2003)，系统讨论了有谱隙情形下的绝热定理和误差估计。
+由于 $F_{\mu\nu}=P[\partial_\mu P,\partial_\nu P]P$，有
+$$
+\|F_{\mu\nu}\| \le 2\,\|\partial_\mu P\|\,\|\partial_\nu P\| \lesssim C\frac{\|\partial H\|^2}{\Delta^2}.
+$$
+因此曲率上界的典型量级为 $\kappa\sim O(\|\partial H\|^2/\Delta^2)$，这给出引理 A 中 $\kappa\,\mathcal A$ 项的自然尺度。
 
-- **拓扑序稳定性与局域扰动下的鲁棒性**  
-	- M. B. Hastings and X.-G. Wen, *Quasi-adiabatic continuation of quantum states: The stability of topological ground-state degeneracy and emergent gauge invariance*, Phys. Rev. B 72, 045141 (2005).  
-	- S. Bravyi, M. B. Hastings and S. Michalakis, *Topological quantum order: stability under local perturbations*, J. Math. Phys. 51, 093512 (2010).  
-	- S. Michalakis and J. P. Zwolak, *Stability of frustration-free Hamiltonians*, Commun. Math. Phys. 322, 277–302 (2013)。这些工作为引理 C 中“沿可积/YBE 子流形的小扰动不破坏拓扑表示”提供数学基础。
+3) 投影与曲率的微扰修正（Davis–Kahan 类界）
 
-- **Lieb–Robinson 界与 quasi‑adiabatic 连续性、有限深电路逼近**  
-	- E. H. Lieb and D. W. Robinson, *The finite group velocity of quantum spin systems*, Commun. Math. Phys. 28, 251–257 (1972)——Lieb–Robinson 界最初形式。  
-	- M. B. Hastings, *Lieb-Schultz-Mattis in higher dimensions*, Phys. Rev. B 69, 104431 (2004)；以及与 X.-G. Wen 合作的 2005 年工作，上述 quasi‑adiabatic 生成元 $K(t)$ 的构造即源于此。  
-	- B. Nachtergaele and R. Sims, *Lieb-Robinson bounds in quantum many-body physics*, in *Entropy and the Quantum*, Contemp. Math. 529, AMS (2010)，对 Lieb–Robinson 界及其在 quasi‑adiabatic 连续性中的应用做了综述。  
-	这些结果支撑了引理 D 中“将连续演化压缩为有限深局域电路”的步骤。
+把 $H=H_{\mathrm{quad}}+V$，$V=H_{\mathrm{int}}+H_{\mathrm{string}}$，记 $\Delta_0$ 为 $H_{\mathrm{quad}}$ 的基准谱隙，令 $\epsilon_{\mathrm{tot}}=\|V\|$，则 Davis–Kahan 型估计给出
+$$
+\|P-P_0\| \lesssim \frac{\epsilon_{\mathrm{tot}}}{\Delta_0}.
+$$
+进而投影导数與曲率的修正为低阶项，例如
+$$
+\|\partial P-\partial P_0\| \lesssim O\Big(\frac{\|\partial V\|}{\Delta_0}\Big) + O\Big(\frac{\epsilon_{\mathrm{tot}}\,\|\partial H\|}{\Delta_0^2}\Big).
+$$
+因此可以把曲率分解为 $\kappa=\kappa_0+O(\epsilon_{\mathrm{tot}}/\Delta_0^2)$。
 
-以上文献并不是穷尽，只是给出每一层关键工具的典型代表；在本证明中，我们将它们视作已知定理/技术黑箱，并在主命题中清楚标出了对谱隙、局域性与拓扑序稳定性的假设。
+4) 绝热误差的明确界（引理 B 的量化）
+
+标准绝热估计表明，沿总时长 $T$ 的演化，跃迁幅度由 $\sup_t\|\dot H(t)\|/\Delta^2$ 控制：
+$$
+\varepsilon_{\mathrm{adiab}} \lesssim C_{\mathrm ad}\frac{\sup_t\|\dot H(t)\|}{\Delta^2}.
+$$
+将 $H=H_{\mathrm{quad}}+V$ 代入并分离主项與微扰，得到
+$$
+\varepsilon_{\mathrm{adiab}} \lesssim C_{\mathrm ad}\frac{\sup_t\|\dot H_{\mathrm{quad}}\|}{\Delta^2} + C'_{\mathrm ad}\frac{\sup_t\|\dot V\|}{\Delta^2}.
+$$
+若 $\sup_t\|\dot V\|\ll\sup_t\|\dot H_{\mathrm{quad}}\|$ 且 $\epsilon_{\mathrm{tot}}\ll\Delta_0$，則第二項為次要修正。
+
+5) R‑表示偏差（引理 C）
+
+對局域門 $R_{ij}=e^{iH_P^{(ij)}}$，用譜投影穩定性與 BCH/Dyson 展開可得在基態子空間上的表象差異受 $\epsilon_{\mathrm{tot}}/\Delta_0$ 控制，且沿路徑門數 $L$ 會乘上該誤差因子：
+$$
+\varepsilon_{\mathrm{YBE}} \lesssim C_Y\,L\,\frac{\epsilon_{\mathrm{tot}}}{\Delta_0} + O\Big(\frac{\epsilon_{\mathrm{tot}}^2}{\Delta_0^2}\Big).
+$$
+
+6) quasi‑adiabatic 生成元與 Trotter 誤差（引理 D）
+
+quasi‑adiabatic 生成元通常尺度為 $k_*\sim O(\|\dot H\|/\Delta)$，對其採用 $m$ 步 Trotter 分解可得常見估計
+$$
+\varepsilon_{\mathrm{Trotter}} \lesssim C_T\frac{T\,k_*^2}{m} + C'_T e^{-\mu R_k} \,\sim\, C_T\frac{T}{m}\Big(\frac{\|\dot H\|}{\Delta}\Big)^2 + \text{(LR 截斷)}.
+$$
+因此增大 $m$ 或選擇更平滑的生成元可減小此項；微擾 $V$ 的影響主要通過改變 $\|\dot H\|$ 與 $k_*$，若 $\|\dot V\|\ll\|\dot H_{\mathrm{quad}}\|$，則為次要項。
+
+7) 实用判据與数值流程
+
+综上，判据与实践步骤为：
+
+- 计算 $H_{\mathrm{quad}}$ 的谱并取基准间隙 $\Delta_0$；
+- 计算 $\epsilon_{\mathrm{int}}=\|\sum H_{\mathrm{int}}^{(ij)}\|$ 与 $\epsilon_{\mathrm{str}}=\|\sum H_{\mathrm{string}}^{(ij)}\|$，得 $\epsilon_{\mathrm{tot}}$；
+- 若 $\eta:=\epsilon_{\mathrm{tot}}/\Delta_0 \ll 1$，则 $H_{\mathrm{quad}}$ 为主导项，其他项可视为微扰；
+- 用参数微小改变量估计 $\|\partial H\|,\|\dot H\|$，把它们代入上式估计 $\kappa,\varepsilon_{\mathrm{adiab}},\varepsilon_{\mathrm{Trotter}},\varepsilon_{\mathrm{YBE}}$，以确定 $T,m,L$ 等实际参数；
+- 在数值上，`kits/compute_jw_mapping.py` 已包含计算 $\Delta,\|V\|,\eta$ 的模块，可直接把这些输出对照上式以判断是否满足 $\eta\ll1$ 及其他绝热/离散化约束。
+
+最终结论：若满足
+$$
+\eta=\frac{\epsilon_{\mathrm{tot}}}{\Delta_0}\ll1,\qquad \frac{\sup_t\|\dot V\|}{\Delta_0^2}\ll1,
+$$
+则 $H_{\mathrm{quad}}$ 决定低能拓扑结构，$H_{\mathrm{int}}$ 与 $H_{\mathrm{string}}$ 是可控的微扰；否则必须把这些项纳入主项，重新评估谱结构与联络曲率。
+
+（以上推导把常数依赖显式化为可数值估算的形式；若需，我可以把常数 $C_\ast$ 用具体曲线/格点参数给出并用你现有的矩阵规模做示例估算。）
+
+
+
+#### 附录：对引理 A–D 的量化命題汇总
+
+為方便讀者和數值評估，這裡把引理 A–D 的量化版本列成命題，明確寫出它們對 $H_0,V,\Delta$ 等參數的依賴關係。
+
+- 命題 A.1 (量化非阿貝爾 Stokes): 若 $\sup_{x\in S}\|F(x)\|\le\kappa$，則存在常數 $C_A,C'_A$ 使得
+$$
+	\bigl\|U[\gamma']-U[\gamma]\bigr\| \le C_A\,\kappa\,\mathcal A + C'_A\,\kappa^2\,\mathcal A^2.
+$$
+在 $\kappa\mathcal A\ll1$ 的實用情形下，線性項主導。
+
+- 命題 B.1 (量化絕熱誤差): 若 $H(t)=H_0(t)+V(t)$，整程譜隙下界為 $\Delta>0$，定義 $L_0=\sup_t\|\dot H_0\|,L_V=\sup_t\|\dot V\|,\epsilon=\sup_t\|V\|$，則
+$$
+	\varepsilon_{\mathrm{adiab}} \lesssim C_B\frac{L_0+L_V}{\Delta^2} + C''_B\frac{\epsilon}{\Delta}.
+$$
+第一項為傳統絕熱項，第二項為微擾對投影的直接修正。
+
+- 命題 C.1 (R‑embedding 穩定性): 若 $H_P^{(ij)}=H_P^{(0,ij)}+V^{(ij)}$ 且整體微擾範數 $\epsilon_{\mathrm{tot}}:=\sup_\lambda\|\sum_{\langle ij\rangle}V^{(ij)}(\lambda)\|$，在理想點譜隙 $\Delta_0>0$ 下有
+$$
+	\varepsilon_{\mathrm{YBE}} \lesssim C_C\frac{\epsilon_{\mathrm{tot}}}{\Delta_0} + O\Big(\frac{\epsilon_{\mathrm{tot}}^2}{\Delta_0^2}\Big).
+$$
+
+- 命題 D.1 (Trotter/電路誤差): 若 quasi‑adiabatic 生成元分解為局域項且每項范數上界為 $k_*$，採用 $m$ 步 Trotter 分解與局域截斷半徑 $R_k$，則
+$$
+	\varepsilon_{\mathrm{Trotter}} \le C_D\frac{T\,k_*^2}{m} + C'_D e^{-\mu R_k}.
+$$
+
+這些命題把主不等式中的四個誤差項具體化為可數值估算的形式。建議在文本中引用這些命題位置同時標註用 `kits/compute_jw_mapping.py` 計算得到的 $\Delta,\|V\|,\eta$ 數值，以便把解析界和數值檢驗直接關聯起來。
+
+---
+
+#### 附錄 B：引理 C 与引理 D 的完整技術證明（詳盡版）
+
+以下內容把上文中對引理 C、D 的要點推導展開為更詳細的技術證明草稿，便於檢查常數依賴、局域性假設與數值對接。
+
+B.1 引理 C 的詳細證明（回顧與步驟）
+
+- 假設與符號：令 $H_0$ 為理想可積/可解點的哈密頓，$V$ 為小局域擾動，$H=H_0+V$。令 $\Delta_0=\mathrm{gap}(H_0)$，$\epsilon=\|V\|$ 且假設 $\epsilon<\Delta_0/2$。
+
+- 目標：在基態子空間上比較 $e^{iH}$ 與 $e^{iH_0}$ 的表示，並在 $\epsilon/\Delta_0\ll1$ 下給出以 $\epsilon/\Delta_0$ 為主的誤差界。
+
+- Step 1（解析工具）: 用 Duhamel 展開
+$$
+	e^{iH}-e^{iH_0}=i\int_0^1 e^{i(1-s)H_0} V e^{isH}\,ds.
+$$
+把該等式夾在 $P_0$（$H_0$ 的基態投影）之間得到初步界，但要得到 $\Delta_0$ 的縮放需進一步分析 $V$ 在基態-激發子空間間的耦合。
+
+- Step 2（Schrieffer–Wolff / 近似對角化）: 構造反對角生成元 $S$ 解決 $[H_0,S]+V_{\mathrm{off}}=0$（$V_{\mathrm{off}}$ 為 $V$ 的反對角部分），常規擴展得到
+$$
+\|S\|\lesssim \frac{\|V_{\mathrm{off}}\|}{\Delta_0}=O\Big(\frac{\epsilon}{\Delta_0}\Big).
+$$
+由此可把 $H$ 近似對角化為塊對角形式，並得到
+$$
+e^{iH}\big|_{\mathcal H_0}=U_{\mathrm{SW}}\,e^{iH_0^{\mathrm{eff}}}\,U_{\mathrm{SW}}^{-1}+O\Big(\frac{\epsilon^2}{\Delta_0^2}\Big),
+$$
+其中 $\|U_{\mathrm{SW}}-I\|=O(\epsilon/\Delta_0)$，$H_0^{\mathrm{eff}}$ 在編碼子空間上的有效作用接近 $H_0$。
+
+- Step 3（穩定性定理補強）: 引用 Hastings–Wen 與 Bravyi–Hastings–Michalakis，可保證存在準局域酉 $U_{\mathrm{qa}}$（由 quasi‑adiabatic continuation 構造）滿足
+	$$\|U_{\mathrm{qa}}P_0U_{\mathrm{qa}}^{-1}-P\|\le C\frac{\epsilon}{\Delta_0}.$$
+	因此基態子空間與其投影的改變受 $\epsilon/\Delta_0$ 控制，並把此界傳遞到 $e^{iH}$ 的基態表示上。
+
+- Step 4（路徑累積與最終界）: 把單個局域門在基態子空間上造成的誤差 $O(\epsilon/\Delta_0)$ 按門數 $L$ 保守累加，得到
+	$$\varepsilon_{\mathrm{YBE}} \le C_Y\,L\,\frac{\epsilon}{\Delta_0} + O\Big(\frac{\epsilon^2}{\Delta_0^2}\Big).$$
+
+B.2 引理 D 的詳細證明（回顧與步驟）
+
+- 假設與符號：對投影族 $P(t)$（沿路徑參數化），採用平滑濾波函數 $W$ 構造 quasi‑adiabatic 生成元 $K(t)$，其分解為局域項 $k_\alpha(t)$，令 $k_*:=\sup_{t,\alpha}\|k_\alpha(t)\|$ 且每項支撐直徑不超過 $R_k$（截斷半徑）。
+
+- Step 1（生成元構造與范數估計）: 取
+$$
+K(t)=i\int_{-\infty}^\infty W(\tau) e^{iH t}(\partial_t P) e^{-iH t}\,d\tau,
+$$
+對於合適的 $W$ 可證明 $K(t)$ 為準局域算符，且
+$$
+	k_*\lesssim C_{\mathrm{qa}}\frac{\|\partial_t HW\|}{\Delta}.
+$$
+
+- Step 2（時間離散化）: 將 $[0,T]$ 劃分為 $m$ 段，令 $K_j=K(t_j)$，採用二階 Trotter 展開，有
+$$\Big\|\mathcal T e^{-i\int_0^T K(t)dt} - \prod_{j=1}^m e^{-iK_j\Delta t}\Big\| \lesssim C_T\frac{T}{m} \max_{j,j'}\|[K_j,K_{j'}]\|.
+$$
+	
+用局域和結構和 $k_*$ 可得時間離散誤差上界約為 $\sim C_T T k_*^2/m$。
+
+- Step 3（空間截斷）: 截斷每個 $k_\alpha$ 到半徑 $R_k$ 的局域算符會帶來 $\sim e^{-\mu R_k}$ 的尾項（由 Lieb–Robinson），因此得到
+$$
+	\varepsilon_{\mathrm{Trotter}} \lesssim C_T\frac{T k_*^2}{m} + C'_T e^{-\mu R_k}.
+$$ 
+
+- Step 4（門分解）: 每個局域指數 $e^{-i k_\alpha\Delta t}$ 可由有限輪 $R=e^{iH_P^{(ij)}}$ 門近似實現；實際門數與局域項的支撐、欲達到的精度共同決定常數因子，但不改變上述誤差的參數依賴（$m,R_k,k_*,T$）。
+
+註：以上均為在局域性與譜隙假設下的標準技術推導；若需要，我可以把每一步中的常數用格點大小、耦合常數與哈密頓量矩陣範數做具體數值示例，並把建議的 $m,R_k,T,L$ 自動化為 `kits/compute_jw_mapping.py` 的輸出。
 

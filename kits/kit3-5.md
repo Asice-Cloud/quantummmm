@@ -186,7 +186,7 @@ $$
 1. **局域性**：每个辫子生成元 $\sigma_i$ 的作用在微观模型中由某个**最近邻两体算符**给出，也就是说
 $$
 	B_i\ \text{只作用在第 $i,i+1$ 个物理站点上},
-	$$
+$$
 是某个两体算符 $\widetilde R$ 在整个链上的嵌入：
 $$
 	B_i
@@ -287,12 +287,12 @@ $$
 	\sigma^x\otimes\sigma^x,\quad
 	\sigma^y\otimes\sigma^y,\quad
 	\sigma^z\otimes\sigma^z.
-	$$
+$$
 2. 利用 Pauli 算符的乘法表
 $$
 	\sigma^\alpha\sigma^\beta
 	=\delta_{\alpha\beta}I + i\epsilon_{\alpha\beta\gamma}\sigma^\gamma,
-	$$
+$$
 可以在三站点 Hilbert 空间 $V^{\otimes3}$ 上，把 $R_{12}R_{23}R_{12}$ 和 $R_{23}R_{12}R_{23}$ 都写成 Pauli 张量积基底上的线性组合，例如
 	$$
 	R_{12}R_{23}R_{12}
@@ -332,10 +332,10 @@ $$
 综合 (b)–(e)，在你固定的 ansatz 下，有：
 
 在参数空间 $\mathcal M_R\subset\mathbb R^4$ 中，由上面三条多项式定义的代数子集
-  $$
+$$
   \mathcal M_R^{(\mathrm{YBE})}
   :=\Big\{(a,b,c,d)\mid a d (b-c)=0,\ b c (a-d)=0,\ a b c - a b d - a c d + b c d = 0\Big\}
-  $$
+$$
 
 正是那些可以由一个平坦 Berry 联络 $A$（$F=0$）产生的 $R(a,b,c,d)$ 参数点：在这些点上，存在规范使得所有局部 YBE 三角 2‑胞的 holonomy 为单位元，对应离散曲率元 $\Omega_i=\mathbf1$，连续极限中曲率 2‑形式 $F$ 的通量为 0。
 
