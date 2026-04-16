@@ -1,0 +1,14 @@
+Nonzero entries: 6
+entry0: -(exp(I*Jx) - exp(I*Jy))*(exp(I*Jx) + exp(I*Jy))*(exp(2*I*Jx)*exp(2*I*Jy) - exp(2*I*Jx)*exp(2*I*Jz) - exp(2*I*Jy)*exp(2*I*Jz) + 1)*(exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) + 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-I*Jz)*exp(3*I*c00)/8
+
+entry1: (exp(I*Jx) - exp(I*Jy))*(exp(I*Jx) + exp(I*Jy))*(exp(2*I*Jx)*exp(2*I*Jy) - exp(2*I*Jx)*exp(2*I*Jz) - exp(2*I*Jy)*exp(2*I*Jz) + 1)*(exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) + 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-I*Jz)*exp(3*I*c00)/8
+
+entry2: -(exp(2*I*Jx)*exp(2*I*Jy) + 1)*(exp(2*I*Jx)*exp(2*I*Jy) - exp(2*I*Jx)*exp(2*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) - 1)*(exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) - exp(2*I*Jy)*exp(2*I*Jz) - 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-3*I*Jz)*exp(3*I*c00)/8
+
+entry3: -(exp(6*I*Jx)*exp(6*I*Jy) + exp(6*I*Jx)*exp(4*I*Jy)*exp(2*I*Jz) - exp(6*I*Jx)*exp(2*I*Jy)*exp(4*I*Jz) - exp(6*I*Jx)*exp(6*I*Jz) + exp(4*I*Jx)*exp(6*I*Jy)*exp(2*I*Jz) - 2*exp(4*I*Jx)*exp(4*I*Jy)*exp(4*I*Jz) + exp(4*I*Jx)*exp(4*I*Jy) + exp(4*I*Jx)*exp(2*I*Jy)*exp(6*I*Jz) - 2*exp(4*I*Jx)*exp(2*I*Jy)*exp(2*I*Jz) + exp(4*I*Jx)*exp(4*I*Jz) - exp(2*I*Jx)*exp(6*I*Jy)*exp(4*I*Jz) + exp(2*I*Jx)*exp(4*I*Jy)*exp(6*I*Jz) - 2*exp(2*I*Jx)*exp(4*I*Jy)*exp(2*I*Jz) + 2*exp(2*I*Jx)*exp(2*I*Jy)*exp(4*I*Jz) - exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) - exp(6*I*Jy)*exp(6*I*Jz) + exp(4*I*Jy)*exp(4*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) - 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-3*I*Jz)*exp(3*I*c00)/8
+
+entry4: (exp(2*I*Jx)*exp(2*I*Jy) + 1)*(exp(2*I*Jx)*exp(2*I*Jy) - exp(2*I*Jx)*exp(2*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) - 1)*(exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) - exp(2*I*Jy)*exp(2*I*Jz) - 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-3*I*Jz)*exp(3*I*c00)/8
+
+entry5: (exp(6*I*Jx)*exp(6*I*Jy) + exp(6*I*Jx)*exp(4*I*Jy)*exp(2*I*Jz) - exp(6*I*Jx)*exp(2*I*Jy)*exp(4*I*Jz) - exp(6*I*Jx)*exp(6*I*Jz) + exp(4*I*Jx)*exp(6*I*Jy)*exp(2*I*Jz) - 2*exp(4*I*Jx)*exp(4*I*Jy)*exp(4*I*Jz) + exp(4*I*Jx)*exp(4*I*Jy) + exp(4*I*Jx)*exp(2*I*Jy)*exp(6*I*Jz) - 2*exp(4*I*Jx)*exp(2*I*Jy)*exp(2*I*Jz) + exp(4*I*Jx)*exp(4*I*Jz) - exp(2*I*Jx)*exp(6*I*Jy)*exp(4*I*Jz) + exp(2*I*Jx)*exp(4*I*Jy)*exp(6*I*Jz) - 2*exp(2*I*Jx)*exp(4*I*Jy)*exp(2*I*Jz) + 2*exp(2*I*Jx)*exp(2*I*Jy)*exp(4*I*Jz) - exp(2*I*Jx)*exp(2*I*Jy) + exp(2*I*Jx)*exp(2*I*Jz) - exp(6*I*Jy)*exp(6*I*Jz) + exp(4*I*Jy)*exp(4*I*Jz) + exp(2*I*Jy)*exp(2*I*Jz) - 1)*exp(-3*I*Jx)*exp(-3*I*Jy)*exp(-3*I*Jz)*exp(3*I*c00)/8
+
+Wrote full_ybe_diag_out.txt
