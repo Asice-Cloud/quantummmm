@@ -1,7 +1,0 @@
-Found 6 nontrivial equations for diagonal c's
-eq0: 4*c33*(c11 - c22)
-eq1: 4*c33*(-c11 + c22)
-eq2: -4*c11*c22
-eq3: -4*c11*c22 + 4*c11*c33 + 4*c22*c33
-eq4: 4*c11*c22
-eq5: 4*c11*c22 - 4*c11*c33 - 4*c22*c33

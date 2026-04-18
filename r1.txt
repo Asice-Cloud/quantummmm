@@ -1,0 +1,134 @@
+//ybe_sympy
+
+A0 =
+ⅈ⋅sin(bx)⋅sin(by)⋅sin(bz) + cos(bx)⋅cos ↪
+
+↪ (by)⋅cos(bz)
+
+Ax =
+ⅈ⋅sin(bx)⋅cos(by)⋅cos(bz) + sin(by)⋅sin ↪
+
+↪ (bz)⋅cos(bx)
+
+Ay =
+sin(bx)⋅sin(bz)⋅cos(by) + ⅈ⋅sin(by)⋅cos ↪
+
+↪ (bx)⋅cos(bz)
+
+Az =
+sin(bx)⋅sin(by)⋅cos(bz) + ⅈ⋅sin(bz)⋅cos ↪
+
+↪ (bx)⋅cos(by)
+
+-- Expanded / Factored forms of constraints --
+
+E1 (expanded):
+       2        2        2                               2        2                             2                          3                 ↪
+- ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅sin(bx - by)⋅cos(bz) - sin (bx)⋅sin (by)⋅sin(bz)⋅sin(bx - by)⋅cos (bz) + sin(bx)⋅sin(by)⋅sin (bz)⋅sin(bx - by ↪
+
+↪                                          2                                                                                                 ↪
+↪ )⋅cos(bx)⋅cos(by) - ⅈ⋅sin(bx)⋅sin(by)⋅sin (bz)⋅sin(bx - by)⋅cos(bx)⋅cos(by)⋅cos(bz) - sin(bx)⋅sin(by)⋅sin(bz)⋅sin(bx - by)⋅cos(bx)⋅cos(by) ↪
+
+↪     2                                                         3            2                     2        2                                ↪
+↪ ⋅cos (bz) + ⅈ⋅sin(bx)⋅sin(by)⋅sin(bx - by)⋅cos(bx)⋅cos(by)⋅cos (bz) - ⅈ⋅sin (bz)⋅sin(bx - by)⋅cos (bx)⋅cos (by)⋅cos(bz) - sin(bz)⋅sin(bx - ↪
+
+↪         2        2        2    
+↪  by)⋅cos (bx)⋅cos (by)⋅cos (bz)
+
+E1 (factored):
+-(ⅈ⋅sin(bz) + cos(bz))⋅(ⅈ⋅sin(bx)⋅sin(by)⋅sin(bz) + cos(bx)⋅cos(by)⋅cos(bz))⋅(-ⅈ⋅sin(bx)⋅sin(by)⋅cos(bz) + sin(bz)⋅cos(bx)⋅cos(by))⋅sin(bx - ↪
+
+↪  by)
+
+E2 (expanded):
+   -ⅈ⋅bz    2                2                             -ⅈ⋅bz                    2                                     -ⅈ⋅bz              ↪
+ⅈ⋅ℯ     ⋅sin (bx)⋅sin(bz)⋅cos (by)⋅cos(bz)⋅cos(bx + by) + ℯ     ⋅sin(bx)⋅sin(by)⋅sin (bz)⋅cos(bx)⋅cos(by)⋅cos(bx + by) - ℯ     ⋅sin(bx)⋅sin( ↪
+
+↪                        2                       -ⅈ⋅bz    2                2                         
+↪ by)⋅cos(bx)⋅cos(by)⋅cos (bz)⋅cos(bx + by) + ⅈ⋅ℯ     ⋅sin (by)⋅sin(bz)⋅cos (bx)⋅cos(bz)⋅cos(bx + by)
+
+E2 (factored):
+                                                                                                                -ⅈ⋅bz             
+ⅈ⋅(-ⅈ⋅sin(bx)⋅sin(bz)⋅cos(by) + sin(by)⋅cos(bx)⋅cos(bz))⋅(ⅈ⋅sin(bx)⋅cos(by)⋅cos(bz) + sin(by)⋅sin(bz)⋅cos(bx))⋅ℯ     ⋅cos(bx + by)
+
+E3 (expanded):
+       3        2        2                          3        2                        2          3                2        2                 ↪
+- ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(by)⋅cos(bz) + sin (bx)⋅sin (by)⋅sin(bz)⋅cos(by)⋅cos (bz) - sin (bx)⋅sin(by)⋅sin (bz)⋅cos (by)⋅cos(bz) + ⅈ ↪
+
+↪     3                        2        2            2        3        2                          2        3                        2        ↪
+↪ ⋅sin (bx)⋅sin(by)⋅sin(bz)⋅cos (by)⋅cos (bz) - ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(bz) + sin (bx)⋅sin (by)⋅sin(bz)⋅cos(bx)⋅cos (bz) +  ↪
+
+↪      2        2        3                          2        2        2                                    2        2                        ↪
+↪ ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(by) + sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(by)⋅cos(bz) - ⅈ⋅sin (bx)⋅sin (by)⋅sin(bz)⋅cos(bx)⋅co ↪
+
+↪          2          2        2                        3          2                3                2            2                2         ↪
+↪ s(by)⋅cos (bz) - sin (bx)⋅sin (by)⋅cos(bx)⋅cos(by)⋅cos (bz) + sin (bx)⋅sin(by)⋅sin (bz)⋅cos(bx)⋅cos (by) + ⅈ⋅sin (bx)⋅sin(by)⋅sin (bz)⋅cos ↪
+
+↪         2                  2                                2        2            2                        2        3          2        2  ↪
+↪ (bx)⋅cos (by)⋅cos(bz) - sin (bx)⋅sin(by)⋅sin(bz)⋅cos(bx)⋅cos (by)⋅cos (bz) - ⅈ⋅sin (bx)⋅sin(by)⋅cos(bx)⋅cos (by)⋅cos (bz) - sin (bx)⋅sin ( ↪
+
+↪                3                    2                        3        2                  3        2        2                            3  ↪
+↪ bz)⋅cos(bx)⋅cos (by)⋅cos(bz) + ⅈ⋅sin (bx)⋅sin(bz)⋅cos(bx)⋅cos (by)⋅cos (bz) - sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(bz) + ⅈ⋅sin(bx)⋅sin ( ↪
+
+↪                2        2                  2        3        2                            2        2        2                              ↪
+↪ by)⋅sin(bz)⋅cos (bx)⋅cos (bz) + sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(by) + ⅈ⋅sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(by)⋅cos(bz) - sin(bx ↪
+
+↪      2                2                2                    2        2                3                            3        2        2     ↪
+↪ )⋅sin (by)⋅sin(bz)⋅cos (bx)⋅cos(by)⋅cos (bz) - ⅈ⋅sin(bx)⋅sin (by)⋅cos (bx)⋅cos(by)⋅cos (bz) + ⅈ⋅sin(bx)⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by) ↪
+
+↪                       2        2        2                                            2        2        2                          2        ↪
+↪  + sin(bx)⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) - ⅈ⋅sin(bx)⋅sin(by)⋅sin(bz)⋅cos (bx)⋅cos (by)⋅cos (bz) - sin(bx)⋅sin(by)⋅cos (bx)⋅co ↪
+
+↪  2        3                    2        2        3                                  2        3        2          2        2        3       ↪
+↪ s (by)⋅cos (bz) - ⅈ⋅sin(bx)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) + sin(bx)⋅sin(bz)⋅cos (bx)⋅cos (by)⋅cos (bz) - sin (by)⋅sin (bz)⋅cos (bx)⋅c ↪
+
+↪                       2                3                2                    2        3        2                                  3        ↪
+↪ os(by)⋅cos(bz) + ⅈ⋅sin (by)⋅sin(bz)⋅cos (bx)⋅cos(by)⋅cos (bz) - ⅈ⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) + sin(by)⋅sin(bz)⋅cos (bx)⋅co ↪
+
+↪  2        2    
+↪ s (by)⋅cos (bz)
+
+E3 (factored):
+       3        2        2                          3        2                        2          3                2        2                 ↪
+- ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(by)⋅cos(bz) + sin (bx)⋅sin (by)⋅sin(bz)⋅cos(by)⋅cos (bz) - sin (bx)⋅sin(by)⋅sin (bz)⋅cos (by)⋅cos(bz) + ⅈ ↪
+
+↪     3                        2        2            2        3        2                          2        3                        2        ↪
+↪ ⋅sin (bx)⋅sin(by)⋅sin(bz)⋅cos (by)⋅cos (bz) - ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(bz) + sin (bx)⋅sin (by)⋅sin(bz)⋅cos(bx)⋅cos (bz) +  ↪
+
+↪      2        2        3                          2        2        2                                    2        2                        ↪
+↪ ⅈ⋅sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(by) + sin (bx)⋅sin (by)⋅sin (bz)⋅cos(bx)⋅cos(by)⋅cos(bz) - ⅈ⋅sin (bx)⋅sin (by)⋅sin(bz)⋅cos(bx)⋅co ↪
+
+↪          2          2        2                        3          2                3                2            2                2         ↪
+↪ s(by)⋅cos (bz) - sin (bx)⋅sin (by)⋅cos(bx)⋅cos(by)⋅cos (bz) + sin (bx)⋅sin(by)⋅sin (bz)⋅cos(bx)⋅cos (by) + ⅈ⋅sin (bx)⋅sin(by)⋅sin (bz)⋅cos ↪
+
+↪         2                  2                                2        2            2                        2        3          2        2  ↪
+↪ (bx)⋅cos (by)⋅cos(bz) - sin (bx)⋅sin(by)⋅sin(bz)⋅cos(bx)⋅cos (by)⋅cos (bz) - ⅈ⋅sin (bx)⋅sin(by)⋅cos(bx)⋅cos (by)⋅cos (bz) - sin (bx)⋅sin ( ↪
+
+↪                3                    2                        3        2                  3        2        2                            3  ↪
+↪ bz)⋅cos(bx)⋅cos (by)⋅cos(bz) + ⅈ⋅sin (bx)⋅sin(bz)⋅cos(bx)⋅cos (by)⋅cos (bz) - sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(bz) + ⅈ⋅sin(bx)⋅sin ( ↪
+
+↪                2        2                  2        3        2                            2        2        2                              ↪
+↪ by)⋅sin(bz)⋅cos (bx)⋅cos (bz) + sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(by) + ⅈ⋅sin(bx)⋅sin (by)⋅sin (bz)⋅cos (bx)⋅cos(by)⋅cos(bz) - sin(bx ↪
+
+↪      2                2                2                    2        2                3                            3        2        2     ↪
+↪ )⋅sin (by)⋅sin(bz)⋅cos (bx)⋅cos(by)⋅cos (bz) - ⅈ⋅sin(bx)⋅sin (by)⋅cos (bx)⋅cos(by)⋅cos (bz) + ⅈ⋅sin(bx)⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by) ↪
+
+↪                       2        2        2                                            2        2        2                          2        ↪
+↪  + sin(bx)⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) - ⅈ⋅sin(bx)⋅sin(by)⋅sin(bz)⋅cos (bx)⋅cos (by)⋅cos (bz) - sin(bx)⋅sin(by)⋅cos (bx)⋅co ↪
+
+↪  2        3                    2        2        3                                  2        3        2          2        2        3       ↪
+↪ s (by)⋅cos (bz) - ⅈ⋅sin(bx)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) + sin(bx)⋅sin(bz)⋅cos (bx)⋅cos (by)⋅cos (bz) - sin (by)⋅sin (bz)⋅cos (bx)⋅c ↪
+
+↪                       2                3                2                    2        3        2                                  3        ↪
+↪ os(by)⋅cos(bz) + ⅈ⋅sin (by)⋅sin(bz)⋅cos (bx)⋅cos(by)⋅cos (bz) - ⅈ⋅sin(by)⋅sin (bz)⋅cos (bx)⋅cos (by)⋅cos(bz) + sin(by)⋅sin(bz)⋅cos (bx)⋅co ↪
+
+↪  2        2    
+↪ s (by)⋅cos (bz)
+
+-- Suggested algebraic branches (from factor patterns) --
+1) a=b=c=d (nondegenerate continuous family)
+   => corresponds to bx==by==bz (mod pi) in trig params
+2) any single-term or I+single-term combos: e.g. A0=0 or Ax=0 etc.
+   => these correspond to sin/cos special values (0, +/-1) or their complex analogues
+
+Done.

@@ -8,7 +8,7 @@ $$
 
 代数约束（从对角化残差因式分解得到）：
 
-- 全局相位 $c_00$ 不受约束（仅为乘子）。
+- 全局相位 $c_{00}$ 不受约束（仅为乘子）。
 - 出现的线性因子类型：$e^{i J_x} \pm e^{i J_y}$，对应条件：
 	- $e^{iJ_x} - e^{iJ_y} = 0$ ⇢ J_x ≡ J_y (mod 2π)。
 	- $e^{iJ_x} + e^{iJ_y} = 0$ ⇢ J_x ≡ J_y + π (mod 2π)。
@@ -106,17 +106,32 @@ Groebner 结果（已完成）
 
 请参见 `scripts/groebner_proof_out.txt` 获取完整输出。若你同意，我会把上述结论分段写入 `ybe_re.md` 的摘要段，并开始实现下一步：`scripts/maJ_orana_J_w_mapping.py`，用于对代表性解做 J_ordan–Wigner 到 MaJ_orana 的映射与零模分析。
 
-**Visualization**
-- **3D plot**: 颜色表示 MaJ_orana 零模数，点坐标为 (J_x,J_y,J_z)，见 [scripts/maJ_orana_zero_modes_3d.png](scripts/maJ_orana_zero_modes_3d.png).
-- **Per-J_z planes**: 对于每个离散的 `J_z` 值绘制的 J_x vs J_y 平面视图（颜色为零模数），见：
-	- [scripts/maJ_orana_zero_modes_J_z_0.png](scripts/maJ_orana_zero_modes_J_z_0.png)
-	- [scripts/maJ_orana_zero_modes_J_z_1.png](scripts/maJ_orana_zero_modes_J_z_1.png)
-	- [scripts/maJ_orana_zero_modes_J_z_2.png](scripts/maJ_orana_zero_modes_J_z_2.png)
-	- [scripts/maJ_orana_zero_modes_J_z_3.png](scripts/maJ_orana_zero_modes_J_z_3.png)
-	- [scripts/maJ_orana_zero_modes_J_z_4.png](scripts/maJ_orana_zero_modes_J_z_4.png)
-	- [scripts/maJ_orana_zero_modes_J_z_5.png](scripts/maJ_orana_zero_modes_J_z_5.png)
-	- [scripts/maJ_orana_zero_modes_J_z_6.png](scripts/maJ_orana_zero_modes_J_z_6.png)
-	- [scripts/maJ_orana_zero_modes_J_z_7.png](scripts/maJ_orana_zero_modes_J_z_7.png)
+
+验证回代结果（已追加）
+----------------------
+我已对候选解集进行了逐点回代检验（将候选 `(Jx,Jy,Jz)` 代入完整残差矩阵 E，并计算 Frobenius 范数），结果保存在 `scripts/validated_solutions.csv`。
+
+- 检验统计：共检验 287 个候选点，其中 272 个被接受（residual < 1e-8），15 个被拒绝（多为连续分支采样的示例点）。
+- 接受点来源：主要来源于网格/离散格点与因式化得到的离散分支；被拒绝的样本多来自对连续分支的粗略采样，提示这些分支需要参数化或更细扫描来确认是否为全体解。
+
+已把 CSV 结果和上述图像链接一并保存在 `scripts/` 下；如需我把这些验证统计和接受/拒绝样本表格嵌入文档正文，请告知我应该放在哪一节或以何种摘要形式展现。
+
+代数严格化结果（已完成）
+----------------------
+我用幂次检验方法确认了在多项式环中不存在需要取幂的伪根：对残差多项与候选因子分别检测最小 k 使得 p^k 落入对方理想，全部在 k=1 时成立。详细逐项输出见 `scripts/radical_check_out.txt`。因此在代数/多项式意义上我们已证明 Ideal(Res)=Ideal(F)（不需要取根化），剩余需要处理的是把该代数结论映射回实相位（A=exp(iJ)）的单位模约束与模 2π 的同余类（这部分为后续步骤）。
+
+参数化分支（`Jx=Jy`）的求解
+--------------------------------
+我对 `Jx=Jy` 分支做了符号化简并提取分解因子，然后用数值求解在候选 Jx 值（π/4 网格）下求解 `Jz` 与 `c00` 的约束条件。结果已写入 `scripts/branch_Jx_eq_Jy_solutions.txt`，要点：
+
+- 当 `Jx ∈ {0, π/2, π, 3π/2}` 时，残差在符号上恒为零（对任意 `Jz, c00` 成立）；即这些离散角构成完整连续（在 Jz/c00 自由下）解族的一部分。
+- 对 `Jx ∈ {π/4, 3π/4, 5π/4, 7π/4}`（四分之一角）存在有限的解对 `(Jz, c00)`，输出文件列出了数值解集合（模 2π 化）。例如 `Jx = π/4` 给出若干满足条件的 `(Jz, c00)` 值（参见文件）。
+
+结论：`Jx=Jy` 本身不是充分条件；完整的解包括以上离散 Jx（使指数因子为 ±1 或 ±i）和满足额外线性相位关系（例如输出中出现的 2 Jx + Jz - c00 = 0 这类项）的情形。
+
+下一步建议：将这些候选离散角和线性相位关系形式化为最终解集，并把 `|A|=1`（J 实、模 2π）限制加入 Groebner/CAD 风格的实域验证；或者我可以继续对其它分支（例如 `Jx = -Jy` 或 `Jx = Jy+π`）做同样的解析和求解以补全分类。
+
+相关文件：`scripts/symbolic_param_branch_Jx_eq_Jy_out.txt`, `scripts/branch_parametric_check.txt`, `scripts/branch_Jx_eq_Jy_solutions.txt`。
 - **Color scale**: 数值越大表示零模数越多；可用 `xdg-open` 或在笔记本中查看 PNG。
 
 简要解读：

@@ -1,0 +1,23 @@
+//derive_exp_constraints
+Number of nonzero constraint expressions: 6
+Constraint 1:
+(exp(I*bx) - exp(I*by))*(exp(I*bx) + exp(I*by))*(exp(2*I*bx)*exp(2*I*by) - exp(2*I*bx)*exp(2*I*bz) - exp(2*I*by)*exp(2*I*bz) - 1)*(exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) + exp(2*I*by)*exp(2*I*bz) - 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-I*bz)*exp(3*I*c00)/8
+
+Constraint 2:
+-(exp(I*bx) - exp(I*by))*(exp(I*bx) + exp(I*by))*(exp(2*I*bx)*exp(2*I*by) - exp(2*I*bx)*exp(2*I*bz) - exp(2*I*by)*exp(2*I*bz) - 1)*(exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) + exp(2*I*by)*exp(2*I*bz) - 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-I*bz)*exp(3*I*c00)/8
+
+Constraint 3:
+-(exp(6*I*bx)*exp(6*I*by) + exp(6*I*bx)*exp(4*I*by)*exp(2*I*bz) - exp(6*I*bx)*exp(2*I*by)*exp(4*I*bz) - exp(6*I*bx)*exp(6*I*bz) + exp(4*I*bx)*exp(6*I*by)*exp(2*I*bz) - 2*exp(4*I*bx)*exp(4*I*by)*exp(4*I*bz) - exp(4*I*bx)*exp(4*I*by) + exp(4*I*bx)*exp(2*I*by)*exp(6*I*bz) + 2*exp(4*I*bx)*exp(2*I*by)*exp(2*I*bz) - exp(4*I*bx)*exp(4*I*bz) - exp(2*I*bx)*exp(6*I*by)*exp(4*I*bz) + exp(2*I*bx)*exp(4*I*by)*exp(6*I*bz) + 2*exp(2*I*bx)*exp(4*I*by)*exp(2*I*bz) - 2*exp(2*I*bx)*exp(2*I*by)*exp(4*I*bz) - exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) - exp(6*I*by)*exp(6*I*bz) - exp(4*I*by)*exp(4*I*bz) + exp(2*I*by)*exp(2*I*bz) + 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-3*I*bz)*exp(3*I*c00)/8
+
+Constraint 4:
+-(exp(I*bx)*exp(I*by) - 1)*(exp(I*bx)*exp(I*by) + 1)*(exp(2*I*bx)*exp(2*I*by) - exp(2*I*bx)*exp(2*I*bz) + exp(2*I*by)*exp(2*I*bz) + 1)*(exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) - exp(2*I*by)*exp(2*I*bz) + 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-3*I*bz)*exp(3*I*c00)/8
+
+Constraint 5:
+(exp(I*bx)*exp(I*by) - 1)*(exp(I*bx)*exp(I*by) + 1)*(exp(2*I*bx)*exp(2*I*by) - exp(2*I*bx)*exp(2*I*bz) + exp(2*I*by)*exp(2*I*bz) + 1)*(exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) - exp(2*I*by)*exp(2*I*bz) + 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-3*I*bz)*exp(3*I*c00)/8
+
+Constraint 6:
+(exp(6*I*bx)*exp(6*I*by) + exp(6*I*bx)*exp(4*I*by)*exp(2*I*bz) - exp(6*I*bx)*exp(2*I*by)*exp(4*I*bz) - exp(6*I*bx)*exp(6*I*bz) + exp(4*I*bx)*exp(6*I*by)*exp(2*I*bz) - 2*exp(4*I*bx)*exp(4*I*by)*exp(4*I*bz) - exp(4*I*bx)*exp(4*I*by) + exp(4*I*bx)*exp(2*I*by)*exp(6*I*bz) + 2*exp(4*I*bx)*exp(2*I*by)*exp(2*I*bz) - exp(4*I*bx)*exp(4*I*bz) - exp(2*I*bx)*exp(6*I*by)*exp(4*I*bz) + exp(2*I*bx)*exp(4*I*by)*exp(6*I*bz) + 2*exp(2*I*bx)*exp(4*I*by)*exp(2*I*bz) - 2*exp(2*I*bx)*exp(2*I*by)*exp(4*I*bz) - exp(2*I*bx)*exp(2*I*by) + exp(2*I*bx)*exp(2*I*bz) - exp(6*I*by)*exp(6*I*bz) - exp(4*I*by)*exp(4*I*bz) + exp(2*I*by)*exp(2*I*bz) + 1)*exp(-3*I*bx)*exp(-3*I*by)*exp(-3*I*bz)*exp(3*I*c00)/8
+
+Minimal set (heuristic):
+
+Done.
