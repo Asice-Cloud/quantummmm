@@ -2,7 +2,7 @@
 $$
 R = e^{iH_P},\qquad H_P\in\mathfrak{su}(4) \\
 \qquad
-H_P = \sum_{i,j\in\{0,x,y,z\}} c_{ij}\,\sigma_i\otimes\sigma_j,\quad (\sigma_0 = I)
+Hp =\sum_{\mu,\mu} a_{\mu\mu}\,\sigma^\mu_j\otimes\sigma^\mu_{j+1}
 $$
 然后把 $H_p$ 当作局域哈密顿密度，嵌入到整条链 $H=\sum_j H_p^{j,j+1}$.
 
@@ -161,7 +161,35 @@ $$
 
 **这一部分完整结果放在附录**，因为后面需要用到的是以上的哈密顿形式可以被自然分成三部分这个结论。
 
+### 附录：JW 映射到 Majorana 双线性（显式对照）
 
+在第 1、2 站点上定义 Majorana 算符
+$$
+\gamma_1=c_1+c_1^{\dagger},\qquad \gamma_2=i(c_1-c_1^{\dagger}),\qquad
+\gamma_3=c_2+c_2^{\dagger},\qquad \gamma_4=i(c_2-c_2^{\dagger}).
+$$
+对常见的最近邻二体基元，Jordan–Wigner 后再写成 Majorana 双线性，有如下显式映射（按本文约定的因子与编号）：
+$$
+\begin{aligned}
+\sigma^x\otimes\sigma^x &\mapsto \tfrac{1}{2}\,i\big(\gamma_1\gamma_4 + \gamma_2\gamma_3\big),\\
+\sigma^y\otimes\sigma^y &\mapsto \tfrac{1}{2}\,i\big(-\gamma_1\gamma_4 + \gamma_2\gamma_3\big),\\
+\sigma^x\otimes\sigma^y &\mapsto \tfrac{1}{2}\,i\big(\gamma_1\gamma_4 - \gamma_2\gamma_3\big),\\
+\sigma^y\otimes\sigma^x &\mapsto \tfrac{1}{2}\,i\big(\gamma_1\gamma_4 + \gamma_2\gamma_3\big),\\
+\sigma^z\otimes\sigma^z &\mapsto 4n_1n_2 - 2(n_1+n_2) + 1.
+\end{aligned}
+$$
+
+因此，当 $H_P$ 仅由 XX, YY, XY, YX 四类二次基元主导时，$H_P$ 的二次部分可写为（去掉常数项）：
+$$
+H_P^{(2)} = i\sum_{a<b} A_{ab}\,\gamma_a\gamma_b
+= \tfrac{i}{2}\Big[ (c_{xx}+c_{xy}+c_{yx}+c_{yy})\,\gamma_1\gamma_4 + (c_{xx}-c_{xy}+c_{yx}-c_{yy})\,\gamma_2\gamma_3\Big],
+$$
+或按线性代数写成 $A_{ab}$ 关于 $c_{\mu\nu}$ 的线性组合（不同项的系数由上面映射直接读出）。
+
+（注：这里采用了在映射中常见的 $1/2$ 因子与 $i$ 前置的习惯，方便将 Pauli 基元直接对应到 $i\gamma_a\gamma_b$ 形式；含 $\sigma^z\sigma^z$ 的项会产生四次项与线性密度项，因此不属于纯双线性子空间。）
+
+
+---------------------
 
 例子：选一个简单的情形：
 $$
