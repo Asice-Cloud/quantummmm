@@ -142,18 +142,64 @@ $$b_z = -\tfrac{i}{2}\log Z$$
 
 ---
 
-**附录：可视化画廊**
 
-- 交互画廊（在浏览器中打开）： `results/gallery.html`。
-- 说明：页面会展示每个 `b_y` 的 `F_-` / `F_+` 3D 表面图，并在无法生成 GIF 时提供按帧切换的查看器。
+**附录：映射到 Kitaev/BdG 参数（总结）**
 
-快速预览（左：`F_-`，右：`F_+`）——选取了三个代表性 `b_y`：0.000、0.300、1.000：
+我用脚本把二格 Pauli 系数 $c_{\mu\mu}$ 映射到 Majorana 双线性，再把 Majorana 二次型解释为常见的 Kitaev/BdG 参数。约定为：
+- 动力学项记作 $H_{\rm kin}=-t(c_1^\dagger c_2+\mathrm{h.c.})$；配对项记作 $H_{\rm pair}=\Delta\,c_1 c_2 + \mathrm{h.c.}$；站内化学势用 $\mu$ 表示。
 
-| b_y | F_- | F_+ |
-|---:|---|---|
-| 0.000 | ![F_- b_y=0.000](results/3d_Fminus_b_y_0.000.png) | ![F_+ b_y=0.000](results/3d_Fplus_b_y_0.000.png) |
-| 0.300 | ![F_- b_y=0.300](results/3d_Fminus_b_y_0.300.png) | ![F_+ b_y=0.300](results/3d_Fplus_b_y_0.300.png) |
-| 1.000 | ![F_- b_y=1.000](results/3d_Fminus_b_y_1.000.png) | ![F_+ b_y=1.000](results/3d_Fplus_b_y_1.000.png) |
+基于 `tools/derive_mapping.py` 与 `tools/map_to_kitaev.py` 的符号化输出（见 `results/kitaev_mapping.txt`），在当前对角 Pauli 子空间下得到的解析表达为：
 
-注意：生成 GIF 需要 Python 包 `imageio`；如果你的环境中没有安装，脚本会跳过 GIF 创建（画廊仍然可用）。要我为你在本环境安装并生成 GIF 吗？
+- $t_{\rm eff} = -c_{xx} - c_{yy}$
+- $\Delta_{\rm eff} = c_{xx} - c_{yy} + i\,(c_{xy}+c_{yx})$
+- $\mu_{\rm eff} = c_{00}$
+
+物理含义与拓扑判据（常见约定）：
+- 若以上述约定，则周期链的简单拓扑判据为 $|\mu_{\rm eff}|<2|t_{\rm eff}|$ 且 $\Delta_{\rm eff}\neq0$，则开链应出现拓扑 MZM（端点零模，能量裂分随链长指数小）。
+- 对应到 $c$ 参数：大致条件为 $|c_{00}|<2|c_{xx}+c_{yy}|$ 且 $c_{xx}-c_{yy}+i(c_{xy}+c_{yx})\neq0$。
+
+注意事项：
+- 映射的符号/因子依赖于 BdG 约定，上述不等式使用的是此处的约定（绝对值判据可移植）。
+- 若加入更多非对角 Pauli 项或额外的 `I\otimes I` 常数，$\mu_{\rm eff}$ 将被修改；若有四费米交互（如显式的 c_{zz} 交互项），需要用 mean‑field 或小体系 ED 量化其对 $(t,\Delta,\mu)$ 的重整化。
+
+脚本与输出：
+- 生成脚本：`tools/derive_mapping.py`, `tools/map_to_kitaev.py`。
+- 符号化输出文件：[results/kitaev_mapping.txt](results/kitaev_mapping.txt)
+
+下一步建议：基于上述解析映射，我可以（1）符号化导出 Pfaffian/winding 的 c‑参数条件，或（2）挑若干代表性 $c$ 点做开链数值 BdG（$L$ 可变量），检验最低能随 $L$ 的缩放与端态波函数以区分 MZM 与 ABS。请选择你希望的下一步。
+
+**Extended Mapping (c -> Kitaev/BdG)**
+
+下面为自动生成的扩展映射摘要（详见 [results/extended_mapping.txt](results/extended_mapping.txt#L1-L100)）：
+
+Extended mapping (conventions follow R22.md)
+
+Symbols: c_xx, c_yy, c_xy, c_yx, c_x0, c_y0, c_z0, c_0x, c_0y, c_0z, c_00, c_zz, c_xz, c_yz, c_zx, c_zy
+
+Kitaev/BdG parameters:
+	t (real symmetric hopping) = c_xx + c_yy
+	Re(Delta) = c_xx - c_yy
+	Im(Delta) = c_xy + c_yx  (pairing imaginary part)
+	=> Delta (complex) = (c_xx - c_yy) + i*(c_xy + c_yx)
+	mu_site (linear density term per site) = 2*(c_z0 + c_0z) - 4*c_zz
+	U (nearest-neighbor density-density) = 4*c_zz
+	E_bond (per-bond constant) = c_00 - c_z0 - c_0z + c_zz
+
+Chiral/antisymmetric contributions:
+	Imaginary/antisymmetric hopping component ~ c_xy - c_yx (generates i*(c1d c2 - c2d c1) like terms)
+	Imaginary/antisymmetric pairing component already included in Im(Delta) via c_xy+c_yx (symmetric imaginary)
+
+String / nonlocal contributions (require Jordan-Wigner string S_j):
+	These arise from single-site x/y terms multiplied by neighbor z: c_x0,c_y0,c_0x,c_0y and c_xz,c_yz,c_zx,c_zy
+	They map to nonlocal operators S_j (c_j + c_j^\\dagger) (2n_{j+1}-1) etc and are NOT captured by simple local (t,Delta,mu,U) parameters.
+
+Mapping matrix M (R22 summary) for p=[t,Delta,mu_site,U,E_bond]^T and c vector order [c_xx,c_yy,c_xy,c_yx,c_zz,c_z0,c_0z,c_00]^T:
+	M = [[1,1,0,0,0,0,0,0], [1,-1,0,0,0,0,0,0], [0,0,0,0,-4,2,2,0], [0,0,0,0,4,0,0,0], [0,0,0,0,1,-1,-1,1]]
+	(see R22.md for derivation and notes)
+
+Notes:
+ - Sign conventions for t depend on Hamiltonian sign: if H_kin = -t(c1^\\dagger c2 + h.c.) then the scalar t above corresponds to + (c_xx + c_yy) in the expansion; some documents absorb a minus sign into t. Be consistent.
+ - Delta here is complex; both Re and Im parts come from c_xx,c_yy and c_xy,c_yx respectively.
+ - mu_site excludes any global I\\otimes I constant c_00 which contributes to bond energy E_bond; include c_00 if you want a chemical potential shift.
+
 

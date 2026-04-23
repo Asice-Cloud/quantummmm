@@ -1,0 +1,4 @@
+Kitaev-like mapping (conventions: H_kin = -t(c1d c2 + h.c.), H_pair = Delta c1 c2 + h.c.)
+t_eff = -c_xx - c_yy
+Delta_eff = c_xx - c_yy + I*(c_xy + c_yx)
+mu_eff = c00
