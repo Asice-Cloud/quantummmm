@@ -1,0 +1,871 @@
+                                     PHYSICAL REVIEW A 106, 012412 (2022)
+
+
+
+         Quantum time dynamics employing the Yang-Baxter equation for circuit compression
+                                                                          *
+                                                               Bo Peng
+       Physical and Computational Sciences Directorate, Pacific Northwest National Laboratory, Richland, Washington 99352, USA
+
+                                                             Sahil Gulania†
+                Mathematics and Computer Science Division, Argonne National Laboratory, Lemont, Illinois 60439, USA
+
+                                                             Yuri Alexeev‡
+                       Computational Science Division, Argonne National Laboratory, Lemont, Illinois 60439, USA
+
+                                                                               §
+                                                          Niranjan Govind
+       Physical and Computational Sciences Directorate, Pacific Northwest National Laboratory, Richland, Washington 99352, USA
+
+                                  (Received 24 January 2022; accepted 21 June 2022; published 8 July 2022)
+
+                 Quantum time dynamics (QTD) is considered a promising problem for quantum supremacy on near-term
+              quantum computers. However, QTD quantum circuits grow with increasing time simulations. This study focuses
+              on simulating the time dynamics of one-dimensional (1D) integrable spin chains with nearest-neighbor interac-
+              tions. We have proved the existence of a reflection symmetry in the quantum circuit employed for simulating the
+              time evolution of certain classes of 1D Heisenberg model Hamiltonians by virtue of the quantum Yang-Baxter
+              equation, and how this symmetry can be exploited to compress and produce a shallow quantum circuit. With
+              this compression scheme, the depth of the quantum circuit becomes independent of step size and only depends
+              on the number of spins. We show that the depth of the compressed circuit is rigorously a linear function of the
+              system size for the studied Heisenberg model Hamiltonians in the present work. As a consequence, the number
+              of CNOT gates in the compressed circuit only scales quadratically with the system size, which allows for the
+              simulations of time dynamics of very large 1D spin chains. We derive the compressed circuit representations
+              for different special cases of the Heisenberg Hamiltonian. We compare and demonstrate the effectiveness of this
+              approach by performing simulations on quantum computers.
+
+              DOI: 10.1103/PhysRevA.106.012412
+
+
+
+                     I. INTRODUCTION                                   simulate quantum systems with quantum computers, as sug-
+                                                                       gested by Benioff [6] and Feynman [7]. The idea of using
+   Simulation of statistical mechanical models is a vital appli-
+                                                                       quantum computing on quantum devices is compelling since
+cation for classical and quantum computing [1]. It is also well
+                                                                       it paves the way for systematic improvements of quantum
+known that the partition function of a (d + 1)-dimensional
+                                                                       technologies. The exploration of this approach is at the core of
+classical system can be mapped to the partition function of
+                                                                       several research efforts in quantum information sciences [8].
+a d-dimensional quantum system [2–4]. This deep classical
+                                                                       In particular, the development of new generations of quantum
+to quantum connection can give insights into quantum univer-
+                                                                       models and associated simulations on existing and upcoming
+sality classes using appropriate classical counterparts. It might
+                                                                       noisy intermediate-scale quantum (NISQ) [9] devices is of
+allow one to use these effective models to study critical points
+                                                                       special interest.
+and phase transitions of magnetic systems, where the spins of
+                                                                          Quantum integrable systems [5,10] typically refer to sys-
+the magnetic systems are treated quantum mechanically.
+                                                                       tems where the dynamics are two-body reducible. Put another
+   Quantum Ising and Heisenberg models [5] represent
+                                                                       way, even though the Hilbert space increases exponentially
+some of the simplest models that can describe the behavior
+                                                                       with increasing system size in these systems, the two-body
+of magnetic systems. However, two-dimensional (2D) and
+                                                                       reducibility, in combination with the algebraic Bethe Ansatz
+three-dimensional (3D) quantum lattice simulations remain
+                                                                       [5,11,12], can be used to obtain explicit solutions, under cer-
+challenging for classical computing. A possible solution is
+                                                                       tain conditions, by solving a set of nonlinear equations that
+to use quantum computing, given that it is only natural to
+                                                                       scales only linearly with system size. The quantum Yang-
+                                                                       Baxter equation (YBE) or star-triangle relation [10,13–15] is
+                                                                       a consequence of this factorization. The algebraic formulation
+ *
+   peng398@pnnl.gov                                                    of quantum integrable systems makes them ideal tools to study
+ †
+   sgulania@anl.gov                                                    a broad range of low-dimension physical models. Historically,
+ ‡
+   yuri@anl.gov                                                        the isotropic interacting quantum spin chain, or Heisenberg
+ §
+   niri.govind@pnnl.gov                                                model [16], was the first quantum integrable system, whose
+
+2469-9926/2022/106(1)/012412(12)                                 012412-1                                ©2022 American Physical Society
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                            PHYSICAL REVIEW A 106, 012412 (2022)
+
+exact eigenstates were obtained through the Bethe Ansatz            conjecturing the relationship between the reflection symmetry
+approach as a superposition of plane waves [11,17–21]. Other        and the YBE-like “turn over” operation, and they provided
+quantum integrable models include the Lieb-Liniger model            numerical evidence for the transformation. However, no
+[22,23], the Hubbard model [24], the Calogero-Sutherland            connection to the YBE was made. Here, we not only recognize
+model [5,25–29], models from quantum field theory such as           the connection, but we also rigorously derive the analytical ex-
+the sine-Gordon model [30,31], and several subclasses of the        pressions and compressed circuit representations for different
+Heisenberg model (e.g., the X X Z model) [16,32].                   special cases of the Heisenberg Hamiltonian. This connects
+    An important open question in quantum integrable systems        our work to the broader and deeper context of the YBE
+involves time evolution, or the response dynamics where the         duality and integrable quantum computation. For the rest of
+system responds to a change of parameters. This problem re-         this paper, we will tacitly assume the quantum YBE and omit
+quires sufficiently accurate control of the time evolution of the   “quantum” for brevity.
+system, which is governed by the time-dependent Schrödinger
+or Dirac equation of the quantum state in the Hilbert space.
+                                                                                                  II. THEORY
+The time evolution problem is also closely related to the
+computation of the asymptotic state of quantum integrable              For completeness, we start by reviewing relevant back-
+models, or in a more general sense the thermalization and           ground material, with a brief introduction to the Heisenberg
+ergodic/nonergodic behaviors of these models. Several con-          Hamiltonian, quantum time dynamics, and the Yang-Baxter
+jectures have been proposed in this context [33–35]. For            equation.
+example, in the Heisenberg spin chain, quantum quenches of
+the X X Z model have been studied by embedding the gener-
+                                                                                      A. Heisenberg Hamiltonian
+alized Gibbs ensemble hypothesis into the quantum transfer
+matrix framework [36,37]. Nevertheless, these studies are still        The Heisenberg Hamiltonian [49–51] is widely used to
+far from conclusive. Other types of quantum integrability are       study magnetic systems, where the magnetic spins are treated
+known in explicitly time-dependent quantum problems, such           quantum mechanically. The Hamiltonian, including only spin-
+as the driven Tavis-Cummings model [38,39].                         spin interactions, can be written as
+    Quantum circuits representing quantum time dynamics                                         N−1             
+(QTD) are well known to grow with increasing time sim-                                             
+                                                                                                          α    α
+ulations. In the present era of noisy quantum computers,                           Ĥ = −        Jα     σi ⊗ σi+1 ,          (1)
+                                                                                                 α        i=1
+circuits must be as shallow as possible for meaningful results.
+With this as the overarching theme, we focus on QTD of 1D           where α sums over {x, y, z}, the coupling parameter Jα
+integrable spin chains with nearest-neighbor interactions. In       denotes the exchange interaction between nearest-neighbor
+particular, noticing the difference between the integrability       spins along the α-direction, and σiα is the α-Pauli operator
+of 1D spin chains using Bethe Ansätze versus integrability          on the ith spin. Interaction with the magnetic field can be
+via mapping to free fermions [54], as a preliminary step our        included in this Hamiltonian as
+present work is only focused on circuit compression for ac-
+curately and efficiently simulating the time dynamics of the                                                     
+                                                                                                                 N
+
+latter on noisy quantum devices. We show how the quantum                              Ĥin (t ) = Ĥ − hβ (t )         σiβ ,       (2)
+YBE can be used to compress and produce a shallow quan-                                                          i=1
+tum circuit, where the depth becomes independent of step
+                                                                    where hβ (t ) is the time amplitude of the external magnetic
+size and depends only on the number of spins. The depth of
+                                                                    field along the β ∈ {x, y, z} direction. Several variations of this
+the compressed circuit is rigorously a linear function of the
+                                                                    model are known in the literature, and they are categorized
+system size for the studied model Hamiltonians in the present
+                                                                    depending on the relation between Jx , Jy , and Jz . This Heisen-
+work. As a consequence, the number of CNOT gates in the
+                                                                    berg Hamiltonian represents quantities based on the electronic
+compressed circuit only scales quadratically with the system
+                                                                    structure of the system, where the Coulomb interaction and
+size. This allows for simulations of time dynamics of very
+                                                                    hopping are mapped onto spin variables [52,53]. A simple
+large 1D spin chains. Compressed circuit representations are
+                                                                    variant of the Heisenberg model is the 1D XY model that was
+derived for different free fermion Hamiltonians.
+                                                                    first introduced and solved by Lieb, Schultz, and Mattis [54] in
+    As a proof of principle, we demonstrate the effectiveness
+                                                                    the absence of a magnetic field, and later by Katsura [55,56]
+of this approach by performing simulations of the Heisen-
+                                                                    and Niemeijer [57] in a finite external field. The XY model
+berg XY model (or the XY model, in brief) on quantum
+                                                                    describes a 1D lattice with spin variables labeling every lattice
+devices. The time evolution of the XY model is an active area
+                                                                    point. The spins are limited to interact only with their nearest
+of research and has been approached from many directions.
+                                                                    neighbors in an anisotropic way.
+Verstraete and co-workers [40] utilized the quantum Fourier
+transform with the Bogoliubov transformation to perform time
+dynamics efficiently on a quantum computer. In addition, we                                    B. Time evolution
+note that there are also several other approaches reported            Quantum state evolution [58,59] is governed by the
+recently for compressing quantum circuits for dynamics us-          Schrödinger or Dirac equation
+ing both integrable and nonintegrable models [41–45]. For
+example, in a similar study to this work, Bassman and co-                                     ∂
+workers [46–48] reported simulations of the XY model by                                i h̄      |ψ (t ) = Ĥ |ψ (t ) .          (3)
+                                                                                              ∂t
+
+                                                              012412-2
+QUANTUM TIME DYNAMICS EMPLOYING THE …                                                                          PHYSICAL REVIEW A 106, 012412 (2022)
+
+The solution to this equation can be expressed as                                  exponentials. For N = 2,
+                    |ψ (t ) = e−iĤt/h̄ |ψ (0) ,                      (4)                                                         α     α
+                                                                                                           e−iĤt/h̄ =       eiJα t (σ1 ⊗σ2 )/h̄ ,   (5)
+where e−iĤt/h̄ is the evolution operator. In the 1D Heisen-                                                             α
+berg model, with the exception of N = 2, all the elements
+in the Hamiltonian do not commute with each other, and                             where each term is straightforward to evaluate, as shown
+hence the exponential of Ĥ cannot be written as a product of                      below,
+
+                                                       ⎛                                                            ⎞
+                                                            cos(θx )          0               0          i sin(θx )
+                                    iJx t (σ1x ⊗σ2x )/h̄  ⎜ 0              cos(θx )       i sin(θx )         0 ⎟
+                                                         =⎝                                                          ,
+                                                                                                             0 ⎠
+                                   e
+                                                               0          i sin(θx )       cos(θx )
+                                                           i sin(θx )         0               0           cos(θx )
+
+                                                       ⎛                                                               ⎞
+                                                           cos(θy )             0               0          −i sin(θy )
+                                             y   y       ⎜    0              cos(θy )       i sin(θy )         0       ⎟
+                                    eiJy t (σ1 ⊗σ2 )/h̄ =⎝                                                             ⎠,                            (6)
+                                                              0             i sin(θy )       cos(θy )          0
+                                                          −i sin(θy )           0               0           cos(θy )
+
+                                                         ⎛ iθ                                 ⎞
+                                                          e z       0          0          0
+                                                         ⎜ 0      e−iθz        0          0⎟  ⎟.
+                                    eiJz t (σ1 ⊗σ2 )/h̄ =⎜
+                                             z   z
+
+                                                         ⎝0        0          e−iθz       0⎠
+                                                           0       0           0         eiθz
+
+
+Here, θα = tJα /h̄. For N = 3, some terms do not commute.                          elements in the blue family commute. Therefore, the evolution
+For instance, if p12 represents the Heisenberg interaction                         operator can be written as a product of exponentials within the
+[Eq. (5)] between spins 1 and 2, and p23 represents interaction                    families without Trotter decomposition.
+between spins 2 and 3, then p12 does not commute with p23 .
+As a result, one cannot decompose the time evolution operator
+                                                                                                            C. Yang-Baxter equation
+as a product of two-body evolution operators. The Trotter de-
+composition can be used to rewrite the time evolution operator                         The Yang-Baxter equation (YBE) was introduced indepen-
+in terms of two-body components as follows:                                        dently in theoretical physics by Yang [13] in the late 1960s
+                                                           n                    and by Baxter [65] in statistical mechanics in the early 1970s.
+               iθ σ α ⊗σ α ⊗1/n      iθ 1⊗σ α ⊗σ α /n                        This relation has also received much attention in many areas
+  −iĤt/h̄
+e          =      e α 1   2          ×     e α    2   3
+                                                                                   of theoretical physics, classification of knots, scattering of
+               α                             α
+                                                                                   subatomic particles, nuclear magnetic resonance, and ultra-
+           + O(t/n),                                                    (7)        cold atoms, and more recently in quantum information science
+                                                                                   [66–71].
+where the error scales linearly with the time step, namely
+                                                                                       The YBE connection to quantum computing originates
+t/n, which can be a significant source of error. This can
+                                                                                   from investigating the relationship between topological entan-
+be mitigated by taking a smaller step size. However, this
+                                                                                   glement, quantum entanglement, and quantum computational
+results in an overall increase in the computation cost. As
+                                                                                   universality. Of particular interest is how the global topo-
+analyzed in Refs. [60,61], for the Heisenberg model Hamil-
+                                                                                   logical relationship in spaces (e.g., knotting and linking)
+tonian the gate complexity associated with the quantum
+                                                                                   corresponds to the entangled quantum states and how the
+simulation employing product formulas scales as O(t 2 /) and
+                                                                                   CNOT gate, for instance, can in turn be replaced by another
+O(52k t 1+1/2k / 1/2k ) for first order and 2kth order, respectively,
+                                                                                   unitary gate R to maintain universality. It turns out these
+with t representing the simulation time and  the allowed er-
+                                                                                   unitary R gates, which serve to maintain the universality of
+ror. The desired upper bounds, including analytic, minimized,
+                                                                                   quantum computation and also serve as solutions for the con-
+and empirical bounds, on the allowed error  have been exten-
+                                                                                   dition of topological braiding, are unitary solutions to the
+sively explored and discussed previously (see Refs. [60–64])
+                                                                                   YBEs [14]. Briefly, the relation is a consistency or exchange
+for choosing a reasonable n-segment such that the asymptotic
+                                                                                   condition that allows one to factorize the interactions of three
+complexity of the production formula algorithm can be im-
+proved. In a more general sense, one can also explore other
+routes to balance accuracy and computation cost. For exam-
+ple, extending the evolution operator to systems with N > 3,
+one can observe two major commuting families as shown in                             FIG. 1. 1D spin chain showing two families (orange and blue) in
+Fig. 1. All elements in the orange family commute, and all                         which all elements in each family commute within that family.
+
+                                                                          012412-3
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                                  PHYSICAL REVIEW A 106, 012412 (2022)
+
+bodies into a sequence of pairwise interactions under certain                 paper, we refer the reader to more comprehensive works and
+conditions. Formally, this can be written as                                  reviews on the subject [10,14].
+  (R ⊗ 1)(1 ⊗ R)(R ⊗ 1) = (1 ⊗ R)(R ⊗ 1)(1 ⊗ R), (8)
+where the R operator is a linear mapping R : V ⊗ V →
+                                                                                    III. CIRCUIT REPRESENTATION OF THE TIME
+V ⊗ V defined as a twofold tensor product generalizing
+                                                                                              EVOLUTION OPERATOR
+the permutation of vector space V . In circuit language, R
+represents a parametrized unitary gate. In particular, although                   Since the evolution operator is a unitary matrix, there
+there exist R gate structures of higher dimension [72], we                    exists a quantum circuit that can perform this operation ef-
+limit our discussion of R in the present context as a two-qubit               ficiently on a quantum computer. First, we will find the
+gate parametrized by a phase factor and a rotation [see, e.g.,                quantum circuit for two spins and later extend it to N spins
+Eq. (12)]. This relation also yields a sufficiency condition for              with nearest-neighbor interactions in 1D. Each spin can be
+quantum integrability in 1D quantum systems, and it provides                  mapped to a qubit, and the evolution of the spin system can
+a systematic approach to construct integrable models. Since                   be mapped to a quantum circuit. Using Eqs. (5) and (6), we
+a detailed discussion of this topic is beyond the scope of this               have
+
+                                                      ⎛ iθ                                                            ⎞
+                                                        e z cos(γ )            0               0         ieiθz sin(γ )
+                                                     ⎜       0          e−iθz cos(δ)    ie−iθz sin(δ)         0      ⎟
+                                eiJα t (σ1 ⊗σ2 )/h̄ = ⎜
+                                         α   α
+                                                                                                                      ⎟,                     (9)
+                                                      ⎝       0          ie−iθz sin(δ)   e−iθz cos(δ)          0      ⎠
+                        α=x,y,z
+                                                        ieiθz sin(γ )          0               0          iθz
+                                                                                                         e cos(γ )
+
+
+where γ = θx − θy and δ = θx + θy . The optimal circuit for                   the YBE to simplify the generalized quantum circuit for ar-
+this matrix is                                                                bitrary time steps. First, we will show the existence of a
+                                                                              unique reflection symmetry for a quantum circuit composed
+                                                                              of alternative layers. Next, we will show the merge iden-
+                                                                              tity for two-qubit gates. We will also show how reflection
+                                                                              symmetry combined with the merge identity allows for the
+                                                                              compression of a quantum circuit of any length to a finite
+                                                                              depth.
+                                                             (10)
+The evolution operator for any time step can be represented
+by using this circuit. In addition, it is also a constant depth                          A. Reflection symmetry and merge identity
+circuit for each time step since the number of one- and two-                     The evolution operator for the Heisenberg Hamiltonian on
+qubit gates does not increase with the time step. The quantum                 two qubits is given by Eq. (9). When there are two evolution
+circuit for a spin chain with more than two spins in 1D                       operators with different parameters on the same two qubits,
+can be derived by using Eq. (10) and the Trotter                              they can be merged and represented via a single operator as
+decomposition.
+   Two commuting families of operators exist, as shown in
+Fig. 2 as orange and blue two-qubit gates, respectively. The
+accuracy of the simulation for a given time depends on the
+Trotter step (t/n). As a consequence of Trotterization, the
+quantum circuit for time evolution grows linearly with the
+time step. Figure 2 shows the quantum circuit for a given time
+t using n Trotter steps. Each Trotter step is composed of a
+bilayer of two-qubit gates. The first layer acts on the first two
+qubits, followed by the third and then the fourth qubits, and
+so on. Orange rectangles in Fig. 2 represent the first layer.
+The second layer of two-qubit gates starts from the second
+qubit and acts on the next two qubits. Blue rectangles in Fig. 2
+represent the second layer. Both orange and blue rectangles
+combine to form an alternative layer, covering all possible
+nearest-neighbor interactions.
+
+         IV. CIRCUIT COMPRESSION USING THE
+                YANG-BAXTER EQUATION
+   In Sec. III we showed the generalized circuit for time                         FIG. 2. Quantum circuit for time evolution of N spins, composed
+evolution of N spins in 1D. In this section, we will utilize                  of n alternative layers using the Trotter approximation.
+
+                                                                        012412-4
+QUANTUM TIME DYNAMICS EMPLOYING THE …                                                              PHYSICAL REVIEW A 106, 012412 (2022)
+
+
+
+
+   FIG. 3. (a) Quantum circuit representation of the YBE for three
+qubits. (b) Reflection symmetry is achieved by using the YBE four              FIG. 4. Compression scheme for four qubits. Reflection symme-
+times on four qubits (the action of YBE on which triplets are shown        try exists with two layers of alternative gates. The addition of a
+by black dots).                                                            third layer can be absorbed into the two layers by recursive usage
+                                                                           of reflection symmetry (red bracket) via the YBE and merge identity
+                                                                           (black dotted box).
+shown below:
+                                                   
+            Ri j θx1 , θy1 , θz1 Ri j θx2 , θy2 , θz2                               B. Algebraic condition for reflection symmetry
+                                                                            In the preceding section, we showed that reflection
+                = Ri j θx1 + θx2 , θy1 + θy2 , θz1 + θz2 .        (11)
+                                                                           symmetry is a sufficient condition for performing circuit com-
+In the rest of this article, we will call Eq. (11) the merge               pression. An interesting follow-up question is, “How would
+identity. Diagrammatic representation of the YBE is shown                  one know whether reflection symmetry can be applied to a
+in the top panel of Fig. 3, where Ri j represents the opera-               quantum dynamics simulation of a given Hamiltonian?” To
+tor acting on i, j qubits. By using this symmetry repeatedly,              answer this question, one needs to show whether algebraic
+one can prove the existence of reflection symmetry in n                    relations of phases and rotations exist before and after the re-
+qubits composed of n/2 alternative layers (see the proof in                flection. Given a general time propagator such as (9), however,
+Appendix A). The bottom panel of Fig. 3 shows how reflection               an exhaustive search and rigorous proof appear challenging.
+symmetry is achieved for four qubits using the YBE three                   Because of the lack of rigorous algebraic relations, YBE-like
+times.                                                                     relations can only be conjectured, as shown in previous work
+   Reflection symmetry combined with the merge identity                    (see, for example, Ref. [46]), thus making the compression
+allows for the compression of N alternative layers of gates                of the circuit a heuristic process. In this section, we show
+to N/2 alternative layers for N qubits. Figure 4 shows the                 that some algebraic relations can be obtained rigorously for
+use of reflection symmetry combined with the merge identity                at least a few special cases of (9). In particular, we propose
+for four qubits. A third alternative layer can be merged into              the following theorem.
+the previous two layers. Therefore, any number of alternative                 Theorem I: Given the time evolution operator that takes the
+layers can be compressed into two alternative layers.                      form
+
+                                                ⎛ iδ                                                        ⎞
+                                                  e cos(γ )            0             0         ieiδ sin(γ )
+                                                ⎜      0          e−iδ cos γ    ie−iδ sin γ          0      ⎟
+                                                ⎜
+                                     R(γ , δ) = ⎝                                                           ⎟,                                (12)
+                                                       0          ie−iδ sin γ   e−iδ cos γ           0      ⎠
+                                                 ieiδ sin(γ )          0             0         eiδ cos(γ )
+
+
+the following YBE holds:
+                                                                                        cγ2 cγ1 −γ3 cδ1 +δ3 sδ2 = cγ5 cγ4 +γ6 sδ4 +δ6 cδ5 ,   (15)
+  (R(γ1 , δ1 ) ⊗ 1)(1 ⊗ R(γ2 , δ2 ))(R(γ3 , δ3 ) ⊗ 1)
+                                                                                       −sγ2 cγ1 +γ3 sδ1 −δ3 cδ2 = cγ5 sγ4 −γ6 cδ4 +δ6 sδ5 ,   (16)
+     = (1 ⊗ R(γ4 , δ4 ))(R(γ5 , δ5 ) ⊗ 1)(1 ⊗ R(γ6 , δ6 )) (13)
+                                                                                        cγ2 cγ1 +γ3 sδ1 +δ3 cδ2 = cγ5 cγ4 −γ6 cδ4 +δ6 sδ5 ,   (17)
+if and only if the following 16 relations between the γ  s and
+δ  s are satisfied:
+                                                                                        sγ2 cγ1 +γ3 cδ1 −δ3 cδ2 = cγ5 sγ4 +γ6 cδ4 +δ6 cδ5 ,   (18)
+            sγ2 cγ1 −γ3 cδ1 −δ3 sδ2 = cγ5 sγ4 +γ6 sδ4 +δ6 cδ5 ,   (14)                 cγ2 cγ1 +γ3 cδ1 +δ3 cδ2 = cγ5 cγ4 +γ6 cδ4 +δ6 cδ5 ,    (19)
+
+                                                                    012412-5
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                                        PHYSICAL REVIEW A 106, 012412 (2022)
+
+   TABLE I. YBE analysis for six free-fermion Hamiltonians. U1 = Rz (π /2) ⊗ Rz (π /2) and U2 = Rx (π /2) ⊗ Rx (π /2). The possible exten-
+sion to Heisenberg model Hamiltonians with a transverse field is briefly discussed in Appendix B.
+
+Hamiltonian      time propagator                                    Time propagator circuit                         Necessary conditions for YBE
+
+HX               e−itHX /h̄ = R(γ , δ = 0)                                                                  sγ2 cγ1 +γ3 = cγ5 sγ4 +γ6 , cγ2 cγ1 +γ3 = cγ5 cγ4 +γ6
+                                                                       • Rx (−2γ) •                         sγ2 sγ1 +γ3 = sγ5 sγ4 +γ6 , cγ2 sγ1 +γ3 = sγ5 cγ4 +γ6
+
+
+                                                            Rz (π/2) • Rx (−2γ) • Rz (−π/2)
+HY               e−itHY /h̄ = U1 R(γ , δ = 0)U1†                                                                              Same as above
+                                                            Rz (π/2)                      Rz (−π/2)
+
+HZ               e−itHZ /h̄ = R(γ = 0, δ)                                                                    cδ1 +δ3 sδ2 = sδ4 +δ6 cδ5 , sδ1 +δ3 cδ2 = cδ4 +δ6 sδ5
+                                                                       •              •
+                                                                                                             cδ1 +δ3 cδ2 = cδ4 +δ6 cδ5 , sδ1 +δ3 sδ2 = sδ4 +δ6 sδ5
+                                                                           Rz (−2δ)
+
+HX + HY          e−it (HX +HY )/h̄ = U2 R(τ, φ)U2†                                                         (τ, φ)-relation is analogous to Eqs. (14)–(29)
+                 τ = γ + δ, φ = γ − δ                       Rx (π/2) • Rx (−2τ ) • Rx (−π/2)
+
+                                                            Rx (π/2)       Rz (−2φ)       Rx (−π/2)
+
+                                                                       • Rx (−2γ) •
+HX + HZ          e−it (HX +HZ )/h̄ = R(γ , δ)                                                                                 Eqs. (14)–(29)
+                                                                           Rz (−2δ)
+
+                                                            Rz (π/2) • Rx (−2γ) • Rz (−π/2)
+HY + HZ          e−it (HY +HZ )/h̄ = U1 R(γ , δ)U1†                                                                           Eqs. (14)–(29)
+                                                            Rz (π/2)       Rz (−2δ        Rz (−π/2)
+
+
+
+
+           −sγ2 cγ1 −γ3 sδ1 −δ3 sδ2 = cγ5 sγ4 −γ6 sδ4 +δ6 sδ5 ,         (20)                  −cγ2 sγ1 −γ3 cδ1 +δ3 sδ2 = sγ5 cγ4 +γ6 sδ4 −δ6 cδ5 ,            (27)
+
+              cγ2 cγ1 −γ3 sδ1 +δ3 sδ2 = cγ5 cγ4 −γ6 sδ4 +δ6 sδ5 ,       (21)                  −sγ2 sγ1 +γ3 sδ1 −δ3 cδ2 = sγ5 sγ4 −γ6 cδ4 −δ6 sδ5 ,            (28)
+
+              sγ2 sγ1 +γ3 cδ1 −δ3 cδ2 = sγ5 sγ4 +γ6 cδ4 −δ6 cδ5 ,       (22)                   cγ2 sγ1 +γ3 sδ1 +δ3 cδ2 = sγ5 cγ4 −γ6 cδ4 −δ6 sδ5 ,            (29)
+
+              cγ2 sγ1 +γ3 cδ1 +δ3 cδ2 = sγ5 cγ4 +γ6 cδ4 −δ6 cδ5 ,       (23)
+                                                                                 where s p and c p denote sin (p/2) and cos (p/2), respectively.
+              sγ2 sγ1 −γ3 sδ1 −δ3 sδ2 = sγ5 sγ4 −γ6 sδ4 −δ6 sδ5 ,       (24)        The proof of Theorem I is straightforward but lengthy
+                                                                                 and tedious if one expands both sides of Eq. (13)
+           −cγ2 sγ1 −γ3 sδ1 +δ3 sδ2 = sγ5 cγ4 −γ6 sδ4 −δ6 sδ5 ,         (25)     and performs a term-by-term comparison. For simplicity, a
+                                                                                 more compact representation of Eqs. (14)–(29) can be ex-
+           −sγ2 sγ1 −γ3 cδ1 −δ3 sδ2 = sγ5 sγ4 +γ6 sδ4 −δ6 cδ5 ,         (26)     pressed as
+
+                                            ⎛              ⎞⎛              ⎞T ⎛              ⎞⎛             ⎞T
+                                              cγ1 −γ3 sδ2     cδ1 −δ3 sγ2        cγ5 sδ4 +δ6    sγ4 +γ6 cδ5
+                                            ⎜ cγ1 +γ3 cδ2 ⎟⎜ cδ1 +δ3 cγ2 ⎟     ⎜cγ cδ +δ ⎟⎜cγ +γ cδ ⎟
+                                            ⎝−s            ⎠⎝−s            ⎠ = ⎝ s 5 s 4 6 ⎠⎝ s 4 6 s 5 ⎠ .                                                   (30)
+                                                γ1 −γ3 sδ2      δ1 −δ3 sγ2        γ5 δ4 −δ6      γ4 −γ6 δ5
+                                              sγ1 +γ3 cδ2     sδ1 +δ3 cγ2        sγ5 cδ4 −δ6    cγ4 −γ6 sδ5
+
+
+Based on this theorem, we show explicitly in Table I the
+YBE analysis for six free-fermion Hamiltonians where the                                                             
+                                                                                                                     n−1
+
+reflection, as the preprocessing step prior to the compression,                                          HY = −            Jy σ jy σ j+1
+                                                                                                                                     y
+                                                                                                                                         ,                    (32)
+is accomplished algebraically. Here, the Hamiltonian operator                                                        j=1
+
+Ĥ takes at most two terms from the set {HX , HY , HZ }, where                                                       
+                                                                                                                     n−1
+                                                                                                         HZ = −            Jz σ jz σ j+1
+                                                                                                                                     z
+                                                                                                                                         .                    (33)
+                                    
+                                    n−1
+                                                                                                                     j=1
+                        HX = −            Jx σ jx σ j+1
+                                                    x
+                                                        ,               (31)
+                                    j=1
+
+
+                                                                           012412-6
+QUANTUM TIME DYNAMICS EMPLOYING THE …                                                        PHYSICAL REVIEW A 106, 012412 (2022)
+
+    In practice, the algebraic relations between rotations and
+phases can be further simplified since we care about only one
+solution (not all the solutions) that satisfies these algebraic
+relations. For example, for Ĥ = HX , an apparent solution is
+to let γ6 = 0 (such that γ4 = γ2 ) and γ5 = γ1 + γ3 . Also, for
+Ĥ = HX + HZ , if we do not consider the edge cases (that
+lead to singularities in the sine and cosine functions), (γi , δi )
+(i = 4, 5, 6) can be obtained from the following simplified
+trigonometric relations:
+                                     cos([δ1 − δ3 ]/2)
+     tan([γ4 + γ6 ]/2) = tan(γ2 /2)                    ,      (34)
+                                     cos([δ1 + δ3 ]/2)
+                                       sin([δ1 − δ3 ]/2)
+    tan([γ4 − γ6 ]/2) = − tan(γ2 /2)                     ,    (35)
+                                       sin([δ1 + δ3 ]/2)
+                                     cos([γ1 − γ3 ]/2)                   FIG. 5. Comparison of time dynamics for three spins with the
+     tan([δ4 + δ6 ]/2) = tan(δ2 /2)                    ,      (36)
+                                     cos([γ1 + γ3 ]/2)                XY (Jx = −0.8 and Jy = −0.2) model Hamiltonian on the IBM
+                                     sin([γ1 − γ3 ]/2)                (Manila) device (8192 shots) with and without compression. Results
+      tan([δ4 − δ6 ]/2) = tan(δ2 /2)                   ,      (37)    from the Qiskit simulator serve as a baseline. Note that for simulating
+                                     sin([γ1 + γ3 ]/2)
+                                                                      the XY model, each two-qubit gate includes two CNOTs, therefore
+                                     cos([δ4 + δ6 ]/2)
+     tan(γ5 /2) = tan([γ1 + γ3 ]/2)                    ,      (38)    the compressed circuit for the simulation only includes six CNOTs
+                                     cos([δ4 − δ6 ]/2)                constituting three layers in comparison with 400 CNOTs without
+                                      cos([γ4 + γ6 ]/2)               compression.
+    tan(δ5 /2) = − tan([δ1 + δ3 ]/2)                     .    (39)
+                                      cos([γ4 − γ6 ]/2)
+
+      V. TIME DYNAMICS ON A QUANTUM DEVICE
+                                                                      of staggered magnetization between steps 20 and 80. Also, the
+   As a proof of concept and to highlight the impact of com-          staggered magnetizations at the initial (<20 steps) and the last
+pressed circuits on a real noisy quantum device (IBM-Manila,          (>80 steps) phases are similar in magnitude. Nevertheless,
+average CNOT error ∼ 10−3 , average readout error ∼10−2 ,             the amount of quantum error and its type are different in the
+and 8192 shots), we performed a time dynamics simulation              two observations. At the zeroth step, the error mainly comes
+of the XY Hamiltonian with three spins. We computed the               from state preparation. At the last step, however, other errors
+time-dependent staggered magnetization, ms (t ), which can be         from state evolution enter and make large deviations from the
+connected to the antiferromagnetism and ferrimagnetism in             exact staggered magnetization on top of the state preparation
+materials as follows:                                                 error. Depolarization noise converts a pure state to a maxi-
+                           1                                         mally mixed state. Staggered magnetization for the maximally
+                 ms (t ) =       (−1)i σz (t ) .       (40)         mixed state is zero. This is evident for uncompressed circuits,
+                           N i
+                                                                      where staggered magnetization after the tenth step reaches
+The initial state is the ground state (Neél state) of the XY          zero and stays there for later steps. Therefore, depolariza-
+Hamiltonian, defined as 0 = |↑↓↑↓ · · · ↑↓. The staggered           tion noise favors states that have a staggered magnetization
+magnetization of the Neél state is 1. We performed the time           of zero. It is also the main contributor to the unparalleled
+evolution for 2.5 units of time with a Trotter step size of 0.025     overlap of simulation results from compressed circuits and
+units.                                                                exact evolution. The compressed circuits will overlap more
+   Figure 5 shows the evolution of the staggered magnetiza-           with exact evolution, irrespective of Jx and Jy , because of
+tion for three spins with parameters Jx = −0.8 and Jy = −0.2.         small depth. The results obtained from compressed circuits
+We choose different parameters for Jx and Jy to make the              have controllable errors due to Trotter decomposition. The
+system anisotropic. The first component in Fig. 5 is the exact        absolute error can be reduced with a smaller step size. How-
+evolution of staggered magnetization for the XY model, which          ever, a small step size increases the number of alternative
+serves as a reference. The second component is a simulation           layers, which can be compressed by using our scheme to make
+using the Qiskit simulator with no noise, which provides the          it a linear depth again. Therefore, our scheme is implicitly
+estimation for running this evolution on a noise-free quantum         an error mitigation technique, which allows for significantly
+computer. The third component is the simulation result from           reducing quantum circuit depth, and (together with other error
+the compressed circuit, which captures the dynamics for al-           mitigation techniques) for systematic convergence to the exact
+most every time step. The compressed circuits are produced            answer without increasing the circuit size. The only bottle-
+by repeated use of the YBE and merge identity. In contrast,           neck is preprocessing of the circuit on a classical computer
+results from a run on the same device with IBM-compiled cir-          (see Appendix A for a detailed analysis). Performing the
+cuits deviate quickly after the third time step. This comparison      YBE combined with the merge identity is computationally
+shows the impact of compressed circuits on a noisy quantum            straightforward because of analytical expressions that we have
+computer.                                                             derived. We note, however, that multiple time usages of both
+   The compressed circuit simulation on a noisy quantum               can make the compression scheme computationally expensive
+device shows an exceptional match with the exact evolution            for a large number of qubits.
+
+                                                                012412-7
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                       PHYSICAL REVIEW A 106, 012412 (2022)
+
+            VI. CONCLUSIONS AND OUTLOOK                            tum advantage (i.e., a substantial computational advantage of
+                                                                   quantum computing over classical computing) at the present
+    We have shown how the YBE can be utilized to com-
+                                                                   stage. However, our work provides a path for efficient sim-
+press and produce a shallow quantum circuit for efficient time
+                                                                   ulations of certain classes of integrable Hamiltonians, which
+dynamics simulations of 1D lattice spin chains with nearest-
+                                                                   is a stepping stone for demonstrating quantum advantage on
+neighbor interactions on real quantum computers. The depth
+                                                                   NISQ devices where quantum dynamics of more complex
+of quantum circuits for each time step is independent of time
+                                                                   (nonintegrable) quantum systems has been proposed as a
+and step size and depends only on the number of spins. In
+                                                                   prime candidate. The reason why it has not been achieved
+particular, the depth of the compressed circuit is rigorously
+                                                                   yet is that NISQ devices are currently only able to simulate
+a linear function of the system size for the studied Heisen-
+                                                                   circuits reliably on shallow depth circuits. The YBE technique
+berg model Hamiltonians, and the number of CNOT gates in
+                                                                   presented in this work is a potential direction to solve this
+the compressed circuit only scales quadratically with system
+                                                                   problem, thus bringing us one step closer to being able to
+size. This allows for simulations of time dynamics of very
+                                                                   solve practical problems on quantum computers.
+large 1D spin chains. Moreover, we derived the compressed
+circuit representations for different free fermion Hamiltonian.
+To demonstrate the efficacy of the developed technique, we                             ACKNOWLEDGMENTS
+performed a time dynamics simulation of three spins on an
+                                                                      This material is based upon work supported by the U.S.
+IBM quantum computer, and we compared both compressed
+                                                                   Department of Energy, Office of Science, National Quantum
+and uncompressed quantum circuits. The results confirmed
+                                                                   Information Science Research Centers. Y.A. acknowledges
+the capability of the YBE formulation to perform dynamics
+                                                                   support from the U.S. Department of Energy, Office of Sci-
+for a large number of steps, and they connected our work to the
+                                                                   ence, under Contract No. DE-AC02-06CH11357 at Argonne
+broader and deeper context of the YBE duality and integrable
+                                                                   National Laboratory. Authors thank James Daniel Whitfield
+quantum computation.
+                                                                   for insightful discussions.
+    A promising application of this technique is to explore the
+compression of any circuit as part of the circuit compilation
+step. The general nature of the technique suggests that it could   APPENDIX A: THE PROOF OF VERTICAL/HORIZONTAL
+work for any circuit containing repeating gate motifs. It could    REFLECTION SYMMETRY IN THE QUANTUM CIRCUIT
+be used, for example, to compress certain types of graph            EMPLOYED FOR SIMULATING THE TIME EVOLUTION
+instances to solve combinatorial optimization problems using           OF THE 1D HEISENBERG MODEL WITH THE
+QAOA [73]. In particular, certain ZZ gate (a combination of               HAMILTONIAN DEFINED IN TABLE I
+CNOT, Rz, and CNOT gates) motifs could be compressed.
+                                                                       In the main text, we have demonstrated that a vertical
+Another aspect of the YBE compression scheme is the control
+                                                                   reflection symmetry, i.e., the three-site YBE relation, exists
+of Trotter error. A smaller step size results in smaller Trotter
+                                                                   for three layers in the circuit structure used for simulating the
+error, which results in a large number of Trotter steps. This
+                                                                   time evolution of the three-spin Heisenberg model with the
+compression scheme allows compression to a constant num-
+                                                                   Hamiltonian defined in Table I. In addition, we have demon-
+ber of Trotter steps, which only depends on system size. This
+                                                                   strated that a horizontal reflection symmetry relation, derived
+is very much evident in Fig. 5, where it is shown that for any
+                                                                   from the three-spin YBE relation, exists for the four-layer
+time and any step size, only three Trotter steps are required
+                                                                   circuit structure used for simulating the time evolution of the
+for the time evolution of a three–spin system.
+                                                                   four-spin Heisenberg model. Here, we show that a vertical or
+    We have noticed some other techniques developed for the
+                                                                   horizontal reflection symmetry exists for the N-layer (N ⩾ 3
+quantum simulation of the time evolution of the model Hamil-
+                                                                   can be an arbitrarily large integer) in a similar circuit struc-
+tonian reporting a similar performance. For example, in the
+                                                                   ture used for simulating the time evolution of the Heisenberg
+postquench dynamics simulations of the Lieb-Schultz-Mattis
+                                                                   model Hamiltonian defined in Table I governing the N-spin
+model using an adaptive variational approach [74], a quadratic
+                                                                   system. Explicitly, as shown in Fig. 6, when N is even a
+scaling of the number of CNOTs with the number of qubits is
+                                                                   horizontal reflection exists, and when N is odd a vertical
+observed. Similar performance has also been reported where
+                                                                   reflection exists.
+the disentanglement of the 1D XY model Hamiltonian is
+                                                                       The proof for the existence of a reflection relation can be
+achieved by resorting to Fourier and Bogoliubov transforma-
+                                                                   shown by induction, where for three- and four-spin systems
+tions [40], and the depth of the circuit grows as O(N log2 N ).
+                                                                   the vertical and horizontal reflections are already known and
+    Finally, it is worth pointing out that in this paper we are
+                                                                   shown in the main text. If we assume for the (N − 1)-spin
+still dealing with the integrable models, for which classical
+                                                                   system that a reflection (either vertical or horizontal) exists for
+approaches such as the time-dependent density matrix renor-
+                                                                   every (N − 1) layer in its time evolution circuit, we then only
+malization group (t-DMRG) [75–77] have been shown to be
+                                                                   need to prove that a reflection relation also exists for every
+time-efficient (i.e., the computation time and memory scale
+                                                                   N-layer in the time evolution circuit for the N-spin system. To
+as polynomial functions of physical time in the thermody-
+                                                                   see that, we can transform the corresponding circuit structure
+namic limit). Specifically, studies by Prosen and Žnidarič have
+                                                                   in three steps, which are shown diagrammatically in Fig. 7 and
+shown that the scaling of the classical computation resources
+                                                                   interpreted as follows:
+for simulations of quantum 1D lattices with local interactions
+                                                                       Step 1. As shown in Fig. 7(a), in this step the two-qubit
+is closely connected to the integrability of the Hamiltonian
+                                                                   gates in the top row can be consecutively moved (as seen
+[77]. Therefore, it does not make sense to discuss the quan-
+                                                                   from the orange arrow) to the right and tucked between the
+
+                                                             012412-8
+QUANTUM TIME DYNAMICS EMPLOYING THE …                                                            PHYSICAL REVIEW A 106, 012412 (2022)
+
+
+
+
+                                                                              FIG. 8. In the time evolution circuit of a 10-qubit Heisenberg
+                                                                          model, the top left two-qubit (blue block highlighted by a red frame)
+                                                                          gate can be gradually moved downward to the bottom right position
+    FIG. 6. Reflection symmetry of the quantum circuit employed           (denoted by the dashed red block) through eight consecutive three-
+for simulating the time evolution of the Heisenberg model Hamil-          site YBE operations (labeled by circled numbers). As a result of the
+tonian defined in Table I. (a) When the number of qubits N is even,       eight consecutive three-site YBE operations, all the two-qubit gates
+there exists a vertical symmetry for the first N layers of the circuit.   in the diagonal direction (included in the red dashed frame on the
+(b) When N is odd, there exists a horizontal symmetry for the first N     right-hand side) need to update their rotations and phase factors.
+layers of the circuit.
+                                                                          two-qubit gates in the last layer. From the right-hand side of
+                                                                          Fig. 7(a), this step can physically be viewed as “downfolding”
+                                                                          the propagation of the N-qubit system over Nt time into
+                                                                          the propagation of the (N − 1)-qubit system over (N − 1)t
+                                                                          multiplied by the propagation of the N-qubit system over one
+                                                                          time step t.
+                                                                              Step 2. As shown in Fig. 7(b), since we have assumed
+                                                                          the existence of the reflection symmetry in the time evolution
+                                                                          circuit for the (N − 1)-spin system, this reflection can then be
+                                                                          directly applied to obtain the right-hand side of Fig. 7(b).
+                                                                              Step 3. As shown in Fig. 7(c), finally by performing
+                                                                          consecutive three-spin YBE backwards we can move the two-
+                                                                          qubit gates in the original last layer (denoted by the blue
+                                                                          blocks) back to the top row, and the resulting circuit struc-
+                                                                          ture exhibits a reflected circuit structure compared with the
+                                                                          original circuit [i.e., the left-hand side of Fig. 7(a)].
+                                                                              Remarkably, in the above proof we have utilized the three-
+                                                                          site YBE transformations consecutively in Steps 1 and 3. The
+                                                                          consecutive three-site YBE transformation can be viewed as
+                                                                          a “long distance” YBE. To see how it works, take a 10-qubit
+                                                                          time evolution circuit as an example. As can be seen from
+                                                                          Fig. 8, eight consecutive three-site YBE operations can be
+                                                                          performed in order to move a top left two-qubit gate to a
+                                                                          bottom right position. In general, we can see that for a two-
+                                                                          qubit gate being moved from qubits i and i + 1 to qubits j and
+                                                                           j + 1 ( j = i) through the diagonal direction, a total of j − i
+                                                                          consecutive three-site YBE operations would be needed.
+                                                                              Regarding the scaling of the reflection operation for the
+                                                                          N-layer time evolution circuit of an N-qubit system, there are
+                                                                          N − 1 two-qubit gates that need to be moved back and forth
+    FIG. 7. A diagrammatic proof of the reflection symmetry in the
+quantum circuit employed for simulating the time evolution of the
+                                                                          between the side layer and the top layer in Steps 1 and 3,
+1D Heisenberg model with the Hamiltonian defined in Table I. Here,        which contributes to N (N−1)2
+                                                                                                           three-site YBE operations. Since
+the blue blocks denote the original two-qubit gates, the green blocks     Step 2 indicates a recursion, the total number of three-site
+denote the two-qubit gates after YBE transformation, and the red          YBE operations in all three steps scales as
+dashed blocks denote the destinations that are connected by dashed                    O(N 2 ) + O((N − 1)2 ) + · · · = O(N 3 ).          (A1)
+arrow curves to the highlighted blue blocks after performing consec-
+utive three-spin YBE transformations. The orange arrow indicates          It is worth mentioning that the actual time for executing the
+the direction for moving the two-qubit gates in each step.                reflection operation can be reduced by exploiting the parallel
+
+                                                                    012412-9
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                              PHYSICAL REVIEW A 106, 012412 (2022)
+
+                                                                         Take the X X + Z model as an example. Since the X X + Z
+                                                                         model Hamiltonian can be written as
+
+                                                                                                  H = HX X + HZ                         (B1)
+
+                                                                         with
+                                                                                                         
+                                                                                           HX X = Jx          (σix σi+1
+                                                                                                                     x
+                                                                                                                        + σiy σi+1
+                                                                                                                                y
+                                                                                                                                   ),
+                                                                                                          i
+                                                                                                         
+                                                                                             HZ = hz          σiz ,
+                                                                                                          i
+
+                                                                                     [HX X , HZ ] = 0,
+
+   FIG. 9. Circuit compression for the X X + Z model. Two-qubit          there will be no Trotter error in the following decomposition:
+gates for X X interaction are denoted by blue blocks, and single-qubit
+RZ gates are denoted by green blocks. Note that blue and green blocks                e−iHt = e−iHX X t e−iHZ t = e−iHZ t e−iHX X t ,    (B2)
+commute.
+                                                                         from which we can see
+operations (i.e., simultaneously performing multiple three-site
+YBE reflection operations), or by directly figuring out the
+                                                                                               [e−iHX X t , e−iHZ t ] = 0.              (B3)
+algebraic relations corresponding to the consecutive three-site
+YBE operations over a large number of qubit sites to bypass
+the intermediate operations.                                             Therefore, as shown in Fig. 9, the time evolution circuit for the
+                                                                         X X + Z model can be equivalently transformed through con-
+                                                                         secutive swaps between blue and green gate layers to a circuit
+ APPENDIX B: EXTENSION TO SIMULATING THE TIME
+                                                                         for the pure X X model plus a single RZ layer. We notice that
+ EVOLUTION OF THE 1D HEISENBERG MODEL WITH A
+                                                                         a similar “turn over” transformation for model Hamiltonians
+               TRANSVERSE FIELD
+                                                                         with a transverse field has been reported in Ref. [47], while the
+   It is possible to employ our YBE circuit compression tech-            YBE transformation for other models with a transverse field
+nique for some model Hamiltonians with a transverse field.               is currently being explored.
+
+
+ [1] Y. Alexeev, D. Bacon, K. R. Brown, R. Calderbank, L. D. Carr,        [9] J. Preskill, Quantum computing in the NISQ era and beyond,
+     F. T. Chong, B. DeMarco, D. Englund, E. Farhi, B. Fefferman,             Quantum 2, 79 (2018).
+     A. V. Gorshkov, A. Houck, J. Kim, S. Kimmel, M. Lange,              [10] M. Jimbo, Introduction to the Yang–Baxter equation, Int. J.
+     S. Lloyd, M. D. Lukin, D. Maslov, P. Maunz, C. Monroe                    Mod. Phys. A 04, 3759 (1989).
+     et al., Quantum computer systems for scientific discovery, PRX      [11] H. Bethe, Zur theorie der metalle, Z. Phys. 71, 205
+     Quantum 2, 017001 (2021).                                                (1931).
+ [2] M. Suzuki, Relationship between d-dimensional quantal spin          [12] M. T. Batchelor, The bethe ansatz after 75 years, Phys. Today
+     systems and (d+1)-dimensional Ising systems: Equivalence,                60(1), 36 (2007).
+     critical exponents and systematic approximants of the partition     [13] C.-N. Yang, Some Exact Results for the Many-Body Problem
+     function and spin correlations, Prog. Theor. Phys. 56, 1454              in one Dimension with Repulsive Delta-Function Interaction,
+     (1976).                                                                  Phys. Rev. Lett. 19, 1312 (1967).
+ [3] S. Sachdev, Quantum Phase Transitions (Cambridge University         [14] R. J. Baxter, Exactly Solved Models in Statistical Mechanics
+     Press, Cambridge, 2011).                                                 (Elsevier, Amsterdam, 2016).
+ [4] R. Shankar, Quantum Field Theory and Condensed Matter: An           [15] J. H. H. Perk and H. Au-Yang, Yang-Baxter Equation, in En-
+     Introduction (Cambridge University Press, Cambridge, 2017).              cyclopedia of Mathematical Physics, edited by J.-P. Françoise,
+ [5] B. Sutherland, Beautiful Models: 70 Years of Exactly Solved              G. L. Naber, and S. T. Tsou (Oxford, Elsevier, 2006), Vol. 5,
+     Quantum Many-body Problems (World Scientific, Singapore,                 pp. 465–473.
+     2004).                                                              [16] W. Heisenberg, Zur theorie des ferromagnetismus, Z. Phys. 49,
+ [6] P. Benioff, The computer as a physical system: A microscopic             619 (1928).
+     quantum mechanical Hamiltonian model of computers as rep-           [17] M. Takahashi, One-Dimensional Heisenberg Model at Finite
+     resented by Turing machines, J. Stat. Phys. 22, 563 (1980).              Temperature, Prog. Theor. Phys. 46, 401 (1971).
+ [7] R. P. Feynman, Simulating physics with computers, Int. J. Theor     [18] M. Karbach, G. Müller, H. Gould, and J. Tobochnik, In-
+     Phys. 21, 467(1982).                                                     troduction to the Bethe ansatz I, Comput. Phys. 11, 36
+ [8] National QIS Research Centers, U.S. DOE Office of Sci-                   (1997).
+     ence(SC), https://science.osti.gov/Initiatives/QIS/QIS-Centers      [19] M. Karbach, K. Hu, and G. Müller, Introduction to the Bethe
+     (2021) [Online; accessed November 17, 2021].                             ansatz II, Comput. Phys. 12, 565 (1998).
+
+                                                                   012412-10
+QUANTUM TIME DYNAMICS EMPLOYING THE …                                                             PHYSICAL REVIEW A 106, 012412 (2022)
+
+[20] M. Karbach, K. Hu, and G. Müller, Introduction to the Bethe           [42] C. Cîrstoiu, Z. Holmes, J. Iosue, L. Cincio, P. J. Coles, and A.
+     ansatz III, arXiv:cond-mat/0008018.                                        Sornborger, Variational fast forwarding for quantum simulation
+[21] L. D. Faddeev, How algebraic Bethe ansatz works for integrable             beyond the coherence time, npj Quantum Inf. 6, 82 (2020).
+     model, arXiv:hep-th/9605187.                                          [43] Y. Atia and D. Aharonov, Fast-forwarding of hamiltonians and
+[22] E. H. Lieb and W. Liniger, Exact analysis of an interacting Bose           exponentially precise measurements, Nat. Commun. 8, 1572
+     gas. I. The general solution and the ground state, Phys. Rev. 130,         (2017).
+     1605 (1963).                                                          [44] N. F. Berthusen, T. V. Trevisan, T. Iadecola, and P. P.
+[23] E. H. Lieb, Exact analysis of an interacting Bose gas.                     Orth, Quantum dynamics simulations beyond the coherence
+     II. The excitation spectrum, Phys. Rev. 130, 1616                          time on noisy intermediate-scale quantum hardware by vari-
+     (1963).                                                                    ational trotter compression, Phys. Rev. Research 4, 023097
+[24] F. Essler, H. Frahm, F. Göhmann, A. Klümper, and V. Korepin,               (2022).
+     The One-Dimensional Hubbard Model (Cambridge University               [45] F. Barratt, J. Dborin, M. Bal, V. Stojevic, F. Pollmann, and A. G.
+     Press, Cambridge, 2005).                                                   Green, Parallel quantum simulation of large systems on small
+[25] F. Calogero, Ground state of a one-dimensional N-body system,              nisq computers, npj Quantum Inf. 7, 79 (2021).
+     J. Math. Phys. 10, 2197 (1969).                                       [46] L. Bassman, R. V. Beeumen, E. Younis, E. Smith, C. Iancu, and
+[26] F. Calogero, Solution of a three-body problem in one dimen-                W. A. de Jong, Constant-depth circuits for dynamic simulations
+     sion, J. Math. Phys. 10, 2191 (1969).                                      of materials on quantum computers, Materials Theory 6, 13
+[27] F. Calogero, Solution of the one-dimensional N-body problems               (2022).
+     with quadratic and/or inversely quadratic pair potentials, J.         [47] E. Kökcü, D. Camps, L. Bassman, J. K. Freericks, W. A. de
+     Math. Phys. 12, 419 (1971).                                                Jong, R. V. Beeumen, and A. F. Kemper, Algebraic compression
+[28] B. Sutherland, Quantum many-body problem in one dimension:                 of quantum circuits for Hamiltonian evolution, Phys. Rev. A
+     Ground state, J. Math. Phys. 12, 246 (1971).                               105, 032420 (2022).
+[29] B. Sutherland, Quantum many-body problem in one dimension:            [48] D. Camps, E. Kökcü, L. Bassman, W. A. de Jong, A. F. Kemper,
+     Thermodynamics, J. Math. Phys. 12, 251 (1971).                             and R. Van Beeumen, An algebraic quantum circuit compres-
+[30] J. D. Johnson, S. Krinsky, and B. M. McCoy, Vertical-arrow                 sion algorithm for hamiltonian simulation, arXiv:2108.03283
+     correlation length in the eight-vertex model and the low-lying             [math.NA].
+     excitations of the X − Y − Z Hamiltonian, Phys. Rev. A 8, 2526        [49] P. Fazekas, Lecture Notes on Electron Correlation and Mag-
+     (1973).                                                                    netism (World Scientific, Singapore, 1999), Vol. 5.
+[31] A. Luther, Eigenvalue spectrum of interacting massive fermions        [50] R. Skomski, Simple Models of Magnetism (Oxford University
+     in one dimension, Phys. Rev. B 14, 2153 (1976).                            Press, Oxford, 2008).
+[32] R. Orbach, Linear antiferromagnetic chain with anisotropic            [51] A. S. T. Pires, Theoretical Tools for Spin Models in Magnetic
+     coupling, Phys. Rev. 112, 309 (1958).                                      Systems (IOP, Bristol, UK, 2021).
+[33] M. Rigol, V. Dunjko, V. Yurovsky, and M. Olshanii, Relaxation         [52] I. de P. R. Moreira and F. Illas, A unified view of the theoret-
+     in a Completely Integrable Many-Body Quantum System: An                    ical description of magnetic coupling in molecular chemistry
+     Ab Initio Study of the Dynamics of the Highly Excited States               and solid state physics, Phys. Chem. Chem. Phys. 8, 1645
+     of 1D Lattice Hard-Core Bosons, Phys. Rev. Lett. 98, 050405                (2006).
+     (2007).                                                               [53] G. David, N. Guihéry, and N. Ferré, What are the physical
+[34] A. C. Cassidy, C. W. Clark, and M. Rigol, Generalized Ther-                contents of hubbard and heisenberg hamiltonian interac-
+     malization in an Integrable Lattice System, Phys. Rev. Lett. 106,          tions extracted from broken symmetry dft calculations in
+     140405 (2011).                                                             magnetic compounds, J. Chem. Theory Comput. 13, 6253
+[35] J.-S. Caux and F. H. L. Essler, Time Evolution of Local Observ-            (2017).
+     ables After Quenching to an Integrable Model, Phys. Rev. Lett.        [54] E. Lieb, T. Schultz, and D. Mattis, Two soluble models of an
+     110, 257203 (2013).                                                        antiferromagnetic chain, Ann. Phys. 16, 407 (1961).
+[36] M. Fagotti, Dynamical phase transitions as properties of the          [55] S. Katsura, Statistical mechanics of the anisotropic linear
+     stationary state: Analytic results after quantum quenches in the           Heisenberg model, Phys. Rev. 127, 1508 (1962).
+     spin-1/2 XXZ chain, arXiv:1308.0277 [cond-mat.stat-mech].             [56] S. Katsura, Statistical mechanics of the anisotropic linear
+[37] B. Pozsgay, The generalized Gibbs ensemble for Heisenberg                  Heisenberg model, Phys. Rev. 129, 2835 (1963).
+     spin chains, J. Stat. Mech. (2013) P07003.                            [57] T. Niemeijer, Some exact calculations on a chain of spins 12,
+[38] N. A. Sinitsyn and F. Li, Solvable multistate model of landau-             Physica 36, 377 (1967).
+     zener transitions in cavity QED, Phys. Rev. A 93, 063859              [58] R. Kosloff, Time-dependent quantum-mechanical methods for
+     (2016).                                                                    molecular dynamics, J. Phys. Chem. 92, 2087 (1988).
+[39] N. A. Sinitsyn, E. A. Yuzbashyan, V. Y. Chernyak, A. Patra, and       [59] D. J. Tannor, Introduction to Quantum Mechanics: A Time-
+     C. Sun, Integrable Time-Dependent Quantum Hamiltonians,                    dependent Perspective (University Science Books, Sausalito,
+     Phys. Rev. Lett. 120, 190402 (2018).                                       CA, 2007).
+[40] F. Verstraete, J. I. Cirac, and J. I. Latorre, Quantum circuits for   [60] Y. Nam and D. Maslov, Low-cost quantum circuits for
+     strongly correlated quantum systems, Phys. Rev. A 79, 032316               classically intractable instances of the hamiltonian dynamics
+     (2009).                                                                    simulation problem, npj Quantum Inf. 5, 44 (2019).
+[41] S.-H. Lin, R. Dilip, A. G. Green, A. Smith, and F. Pollmann,          [61] A. M. Childs, D. Maslov, Y. Nam, N. J. Ross, and Y. Su, Toward
+     Real- and imaginary-time evolution with compressed quantum                 the first quantum simulation with quantum speedup, Proc. Natl.
+     circuits, PRX Quantum 2, 010342 (2021).                                    Acad. Sci. (USA) 115, 9456 (2018).
+
+                                                                    012412-11
+PENG, GULANIA, ALEXEEV, AND GOVIND                                                                PHYSICAL REVIEW A 106, 012412 (2022)
+
+[62] S. Raeisi, N. Wiebe, and B. C. Sanders, Quantum-circuit design        [70] F. A. Vind, A. Foerster, I. S. Oliveira, R. S. Sarthour, D. d. O.
+     for efficient simulations of many-body quantum dynamics, New               Soares-Pinto, A. M. d. Souza, and I. Roditi, Experimental
+     J. Phys. 14, 103017 (2012).                                                realization of the Yang–Baxter equation via NMR interferome-
+[63] M. Reiher, N. Wiebe, K. M. Svore, D. Wecker, and M. Troyer,                try, Sci. Rep. 6, 20789 (2016).
+     Elucidating reaction mechanisms on quantum computers, Proc.           [71] M. T. Batchelor and A. Foerster, Yang–Baxter integrable mod-
+     Natl. Acad. Sci. (USA) 114, 7555 (2017).                                   els in experiments: from condensed matter to ultracold atoms,
+[64] R. Babbush, J. McClean, D. Wecker, A. Aspuru-Guzik,                        J. Phys. A 49, 173001 (2016).
+     and N. Wiebe, Chemical basis of Trotter-Suzuki errors in              [72] R. S. Chen, Generalized yang-baxter equations and braiding
+     quantum chemistry simulation, Phys. Rev. A 91, 022311                      quantum gates, J. Knot Theor. Ramif. 21, 1250087 (2012).
+     (2015).                                                               [73] E. Farhi, J. Goldstone, and S. Gutmann, A quantum approxi-
+[65] R. J. Baxter, Partition function of the eight-vertex lattice model,        mate optimization algorithm, arXiv:1411.4028 [quant-ph].
+     Ann. Phys. 70, 193 (1972).                                            [74] Y.-X. Yao, N. Gomes, F. Zhang, C.-Z. Wang, K.-M. Ho, T.
+[66] M.-L. Ge, K. Xue, R.-Y. Zhang, and Q. Zhao, Yang–Baxter                    Iadecola, and P. P. Orth, Adaptive variational quantum dynam-
+     equations and quantum entanglements, Quant. Inf. Proc. 15,                 ics simulations, PRX Quantum 2, 030307 (2021).
+     5211 (2016).                                                          [75] D. Gobert, C. Kollath, U. Schollwöck, and G. Schütz, Real-
+[67] C. Nayak, S. H. Simon, A. Stern, M. Freedman, and S. Das                   time dynamics in spin- 21 chains with adaptive time-dependent
+     Sarma, Non-Abelian anyons and topological quantum compu-                   density matrix renormalization group, Phys. Rev. E 71, 036102
+     tation, Rev. Mod. Phys. 80, 1083 (2008).                                   (2005).
+[68] L. H. Kauffman and S. J. J. Lomonaco, Topological quantum             [76] T. J. Osborne, Efficient Approximation of the Dynamics of
+     information theory, in Proceedings of Symposia in Applied                  One-Dimensional Quantum Spin Systems, Phys. Rev. Lett. 97,
+     Mathematics, edited by S. J. Lomonaco (AMS, Washington,                    157202 (2006).
+     DC, 2010), Vol. 68.                                                   [77] T. Prosen and M. Žnidarič, Is the efficiency of classical simula-
+[69] Y. Zhang, Integrable quantum computation, Quantum Inf.                     tions of quantum dynamics related to integrability? Phys. Rev.
+     Process. 12, 631 (2013).                                                   E 75, 015202(R) (2007).
+
+
+
+
+                                                                    012412-12
+
