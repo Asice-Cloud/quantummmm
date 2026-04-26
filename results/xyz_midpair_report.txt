@@ -1,0 +1,14 @@
+N=100, center_width=20
+center Delta=0.5, t=1.0, mu=0
+
+Lowest energies (abs-sorted first 6):
+-8.137897e-07
+8.137897e-07
+-7.478176e-02
+7.478176e-02
+7.614054e-02
+-7.614054e-02
+
+peak_idx=99
+peak_val=2.439024e-02
+xi_est=nan

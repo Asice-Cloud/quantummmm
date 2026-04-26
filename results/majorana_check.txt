@@ -1,0 +1,3 @@
+N=200 lowest_energy=1.534742e-16
+majorana_score=2.209885e-15
+abs_overlap_u_conjv=5.000000e-01

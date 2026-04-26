@@ -1,0 +1,10 @@
+N=400, center_width=80, Delta_center=0.5
+center indices start=160 end=239
+
+Lowest energies (abs-sorted first 6):
+mode0 energy=1.450153e-16 center_frac=6.211180e-03 left_frac=2.997085e-30 right_frac=8.695652e-01
+mode1 energy=2.514552e-16 center_frac=1.386749e-02 left_frac=8.628659e-01 right_frac=3.008401e-30
+mode2 energy=-1.939224e-02 center_frac=6.174433e-03 left_frac=8.701057e-01 right_frac=2.553156e-30
+mode3 energy=1.939224e-02 center_frac=6.174433e-03 left_frac=8.701057e-01 right_frac=2.942077e-30
+mode4 energy=-1.948243e-02 center_frac=1.551150e-03 left_frac=3.397909e-30 right_frac=8.741683e-01
+mode5 energy=1.948243e-02 center_frac=1.551150e-03 left_frac=3.710482e-30 right_frac=8.741683e-01

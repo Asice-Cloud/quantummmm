@@ -33,12 +33,22 @@ def free_fermion_constraints():
     labels = ['0','x','y','z']
     paulis = {'0': id2, 'x': sx, 'y': sy, 'z': sz}
 
-    # symbolic Pauli coefficients c_ab
-    c = {a+b: sp.symbols('c_'+a+b) for a in ['0','x','y','z'] for b in ['0','x','y','z']}
+    # symbolic Pauli coefficients c_ab (explicit real and imag parts to avoid re() in Groebner)
+    c_re = {}
+    c_im = {}
+    for a in ['0','x','y','z']:
+        for b in ['0','x','y','z']:
+            name = f'c_{a}{b}'
+            cre, cim = sp.symbols(name + '_re ' + name + '_im', real=True)
+            c_re[a+b] = cre
+            c_im[a+b] = cim
 
-    # build H_spin
+    # build H_spin using c = cre + I*cim
     H = sp.zeros(4,4)
-    for k, sym in c.items():
+    for k in c_re:
+        cre = c_re[k]
+        cim = c_im[k]
+        sym = cre + I*cim
         a, b = k[0], k[1]
         H += sym * sp.kronecker_product(paulis[a], paulis[b])
 
@@ -90,8 +100,8 @@ def free_fermion_constraints():
     else:
         # construct polynomial system and attempt elimination of unknowns via Groebner basis
         polys = [sp.simplify(e.lhs) for e in re_eqs]
-        # list of all c symbols
-        c_syms = list(c.values())
+        # list of all c real/imag symbols
+        c_syms = list(c_re.values()) + list(c_im.values())
         try:
             G = sp.groebner(polys, *unknowns, *c_syms, order='lex')
             eliminated = G.eliminate(unknowns)
@@ -99,12 +109,47 @@ def free_fermion_constraints():
             eliminated_polys = list(eliminated)
             return {'sol_exists': False, 'groebner_eliminated': eliminated_polys}
         except Exception as e:
-            A, b = sp.linear_eq_to_matrix([e.lhs for e in re_eqs], unknowns)
-            rankA = A.rank()
-            Ab = A.row_join(b)
-            rankAb = Ab.rank()
-            constraints = ['groebner elimination failed: ' + str(e)]
-            return {'sol_exists': False, 'rankA': rankA, 'rankAb': rankAb, 'constraints': constraints}
+            import traceback
+            print('  Groebner elimination raised exception:', e)
+            traceback.print_exc()
+            # Try alternative variable orderings for Groebner elimination
+            try_orders = [
+                tuple(list(unknowns) + list(c_syms)),
+                tuple(list(c_syms) + list(unknowns)),
+            ]
+            eliminated_polys = None
+            for vars_order in try_orders:
+                try:
+                    G = sp.groebner(polys, *vars_order, order='lex')
+                    # Some SymPy versions lack GroebnerBasis.eliminate; extract basis
+                    basis_polys = list(G)
+                    # keep only polys that do not contain any of the unknowns
+                    eliminated_polys = []
+                    for p in basis_polys:
+                        if not any(var in p.free_symbols for var in unknowns):
+                            eliminated_polys.append(sp.simplify(p))
+                    if eliminated_polys:
+                        break
+                except Exception as e2:
+                    print('   groebner with order failed:', e2)
+
+            if eliminated_polys:
+                outp = '\n'.join([str(p) for p in eliminated_polys])
+                outpath = 'results/free_fermion_constraints.txt'
+                try:
+                    with open(outpath, 'w') as f:
+                        f.write(outp)
+                    print('  Wrote eliminated constraints to', outpath)
+                except Exception:
+                    print('  Failed to write eliminated constraints to', outpath)
+                return {'sol_exists': False, 'groebner_eliminated': eliminated_polys, 'outpath': outpath}
+            else:
+                A, b = sp.linear_eq_to_matrix([e.lhs for e in re_eqs], unknowns)
+                rankA = A.rank()
+                Ab = A.row_join(b)
+                rankAb = Ab.rank()
+                constraints = ['groebner elimination failed: ' + str(e)]
+                return {'sol_exists': False, 'rankA': rankA, 'rankAb': rankAb, 'constraints': constraints}
 
 
 def main():

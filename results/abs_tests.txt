@@ -1,0 +1,50 @@
+abs_tests results
+eta=0.6, u0=0.0
+
+Baseline params from h_local:
+t=(1.7710321966877254-1.8149544367407344e-16j), Delta=(1.1102230246251565e-16-6.960577947356938e-17j), mu=(2.9233918941562056-1.3643558146845062e-15j), U=(2.9233918941562047-1.1379786002407855e-15j)
+
+Test A: injected c_XY=0.05 --> params:
+t_mod=(1.7710321966877254+0.04999999999999982j), Delta_mod=(1.1102230246251565e-16-0.05000000000000008j), mu_mod=(2.9233918941562056-1.3643558146845062e-15j)
+Lowest 10 eigenvalues (Test A):
+-6.466436e+00
+-6.465138e+00
+-6.462975e+00
+-6.459948e+00
+-6.456058e+00
+-6.451305e+00
+-6.445690e+00
+-6.439216e+00
+-6.431883e+00
+-6.423693e+00
+Lowest mode max weight at site 197, weight=4.5219e-02
+
+Test B: mu_mid = mu + 3.0 --> Lowest 10 eigenvalues:
+-7.565183e+00
+-6.463732e+00
+-6.463678e+00
+-6.458561e+00
+-6.458345e+00
+-6.449949e+00
+-6.449464e+00
+-6.437903e+00
+-6.437044e+00
+-6.422437e+00
+mode idx 199: max site 134, weight at mid 5.5889e-04
+mode idx 200: max site 134, weight at mid 5.5889e-04
+mode idx 198: max site 98, weight at mid 2.4161e-03
+
+Test B: mu_mid = mu + -3.0 --> Lowest 10 eigenvalues:
+-6.463772e+00
+-6.463720e+00
+-6.458720e+00
+-6.458511e+00
+-6.450304e+00
+-6.449835e+00
+-6.438532e+00
+-6.437702e+00
+-6.423412e+00
+-6.422122e+00
+mode idx 199: max site 166, weight at mid 2.5208e-03
+mode idx 200: max site 166, weight at mid 2.5208e-03
+mode idx 198: max site 97, weight at mid 5.5272e-04

@@ -1,0 +1,13 @@
+params: a1=c1=0.0, b1=1.0, d1=0.5, rho=1.0
+t=1.0, Delta_left=0.5, Delta_right=0.0, mu=0
+
+Lowest energies (by value):
+-2.621642e-16
+2.861543e-16
+-3.116653e-02
+3.116653e-02
+-6.227385e-02
+6.227385e-02
+
+Densities for lowest eigenstate:
+density0 saved to results/xyz_demo_density0.txt
