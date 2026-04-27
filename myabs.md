@@ -217,3 +217,108 @@ $$
 
 注：上面的数值映射是示范用的线性关系（基于第 5 节给出的成分识别公式）。在一般情形下应使用 `tools/verify_mzm.py:map_c_to_params` 中实现的精确代数表达式把 Pauli 系数映射到 `t, \Delta, \mu`，并对得到的 BdG 做数值对角化验证。
  -->
+
+
+**结论（判定为 ABS）**
+
+- 依据：对全局扫描与 top‑候选的系统验证（见 `results/`）汇总出一致结论：这些近零能态满足端点配对且高度局域，但不满足 Majorana 自共轭关系（`maj_sim` ≈ 0.29 ≪ 1），因此更符合 Andreev bound states（ABS）的特征而非拓扑 MZM。
+- 主要证据：
+	- `results/scan_all_mixtures_validated.json`: 159 个候选中 149 个被判为 ABS‑like（低 `maj_sim`、端点局域）。
+	- `results/abs_like_deeper_report.json`: 对 149 个 ABS‑like 候选进行配对模式与扰动鲁棒性测试，全部表现为两端配对且在端点扰动下能量保持近零（数值稳定），但 `maj_sim` 仍低。
+	- `results/finite_chain_pfaffian_top10.json` 与 `results/finite_chain_pfaffian_top10_perturbed.json`: 对按 `min_abs` 排名前 10 的候选做有限链 Pfaffian 与端点微扰测试，Pfaffian 值数值上为 0（或极其接近 0），在端点小扰动下无 Pfaffian 符号翻转 —— 不支持稳定的拓扑 MZM 结论。
+
+- 结论陈述：基于上述多重判据（`maj_sim`、LDOS 局域性/IPR、配对模式、Pfaffian 与扰动响应），我们把目前的候选集合归类为 ABS（Andreev bound states）。若需要更强的证明（例如构造一个明确满足 `maj_sim>0.8` 且 Pfaffian 稳定非零的例子），建议按文档建议进行基底旋转或在映射层面引入额外基线项后重新扫描。
+
+- 记录链接：
+	- CSV/候选列表: [results/scan_all_mixtures.csv](results/scan_all_mixtures.csv#L1)
+	- 验证详情: [results/scan_all_mixtures_validated.json](results/scan_all_mixtures_validated.json#L1)
+	- 深度验证报告: [results/abs_like_deeper_report.json](results/abs_like_deeper_report.json#L1)
+	- Pfaffian（top10）: [results/finite_chain_pfaffian_top10.json](results/finite_chain_pfaffian_top10.json#L1)
+	- Pfaffian 微扰: [results/finite_chain_pfaffian_top10_perturbed.json](results/finite_chain_pfaffian_top10_perturbed.json#L1)
+
+如需我把这些结论写成一页 PPT 或准备可直接提交的 supplementary 数据包（包含图片、JSON 与脚注），我可以继续生成并打包。
+
+
+
+
+
+
+## 为什么 demo 中的 ABS 只有单点峰（而不是“两个峰并在一起”）以及 Majorana 分解的含义
+
+下面给出完整的推导与物理解释，说明为什么把局域 μ 井插入到 R(u) 映射出的候选上会产生“单个局域 ABS”，并为什么该态不能被解释为空间分离的 Majorana（即拓扑 MZM）。
+
+1) 本征态与 LDOS 的基本关系
+
+给定一个 BdG 本征态（Bogoliubov 本征態）表記為
+$$\Psi = \begin{pmatrix}u\\ v\end{pmatrix},$$
+其中 $u,v\in\mathbb{C}^N$ 為粒子/空穴分量，定義站點 $i$ 的局域態密度（LDOS）為
+$$
+\mathrm{LDOS}(i)=|u(i)|^2+|v(i)|^2. 
+$$
+
+若體系有兩近零本徵態 $\Psi^{(1)},\Psi^{(2)}$，常畫的“合成 LDOS”就是兩者 LDOS 之和：
+$$
+\mathrm{LDOS}_{\mathrm{sum}}(i)=\sum_{k=1}^2\big(|u^{(k)}(i)|^2+|v^{(k)}(i)|^2\big).
+$$
+
+2) Majorana 分量的代數分解（以及與 LDOS 的關係）
+
+對任意一個 Bogoliubov 本徵態 $\Psi=(u,v)$，可以構造兩個“Majorana 片段”波函數（按代數分解）：
+$$
+\Psi_A = u + v^*,\qquad \Psi_B = u - v^*,
+$$
+它們分別對應組合算符 $\beta+\beta^\dagger$ 與 $i(\beta-\beta^\dagger)$ 的空間波函數表示（都是自伴組合）。定義對應的局域密度為
+$$
+\rho_A(i)=|\Psi_A(i)|^2,\qquad \rho_B(i)=|\Psi_B(i)|^2.
+$$ 
+
+直接代數計算可得重要恆等式：
+$$
+\begin{align*}
+|\Psi_A(i)|^2 + |\Psi_B(i)|^2 &= |u(i)+v^*(i)|^2 + |u(i)-v^*(i)|^2 \\
+&= 2\big(|u(i)|^2 + |v(i)|^2\big) = 2\,\mathrm{LDOS}(i).
+\end{align*}
+$$
+因此
+$$
+\mathrm{LDOS}(i) = \tfrac{1}{2}\big(\rho_A(i)+\rho_B(i)\big).
+$$
+
+3) 兩種外觀情形以及它們的判斷標準
+
+- 如果 $\Psi^{(1)}$ 局域在左端而 $\Psi^{(2)}$ 局域在右端，那麽合成 LDOS 會在左右兩端各出現一個峰（這就是你最初看到的“兩個端點峰”情形）。此時若每個本徵態同時滿足 $u^{(k)}\approx e^{i\phi_k}v^{(k)*}$（即 Majorana‑like，自共軛），則對應的 Majorana 片段可以局域並且互爲空間分離——這是拓撲 MZM 的典型外觀。
+- 如果兩近零本徵態都局域在同一位置（例如被局域 μ 井困住），那麽 LDOS(mode1) 與 LDOS(mode2) 都在該點有峰，合成後仍然只在該單點看到一個大峰；按上面的恆等式，這相當於 $\rho_A,\rho_B$ 在同一位置均有權重，因此看不到“兩個並在一起的峰”。
+
+物理上，前者是“兩個空間分離的片 Majorana（或組成它們的一對近零模）”，而後者是“同一位置的兩態（可能爲粒‑空穴對或兩近零的局域 ABS）”。兩者在 LDOS 上都可以產生端點峰，但物理本質不同。
+
+4) 何時可以把一個 ABS 分解成兩個 Majorana？
+
+代數上任意一個費米子態都可以寫成兩個 Majorana 的線性組合，但是否能把這些 Majorana 看作“獨立的、空間分離的 Majorana 片段”需要附加條件：
+
+- 自共軛性條件：對於某一本徵態 $\Psi$，若 $u\approx e^{i\phi}v^*$（相差僅一個全局相位），則
+$$
+\Psi_A\approx 2u,\qquad \Psi_B\approx 0
+$$
+或反之。此時一個 Majorana 片段占主導而成爲“實的”自伴模，`maj_sim`（我們用的度量）會接近 1。這是判斷單個本徵態是否接近 Majorana 的代數條件。
+
+- 空間分離條件：要得到真正的拓撲 MZM，需要有兩近零態，它們的 `Majorana` 片段分別局域在鏈的相反端（例如 $\rho_A^{(1)}$ 在左端、$\rho_A^{(2)}$ 在右端，且相互重疊很小）。同時兩態能級分裂隨體系尺度 $L$ 呈指數衰減並對局部擾動魯棒。
+
+在我們的 demo：
+- `maj_sim` ≈ 0.293（遠小於 1），說明對應本徵態的 $u$ 並不接近 $v^*$；因此既不存在單個本徵態主導一個 Majorana 片段的情形，也就不能把該態解釋爲空間分離的 Majorana 片段。
+- 兩個近零本徵態（能量 ±ε）都被局域在相同站點（腳本輸出 `peak_idx` 都是 118），這使得合成 LDOS 只在該點出現一個峰，正是你看到的演示結果。
+
+5) 直觀物理解釋（結合 R(u) 映射與局域 μ 井）
+
+在 R(u) 映射出的局域兩體哈密頓映射到 BdG 參數後，整體鏈處於平凡相（例如大 μ），在鏈中插入一個局域 μ 井可以在該點產生一個局域化的準粒子勢阱。勢阱可同時束縛一對粒‑空穴配對的近零本徵態（能量成對 ±ε），它們的粒/空穴分量在空間上高度重疊 —— 這正是局域 ABS 的標準機制。因爲兩近零態空間重疊，合成 LDOS 只是把兩者在同一點相加，不會產生“兩個緊挨着的峰”。
+
+6) 數值檢驗與建議
+
+- 若要確認“不是拓撲 MZM”，請同時檢查：`maj_sim`（接近 1 爲 Majorana）、Pfaffian/Z2 指標隨參數的符號翻轉（存在拓撲相變）、能級隨體系長度 $L$ 的指數縮減行爲、和對局部擾動的魯棒性（MZM 更魯棒）。我們的 pipeline 已對這些項做過檢驗，結果一致指向 ABS（`maj_sim` 低、Pfaffian 不支持穩定拓撲符號翻轉、對端點擾動敏感）。
+- 可視化建議：畫出每個近零態的 $\rho_A$ 與 $\rho_B$（腳本已保存爲 `results/demo_local_abs_majorana_mode1.png`）；若兩者都在同一站點聚集，則該態不是空間分離的 Majorana。
+
+7) 結論（針對你的疑問）
+
+- 為什麽沒有“兩個峰並在一起”？因爲兩近零態都局域在同一位置，合成 LDOS 只是把它們在同一點相加，視覺上仍是單一峰。
+- 該 ABS 雖然代數上可寫成兩個 Majorana 片段，但這兩個片段在空間上重疊（並非空間分離、也不滿足自共軛條件），因此不能被認定爲拓撲 MZM。
+
+如需，我可以把上面的數學段落（含 LaTeX 公式）再整理成一頁 PDF 或把示例圖與說明一起打包爲一個“證據包”。
