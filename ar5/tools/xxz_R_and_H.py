@@ -46,6 +46,18 @@ def dRdu(u, eta):
     dR[3,3] = da
     return dR
 
+
+def canonical_H_local(u, eta):
+    """Return canonical local generator H_local(u) = -i R^{-1} dR/du (Hermitian symmetrized)."""
+    R = R_xxz(u, eta)
+    dR = dRdu(u, eta)
+    if abs(np.linalg.det(R)) < 1e-12:
+        raise RuntimeError('R(u) is singular or nearly singular; cannot compute canonical generator')
+    Rinv = np.linalg.inv(R)
+    H_local = -1j * (Rinv @ dR)
+    H_local = 0.5 * (H_local + H_local.conj().T)
+    return H_local
+
 # embedding and YBE check
 
 def swap_23():
@@ -148,15 +160,27 @@ if __name__ == '__main__':
             out_idx = (b<<1) | a
             P[out_idx, in_idx] = 1.0
 
-    # A commonly used local Hamiltonian associated to the R-matrix is
-    # h = P * (dR/du)|_{u=0} / rho, where rho = sin(eta) for our trig R
+    # Historically the repo sometimes used the heuristic h = P * dR/du / rho
+    # (evaluated at a regular point) to obtain a familiar XXZ density. That
+    # construction is kept here for reference but is NOT the canonical
+    # time-ordered generator. Prefer `canonical_H_local(u,eta)` for strict
+    # time-evolution reconstruction:
     rho = np.sin(eta)
     h_local = P @ dR0 / rho
     herm_err_h = np.linalg.norm(h_local - h_local.conj().T)
-    print(f"\nHermiticity error for h = P dR/du|_0 / sin(eta): {herm_err_h:.3e}")
-    print('\nh_local (Pauli expansion):')
+    print(f"\n(Deprecated/heuristic) h = P dR/du|_0 / sin(eta) hermiticity error: {herm_err_h:.3e}")
+    print('\n(Deprecated/heuristic) h_local (Pauli expansion):')
     mapping_h = expand_on_pauli(h_local)
     for k in sorted(mapping_h.keys()):
         val = mapping_h[k]
+        if abs(val) > 1e-8:
+            print(f'{k}: {val}')
+
+    # Show canonical generator (preferred) for direct time-ordered evolution
+    H_local_canonical = canonical_H_local(0.0, eta)
+    print('\nCanonical H_local = -i R^{-1} dR/du (Pauli expansion):')
+    mapping_c = expand_on_pauli(H_local_canonical)
+    for k in sorted(mapping_c.keys()):
+        val = mapping_c[k]
         if abs(val) > 1e-8:
             print(f'{k}: {val}')
