@@ -75,7 +75,7 @@ t=1.0,\quad \Delta=0.5,\quad \mu=0.$$
 6) 结论（归纳）
 - XYZ/8‑vertex 家族因其更丰富的矩阵结构允许在 $\partial_u R|_0$ 的适当矩阵元（这里为 $d_1$）非零，从而在满足简单代数约束 $a_1=c_1$ 的情况下产生非零配对 $\Delta$ 并使局域两格 Hamiltonian 落入 free‑fermion 可表示的子空间。满足这些代数条件并在空间上构造配对差异（例如左段有配对、右段无配对）的情形，可严格导出 ABS 的判据并在数值上验证。
 
----
+ 
 
 文件与脚本：已使用 `tools/xyz_symbolic.py` 做符号展开，`tools/derive_constraints.py` 给出了通用的 free‑fermion 消元约束；可以按需把上面的代数示例代入并运行 `tools/pulse_abs.py` / `tools/ed_extra_scan.py` 做数值验证并把结果追加到此文档。
 

@@ -106,7 +106,7 @@ def main():
             v = coeffs[k]
             print(f' {k:2s}: {v.real: .6f} {v.imag:+.6f}j')
         print('nonlocal norm / total norm =', nonlocal_norm, '/', total_norm)
-        print('---')
+        print(' ')
         results[f'u={u}'] = {'err': err, 'coeffs': coeffs, 'total_norm': total_norm, 'nonlocal_norm': nonlocal_norm}
 
     out = repo / 'results'

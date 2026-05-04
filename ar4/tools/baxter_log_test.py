@@ -92,7 +92,7 @@ def main():
         coeffs = pauli_basis_coeffs(Hrec)
         print('Recovered pauli coefficients (Hrec):')
         pretty_print_coeffs(coeffs)
-        print('---')
+        print(' ')
 
     # save last R,Hrec
     np.savez(outdir / 'baxter_log_test.npz', K=K, Hrec=Hrec)

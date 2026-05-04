@@ -80,7 +80,7 @@ h = \frac{1}{2\sin\eta}\big(\sigma^x\otimes\sigma^x + \sigma^y\otimes\sigma^y\bi
 $$
 
 
----------------
+     
 $c_{μν} 约束$：仅$c_{xx}, c_{yy}, c_{zz} $非零，且$ c_{xx}=c_{yy} $(可按上式具体数值)，其余$ c=0$（无单体/串项）。
 
 物理注记：XXZ 链，JW 后 $σ^{x,y} $项给 hopping/pairing，$σ^zσ^z $给交互 U 与化学势修正。要得到纯二次 BdG（便于 MZM），需把 $c_{zz} $控制或处理为次要项。
@@ -159,7 +159,7 @@ python3 tools/derive_reduced_constraints.py
 
 或把我运行的输出让我贴出来。  
 
----
+ 
 
 如果你希望我把这些符号推导的完整输出（脚本运行结果）也追加进 `ybe.md`，我可以把 `tools/` 的符号结果段直接粘入 `ybe.md`；或者我可以把 `steps.md` 的这段内容同步追加到 `ybe.md`（保持两者一致）。请选择：
 - 将此段追加到 `ybe.md`；或
@@ -185,14 +185,14 @@ python3 tools/derive_reduced_constraints.py
 
 可把这些系数写成 JSON/CSV 后直接传入数值脚本以构造 BdG 并检查 MZM。
 
----
+ 
 
 如需，我可以把上述每一类的 R(u) 与 h 的推导步骤写成完全符号化的 Python 函数（并放入 `tools/`），或把本文件的内容追加到 `ybe.md`。现在要我：
 - A) 直接把这份 `steps.md` 的内容追加到 `ybe.md`；
 - B) 同时生成 `tools/classify_R_family.py` 并演示对若干 c_{μν} 的分类；或
 - C) 等你上传具体的 c_{μν} 约束列表，我逐一给出对应的显式 R(u) 构造。
 
--------------
+    -
 ## 严格构造 Majorana 零模（MZM）——代数说明与逐类构造
 
 目标：在 `steps.md` 中给出对每种类型（XXX、XXZ、XYZ、free‑fermion）能够严格（解析、非近似）构造 Majorana 零模的充分必要代数条件、构造流程与可证示例。

@@ -12,7 +12,7 @@
 - 或者两者的拼接（既改变微观耦合，又移动缺陷）。
 
 
----
+ 
 
 #### 1. 从 R=e^{iK(\lambda)} 到参数空间上的联络
 
@@ -54,7 +54,7 @@ YBE 在 exp 视角下可以理解为：
 - 这对应于“局域联络在三角形配置空间上是平坦的”，即曲率 $F=d\mathcal A+\mathcal A\wedge\mathcal A$ 在对应子空间为零（或者是中心元，对应 braid group 的表现）。
 
 
----
+ 
 
 #### 2. Majorana 零模子空间里的联络：显式形式
 
@@ -206,7 +206,7 @@ $$
 - 对应路径有序指数给出配置空间路径的 holonomy，即 braid/Dehn/half twist 在零模 Hilbert 空间上的幺正作用。
 
 
----
+ 
 
 #### 3. Dehn twist 与 half twist：从 exp 形式看区别
 
@@ -378,7 +378,7 @@ $$
 > 在 exp(iK) + Majorana 联络的框架下，只要 bulk gapped 且联络 projectively flat，沿配置空间路径的平行移动算符（特别是 half twist、Dehn twist）就可以被视为定义/操控拓扑量子态的基本“拓扑门”。
 
 
----
+ 
 
 #### 4. 与 YBE 的平坦性条件对接
 
@@ -405,7 +405,7 @@ $$
 - 进一步把这联络下的 holonomy 投影到 Majorana 零模子空间，就得到 braid、Dehn twist、half twist 的具体幺正表示。
 
 
----
+ 
 
 #### 5. 小结：kit3 视角下 exp 形式的作用
 
@@ -418,7 +418,7 @@ $$
 这使得你在 kit3 中构想的“从 YBE → R → Majorana → mapping class / TQFT 上层结构”的路线，在数学结构上更加统一：从一开始就工作在“exp(iK) + 平坦联络 + holonomy”的语言，而不是先用线性参数再事后取对数。这样，在后续数值实验里，一旦你从 BdG/Majorana 哈密顿量中抽取出低能耦合矩阵 $A_{ab}(\lambda)$，就可以直接构造对应的 $\mathcal A,\Theta^{(\gamma)}$，并与 TQFT 里的 Dehn/half twist 数据对比。
 
 
----
+ 
 
 #### 6. Ising 例子：从 exp(iK) 到标准 braid 矩阵
 
@@ -541,7 +541,7 @@ $$
 > 通过把 YBE 解写成 $R=e^{iK}$ 并投影到零能 Majorana 子空间，可以直接得到 Ising 任意子理论中的 half twist（braid）相位；Dehn twist 则是这些 half twist 沿闭合曲线的组合，其本征相位与 $\theta_\sigma=e^{i\pi/8}$ 等 topological spin 一致。
 
 
----
+ 
 
 #### 7. 配置空间视角：缺陷位置空间、braid 群与 Dehn/half twist
 

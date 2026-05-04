@@ -285,7 +285,7 @@ U = \sum_{a_1,...a_k} C_{a_1...a_k}\sigma_{a1}\otimes ... \otimes \sigma_{a_k}
 $$
 
 
----
+ 
 
 #####  物理意义
 
@@ -411,7 +411,7 @@ Z\otimes D
 A,B,C,D \in M_2(\mathbb C)
 \]
 
----
+ 
 
 ###### 1.1 CNOT 门
 
@@ -734,7 +734,7 @@ U = A + Bi + Cj + Dk
 
 
 
----
+ 
 
 ###### 2.2 Toffoli 门
 
@@ -867,7 +867,7 @@ U = A + Bi + Cj + Dk
 - 只包含 \(i,j\) 分量  
 - 对应 XY 相互作用平面旋转
 
----
+ 
 
 ###### 3.2 fSim 门
 

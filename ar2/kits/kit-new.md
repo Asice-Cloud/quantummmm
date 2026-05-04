@@ -29,7 +29,7 @@ $$
 
 下面按这个顺序详细展开。
 
----
+ 
 
 #### 1. 常数 YBE 在指数表示下的展开与参数约束
 
@@ -95,7 +95,7 @@ $$
 
 在后续 1D / 2D 模型中，我们可以选取一个满足（或近似满足）经典 YBE 的 $H_P^{(0)}$，再围绕它做扰动 $H_P = H_P^{(0)} + \varepsilon V$，用 classical/quantum YBE 作为“平坦/可积”的判据。
 
----
+ 
 
 #### 2. 可积子流形、三角形回路与“离散曲率”
 
@@ -132,7 +132,7 @@ $$
 
 这一层结构，是后面讨论 1D / 2D 模型、Dehn twist 稳健性以及电路复杂度时的“几何背景板”。
 
----
+ 
 
 #### 3. 1D：从 R = exp(iH_P) 到 Kitaev 链、零模与 half twist
 
@@ -248,7 +248,7 @@ $$
 
 因此，在 1D 场景中，可积子流形与 $H_P$ 空间中的“平坦/近平坦层”直接对应，前者可以通过 YBE 的代数约束刻画，后者可以通过小三角形回路的离散曲率近似刻画，两者为我们理解 half twist / Dehn twist 在 1D 中的稳健性提供了精确与近似两种层次。
 
----
+ 
 
 #### 4. 2D：从 R = exp(iH_P) 到 p+ip / honeycomb 与缺陷 Berry holonomy
 
@@ -339,7 +339,7 @@ $$
 
 在我们的具体数值脚本中（run\_pip\_vortex\_berry.py, run\_honeycomb\_vison\_berry.py），我们用离散化路径、相邻步重叠矩阵的极分解来近似计算这个 $U[\gamma]$，并在 2D p+ip 中验证了它与 Ising TQFT 的 Dehn twist 矩阵在 SU(2) 中共轭（在某个 $\mu$ 区间形成“平台”）。
 
----
+ 
 
 #### 5. 配置空间、可积 H\_P 与 Dehn twist / half twist / holonomy
 

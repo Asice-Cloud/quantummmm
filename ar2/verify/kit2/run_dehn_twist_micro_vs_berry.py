@@ -160,7 +160,7 @@ def main():
         F_half, tr_half = su2_fidelity(U_Berry, U_half_proj)
         F_half2, tr_half2 = su2_fidelity(U_Berry, U_half2_proj)
 
-        print(f"\n--- Pair (i, j) = ({i}, {j}) ---")
+        print(f"\n  Pair (i, j) = ({i}, {j})  ")
         print("U_half_proj (2x2) =")
         print(np.round(U_half_proj, 6))
         print("U_half2_proj (2x2) =")

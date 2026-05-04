@@ -31,7 +31,7 @@
 2. TQFT：世界线 braid 表示与 mapping class 表示一致；
 3. R/Berry：在 R = exp(iH\_P) 框架中构造空间操作并用 Berry 几何控制误差。
 
----
+ 
 
 #### 1. 纯拓扑层：辫群与 Dehn twist 生成的 mapping class group 等价
 
@@ -70,7 +70,7 @@ $$
 
 这一步纯拓扑论证不涉及任何量子物理，仅说明“时间中的编织”和“空间中的扭转”在 mapping class group 意义下是同一个对象的不同代表。
 
----
+ 
 
 #### 2. TQFT 层：世界线 braid 表示与 mapping class 表示一致
 
@@ -122,7 +122,7 @@ $$
 >
 > 也就是说，在 TQFT 的层面 **“时间中的 braid” 与若干“空间 Dehn twist” 的组合本来就是同一类幺正操作。**
 
----
+ 
 
 #### 3. R = exp(iH\_P) / Berry 层：从抽象表示到具体 Hamiltonian 空间操作
 

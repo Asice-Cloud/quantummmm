@@ -56,7 +56,7 @@ have been performed and saved in `scripts/ybe_grid_results_coarse.csv` and
 `scripts/representative_spectra.csv`.
 
 Discrete-grid verification
---------------------------
+        --
 We tested the representative exponential polynomial U on the discrete grid
 θ ∈ {0, π/2, π, 3π/2} (equivalently J_ ∈ multiples of π/4); the script
 `scripts/verify_discrete_solutions.py` enumerates the grid solutions and
@@ -65,7 +65,7 @@ agree with the branch analysis above (many solutions have θ components equal to
 0 or π, and other combinations consistent with the sin-based branches).
 
 Solution families (归纳)
------------------------
+       --
 基于因式分解与数值枚举，我们把对角 K 的完整 YBE 解集合归纳为以下几类（它们的并集给出对角子族的所有解）：
 
 - **Family I — Phase-equality families (continuous families):**
@@ -86,7 +86,7 @@ Solution families (归纳)
 说明：实际满足完整 YBE 的点是上面各家族的并集；不同因子的零点可能有交叠（例如等向性点同时使多个因子为零）。文档中已保存因子化表达、三角替换和数值表格以便交叉验证。
 
 下一步（证明通解）
-------------------
+      
 我将尝试用符号消元 / Groebner basis 方法证明：把残差因式化后得到的这些分支覆盖所有对角 K 的解。实现路径：
 
 1. 从 `scripts/solve_full_ybe_diag.py` 导出残差条目的因子集合（用代数未知量 A=exp(iJ_x), B=exp(iJ_y), C=exp(iJ_z) 表示）。
@@ -96,7 +96,7 @@ Solution families (归纳)
 该证明可能涉及较重的代数运算；我会先用 Groebner 试验消去 A,B,C 的情形并把中间结果记录到 `scripts/` 下的文件中。
 
 Groebner 结果（已完成）
----------------------
+       
 我已用代数变量 `A=exp(i*J_x)`, `B=exp(i*J_y)`, `C=exp(i*J_z)` 运行了 Groebner 检验，计算细节保存在 `scripts/groebner_proof_out.txt`。
 
 - 对候选因子生成的理想的 Groebner 基为 `[1]`（整域表示，说明理想的多项式可以生成常数，多项式代数上覆盖了所有代数约束）。
@@ -108,7 +108,7 @@ Groebner 结果（已完成）
 
 
 验证回代结果（已追加）
-----------------------
+       -
 我已对候选解集进行了逐点回代检验（将候选 `(Jx,Jy,Jz)` 代入完整残差矩阵 E，并计算 Frobenius 范数），结果保存在 `scripts/validated_solutions.csv`。
 
 - 检验统计：共检验 287 个候选点，其中 272 个被接受（residual < 1e-8），15 个被拒绝（多为连续分支采样的示例点）。
@@ -117,11 +117,11 @@ Groebner 结果（已完成）
 已把 CSV 结果和上述图像链接一并保存在 `scripts/` 下；如需我把这些验证统计和接受/拒绝样本表格嵌入文档正文，请告知我应该放在哪一节或以何种摘要形式展现。
 
 代数严格化结果（已完成）
-----------------------
+       -
 我用幂次检验方法确认了在多项式环中不存在需要取幂的伪根：对残差多项与候选因子分别检测最小 k 使得 p^k 落入对方理想，全部在 k=1 时成立。详细逐项输出见 `scripts/radical_check_out.txt`。因此在代数/多项式意义上我们已证明 Ideal(Res)=Ideal(F)（不需要取根化），剩余需要处理的是把该代数结论映射回实相位（A=exp(iJ)）的单位模约束与模 2π 的同余类（这部分为后续步骤）。
 
 参数化分支（`Jx=Jy`）的求解
---------------------------------
+          --
 我对 `Jx=Jy` 分支做了符号化简并提取分解因子，然后用数值求解在候选 Jx 值（π/4 网格）下求解 `Jz` 与 `c00` 的约束条件。结果已写入 `scripts/branch_Jx_eq_Jy_solutions.txt`，要点：
 
 - 当 `Jx ∈ {0, π/2, π, 3π/2}` 时，残差在符号上恒为零（对任意 `Jz, c00` 成立）；即这些离散角构成完整连续（在 Jz/c00 自由下）解族的一部分。

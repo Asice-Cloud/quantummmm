@@ -8,7 +8,7 @@
 
 下面按“三层映射”给出一个可执行的计划：
 
----
+ 
 
 #### I. R → BdG/Majorana：构造与参数扫描
 
@@ -26,7 +26,7 @@
 	  - Chern 数或其它拓扑不变量（已有 verify 脚本基础上扩展到 2D）。
 	- 标出：trivial 区、Ising‑like 区、其它候选拓扑相区（若出现）。
 
----
+ 
 
 #### II. 固定相区：上层空间与 mapping class 行为
 
@@ -60,7 +60,7 @@
 	  - 用已知的 Ising MTC 的 F,R,S,T 数据解释 $\rho(T_\gamma)$ 与有效耦合 $A_{ab}$ 的结构（在合适基底下同构）。
 	- 若发现非 Ising 型相区，再尝试匹配其它已知 MTC 或 trivial/two‑copy 结构。
 
----
+ 
 
 #### III. 参数变化 → 上层结构变化 → Majorana 行为变化
 

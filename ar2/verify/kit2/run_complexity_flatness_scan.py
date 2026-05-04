@@ -165,7 +165,7 @@ def main():
     eps_list = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
     print("eps  |  F_max   |  1-F_max  |  Tr(U_Berry)        |  Tr(U_LQC) (best)")
-    print("-----+---------+----------+---------------------+---------------------")
+    print(" --+   +   -+       +       ")
 
     F_list: list[float] = []
 

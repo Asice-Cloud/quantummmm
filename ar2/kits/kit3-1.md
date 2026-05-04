@@ -15,7 +15,7 @@ $$
 
 后续可以在本文件中逐步补全：先锁定具体的 $(a,b,c,d)$ 与 1D/2D 模型，再添加 Ising MTC 的 $F,R$ 数据和数值对比。
 
----
+ 
 
 #### 1. 具体选择一组 R 与 Kitaev 链参数
 
@@ -50,7 +50,7 @@ U_{j,j+1}=\exp\Big(\frac\pi4\,\gamma_{2j}\gamma_{2j+1}\Big)
 $$
 是兼容的：在两零模子空间上，$U$ 实现 $\gamma_{2j}\mapsto\gamma_{2j+1},\ \gamma_{2j+1}\mapsto-\gamma_{2j}$，对应单对 Majorana 的一次“半交换”。
 
----
+ 
 
 #### 2. 2D p+ip 扩展与 Ising 相
 
@@ -76,7 +76,7 @@ $$
 
 我们的 1D R→Kitaev 选择保证了沿 $x$ 方向的链在 $t=\Delta$、拓扑相中心，实现了每条“线”上的 Majorana 模式；在 2D 上连接成网络，并引入适当的涡旋/边界，即可得到标准的 Ising 任意子实现。
 
----
+ 
 
 #### 3. 两个涡旋的 Majorana 与 braid 算符：微观 U 与 Ising 的 R
 
@@ -122,7 +122,7 @@ $$
 - 引入第三个/第四个涡旋，研究多 $\sigma$ 任意子 fusion 空间上的 $F,R$ 矩阵和 R_to_Kitaev 给出的 $U$ 的对应关系；
 - 在带边界/环面几何上考察 Dehn twist 与上文构造的 $U_\gamma$ 在零模子空间上的作用，进一步对接 Ising TQFT 的 mapping class 表示。
 
----
+ 
 
 #### 4. 四个涡旋（四个 Majorana）上的 $F+R$ 结构
 
@@ -200,7 +200,7 @@ $$
 
 这就完成了从“局域 YBE 解 R → 1D/2D Majorana 模型 → Ising 任意子 MTC 的 F+R 数据”的一个具体四粒子例子，验证了我们之前的判断：在合适参数区，R 确实“提升”为一个完整的 TQFT/MTC（Ising），Majorana braid 算符正是该范畴编织结构的格点实现。
 
----
+ 
 
 #### 5. Ising TQFT/MTC 的完整数据与字典
 

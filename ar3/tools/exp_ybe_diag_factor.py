@@ -69,7 +69,7 @@ print('Found', len(exprs_u), 'distinct nonzero factorized expressions.\n')
 for k,e in enumerate(exprs_u[:20],1):
     print('Expr',k,':')
     print(sp.factor(e))
-    print('---\n')
+    print(' \n')
 
 # Also compute simple factorization for a representative entry (0,0)
 rep = sp.simplify(Res[0,0])
