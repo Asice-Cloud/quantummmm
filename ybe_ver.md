@@ -1,3 +1,4 @@
+
 # Tetron 门序列 → Pauli 参数路径（piecewise path 定义）
 
 下面把文献中用于交换 Majorana 的三步门序列（G1..G4）明确为一条分段参数路径，并给出把门电压映射到 Pauli‑Hamiltonian 系数 h_{αβ}(t) 的示例配方，便于直接代入现有的 Pauli 路径模型进行数值仿真。
@@ -234,3 +235,64 @@ $$
 
 解释：这些对比图显示映射模型能在定性上追踪 BdG 的最低能量轨迹；RMSE 用来量化残差并指导后续的更精细目标函数优化（例如直接匹配 overlap(T) 或 LDOS 面板）。
 
+## 生成图片逐项解读
+
+下面按图组逐项解读刚生成的对比图与诊断图，给出关键观测与物理含义。
+
+**总体结论**
+- **Global RMSE**: 能量 RMSE 在各面板间接近，约 5.67e-3（见 results/compare_metrics.npz）。
+- **相对误差**: BdG 能量标度 ~0.0376 → RMSE ≈ 15% 的相对偏差（数值上小、物理上不可忽略）。
+- **总体模式**: 映射（虚线）能很好捕捉能量变化的“时序/相位”，但在振幅与谱强度（LDOS 的峰高/宽度）上常有差异；Lindblad 衰减能从量化上降低映射预测幅度，部分地改善视觉匹配。
+
+**Fig.2（T=400/450/500）**
+- **Files**: results/compare_Fig2_T400.png, results/compare_Fig2_T450.png, results/compare_Fig2_T500.png, 合成面板 results/compare_Fig2_panel.png。
+- **图注**: 实线 = BdG min|E|，虚线 = 映射两能级预测 E_pred，点划线 = 用 Lindblad 衰减（不同案例）缩减后的 E_pred。
+- **观察**: 时序与零点位置对齐良好；幅值小差异集中在局部峰/谷；Lindblad 曲线显示去相干会显著降低映射幅度（尤其在高能片段）。
+- **含义**: 映射的相位/周期尺做得好，但单纯能量拟合未能保证谱强度一致。
+
+**Fig.2 LDOS 面板（不同 η）**
+- **Files**: 例如 results/compare_Fig2_T400_ldos_eta2.png 等。
+- **图注**: 实线 = BdG 的 LDOS(E≈0)（不同 η），虚线 = 由 E_pred 用 Lorentzian 代理得到的预测谱，经缩放以匹配最大值。
+- **观察**: 峰位（时间）通常对齐 → E_pred 能预测“何时出现低能态”；但峰高与峰宽常不同（需要缩放才能对齐）。η 越大，BdG LDOS 越平滑，映射代理的形状偏差更明显。
+- **含义**: 要比较谱强度/宽度需更精细建模（例如直接拟合 LDOS 或加入探针耦合模型），而非仅用能量标量。
+
+**Fig.3（能量与 LDOS）**
+- **Files**: results/compare_Fig3.png，LDOS 变体 results/compare_Fig3_ldos_eta2.png 等。
+- **关键事实**: 对应拟合文件显示在 results/mapping_fit_fig3.npz（无约束）与受约束版 results/mapping_fit_fig3_constrained_C0le0.5.npz。
+- **观察**: 映射与 BdG 的时间轨迹一致；但无约束拟合给出非常大的 C0（不可物理解释），而受约束后 C0 被压低且 RMSE 基本不变。
+- **原因说明**: 数据中 `M` 在 Fig.3 的样本上为 0（C0*M 恒为 0），因此 Fig.3 自身无法识别 C0；这就是无约束拟合产生任意大 C0 的根本原因。请参见对应 npz 中的 S/M 字段以验证。
+
+**Fig.4（调制情形）**
+- **Files**: results/compare_Fig4.png 与 LDOS 变体。
+- **观察**: 相位/周期对齐仍好，但 RMSE 略高（≈5.72e-3）；映射对调制引起的小幅能量偏移响应一般。Lindblad 衰减在模态间影响可见。
+- **含义**: 调制增加了对 B0/C0/ts 的灵敏度，建议用联合数据集稳固参数。
+
+**Fig.5（两种振幅）**
+- **Files**: results/compare_Fig5_amp0.01.png, results/compare_Fig5_amp0.03.png 与 LDOS 变体。
+- **观察**: 两个振幅下时序保持；amp=0.03 时拟合给出的 C0 明显增大（见 results/mapping_fit_fig5_amp0.03.npz），说明在较强调制下 `M` 项在能量中变得可见。
+- **含义**: 利用不同振幅的面板联合拟合有助于识别 C0 的真实值（弥补 Fig.3 的不可识别性）。
+
+**Lindblad 演示图**
+- **Files**: results/lindblad_coherent.png、results/lindblad_dephasing.png、results/lindblad_relax.png、results/lindblad_both.png。
+- **观察**: 显示在不同去相干/弛豫速率下两能级 Bloch 向量的衰减轨迹（或模长）。去相干主要降低横向分量，弛豫拉回到基态，两者合用时复合衰减最强。
+- **含义**: Lindblad 效果能以直观方式解释为何映射的谱强度在实验/带噪情况下变弱；可用来调节拟合目标（把衰减也纳入目标）。
+
+**Bloch / Tetron 示例图**
+- **Files**: 如 results/demo_bloch_ABS_pulse_traj_T200.png、results/demo_bloch_MZM_traj_T200.png 等。
+- **观察**: 展示映射到两能级后的 Bloch 轨迹与最终 Bloch 向量随周期 T 的变化（ABS vs MZM）。用来验证两能级近似与门控路径的直观动力学行为。
+- **含义**: 如果 Bloch 轨迹在同一面板下大幅不同，说明对应面板的映射参数或门路径导致不同的态混合/相位累积。
+
+**其他/出版风格图与报告**
+- **Files**: results/paper_style_Fig*.png 與 results/pub_Fig*.png；最终摘要见 results/FINAL_REPORT.md。这些是用于稿件展示的整理版面图，基于上述对比面板。
+
+**总结性判断（可操作）**
+- 映射模型能很好捕捉“何时”出现低能态（时序/相位），但不能保证“有多强/多宽”的谱一致 —— 要修正这一点需要把 LDOS（多个 η）或 overlap(T) 直接纳入拟合目标，或同时在多个面板（不同振幅/调制）上做联合拟合以稳固 C0 与 B0。
+- Fig.3 的 C0 问题是数据可识别性问题（M=0），不是拟合算法错误；用 Fig.4/Fig.5 的数据可以解决。
+
+**建议的后续步骤（按优先级）**
+- **联合拟合（优先）**: 将 Fig.2/4/5（含非零 `M`）联合纳入拟合，以稳定 `C0` 與 `B0` 的估计；或在全局目标中同时拟合多面板。
+- **引入物理目标**: 把 LDOS（多 η）或 overlap(T) 纳入目标函数，或对能量 + LDOS 做加权最小二乘（更物理）。
+- **正则化/边界**: 在拟合中加入合理边界或惩罚项，避免在欠约束情况下参数漂移（例如 Fig.3 情形）。
+- **最终图更新**: 用经联合/LDOS 拟合后的参数重绘对比面板并保存出版版图。
+
+需要我现在执行哪一步？选项：1) 用当前受约束参数更新并重绘所有对比面板（快）；2) 启动联合拟合（包含 Fig.2/4/5 + Fig.3）以稳固 C0/B0（推荐）；3) 把 LDOS/overlap 加入拟合目标并运行（更重但更物理）。
