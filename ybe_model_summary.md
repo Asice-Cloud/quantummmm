@@ -251,6 +251,7 @@ $$
     (h'_{ZI}-h'_{IZ})(h_{XX}+h_{YY})-(h'_{XX}+h'_{YY})(h_{ZI}-h_{IZ})=0.
     \end{align*}
 $$
+
   四、显式多项式约束（用于直接代数检查）
 
   - 两点叉积的三个分量（以 $h$ 写出）示例：
@@ -263,14 +264,57 @@ $$
 $$
   若任一 $c_{x,y,z}\neq0$ 則兩點不共線、可生成 $\mathfrak{su}(2)$。
 
-  五、数值检验步骤（可复制）
+**证明与示例**
 
-  1. 用 `tools/compute_Hs_from_R`（或 `tools/verify_from_R.py` 的 `compute_Hs_from_R`）生成 $H(u_i)$ 的离散样本；用投影或矩阵元计算得到 $H_{\rm eff}^{(2)}(u_i)$. 
-  2. 通过 $d_k(u_i)=\tfrac12\operatorname{Tr}[H_{\rm eff}^{(2)}(u_i)\sigma_k]$ 提取 $\mathbf d(u_i)$。
-  3. 计算 $\max_{i<j}\|\mathbf d(u_i)\times\mathbf d(u_j)\|$ 或 $\operatorname{rank}(D)$ 判定 su(2) 生成性。
-  4. 计算離散积分 $\Theta\approx\sum_i\|\mathbf d(u_i)\|\Delta u$，检查是否存在可行 $\alpha$ 使 $\alpha\Theta\in\pi\mathbb Z$。
-  5. 计算本征基 $V(u_i)$、估算 $A(u_i)=iV^\dagger\partial_u V$（中心差分），计算 $C(u_i)=\|[E,A]\|/(\|E\|\|A\|)$ 作分离性指标。
+- 证明（等价性）: 令
+$$
+  f_x=h_{XX}+h_{YY},\quad f_y=-h_{XY}+h_{YX},\quad f_z=h_{ZI}-h_{IZ}.
+$$ 
+  直接计算向量叉积的导数分量得
+$$
+f\times f'=(f_y f'_z-f_z f'_y,\;f_z f'_x-f_x f'_z,\;f_x f'_y-f_y f'_x).
+$$
+  将 $f$ 的定义代回，上述三标量分量恰好与上面的三条标量恒等式等价（至一侧乘 $-1$ 问题不影响零等式）。因此原方程组等价于
+  $$
+  f(u)\times f'(u)=0,
+  $$
+  即 $f$ 与 $f'$ 在每点共线。
 
-  以上公式与数值步骤可以直接映射到仓库脚本（`tools/verify_from_R.py`、`tools/diagnose_decomposition.py`、`tools/majorana_lift.py`），并可将对应的数值检验结果归入本摘要作为“数值示例”。
+-  通解与构造：在任一连通区间若 $f\not\equiv0$，存在标量函数 $\alpha(u)$ 使
+  $$
+  f'(u)=\alpha(u)f(u).
+  $$
+  积分得
+  $$
+  f(u)=s(u)\,v,\qquad s(u)=\exp\Big(\int^u\alpha(s)\,ds\Big),
+  $$
+  其中 $v\in\mathbb R^3$ 为常向量。对于 $h$ 的分量我们可引入任意 "gauge" 函数 $g_1(u),g_2(u),g_3(u)$，得到一般表示
 
+$$
+  \begin{align*}
+  h_{XX}&=\tfrac12 s(u)v_x+g_1(u),\\
+  h_{YY}&=\tfrac12 s(u)v_x-g_1(u),\\
+  h_{XY}&=-\tfrac12 s(u)v_y+g_2(u),\\
+  h_{YX}&=\tfrac12 s(u)v_y+g_2(u),\\
+  h_{ZI}&=\tfrac12 s(u)v_z+g_3(u),\\
+  h_{IZ}&=-\tfrac12 s(u)v_z+g_3(u).
+  \end{align*}
+ $$
 
+ 这正是此前在正文中以 $f_x,f_y,f_z$ 给出的分量结构的显式化。
+
+-  特殊与奇异情形：若 $f\equiv0$（即 $s\equiv0$），方程恒成立，对应约束为 $h_{YY}=-h_{XX}$、$h_{YX}=h_{XY}$、$h_{IZ}=h_{ZI}$，其余自由函数任取；若 $f$ 在孤立点为零，则可在不含零点的分段区间上按上述形式构造并在零点处作相容性处理。
+
+-  具体示例（可直接验证）: 取 $v=(1,2,3)$, $s(u)=e^{2u}$, $g_1(u)=\sin u$, $g_2(u)=0$, $g_3(u)=\cos u$，则
+$$
+  \begin{align*}
+  h_{XX}(u)&=\tfrac12 e^{2u}\cdot1 +\sin u,\\
+  h_{YY}(u)&=\tfrac12 e^{2u}\cdot1 -\sin u,\\
+  h_{XY}(u)&=-\tfrac12 e^{2u}\cdot2,\\
+  h_{YX}(u)&=\tfrac12 e^{2u}\cdot2,\\
+  h_{ZI}(u)&=\tfrac12 e^{2u}\cdot3 +\cos u,\\
+  h_{IZ}(u)&=-\tfrac12 e^{2u}\cdot3 +\cos u.
+  \end{align*}
+$$
+
+  简单的符号验证脚本已加入仓库：[tools/solve_h_constraints.py](tools/solve_h_constraints.py)，可以用来做符号化简与数值检查（脚本示例中已运行并验证上面示例令三式为零）。
