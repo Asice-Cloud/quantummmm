@@ -265,9 +265,19 @@ H_P = -i\frac{\pi}{4}\,\gamma_a\gamma_b,
 $$
 并用上面的等式把 $\gamma_a\gamma_b$ 用 Pauli 串替换，从而得到 $H_P$ 在 Pauli 基下的显式表达。下面给出两个常用示例：
 
-例 1（相邻 Majorana，对应纯两体 Pauli）：对两个位于相邻站点的 Majorana，例如 $\gamma_1,\gamma_4$，由附录的映射有
+例 1（相邻 Majorana，对应纯两体 Pauli）：对两个位于相邻站点的 Majorana，例如 $\gamma_1,\gamma_4$，按本文采用的 JW 约定有
 $$
-\gamma_1\gamma_4 = -i\big(\sigma^x\otimes\sigma^x - \sigma^y\otimes\sigma^y\big).
+\gamma_1 = \sigma^x_1,
+\qquad
+\gamma_4 = \sigma^z_1\sigma^y_2,
+$$
+因此
+$$
+\gamma_1\gamma_4 = \sigma^x_1\sigma^z_1\sigma^y_2 = -i\,\sigma^y_1\sigma^y_2.
+$$
+等价地，
+$$
+i\gamma_1\gamma_4 = \sigma^y_1\sigma^y_2.
 $$
 于是
 $$

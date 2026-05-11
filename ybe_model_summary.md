@@ -77,15 +77,12 @@
   \vec d(u)=(\cos u,\ \sin u,\ \delta).
   $$
 
-物理观测：当 $\delta=0$ 时 $\vec d(u)$ 为穿过原点的单位圆 —— 对应理想 MZM（几何主导）；当 $\delta\neq0$ 时轨迹抬高、绕原点失败 —— 对应 ABS（动力学主导）。
+物理观测：在此模型下，当 $\delta=0$ 时 $\vec d(u)$ 为穿过原点的单位圆 —— 对应理想 MZM（几何主导）；当 $\delta\neq0$ 时轨迹抬高、绕原点失败 —— 对应 ABS（动力学主导）。“x-y平面 + z偏移”
 
 ## 5. MZM 与 ABS 的统一判据（轨迹几何）
 
 - 能谱：瞬时本征值为 $E=\pm|\vec d(u)|$。最小能隙决定绝热性与几何/动力学分离可行性。
-- 路径是否包围原点为判据之一：
-  $$
-  \text{MZM} \Longleftrightarrow \vec d(u)\ \text{在 Bloch 球原点处有包围（或穿过）}.
-  $$
+- 路径是否包围原点为判据之一：MZM 对应 $\vec d(u)$ 在 Bloch 球原点附近形成包围；理想极限下可以近似看成穿过原点，但严格 braid 计算应理解为“绕开闭合点而保持能隙打开”。
 - 其它判据（补充）：Pfaffian / Z2 指标、零能态的局域化与随体系尺度 $L$ 的退化行为（MZM 的分裂随 $L$ 指数小）。
 
 ## 6. 几何相 / 动力学相 的分离与 α 缩放
@@ -318,3 +315,392 @@ $$
 $$
 
   简单的符号验证脚本已加入仓库：[tools/solve_h_constraints.py](tools/solve_h_constraints.py)，可以用来做符号化简与数值检查（脚本示例中已运行并验证上面示例令三式为零）。
+
+## 五、Majorana 二次项到 Pauli 张量积的严格对应
+
+下面把“杂化操作对应哪个 Pauli 张量积、理想 braid 对应什么、XX/YY/XY/YX 是否就是理想操作”这几个容易混淆的问题，严格写成统一的代数对应。
+
+### 1. 统一的 JW 约定
+
+对链上第 $j$ 个费米模，取标准 Jordan--Wigner 约定
+$$
+\gamma_{2j-1}=\Big(\prod_{m<j}\sigma_m^z\Big)\sigma_j^x,\qquad
+\gamma_{2j}=\Big(\prod_{m<j}\sigma_m^z\Big)\sigma_j^y.
+$$
+
+这意味着 Majorana 二次项首先对应为“端点 Pauli + 中间 $Z$ 串”的 Pauli 串，而不是一开始就等于单个两体张量积。
+
+### 2. 同一费米模内的杂化项
+
+同一模上的局域杂化是
+$$
+H_{\rm hyb}=i\,\varepsilon_j\gamma_{2j-1}\gamma_{2j}.
+$$
+由 JW 约定直接得到
+$$
+i\gamma_{2j-1}\gamma_{2j}=-\sigma_j^z.
+$$
+因此杂化在逻辑上对应的是 $Z$ 轴能级分裂，而不是 XX、YY 或 XY。
+
+### 3. 不同站点的四类 Majorana 二次项
+
+若 $j<k$，则有
+$$
+\gamma_{2j-1}\gamma_{2k-1}
+=
+\sigma_j^x\Big(\prod_{m=j}^{k-1}\sigma_m^z\Big)\sigma_k^x,
+$$
+$$
+\gamma_{2j}\gamma_{2k}
+=
+\sigma_j^y\Big(\prod_{m=j}^{k-1}\sigma_m^z\Big)\sigma_k^y,
+$$
+$$
+\gamma_{2j-1}\gamma_{2k}
+=
+\sigma_j^x\Big(\prod_{m=j}^{k-1}\sigma_m^z\Big)\sigma_k^y,
+$$
+$$
+\gamma_{2j}\gamma_{2k-1}
+=
+\sigma_j^y\Big(\prod_{m=j}^{k-1}\sigma_m^z\Big)\sigma_k^x.
+$$
+
+所以严格地说，Majorana 二次项对应的是一条 Pauli 串；只有在最近邻或在特定投影后，才会退化成纯两体的 $\sigma^\alpha\otimes\sigma^\beta$。
+
+### 4. 最近邻时的纯两体形式
+
+在最近邻情况下，串会简化成纯两体 Pauli。典型例子是
+$$
+i\gamma_{2j-1}\gamma_{2j+1}=\sigma_j^y\sigma_{j+1}^x,
+$$
+$$
+i\gamma_{2j-1}\gamma_{2j+2}=\sigma_j^y\sigma_{j+1}^y,
+$$
+$$
+i\gamma_{2j}\gamma_{2j+1}=-\sigma_j^x\sigma_{j+1}^x,
+$$
+$$
+i\gamma_{2j}\gamma_{2j+2}=-\sigma_j^x\sigma_{j+1}^y.
+$$
+
+因此 XX、YY、XY、YX 这些形式只是 Majorana 二次项在 JW 展开后的具体表示，不是“理想”的唯一类别。
+
+### 5. tetron 逻辑子空间中的 Pauli 对照
+
+在 tetron 的偶宇称逻辑子空间中，常用生成元取为
+$$
+\Sigma_x=i\gamma_2\gamma_3,\qquad
+\Sigma_y=i\gamma_1\gamma_3,\qquad
+\Sigma_z=i\gamma_1\gamma_2.
+$$
+它们满足
+$$
+\Sigma_a\Sigma_b=\delta_{ab}I+i\epsilon_{abc}\Sigma_c,
+$$
+因此存在固定逻辑基变换 $W$ 使得
+$$
+W\Sigma_aW^\dagger=\sigma_a\qquad(a=x,y,z).
+$$
+
+这一步说明：在有效单比特上，Majorana 双线性本身就是 Pauli 轴，但具体是哪个轴取决于你选取的逻辑编码。
+
+### 6. 理想 braid 的严格对应
+
+Majorana 交换算符定义为
+$$
+B(\gamma_i,\gamma_j)=\exp\!\left(\frac{\pi}{4}\gamma_i\gamma_j\right).
+$$
+在逻辑比特上，它等价于一个固定角度的 Pauli 旋转
+$$
+B\sim \exp\!\left(-i\frac{\pi}{4}\sigma_x\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_y\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_z\right),
+$$
+具体轴由 braid 的 Majorana 对和所选编码共同决定。
+
+因此，理想 braid 不是“XX/YY/XY 的某一个”，而是由某个 Majorana 二次项生成的固定角度幺正门；XX/YY/XY/YX 只是其在 JW/Pauli 基下的具体展开。
+
+### 7. 一句话总结
+
+- 杂化对应：
+  $$
+  i\gamma_{2j-1}\gamma_{2j}=-\sigma_j^z.
+  $$
+- braid 对应：
+  $$
+  \exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right)
+  \leftrightarrow
+  \exp\!\left(-i\frac{\pi}{4}\sigma_{x,y,z}\right).
+  $$
+- XX/YY/XY/YX：只是某些 Majorana 二次项的 Pauli 张量积展开，不是唯一的“理想结构”；Z 型杂化同样是理想生成元，只是它对应局域能级分裂。
+
+### 8. 完整对照表：Majorana 双线性、Pauli 张量积、编码空间 sigma
+
+下面给出最直接的严格对应。这里分成三层：
+
+- 第 1 层：微观 Majorana 双线性 $i\gamma_a\gamma_b$；
+- 第 2 层：JW 展开后的 Pauli 串或两体张量积；
+- 第 3 层：投影到 tetron 逻辑子空间后的单比特 $\sigma_x,\sigma_y,\sigma_z$。
+
+#### 8.1 杂化项
+
+同一费米模的杂化：
+$$
+i\gamma_{2j-1}\gamma_{2j}=-\sigma_j^z.
+$$
+
+因此在编码空间中，杂化对应的就是 $\sigma_z$ 轴分裂。
+
+#### 8.2 braid 生成元
+
+在 tetron 逻辑子空间里，常用三组生成元取为
+$$
+\Sigma_x=i\gamma_2\gamma_3,\qquad
+\Sigma_y=i\gamma_1\gamma_3,\qquad
+\Sigma_z=i\gamma_1\gamma_2,
+$$
+并选取固定逻辑基使
+$$
+W\Sigma_aW^\dagger=\sigma_a\qquad(a=x,y,z).
+$$
+
+因此 braid 算符
+$$
+B(\gamma_i,\gamma_j)=\exp\!\left(\frac{\pi}{4}\gamma_i\gamma_j\right)
+$$
+在编码空间中对应为
+$$
+\exp\!\left(-i\frac{\pi}{4}\sigma_x\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_y\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_z\right),
+$$
+具体是哪一个轴由你 braid 的那一对 Majorana 和所选编码共同决定。
+
+#### 8.3 最近邻两体 Pauli 的完整对应
+
+在最近邻情况下，Majorana 二次项退化为纯两体 Pauli：
+$$
+i\gamma_{2j-1}\gamma_{2j+1}=\sigma_j^y\sigma_{j+1}^x,
+$$
+$$
+i\gamma_{2j-1}\gamma_{2j+2}=\sigma_j^y\sigma_{j+1}^y,
+$$
+$$
+i\gamma_{2j}\gamma_{2j+1}=-\sigma_j^x\sigma_{j+1}^x,
+$$
+$$
+i\gamma_{2j}\gamma_{2j+2}=-\sigma_j^x\sigma_{j+1}^y.
+$$
+
+因此下面这几类两体项只是同一 Majorana 生成元在 JW/Pauli 基下的具体展开：
+
+| Majorana 二次项 | JW / Pauli 张量积 | 编码空间里的有效轴 |
+| --- | --- | --- |
+| $i\gamma_{2j-1}\gamma_{2j}$ | $-\sigma_j^z$ | $\sigma_z$ |
+| $i\gamma_{2j-1}\gamma_{2j+1}$ | $\sigma_j^y\sigma_{j+1}^x$ | 投影到逻辑子空间后对应单比特生成元 |
+| $i\gamma_{2j-1}\gamma_{2j+2}$ | $\sigma_j^y\sigma_{j+1}^y$ | 投影到逻辑子空间后对应单比特生成元 |
+| $i\gamma_{2j}\gamma_{2j+1}$ | $-\sigma_j^x\sigma_{j+1}^x$ | 投影到逻辑子空间后对应单比特生成元 |
+| $i\gamma_{2j}\gamma_{2j+2}$ | $-\sigma_j^x\sigma_{j+1}^y$ | 投影到逻辑子空间后对应单比特生成元 |
+
+#### 8.4 结论
+
+所以，严格对应关系不是“XX/YY/XY/YX 直接等于 braid”，而是：
+
+1. Majorana 双线性先经 JW 变成 Pauli 串或两体张量积；
+2. 再投影到逻辑子空间，变成单比特的 $\sigma_x,\sigma_y,\sigma_z$；
+3. braid 则是这些生成元的固定角度指数门。
+
+换句话说：
+
+杂化对应 $\sigma_z$；braid 对应 $\exp\!\left(-i\frac{\pi}{4}\sigma_{x,y,z}\right)$；XX/YY/XY/YX 对应微观展开形式。
+
+### 9. 证明：为什么 $\sigma_x,\sigma_y,\sigma_z$ 都可以对应理想 braid
+
+这里要证明的不是“同一个 braid 同时等于三个轴”，而是：在四 Majorana 的固定逻辑子空间里，存在三类独立的 braid 生成元，它们分别在逻辑比特上实现 $\sigma_x,\sigma_y,\sigma_z$ 方向的 $\pi/2$ 旋转。
+
+#### 定理
+
+设四个 Majorana 满足 Clifford 代数
+$$
+\{\gamma_a,\gamma_b\}=2\delta_{ab},
+$$
+并把偶宇称子空间作为逻辑子空间。定义三组双线性算符
+$$
+\Sigma_x=i\gamma_2\gamma_3,\qquad
+\Sigma_y=i\gamma_1\gamma_3,\qquad
+\Sigma_z=i\gamma_1\gamma_2.
+$$
+则：
+
+1. $\Sigma_x,\Sigma_y,\Sigma_z$ 都是厄米且满足 Pauli 代数；
+2. 存在固定酉变换 $W$，使得 $W\Sigma_aW^\dagger=\sigma_a$（$a=x,y,z$）；
+3. 对应的 braid 算符
+$$
+B_{23}=\exp\!\left(\frac{\pi}{4}\gamma_2\gamma_3\right),\qquad
+B_{13}=\exp\!\left(\frac{\pi}{4}\gamma_1\gamma_3\right),\qquad
+B_{12}=\exp\!\left(\frac{\pi}{4}\gamma_1\gamma_2\right)
+$$
+分别等价于逻辑比特上的
+$$
+\exp\!\left(-i\frac{\pi}{4}\sigma_x\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_y\right),\qquad
+\exp\!\left(-i\frac{\pi}{4}\sigma_z\right),
+$$
+即三种理想 braid 轴。
+
+#### 证明
+
+第一步，验证 Pauli 代数。由 Majorana 反对易关系可得
+$$
+\Sigma_a^\dagger=\Sigma_a,\qquad \Sigma_a^2=I,
+$$
+并且
+$$
+\Sigma_a\Sigma_b=\delta_{ab}I+i\epsilon_{abc}\Sigma_c.
+$$
+这正是三维 Pauli 代数，因此三者生成一个 $\mathfrak{su}(2)$ 表示。
+
+第二步，证明与标准 Pauli 矩阵等价。任意一组满足上式的三矩阵都与 $\sigma_x,\sigma_y,\sigma_z$ 酉等价，因此存在固定逻辑基变换 $W$ 使
+$$
+W\Sigma_aW^\dagger=\sigma_a.
+$$
+这说明在逻辑子空间里，$\Sigma_x,\Sigma_y,\Sigma_z$ 就是三条正交旋转轴。
+
+第三步，证明 braid 生成元的固定角度性质。对任意 $a\neq b$，对应 Majorana 交换算符定义为
+$$
+B_{ab}=\exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right)
+=\exp\!\left(-i\frac{\pi}{4}\,i\gamma_a\gamma_b\right).
+$$
+若取 $i\gamma_a\gamma_b=\Sigma_c$，则
+$$
+B_{ab}=\exp\!\left(-i\frac{\pi}{4}\Sigma_c\right).
+$$
+在逻辑基下再做一次酉变换，就得到
+$$
+W B_{ab} W^\dagger = \exp\!\left(-i\frac{\pi}{4}\sigma_c\right).
+$$
+这正是 Bloch 球上绕 $c$ 轴旋转 $\pi/2$ 的理想 braid 门。
+
+第四步，给出三轴对应关系。取上面这组标准编码时，有
+$$
+i\gamma_2\gamma_3=\Sigma_x\mapsto\sigma_x,
+$$
+$$
+i\gamma_1\gamma_3=\Sigma_y\mapsto\sigma_y,
+$$
+$$
+i\gamma_1\gamma_2=\Sigma_z\mapsto\sigma_z.
+$$
+因此三条独立 braid 轴分别实现 $\sigma_x,\sigma_y,\sigma_z$ 方向的理想交换门。
+
+#### 结论
+
+所以，“$\sigma_x,\sigma_y,\sigma_z$ 都能对应理想 braid”是对的，但含义必须理解为：
+
+- 不是同一个 braid 同时等于三者；
+- 而是存在三种独立的 Majorana 交换生成元，它们在固定逻辑子空间里分别对应 $\sigma_x,\sigma_y,\sigma_z$；
+- 每一种都是理想 braid，因为它们都是固定角度 $\pi/2$ 的纯几何旋转。
+
+### 10. 从路径 $u(t)$ 到哈密顿量，再到杂化 / braid 的判别
+
+这里把“选取路径 $u(t)$”这件事说成一个严格的三步链：
+
+1. 先给出参数路径 $R(u)$ 或器件路径 $p(u)$；
+2. 再由左对数导数得到瞬时生成元；
+3. 最后看这条路径在逻辑子空间里对应的是局域杂化还是 braid 交换。
+
+#### 10.1 由路径得到哈密顿量
+
+若给定的是谱参数路径 $R(u)$，则定义
+$$
+H(u)=i\,\partial_u R(u)\,R(u)^{-1}.
+$$
+如果再把参数 $u$ 用物理时间参数化为 $u=u(t)$，那么总演化算符可以写成
+$$
+U(t)=R(u(t)),
+$$
+于是物理时间上的有效哈密顿量为
+$$
+H(t)=i\,\dot U(t)U(t)^{-1}=\dot u(t)\,H(u(t)).
+$$
+这说明：路径决定哈密顿量，时间重参数化只会给出一个速度因子 $\dot u(t)$。
+
+如果给定的是论文中的器件路径 $p(t)$，则先得到微观 Hamiltonian $H_M(t)=H_M[p(t)]$，再投影到低能子空间
+$$
+H_{\rm eff}(t)=P\,H_M(t)\,P=d_0(t)I+\vec d(t)\cdot\vec\sigma.
+$$
+
+#### 10.2 怎么判断是杂化
+
+杂化的特征是：哈密顿量对应某一对 Majorana 的局域双线性，或者等价地，在编码空间里是一个固定 Pauli 轴上的能级劈裂。
+
+最标准的情况是
+$$
+H_{\rm hyb}=i\varepsilon\gamma_{2j-1}\gamma_{2j}\quad\Longrightarrow\quad i\gamma_{2j-1}\gamma_{2j}=-\sigma_j^z.
+$$
+因此在我们的 tetron 编码里，杂化最直接地表现为 $\sigma_z$ 方向的局域分裂。
+
+更一般地说，若在一段演化中
+$$
+[H(t_1),H(t_2)]=0\quad\forall\,t_1,t_2,
+$$
+而且 $H(t)$ 始终只沿一个固定逻辑轴变化，那么这段演化就是一个单轴杂化段；它不依赖 Majorana 交换顺序，只是同一能级差的积累。
+
+#### 10.3 怎么判断是理想 braid
+
+理想 braid 不是“某一个瞬时 Hamiltonian 长什么样”，而是整条路径生成的总演化是否等于 braid 算符（差一个全局相位）。
+
+在 Majorana 语言里，理想 braid 的定义是
+$$
+U_{\rm braid}=\exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right),
+$$
+等价地，在逻辑子空间里是
+$$
+U_{\rm braid}\sim \exp\!\left(-i\frac{\pi}{4}\sigma_c\right).
+$$
+
+因此判别理想 braid 的最直接标准是：
+
+1. 演化过程中能隙始终打开，路径不穿过闭合点；
+2. 末态幺正门与 braid 门一致（允许一个全局相位）；
+3. 若把动力学相调到全局相，则剩下的几何部分正好是 $\pi/2$ 的交换旋转。
+
+对一个两能级有效模型来说，若
+$$
+H_{\rm eff}(t)=d_0(t)I+\vec d(t)\cdot\vec\sigma,
+$$
+并且 $\vec d(t)$ 在参数空间中围绕原点作闭合绕行，那么该路径的几何部分就会产生 braid 型的 $SU(2)$ 旋转；若同时满足动力学相可被调成全局相，则就是“理想 braid”。
+
+#### 10.4 进入我们模型后的对应
+
+在 eight-vertex / 两能级模型里，我们已经有
+$$
+H_{\rm eff}(u)= -\delta I+\cos u\,\sigma_x+\sin u\,\sigma_y.
+$$
+因此
+
+- $\delta=0$ 时，$\vec d(u)$ 落在赤道平面并围绕原点，属于 MZM 主导的几何轨迹；
+- $\delta\neq0$ 时，$\vec d(u)$ 被抬离原点，动力学相增强，表现为 ABS 偏移。
+
+若把 $u=u(t)$ 看成实际控制路径，那么
+$$
+H_{\rm eff}(t)=\dot u(t)\big[-\delta I+\cos u(t)\,\sigma_x+\sin u(t)\,\sigma_y\big].
+$$
+这时：
+
+- 当 $u(t)$ 只在固定区间停留时，得到单轴的杂化式演化；
+- 当 $u(t)$ 绕一圈并且动力学相可被压成全局相时，得到 braid 型几何旋转。
+
+#### 10.5 结论
+
+所以，完整链条是
+$$
+u(t)\;\Longrightarrow\;R(u(t))\;\Longrightarrow\;H(t)=\dot u(t)H(u(t))\;\Longrightarrow\;H_{\rm eff}(t)=d_0I+\vec d\cdot\vec\sigma\;\Longrightarrow\;U.
+$$
+
+其中：
+
+- **杂化** = 固定 Majorana 双线性 / 固定逻辑轴上的能级分裂；
+- **理想 braid** = 路径生成的总演化等于 braid 算符，且动力学相可化为全局相；
+- **Bloch 轨迹** = $\vec d(t)$ 在编码空间中的几何投影。
