@@ -1,0 +1,15 @@
+Subspace LDOS-style proof for the eight-vertex model
+u = 0.785398
+delta list = 0.000, 0.100
+
+delta=0.000: d=(0.707107, 0.707107, 0.000000), |d|=1.000000
+           t=0.707107-0.707107j, Delta=0.707107+0.000000j, mu=0.000000+0.000000j
+delta=0.100: d=(0.707107, 0.707107, 0.100000), |d|=1.004988
+           t=0.707107-0.707107j, Delta=0.707107+0.000000j, mu=0.000000+0.000000j
+
+Interpretation:
+- The upper panels compare subspace-projected spectral weight of H4(u, delta).
+- The middle panels show the subspace polarization rho_01 - rho_10.
+- The lower panels show the full-chain LDOS at E≈0 as a control.
+- If the subspace claim is the target, the local polarization is the most discriminating diagnostic.
+- Full-chain LDOS can remain unchanged because mu ≡ 0 in this model.

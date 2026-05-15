@@ -1,0 +1,47 @@
+================================================================================
+COMPARISON: δ=0 (MZM-like) vs δ≠0 (ABS-like)
+================================================================================
+
+Path parameter: u = 0.7854 (≈ π/4.0)
+Chain lengths: L ∈ [40, 80, 160, 320]
+
+--------------------------------------------------------------------------------
+SUBSPACE LAYER (Bloch Rotation)
+--------------------------------------------------------------------------------
+
+δ = 0.000:
+  d = (0.7071, 0.7071, 0.0000)
+  |d| = 1.0000
+  d_z = 0.0000
+  E_+ - E_- = 2.0000
+  → MZM-like: d_z ≈ 0, trajectory in xy-plane
+
+δ = 0.100:
+  d = (0.7071, 0.7071, 0.1000)
+  |d| = 1.0050
+  d_z = 0.1000
+  E_+ - E_- = 2.0100
+  → ABS-like: d_z ≠ 0, trajectory lifted off plane
+
+--------------------------------------------------------------------------------
+GLOBAL CHAIN LAYER (BdG Spectrum)
+--------------------------------------------------------------------------------
+
+Key observation:
+  Although δ changes the subspace d_z component,
+  in the eight-vertex model, δ does NOT change μ (always μ=0).
+  Therefore:
+    ✓ LDOS pattern (edge vs interior) unchanged
+    ✓ E_0(L) exponential decay unchanged
+  This PROVES: δ affects ONLY subspace, not global topology!
+
+--------------------------------------------------------------------------------
+CONCLUSION
+--------------------------------------------------------------------------------
+
+✓ In SUBSPACE: δ=0 → MZM-like, δ≠0 → ABS-like
+✓ In GLOBAL chain: δ has NO effect (μ≡0 always)
+✓ Therefore: 'MZM-like' and 'ABS-like' refer to LOCAL geometry only
+✓ Full MZM/ABS determination requires BOTH layers
+
+================================================================================

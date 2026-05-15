@@ -1,4 +1,0 @@
-N = 200\npeak_idx = 98\nmax_rho = 1.027176e-02\nleft_exp_fit: A=2.260340e-04, xi=-20.136286, res_rms=8.729439e-01, n=99
-right_exp_fit: A=2.961579e-02, xi=20.893432, res_rms=8.778467e-01, n=102
-left_cosh_fit: A=5.046681e-03, xi=200.000000, p=1, res_rms=3.727000e-03, n=99
-right_cosh_fit: A=1.080326e-02, xi=33.000000, p=1, res_rms=6.416619e-04, n=102

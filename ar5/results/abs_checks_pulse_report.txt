@@ -1,6 +1,0 @@
-PH pair max |E+E_rev| = 5.329e-15
-PH on vectors residuals: 5.258e-15, 5.236e-15, 3.301e-15, 2.995e-15, 3.381e-15, 3.062e-15, 3.213e-15, 3.097e-15
-Lowest 4 modes (index, E): 200:3.103e-09, 199:-3.103e-09, 198:-3.048e-02, 201:3.048e-02
-mode1 E=-3.103e-09 peak=1 xi=1.137e+01 kappa=8.796e-02 side=right resid=3.117e+01
-mode2 E=-3.048e-02 peak=192 xi=-4.054e+02 kappa=-2.467e-03 side=right resid=3.243e+00
-Josephson lowest |E| per phi: 3.853e-16, 3.080e-16, 2.505e-16, 4.624e-16, 1.693e-16, 6.944e-18, 3.653e-16, 7.501e-17, 1.436e-16, 1.501e-16, 6.634e-16, 1.894e-16, 3.507e-14

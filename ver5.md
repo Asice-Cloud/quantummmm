@@ -795,7 +795,7 @@ $$
 如果把论文里的理想 braid 代入，正确检查的不是一般谱参数 YBE，而是 braid relation。理想 braid 生成元是
 
 $$
-U_\mathrm{braid}}=\exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right)
+U_\mathrm{braid}=\exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right)
 =\frac{1}{\sqrt2}\big(I+\gamma_a\gamma_b\big)
 \sim\exp\!\left(-i\frac{\pi}{4}\sigma_c\right).
 $$

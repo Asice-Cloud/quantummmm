@@ -52,7 +52,7 @@ $$
 非阿贝尔性不在 $h_αβ$本身,而在本征态随 u 的变化结构
 
 $$
-   A_{mn}(u)= i\langle m(u)|\partial_u n(u)\rangle
+A_{mn}(u)= i\langle m(u)|\partial_u n(u)\rangle
 $$
 
 这意味着：
@@ -64,7 +64,7 @@ $$
 
 5. **非阿贝尔演化**
 $$
-   U_{\text{geom}}=\mathcal{P}\exp\left(\int A(u)du\right)
+U_{\text{geom}}=\mathcal{P}\exp\left(\int A(u)du\right)
 $$
 
 
@@ -80,7 +80,7 @@ $$
 
 瞬时本征问题:
 $$
-H(u)|n(u)\rangle = E_n(u)_n(u)\rangle
+H(u)|n(u)\rangle = E_n(u)n(u)\rangle
 $$
 
 通过:
@@ -156,7 +156,7 @@ $$
 代入 Pauli 展开：
 
 $$
-\partial_u H(u)=\sum_{\alpha\beta} \dot h_{\alpha\beta}(u),\sigma^\alpha\otimes\sigma^\beta
+\partial_u H(u)=\sum_{\alpha\beta} \dot h_{\alpha\beta}(u)\sigma^\alpha\otimes\sigma^\beta
 $$
 
 得到：
@@ -214,7 +214,7 @@ $$
 否则：
 - 演化可交换
 - 不可能非阿贝尔
- 
+
 
 ## 六、直接从 Pauli 基判断非阿贝尔性
 
@@ -229,7 +229,7 @@ $$
 ⇒ 非阿贝尔结构可能存在
 
 
- 
+
 
 ### 判据 2：子空间内非对角
 
