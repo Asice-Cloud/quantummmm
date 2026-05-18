@@ -430,11 +430,11 @@ $$\max_{i<j}\|\mathbf d(u_i)\times\mathbf d(u_j)\|>\varepsilon$$
 
 令瞬时本征能量为 $E_{\pm}(u)=\pm\|\mathbf d(u)\|$（两能级情形）。动力学相为
 $$
-	heta_{\pm}=\int_0^T E_{\pm}(t)\,dt=\pm\int_0^T\|\mathbf d(t)\|\,dt.
+\theta_{\pm}=\int_0^T E_{\pm}(t)\,dt=\pm\int_0^T\|\mathbf d(t)\|\,dt.
 $$
 则 $U_{\rm dyn}\propto I$（模整体相）当且仅当
 $$
-	heta_+ - \theta_- = 2\int_0^T\|\mathbf d(t)\|\,dt \in 2\pi\mathbb Z
+\theta_+ - \theta_- = 2\int_0^T\|\mathbf d(t)\|\,dt \in 2\pi\mathbb Z
 $$
 即等价于
 $$

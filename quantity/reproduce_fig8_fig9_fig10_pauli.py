@@ -71,24 +71,37 @@ def nonabelian_measure(Delta):
     return np.sqrt(np.real(np.trace(Delta.conj().T @ Delta)))
 
 
-def pauli_spectrum_vs_B(pars, B_grid):
+def pauli_spectrum_vs_B(pars, B_grid, return_vecs=False):
     vals = []
+    vecs = []
     for B in B_grid:
         u = map_B_to_u(B)
         H = effective_hamiltonian_pauli(u, pars)
-        ev = np.linalg.eigvalsh(H)
-        vals.append(np.sort(np.real(ev)))
-    return np.array(vals)
+        ev, evec = np.linalg.eigh(H)
+        idx = np.argsort(np.real(ev))
+        ev = np.real(ev[idx])
+        evec = evec[:, idx]
+        vals.append(ev)
+        vecs.append(evec)
+    vals = np.array(vals)
+    if return_vecs:
+        return vals, np.array(vecs)
+    return vals
 
 
-def conductance_map_from_spectrum(Evals, E_grid, gamma=0.01):
+def conductance_map_from_spectrum(Evals, Evecs, E_grid, gamma=0.01, lead_indices=(0,)):
     nB = Evals.shape[0]
     nE = len(E_grid)
     G = np.zeros((nE, nB), dtype=float)
     for j in range(nB):
         Ej = Evals[j]
-        for En in Ej:
-            G[:, j] += gamma * gamma / ((E_grid - En) ** 2 + gamma * gamma)
+        Vj = Evecs[j]
+        weights = np.zeros(Ej.shape[0], dtype=float)
+        for idx in lead_indices:
+            weights += np.abs(Vj[idx, :]) ** 2
+        weights /= np.maximum(np.sum(weights), 1e-12)
+        for n, En in enumerate(Ej):
+            G[:, j] += weights[n] * gamma * gamma / ((E_grid - En) ** 2 + gamma * gamma)
     G = G / np.max(G)
     return G
 
@@ -172,10 +185,10 @@ def plot_fig8_like(out_path):
     pars_uniform = {"delta": 0.10}
     pars_inhom = {"delta": 0.04}
 
-    spec_u = pauli_spectrum_vs_B(pars_uniform, B)
-    G_u = conductance_map_from_spectrum(spec_u, E, gamma=0.012)
-    spec_i = pauli_spectrum_vs_B(pars_inhom, B)
-    G_i = conductance_map_from_spectrum(spec_i, E, gamma=0.009)
+    spec_u, vecs_u = pauli_spectrum_vs_B(pars_uniform, B, return_vecs=True)
+    G_u = conductance_map_from_spectrum(spec_u, vecs_u, E, gamma=0.012, lead_indices=(0,))
+    spec_i, vecs_i = pauli_spectrum_vs_B(pars_inhom, B, return_vecs=True)
+    G_i = conductance_map_from_spectrum(spec_i, vecs_i, E, gamma=0.009, lead_indices=(0,))
 
     u_scan = np.linspace(0.0, 6.0, 80)
     N_uniform = np.array([compute_N(pars_uniform, u=u_val, v=0.7, steps=140)[0] for u_val in u_scan])
@@ -202,7 +215,7 @@ def plot_fig8_like(out_path):
         vmin=0,
         vmax=1,
     )
-    ax.set_title("(b) Uniform-like G")
+    ax.set_title("(b) Uniform-like zero-bias conductance map")
     ax.set_xlabel("B (T)")
     ax.set_ylabel("E (meV)")
 
@@ -233,7 +246,7 @@ def plot_fig8_like(out_path):
         vmin=0,
         vmax=1,
     )
-    ax.set_title("(e) Inhomogeneous-like G")
+    ax.set_title("(e) Inhomogeneous-like zero-bias conductance map")
     ax.set_xlabel("B (T)")
     ax.set_ylabel("E (meV)")
 
@@ -272,8 +285,8 @@ def plot_fig9_like(out_path):
 
     for k, sc in enumerate(scenarios):
         pars = {"delta": sc["delta"]}
-        spec = pauli_spectrum_vs_B(pars, B)
-        G = conductance_map_from_spectrum(spec, E, gamma=0.01)
+        spec, vecs = pauli_spectrum_vs_B(pars, B, return_vecs=True)
+        G = conductance_map_from_spectrum(spec, vecs, E, gamma=0.01, lead_indices=(0,))
         Nval, _ = compute_N(pars, u=1.0, v=0.7, steps=160)
 
         i, j = divmod(k, 3)
@@ -287,12 +300,12 @@ def plot_fig9_like(out_path):
             vmin=0,
             vmax=1,
         )
-        ax.set_title(f"{sc['name']} (N={Nval:.3f})")
+        ax.set_title(f"{sc['name']} zero-bias conductance map (N={Nval:.3f})")
         ax.set_xlabel("B (T)")
         ax.set_ylabel("E (meV)")
 
     cbar = fig.colorbar(last_im, ax=axs.ravel().tolist(), fraction=0.02, pad=0.02)
-    cbar.set_label("G (2e^2/h), normalized")
+    cbar.set_label("G_{zb} (arb. units), normalized")
 
     fig.suptitle("Fig.9-like Reproduction (Pauli Tensor Kernel N Model)")
     fig.tight_layout(rect=[0, 0, 1, 0.95])
@@ -313,8 +326,8 @@ def plot_fig10_like(out_path):
     delta_values = [0.08, 0.14, 0.22]
 
     pars_d = {"delta": 0.22}
-    spec_d = pauli_spectrum_vs_B(pars_d, B)
-    G_d = conductance_map_from_spectrum(spec_d, E, gamma=0.012)
+    spec_d, vecs_d = pauli_spectrum_vs_B(pars_d, B, return_vecs=True)
+    G_d = conductance_map_from_spectrum(spec_d, vecs_d, E, gamma=0.012, lead_indices=(0,))
     N_d, _ = compute_N(pars_d, u=1.0, v=0.7, steps=160)
 
     taus = np.linspace(0.2, 6.0, 60)

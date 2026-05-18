@@ -295,7 +295,7 @@ $$
 |  $\delta \gg 1$ | ABS       |
 
 总结来说：eight-vertex R(u)，在 Pauli 投影后，本质上就是一个 Bloch 球上的路径问题；MZM 和 ABS 的区别就是这条路径是否穿过原点。
- 
+
 
 # 八、非阿贝尔性的来源
 
