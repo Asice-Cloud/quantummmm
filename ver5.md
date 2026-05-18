@@ -34,7 +34,7 @@ $$
 当系统满足 $N_x \gg N_c$ 时，有限尺寸项 $E_j$ 相对更小，可以忽略，于是得到更简洁的低能模型
 
 $$
-H_eff = i t_c(各对 Majorana 之间的耦合) + h.c.
+H_{eff} = i t_c(各对 Majorana 之间的耦合) + h.c.
 $$
 
 这一步就是“路径 $g_i(t)$ 直接变成 Majorana 双线性耦合”的关键。
@@ -164,7 +164,7 @@ MZM 的物理特征是：它们在 braid 过程中保持零能附近的局域化
 从几何上看，补充材料把三条有效低能 Majorana 写成一个三维向量
 
 $$
-\vec\gamma=(\gamma_2,\gamma_3,\gamma_{50}),
+\vec\gamma=(\gamma_2,\gamma_3,\gamma_{5}),
 $$
 
 并把耦合参数写成一个“方向向量”
@@ -176,7 +176,7 @@ $$
 这样低能哈密顿量可以概括成
 
 $$
-H = i\gamma_{60}(\vec\delta\cdot\vec\gamma).
+H = i\gamma_{6}(\vec\delta\cdot\vec\gamma).
 $$
 
 这说明瞬时零模就是与 $\vec\delta$ 垂直的方向；也就是说，MZM 可以看成“在一个缓慢变化的方向场 $\vec\delta$ 上保持垂直的零模向量”。
@@ -229,7 +229,6 @@ $$
 
 如果要把上面的结果直接喂给数值程序，最方便的写法是先把张量哈密顿量写成标准基
 $\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$ 下的 4x4 矩阵。令
-
 $$
 H_{\otimes}(t)=t_c
 \begin{pmatrix}
@@ -800,7 +799,7 @@ U_\mathrm{braid}=\exp\!\left(\frac{\pi}{4}\gamma_a\gamma_b\right)
 \sim\exp\!\left(-i\frac{\pi}{4}\sigma_c\right).
 $$
 
-把它记成 \(\check R_\mathrm{braid}}\)，则三体上应满足
+把它记成 $\check R_ \mathrm{braid}$，则三体上应满足
 
 $$
 \check R_{12}\check R_{23}\check R_{12}=\check R_{23}\check R_{12}\check R_{23}.
@@ -818,7 +817,6 @@ $$
 
 如果要把上面的结果直接喂给数值程序，最方便的写法是先把张量哈密顿量写成标准基
 $\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}$ 下的 4x4 矩阵。令
-
 $$
 H_4(t)=t_c
 \begin{pmatrix}
