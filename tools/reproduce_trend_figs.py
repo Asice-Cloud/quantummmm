@@ -907,6 +907,612 @@ def plot_phase_vs_integral(
     print(f'Wrote phase vs integral: {outpng} and {outnpz}')
 
 
+def compute_overlap_from_bdg_projection(
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    cycles: int = 1,
+    mod_window: tuple[float, float] | None = None,
+):
+    """Project the full BdG dynamics onto the two lowest-|E| eigenstates at t=0.
+
+    Returns (t_over_T, overlaps_proj) where overlaps_proj are complex overlaps
+    ⟨ψ0|ψ(t)⟩ computed from the reduced 2×2 evolution in the fixed initial basis.
+    """
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+
+    # extend for cycles like other helpers
+    if cycles <= 1:
+        tlist_ext = tlist
+        step_idx_ext = step_idx
+        slist_ext = slist
+    else:
+        steps = int(max(step_idx))
+        tlist_ext = np.concatenate([tlist + k * steps * T_step for k in range(cycles)])
+        step_idx_ext = np.concatenate([step_idx + k * steps for k in range(cycles)])
+        slist_ext = np.concatenate([slist for _ in range(cycles)])
+
+    N = len(tlist_ext)
+
+    # Build initial basis B from the BdG at t=0 (choose two lowest |E| states)
+    base_steps = int(max(step_idx))
+    step0 = int(step_idx_ext[0])
+    step_base0 = ((step0 - 1) % base_steps) + 1
+    s0 = float(slist_ext[0])
+    g1, g2, g3, g4 = tetron.gates_at(step_base0, s0)
+
+    VD_here = P.VD
+    if delta_mod is not None:
+        t0 = tlist_ext[0]
+        t_over_T0 = t0 / T_step
+        if mod_window is None or (mod_window[0] <= t_over_T0 <= mod_window[1]):
+            VD_here = P.VD * (1.0 + delta_mod + amp * np.cos(np.pi * t0 / T_step))
+
+    mu0, t_links0, Delta0 = map_gates_to_links(g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, P.QD_WIDTH)
+    H0 = embed_kitaev.build_bdg(mu0, t_links0, Delta0)
+    E0, V0 = eigh(H0)
+    idx0 = np.argsort(np.abs(E0))[:2]
+    B = V0[:, idx0]  # shape (2L, 2)
+
+    # prepare projected evolution
+    psi_proj = np.zeros(2, dtype=complex)
+    psi_proj[0] = 1.0  # initial state corresponds to first column of B
+    overlaps = np.zeros(N, dtype=complex)
+
+    for i in range(N):
+        step = int(step_idx_ext[i])
+        s = float(slist_ext[i])
+        step_base = ((step - 1) % base_steps) + 1
+        g1, g2, g3, g4 = tetron.gates_at(step_base, s)
+
+        VD_here = P.VD
+        if delta_mod is not None:
+            t = tlist_ext[i]
+            t_over_T = t / T_step
+            if mod_window is None or (mod_window[0] <= t_over_T <= mod_window[1]):
+                VD_here = P.VD * (1.0 + delta_mod + amp * np.cos(np.pi * t / T_step))
+
+        mu, t_links_mod, Delta_mod = map_gates_to_links(g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, P.QD_WIDTH)
+        H_full = embed_kitaev.build_bdg(mu, t_links_mod, Delta_mod)
+
+        # project full H into the fixed initial basis B
+        H_eff = B.conj().T @ (H_full @ B)
+
+        # short-step propagator in the 2×2 projected subspace
+        Ueff = expm(-1j * H_eff * dt)
+        psi_proj = Ueff @ psi_proj
+        overlaps[i] = np.vdot(np.array([1.0, 0.0], dtype=complex), psi_proj)
+
+    return tlist_ext / T_step, overlaps
+
+
+def plot_bdg_projection_comparison(
+    outdir: Path,
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_toy: float = 0.2,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+):
+    """Compare overlap evolution from toy 2×2 model and from BdG-projected 2×2 evolution.
+
+    Saves a PNG and NPZ with arrays for quantitative inspection.
+    """
+    t_toy, ov_toy_g, _ = compute_overlap_pair(T_step=T_step, delta=delta_toy, n_per_step=n_per_step, modulation=None)
+    t_proj, ov_proj = compute_overlap_from_bdg_projection(T_step=T_step, n_per_step=n_per_step, delta_mod=delta_mod, amp=amp, mod_window=mod_window)
+
+    # align lengths (should be equal)
+    assert len(t_toy) == len(t_proj)
+
+    fig, axes = plt.subplots(2, 1, figsize=(7.0, 6.0), dpi=200)
+    ax = axes[0]
+    ax.plot(t_toy, np.abs(ov_toy_g), '-', lw=1.6, label='toy |overlap|')
+    ax.plot(t_proj, np.abs(ov_proj), '--', lw=1.4, label='bdg-proj |overlap|')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('overlap magnitude')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    ax = axes[1]
+    ax.plot(t_toy, np.unwrap(np.angle(ov_toy_g)), '-', lw=1.6, label='toy phase')
+    ax.plot(t_proj, np.unwrap(np.angle(ov_proj)), '--', lw=1.4, label='bdg-proj phase')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('phase (rad)')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    tag = f'T{int(T_step)}_toy_d{delta_toy:.3f}'
+    outpng = outdir / f'bdg_proj_vs_toy_{tag}.png'
+    outnpz = outdir / f'bdg_proj_vs_toy_{tag}.npz'
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(outnpz, t=t_toy, ov_toy=ov_toy_g, ov_proj=ov_proj)
+    print(f'Wrote BDG-proj vs toy comparison: {outpng}, {outnpz}')
+
+
+def compute_projected_Eg_timeseries(
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_toy: float = 0.2,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+    cycles: int = 1,
+):
+    """Compute Eg(t) from toy 2×2 and from BdG projected 2×2 (fixed t=0 basis).
+
+    Returns (t_over_T, Eg_proj, Eg_toy).
+    """
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+
+    # extend for cycles
+    if cycles <= 1:
+        tlist_ext = tlist
+        step_idx_ext = step_idx
+        slist_ext = slist
+    else:
+        steps = int(max(step_idx))
+        tlist_ext = np.concatenate([tlist + k * steps * T_step for k in range(cycles)])
+        step_idx_ext = np.concatenate([step_idx + k * steps for k in range(cycles)])
+        slist_ext = np.concatenate([slist for _ in range(cycles)])
+
+    N = len(tlist_ext)
+
+    # prepare initial projection basis from BdG at t=0
+    base_steps = int(max(step_idx))
+    step0 = int(step_idx_ext[0])
+    step_base0 = ((step0 - 1) % base_steps) + 1
+    s0 = float(slist_ext[0])
+    g1, g2, g3, g4 = tetron.gates_at(step_base0, s0)
+
+    VD_here = P.VD
+    if delta_mod is not None:
+        t0 = tlist_ext[0]
+        t_over_T0 = t0 / T_step
+        if mod_window is None or (mod_window[0] <= t_over_T0 <= mod_window[1]):
+            VD_here = P.VD * (1.0 + delta_mod + amp * np.cos(np.pi * t0 / T_step))
+
+    mu0, t_links0, Delta0 = map_gates_to_links(g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, P.QD_WIDTH)
+    H0 = embed_kitaev.build_bdg(mu0, t_links0, Delta0)
+    E0, V0 = eigh(H0)
+    idx0 = np.argsort(np.abs(E0))[:2]
+    B = V0[:, idx0]
+
+    Eg_proj = np.zeros(N)
+    Eg_toy = np.zeros(N)
+
+    for i in range(N):
+        step = int(step_idx_ext[i])
+        s = float(slist_ext[i])
+        step_base = ((step - 1) % base_steps) + 1
+        g1, g2, g3, g4 = tetron.gates_at(step_base, s)
+
+        VD_here = P.VD
+        if delta_mod is not None:
+            t = tlist_ext[i]
+            t_over_T = t / T_step
+            if mod_window is None or (mod_window[0] <= t_over_T <= mod_window[1]):
+                VD_here = P.VD * (1.0 + delta_mod + amp * np.cos(np.pi * t / T_step))
+
+        mu, t_links_mod, Delta_mod = map_gates_to_links(g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, P.QD_WIDTH)
+        H_full = embed_kitaev.build_bdg(mu, t_links_mod, Delta_mod)
+
+        H_eff = B.conj().T @ (H_full @ B)
+        vals_eff = eigh(H_eff)[0]
+        Eg_proj[i] = float(np.min(vals_eff))
+
+        # toy instantaneous effective Hamiltonian
+        theta = tetron.theta_from_time(step, s)
+        H_toy = tetron.H_eff_from_theta(theta, delta=delta_toy)
+        vals_toy = eigh(H_toy)[0]
+        Eg_toy[i] = float(np.min(vals_toy))
+
+    return tlist_ext / T_step, Eg_proj, Eg_toy
+
+
+def plot_Eg_proj_vs_toy(
+    outdir: Path,
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_toy: float = 0.2,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+):
+    t_over_T, Eg_proj, Eg_toy = compute_projected_Eg_timeseries(
+        T_step=T_step, n_per_step=n_per_step, delta_toy=delta_toy, delta_mod=delta_mod, amp=amp, mod_window=mod_window
+    )
+
+    fig, ax = plt.subplots(1, 1, figsize=(7.0, 3.6), dpi=220)
+    ax.plot(t_over_T, Eg_toy, '-', color='#1f77b4', lw=1.6, label=f'toy Eg (δ={delta_toy:.3f})')
+    ax.plot(t_over_T, Eg_proj, '--', color='#d62728', lw=1.4, label='BdG-proj Eg')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('E_g (Δ)')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    tag = f'T{int(T_step)}_d{delta_toy:.3f}'
+    outpng = outdir / f'Eg_proj_vs_toy_{tag}.png'
+    outnpz = outdir / f'Eg_proj_vs_toy_{tag}.npz'
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(outnpz, t_over_T=t_over_T, Eg_proj=Eg_proj, Eg_toy=Eg_toy)
+    print(f'Wrote Eg projection comparison: {outpng}, {outnpz}')
+
+
+def compute_instantaneous_bdg_projection(
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+    cycles: int = 1,
+):
+    """Compute instantaneous BdG low-energy 2×2 effective matrices with phase-smoothing.
+
+    Returns (t_over_T, E_pair, H_eff_mats, d0, dmag) where E_pair is (N,2) array
+    of instantaneous eigenvalues (sorted ascending), H_eff_mats is (N,2,2),
+    d0 = 0.5*(E1+E2), dmag = 0.5*(E2-E1).
+    """
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+
+    # extend for cycles
+    if cycles <= 1:
+        tlist_ext = tlist
+        step_idx_ext = step_idx
+        slist_ext = slist
+    else:
+        steps = int(max(step_idx))
+        tlist_ext = np.concatenate([tlist + k * steps * T_step for k in range(cycles)])
+        step_idx_ext = np.concatenate([step_idx + k * steps for k in range(cycles)])
+        slist_ext = np.concatenate([slist for _ in range(cycles)])
+
+    N = len(tlist_ext)
+
+    E_pair = np.zeros((N, 2))
+    H_eff_mats = np.zeros((N, 2, 2), dtype=complex)
+
+    V_prev = None
+    base_steps = int(max(step_idx))
+
+    for i in range(N):
+        step = int(step_idx_ext[i])
+        s = float(slist_ext[i])
+        step_base = ((step - 1) % base_steps) + 1
+        g1, g2, g3, g4 = tetron.gates_at(step_base, s)
+
+        VD_here = P.VD
+        if delta_mod is not None:
+            t = tlist_ext[i]
+            t_over_T = t / T_step
+            if mod_window is None or (mod_window[0] <= t_over_T <= mod_window[1]):
+                VD_here = P.VD * (1.0 + delta_mod + amp * np.cos(np.pi * t / T_step))
+
+        mu, t_links_mod, Delta_mod = map_gates_to_links(
+            g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, P.QD_WIDTH
+        )
+        H_full = embed_kitaev.build_bdg(mu, t_links_mod, Delta_mod)
+
+        E_full, V_full = np.linalg.eigh(H_full)
+        idx = np.argsort(np.abs(E_full))[:2]
+        Es = E_full[idx]
+        Vcur = V_full[:, idx].copy()
+
+        # order columns by ascending eigenvalue (more negative first)
+        order = np.argsort(Es)
+        Es = Es[order]
+        Vcur = Vcur[:, order]
+
+        if V_prev is None:
+            # fix initial global phase of each column to make largest component real-positive
+            for j in range(2):
+                v = Vcur[:, j]
+                k = int(np.argmax(np.abs(v)))
+                if np.abs(v[k]) > 1e-12:
+                    phi = np.angle(v[k])
+                    Vcur[:, j] *= np.exp(-1j * phi)
+        else:
+            # match columns to previous basis via maximal overlap and apply phase smoothing
+            overlaps = V_prev.conj().T @ Vcur
+            score_diag = float(np.abs(overlaps[0, 0]) + np.abs(overlaps[1, 1]))
+            score_swap = float(np.abs(overlaps[0, 1]) + np.abs(overlaps[1, 0]))
+            if score_swap > score_diag:
+                Vcur = Vcur[:, [1, 0]]
+                Es = Es[[1, 0]]
+
+            for j in range(2):
+                ov = np.vdot(V_prev[:, j], Vcur[:, j])
+                if np.abs(ov) > 1e-10:
+                    phi = np.angle(ov)
+                    Vcur[:, j] *= np.exp(-1j * phi)
+
+        H_eff = Vcur.conj().T @ (H_full @ Vcur)
+        H_eff_mats[i] = H_eff
+        # small 2x2 diagonalization to stabilize numeric ordering
+        evals2 = eigh(H_eff)[0]
+        E_pair[i, 0] = float(evals2[0])
+        E_pair[i, 1] = float(evals2[1])
+
+        V_prev = Vcur.copy()
+
+    d0 = 0.5 * (E_pair[:, 0] + E_pair[:, 1])
+    dmag = 0.5 * (E_pair[:, 1] - E_pair[:, 0])
+
+    return tlist_ext / T_step, E_pair, H_eff_mats, d0, dmag
+
+
+def fit_linear_mapping(x: np.ndarray, y: np.ndarray):
+    """Fit y = a * x + b and return (a, b, rmse, corr, y_pred).
+    Masks non-finite values automatically.
+    """
+    mask = np.isfinite(x) & np.isfinite(y)
+    if mask.sum() < 2:
+        return 0.0, 0.0, float('nan'), float('nan'), np.full_like(y, np.nan)
+    a, b = np.polyfit(x[mask], y[mask], 1)
+    y_pred = a * x + b
+    rmse = float(np.sqrt(np.mean((y[mask] - y_pred[mask]) ** 2)))
+    corr = float(np.corrcoef(x[mask], y[mask])[0, 1])
+    return float(a), float(b), rmse, corr, y_pred
+
+
+def plot_instantaneous_proj_vs_toy(
+    outdir: Path,
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_toy: float = 0.2,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+):
+    """Compute instantaneous BdG projection (with smoothing) and compare Eg with toy Eg.
+
+    Saves PNG and NPZ including linear-fit parameters mapping toy->BdG.
+    """
+    t_over_T, E_pair, Hmats, d0_bdg, dmag_bdg = compute_instantaneous_bdg_projection(
+        T_step=T_step, n_per_step=n_per_step, delta_mod=delta_mod, amp=amp, mod_window=mod_window
+    )
+
+    # toy instantaneous Eg
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+    N = len(tlist)
+    Eg_toy = np.zeros(len(t_over_T))
+    # build full extended slist for cycles=1 (matching compute_instantaneous)
+    for i in range(len(t_over_T)):
+        # compute corresponding step and s by resampling t_over_T back to t
+        t = float(t_over_T[i]) * T_step
+        # derive step and s by integer division
+        # use same method as other helpers: walk through base grid index mapping
+        # find nearest index in original tlist
+        idx_near = int(np.argmin(np.abs(tlist - t)))
+        step = int(step_idx[idx_near])
+        s = float(slist[idx_near])
+        theta = tetron.theta_from_time(step, s)
+        Ht = tetron.H_eff_from_theta(theta, delta=delta_toy)
+        vals = eigh(Ht)[0]
+        Eg_toy[i] = float(np.min(vals))
+
+    # choose BdG Eg as the lower eigenvalue (E_pair[:,0]) or use magnitude depending on sign
+    Eg_bdg = E_pair[:, 0]
+
+    a, b, rmse, corr, Eg_toy_mapped = fit_linear_mapping(Eg_toy, Eg_bdg)
+
+    fig, ax = plt.subplots(1, 1, figsize=(7.0, 3.8), dpi=220)
+    ax.plot(t_over_T, Eg_bdg, '-', color='#d62728', lw=1.6, label='BdG instantaneous lowest E')
+    ax.plot(t_over_T, Eg_toy, '--', color='#1f77b4', lw=1.4, label=f'toy Eg (δ={delta_toy:.3f})')
+    ax.plot(t_over_T, Eg_toy_mapped, ':', color='#2ca02c', lw=1.4, label=f'mapped toy (a={a:.3f}, b={b:.3e})')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('E (Δ)')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    tag = f'T{int(T_step)}_d{delta_toy:.3f}'
+    outpng = outdir / f"instant_instant_proj_vs_toy_{tag}.png"
+    outnpz = outdir / f"instant_instant_proj_vs_toy_{tag}.npz"
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(
+        outnpz,
+        t_over_T=t_over_T,
+        Eg_bdg=Eg_bdg,
+        Eg_toy=Eg_toy,
+        fit_a=a,
+        fit_b=b,
+        fit_rmse=rmse,
+        fit_corr=corr,
+    )
+    print(f'Wrote instantaneous projection vs toy: {outpng}, {outnpz}')
+
+
+def scan_delta_vs_vd(
+    outdir: Path,
+    deltas: np.ndarray,
+    vd_factors: np.ndarray,
+    T_step: float = 200.0,
+    n_per_step: int = 120,
+    ref_time: float = 0.5,
+):
+    """Scan vd_factors and deltas to find best VD scaling matching toy δ.
+
+    Two matching criteria are provided:
+      - time-averaged lowest |E| over the path
+      - reference-time lowest |E| at t/T ≈ `ref_time`
+
+    Saves results to PNG/NPZ and returns a result dict with fit parameters.
+    """
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    deltas = np.array(deltas, dtype=float)
+    vd_factors = np.array(vd_factors, dtype=float)
+
+    # build time grid and reference index
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+    t_over_T = tlist / T_step
+    idx_ref = int(np.argmin(np.abs(t_over_T - ref_time)))
+
+    # precompute BdG average and reference Eg for each vd_factor
+    Eg_bdg_avg = np.zeros(len(vd_factors))
+    Eg_bdg_ref = np.zeros(len(vd_factors))
+    for j, vf in enumerate(vd_factors):
+        t_over_T_b, branches = compute_bdg_trace(T_step=T_step, n_per_step=n_per_step, delta_mod=float(vf - 1.0), amp=0.0)
+        Eg_ts = np.min(np.abs(branches), axis=1)
+        Eg_bdg_avg[j] = float(np.mean(Eg_ts))
+        Eg_bdg_ref[j] = float(Eg_ts[idx_ref])
+
+    # compute toy Eg for each delta (average and reference)
+    Eg_toy_avg = np.zeros(len(deltas))
+    Eg_toy_ref = np.zeros(len(deltas))
+    for i, dd in enumerate(deltas):
+        Eg_ts = np.zeros_like(tlist)
+        for k in range(len(tlist)):
+            step = int(step_idx[k])
+            s = float(slist[k])
+            theta = tetron.theta_from_time(step, s)
+            Ht = tetron.H_eff_from_theta(theta, delta=float(dd))
+            vals = eigh(Ht)[0]
+            Eg_ts[k] = float(np.min(np.abs(vals)))
+        Eg_toy_avg[i] = float(np.mean(Eg_ts))
+        Eg_toy_ref[i] = float(Eg_ts[idx_ref])
+
+    # for each delta pick vd that minimizes |Eg_bdg - Eg_toy| under each criterion
+    best_vd_avg = np.zeros(len(deltas))
+    best_vd_ref = np.zeros(len(deltas))
+    for i in range(len(deltas)):
+        diffs_avg = np.abs(Eg_bdg_avg - Eg_toy_avg[i])
+        best_vd_avg[i] = float(vd_factors[int(np.argmin(diffs_avg))])
+
+        diffs_ref = np.abs(Eg_bdg_ref - Eg_toy_ref[i])
+        best_vd_ref[i] = float(vd_factors[int(np.argmin(diffs_ref))])
+
+    # linear fits delta -> vd
+    a_avg, b_avg, rmse_avg, corr_avg, _ = fit_linear_mapping(deltas, best_vd_avg)
+    a_ref, b_ref, rmse_ref, corr_ref, _ = fit_linear_mapping(deltas, best_vd_ref)
+
+    # save results and plot
+    tag = f'T{int(T_step)}_n{int(n_per_step)}'
+    outpng = outdir / f'delta_vs_vd_map_{tag}.png'
+    outnpz = outdir / f'delta_vs_vd_map_{tag}.npz'
+
+    fig, ax = plt.subplots(1, 1, figsize=(6.6, 4.2), dpi=220)
+    ax.scatter(deltas, best_vd_avg, color='#1f77b4', label='best vd (avg E)')
+    ax.scatter(deltas, best_vd_ref, color='#d62728', label='best vd (ref time)')
+    xs = np.linspace(float(deltas.min()), float(deltas.max()), 200)
+    ax.plot(xs, a_avg * xs + b_avg, '--', color='#1f77b4', alpha=0.7, label=f'fit avg: vd={a_avg:.3f}·δ+{b_avg:.3f}')
+    ax.plot(xs, a_ref * xs + b_ref, '--', color='#d62728', alpha=0.7, label=f'fit ref: vd={a_ref:.3f}·δ+{b_ref:.3f}')
+    ax.set_xlabel('δ (toy)')
+    ax.set_ylabel('VD scale factor')
+    ax.grid(True, alpha=0.25)
+    ax.legend(frameon=False)
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(
+        outnpz,
+        deltas=deltas,
+        vd_factors=vd_factors,
+        Eg_bdg_avg=Eg_bdg_avg,
+        Eg_bdg_ref=Eg_bdg_ref,
+        Eg_toy_avg=Eg_toy_avg,
+        Eg_toy_ref=Eg_toy_ref,
+        best_vd_avg=best_vd_avg,
+        best_vd_ref=best_vd_ref,
+        fit_a_avg=a_avg,
+        fit_b_avg=b_avg,
+        fit_rmse_avg=rmse_avg,
+        fit_corr_avg=corr_avg,
+        fit_a_ref=a_ref,
+        fit_b_ref=b_ref,
+        fit_rmse_ref=rmse_ref,
+        fit_corr_ref=corr_ref,
+    )
+
+    res = {
+        'deltas': deltas,
+        'vd_factors': vd_factors,
+        'Eg_bdg_avg': Eg_bdg_avg,
+        'Eg_bdg_ref': Eg_bdg_ref,
+        'Eg_toy_avg': Eg_toy_avg,
+        'Eg_toy_ref': Eg_toy_ref,
+        'best_vd_avg': best_vd_avg,
+        'best_vd_ref': best_vd_ref,
+        'fit_avg': (a_avg, b_avg, rmse_avg, corr_avg),
+        'fit_ref': (a_ref, b_ref, rmse_ref, corr_ref),
+        'outpng': str(outpng),
+        'outnpz': str(outnpz),
+    }
+
+    print(f'Wrote δ↔VD mapping plot/data: {outpng}, {outnpz}')
+    return res
+
+
+def plot_bdg_lowest_vs_toy(
+    outdir: Path,
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_toy: float = 0.2,
+    delta_mod: float | None = None,
+    amp: float = 0.0,
+    mod_window: tuple[float, float] | None = None,
+    cycles: int = 1,
+):
+    """Plot the BdG low-|E| branch (closest to zero) vs toy instantaneous Eg(t).
+
+    Saves PNG and NPZ to outdir.
+    """
+    t_over_T, branches = compute_bdg_trace(T_step=T_step, n_per_step=n_per_step, delta_mod=delta_mod, amp=amp, cycles=cycles, mod_window=mod_window)
+
+    # pick per-time the eigenvalue closest to zero
+    abs_br = np.abs(branches)
+    idx = np.argmin(abs_br, axis=1)
+    Eg_bdg = branches[np.arange(len(branches)), idx]
+
+    # toy instantaneous Eg
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+    if cycles <= 1:
+        step_idx_ext = step_idx
+        slist_ext = slist
+    else:
+        steps = int(max(step_idx))
+        step_idx_ext = np.concatenate([step_idx + k * steps for k in range(cycles)])
+        slist_ext = np.concatenate([slist for _ in range(cycles)])
+
+    N = len(step_idx_ext)
+    Eg_toy = np.zeros(N)
+    for i in range(N):
+        step = int(step_idx_ext[i])
+        s = float(slist_ext[i])
+        theta = tetron.theta_from_time(step, s)
+        Ht = tetron.H_eff_from_theta(theta, delta=delta_toy)
+        vals = eigh(Ht)[0]
+        Eg_toy[i] = float(np.min(vals))
+
+    fig, ax = plt.subplots(1, 1, figsize=(7.0, 3.6), dpi=220)
+    ax.plot(t_over_T, Eg_bdg, '-', color='#d62728', lw=1.6, label='BdG lowest |E| branch')
+    ax.plot(t_over_T, Eg_toy, '--', color='#1f77b4', lw=1.6, label=f'toy Eg (δ={delta_toy:.3f})')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('E (Δ)')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    tag = f'T{int(T_step)}_d{delta_toy:.3f}'
+    outpng = outdir / f'bdg_lowest_vs_toy_{tag}.png'
+    outnpz = outdir / f'bdg_lowest_vs_toy_{tag}.npz'
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(outnpz, t_over_T=t_over_T, Eg_bdg=Eg_bdg, Eg_toy=Eg_toy)
+    print(f'Wrote BdG lowest-vs-toy Eg comparison: {outpng}, {outnpz}')
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description='Reproduce the qualitative Fig.3/Fig.4/Fig.5 trends.')
     p.add_argument('--outdir', type=str, default='results/paper_trends', help='output directory')
@@ -932,20 +1538,117 @@ def main() -> None:
     # (b) windowed modulation applied in final window
     plot_phase_vs_integral(outdir, T_step=400.0, delta=0.2, n_per_step=250, modulation=(0.57, 0.02), cycles=1, mod_window=(4.0, 6.0))
 
-    if args.auto_scan:
-        res = run_auto_scan(outdir, n_per_step=args.scan_n_per_step)
-        print('Auto-scan complete:')
-        print(f"  Fig3 best score={res['fig3']['score']:.4f}, delta_abs={res['fig3']['delta_abs']:.4f}")
-        print(
-            f"  Fig4 best score={res['fig4']['score']:.4f}, d0a={res['fig4']['delta0_a']:.4f}, "
-            f"d0b={res['fig4']['delta0_b']:.4f}, amp={res['fig4']['amp']:.4f}"
-        )
-        print(
-            f"  Fig5 best score={res['fig5']['score']:.4f}, d0={res['fig5']['delta0']:.4f}, "
-            f"amps=({res['fig5']['amp_low']:.4f}, {res['fig5']['amp_high']:.4f})"
-        )
+    # Compare BdG-projected 2×2 evolution with toy 2×2 model
+    # MZM-like (toy delta=0.0)
+    plot_bdg_projection_comparison(outdir, T_step=400.0, n_per_step=250, delta_toy=0.0, delta_mod=None, amp=0.0)
+    # ABS-like (toy delta ~ FIG3 display value)
+    plot_bdg_projection_comparison(outdir, T_step=400.0, n_per_step=250, delta_toy=FIG3_DISPLAY_ABS_DELTA, delta_mod=None, amp=0.0)
 
-    print(f'Saved qualitative trend figures to {outdir}')
+    # Plot Eg(t) comparison (toy vs BdG-projected)
+    plot_Eg_proj_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=0.0, delta_mod=None, amp=0.0)
+    plot_Eg_proj_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=FIG3_DISPLAY_ABS_DELTA, delta_mod=None, amp=0.0)
+
+    # BdG lowest-|E| branch vs toy instantaneous Eg
+    plot_bdg_lowest_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=0.0)
+    plot_bdg_lowest_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=FIG3_DISPLAY_ABS_DELTA)
+
+    # Instantaneous BdG eigenbasis projection (with phase smoothing) and toy mapping
+    plot_instantaneous_proj_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=0.0)
+    plot_instantaneous_proj_vs_toy(outdir, T_step=400.0, n_per_step=300, delta_toy=FIG3_DISPLAY_ABS_DELTA)
+
+    # MZM -> ABS ramp demonstration
+    plot_mzm_to_abs_ramp(outdir, T_step=400.0, n_per_step=300, delta_final=0.2, vd_factor_final=2.0)
+
+def compute_mzm_to_abs_ramp(
+    T_step: float = 400.0,
+    n_per_step: int = 300,
+    delta_final: float = 0.2,
+    vd_factor_final: float = 2.0,
+    qd_width: int | None = None,
+):
+    """Ramp toy delta from 0->delta_final and BdG VD factor from 1->vd_factor_final.
+
+    Returns t_over_T, Eg_toy, Eg_bdg, dot_weight (BdG lowest-eigenstate weight on QD region).
+    """
+    tlist, step_idx, slist, dt = tetron.make_time_grid(T_step=T_step, n_per_step=n_per_step)
+    N = len(tlist)
+
+    # schedules: linear ramp from 0..1
+    frac = np.linspace(0.0, 1.0, N)
+    delta_sched = frac * float(delta_final)
+    vd_sched = 1.0 + frac * (float(vd_factor_final) - 1.0)
+
+    Eg_toy = np.zeros(N)
+    Eg_bdg = np.zeros(N)
+    dot_weight = np.zeros(N)
+
+    # default qd_width
+    qd_w = qd_width if qd_width is not None else P.QD_WIDTH
+
+    base_steps = int(max(step_idx))
+    for i in range(N):
+        step = int(step_idx[i])
+        s = float(slist[i])
+        step_base = ((step - 1) % base_steps) + 1
+
+        # toy instantaneous Eg
+        theta = tetron.theta_from_time(step, s)
+        Htoy = tetron.H_eff_from_theta(theta, delta=float(delta_sched[i]))
+        vals_t = eigh(Htoy)[0]
+        Eg_toy[i] = float(np.min(vals_t))
+
+        # BdG with VD scaled
+        g1, g2, g3, g4 = tetron.gates_at(step_base, s)
+        VD_here = P.VD * float(vd_sched[i])
+        mu, t_links_mod, Delta_mod = map_gates_to_links(
+            g1, g2, g3, g4, P.t0, P.DELTA, P.L, P.mu0, VD_here, qd_w
+        )
+        Hfull = embed_kitaev.build_bdg(mu, t_links_mod, Delta_mod)
+        Efull, Vfull = np.linalg.eigh(Hfull)
+        idx = np.argmin(np.abs(Efull))
+        Eg_bdg[i] = float(Efull[idx])
+        vec = Vfull[:, idx]
+        # compute site-resolved weight |u_j|^2 + |v_j|^2
+        L2 = Hfull.shape[0]
+        L = L2 // 2
+        weights = np.zeros(L)
+        for j in range(L):
+            uj = vec[j]
+            vj = vec[L + j]
+            weights[j] = (np.abs(uj) ** 2 + np.abs(vj) ** 2)
+        dot_weight[i] = float(np.sum(weights[:qd_w]))
+
+    return tlist / T_step, Eg_toy, Eg_bdg, dot_weight
+
+
+def plot_mzm_to_abs_ramp(outdir: Path, T_step: float = 400.0, n_per_step: int = 300, delta_final: float = 0.2, vd_factor_final: float = 2.0):
+    t, Eg_toy, Eg_bdg, dot_w = compute_mzm_to_abs_ramp(T_step=T_step, n_per_step=n_per_step, delta_final=delta_final, vd_factor_final=vd_factor_final)
+
+    fig, axes = plt.subplots(2, 1, figsize=(7.0, 6.0), dpi=220)
+    ax = axes[0]
+    ax.plot(t, Eg_toy, '-', color='#1f77b4', lw=1.6, label=f'toy Eg ramp to δ={delta_final:.3f}')
+    ax.plot(t, Eg_bdg, '--', color='#d62728', lw=1.6, label=f'BdG lowest E ramp to VD×{vd_factor_final:.2f}')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('E (Δ)')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    ax = axes[1]
+    ax.plot(t, dot_w, '-', color='#9467bd', lw=1.6, label='BdG dot-region weight of lowest mode')
+    ax.set_xlabel('t/T')
+    ax.set_ylabel('dot weight')
+    ax.legend(frameon=False)
+    ax.grid(True, alpha=0.25)
+
+    outpng = outdir / f'mzm_to_abs_ramp_T{int(T_step)}_d{delta_final:.3f}_vd{vd_factor_final:.2f}.png'
+    outnpz = outdir / f'mzm_to_abs_ramp_T{int(T_step)}_d{delta_final:.3f}_vd{vd_factor_final:.2f}.npz'
+    fig.tight_layout()
+    fig.savefig(outpng, bbox_inches='tight')
+    plt.close(fig)
+
+    np.savez(outnpz, t=t, Eg_toy=Eg_toy, Eg_bdg=Eg_bdg, dot_weight=dot_w)
+    print(f'Wrote MZM->ABS ramp figure/data: {outpng}, {outnpz}')
+    
 
 
 if __name__ == '__main__':

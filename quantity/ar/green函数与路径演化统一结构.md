@@ -246,6 +246,3 @@ R(u)=\mathcal{T}\exp\left(-i\int_0^u H(s)ds\right)
 
 ---
 
-# 12. 一句话总结
-
-Green函数描述“能量空间的传播”，路径演化描述“参数空间的非对易输运”，两者通过Laplace对偶统一为同一个non-Abelian结构。

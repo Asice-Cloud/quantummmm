@@ -757,7 +757,6 @@ H_{eff}=H_{PP}+\Sigma(z)
 h_{\alpha\beta}(u)
 \rightarrow
 h_{\alpha\beta}^{eff}(u)
-}
 \]
 
 最终：
@@ -846,11 +845,10 @@ R(u)
 即：
 
 \[
-\boxed{
-	ext{spectral topology}
+\text{spectral topology}
 \leftrightarrow
-	ext{operator algebra geometry}
-
+	\text{operator algebra geometry}
+\]
 
 ## 22. Exact third-order calibration note
 

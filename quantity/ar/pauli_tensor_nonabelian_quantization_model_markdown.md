@@ -531,7 +531,6 @@ H_{PP}+\Sigma(z)
 h_{\alpha\beta}
 \rightarrow
 h_{\alpha\beta}^{eff}
-}
 \]
 
 从而：

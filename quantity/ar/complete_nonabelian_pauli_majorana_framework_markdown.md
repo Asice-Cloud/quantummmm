@@ -269,37 +269,10 @@ G_{PP}(z)
 定义：
 
 \[
-\boxed{
 \Sigma(z)
 =
 
----
-
-## 22. Third-order calibration note
-
-The third-order kernel expression used in the Pauli-tensor quantification section is structurally correct, but its absolute normalization must be calibrated against the exact numerical YBE deviation if one wants a final quantitative metric.
-
-In the current convention,
-
-$$
-\mathcal N_{\mathrm{exact}}^{(3)} \approx C_{\mathrm{cal}}\,\mathcal N_{\mathrm{kernel}}^{(3)}.
-$$
-
-So:
-
-1. the Pauli-channel commutator structure is correct;
-2. the third-order time-kernel structure is correct;
-3. the overall constant is fixed by exact numerical matching.
-
-For the current implementation in this repository, the fitted calibration value is approximately
-
-$$
-C_{\mathrm{cal}} \approx 5.09\times 10^2.
-$$
-
-This number depends on the precise normalization and projection convention, but it is the value that matches the current exact numerical YBE extraction.
 H_{PQ}(z-H_{QQ})^{-1}H_{QP}
-}
 \]
 
 有效哈密顿量：
