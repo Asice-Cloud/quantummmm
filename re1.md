@@ -282,9 +282,12 @@ PYTHONPATH=. .venv/bin/python tools/reproduce_trend_figs.py --outdir results/pap
   3. 绘图：上面板画 `branches` vs `t_over_T`，下面板画 `Tscan/P.T_UNIT` vs 两条 final-overlap 曲线；保存 `paper_trend_fig3.png` 并用 `np.savez` 导出 `paper_trend_fig3.npz`（键：`t_over_T, branches, Tscan, mzm_overlaps, abs_overlaps`）。
 
 - Fig.4 具体流程（调制下的动力学相抵消展示）：
-  1. BdG 谱（case a/b）：分别用 `compute_bdg_trace(..., delta_mod=0.59*P.DELTA, amp=0.02*P.DELTA)` 和 `compute_bdg_trace(..., delta_mod=0.57*P.DELTA, amp=0.02*P.DELTA)`，在 `compute_bdg_trace` 中 `VD_here = P.VD*(1.0 + delta_mod + amp*cos(pi*t/T_step))` 被用作 QD 深度代理，从而在 BdG 中体现正弦调制。
-  2. Overlap（case a/b）：对 `Tscan = linspace(300,700,17)`，分别调用 `compute_overlap_curve(T_step=TT, delta=0.2, n_per_step=250, modulation=(d0,amp))`（其中 `compute_overlap_curve` 内部把 `delta_eff = d0 + amp * cos(pi * t / T_step)`，直接影响 2×2 瞬时能量与动态相累积）。
-  3. 绘图：上面板显示 case a 的 BdG 分支，下面板并列绘制 case a 与 case b 的 final-overlap 曲线；保存 `paper_trend_fig4.png`/`.npz`。
+  两张 Fig.4 对应的是论文里两种 Vx 调制的实现，但在代码里是通过不同的 base 值 + 全周期/窗口化的调制策略实现的（在模型里该调制被映射到局域 QD 深度 / 两能级的 delta）。具体说明：
+
+- - Case (a) — 全周期调制：Vx = 0.59 + 0.02·cos (π t/T)。代码生成 BdG 谱与 overlap 的调用在 reproduce_trend_figs.py:552（BdG）和 reproduce_trend_figs.py:564（overlap）处，调制参数以 (delta0, amp)=(0.59,0.02) 传入 compute_bdg_trace / compute_overlap_pair。
+- - Case (b) — 窗口化调制：Vx = 0.57 + 0.02·cos(π t/T)，但只在最后阶段 t ∈ [4T,6T] 施加（windowed）。对应调用见 reproduce_trend_figs.py:553（BdG）和 reproduce_trend_figs.py:566（overlap，含 mod_window=(4.0,6.0)）。
+实现细节：在 compute_bdg_trace 中 delta_mod/amp 会通过缩放 P.VD（局域 QD 深度）来改变 BdG（见 reproduce_trend_figs.py:386），在两能级模型中 modulation=(delta0,amp) 被用来构造 delta_eff = delta0 + amp * cos(π t/T) 并传给 tetron.H_eff_from_theta（见 tetron_path_sim.py:58 的 H_eff_from_theta），因此调制直接改变瞬时本征能量，从而通过 ∫E(t) dt 产生/抵消动态相。
+物理解读（简短）：Case (a) 主要试图让 θ2 的动力学相在整个过程被抵消；Case (b) 则是针对性地在最后段施加相移，以抵消剩下的 θ1−θ3 残余相，两者在 base 值（0.59 vs 0.57）和施加窗口上不同，效果也不同（见图中相位/幅值对比）。
 
 - Fig.5 具体流程（绝热区下振幅不敏感性）：
   1. 设 `Tscan = linspace(300,1000,20)`；对两个振幅 `amp in {0.01,0.03}` 调用 `compute_overlap_curve(T_step=TT, delta=0.2, n_per_step=250, modulation=(0.59, amp))`，收集每个 `TT` 的 final-overlap。
