@@ -1,0 +1,11 @@
+Parameters:
+t = 0.5, mu = 0.2
+H_PQ = i t, H_QP = -i mu/2
+
+Kitaev H_QQ = 0 results:
+Max Im Sigma = -4.999995e-05
+Min Im Sigma = -5.000000e+01
+
+Off-point H_QQ = 0.15 results:
+Max Im Sigma = -3.780715e-05
+Min Im Sigma = -5.000000e+01

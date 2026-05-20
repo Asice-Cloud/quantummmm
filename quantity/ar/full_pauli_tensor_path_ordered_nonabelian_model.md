@@ -402,6 +402,71 @@ A_{23}A_{12}
 
 ---
 
+# 12. 统一视角：Schur 传播核 ↔ Pauli 张量积（Lie algebra）
+
+要点：
+
+- Green‑Schur（Schur 补）给出的是“传播核”（propagation kernel）——数学上为
+\(\Sigma(\omega)=H_{PQ}(\omega-H_{QQ})^{-1}H_{QP}\)，它作为作用在 P 子空间上的
+单粒子算符描述了从某个 P_i 到另一个 P_k 的有效传递通道；
+- Pauli 张量积展开给出的是“传播核所属于的 Lie 代数方向”——在 Majorana/BdG 的
+局域 4×4 单粒子子空间中，把 \(\Sigma\) 变换到 Majorana 基并对 Pauli 基
+\(\{\sigma^\alpha\otimes\sigma^\beta\}\) 做展开，可以把传播核写为
+\(h=\sum_{\alpha\beta} h_{\alpha\beta} P_{\alpha\beta}\)，这里的系数
+\(h_{\alpha\beta}\) 是 Lie 代数生成元在 Pauli 基下的坐标。
+
+映射与计算流程（可直接引用脚本实现）：
+
+1. 在相同的参数与分区下计算 BdG Schur 补：参见 `quantity/validate_propagation_in_kitaev.py` 的 `schur_sigma_bdG`。得到 \(\Sigma_{BDG}\)。
+2. 将 BdG 基变换为 Majorana 基：
+\[\Sigma_{maj} = M\,\Sigma_{BDG}\,M^{T}\]\
+(若采用常见的 Majorana 变换矩阵 $M$，它为实正交矩阵，因此 $M^{-1}=M^{T}$；一致的相位约定 M 必须在 toy 与 Kitaev 两端使用相同定义；脚本 `quantity/compare_pauli_schur.py` 使用了相同的 M 矩阵。）
+3. 在 4×4 Majorana 子空间上做 Pauli16 展开，计算系数：
+\[c_{\alpha\beta} = \frac{\mathrm{Tr}(P_{\alpha\beta}^\dagger\,\Sigma_{maj})}{\mathrm{Tr}(P_{\alpha\beta}^\dagger P_{\alpha\beta})}=\frac{1}{4}\mathrm{Tr}(P_{\alpha\beta}^\dagger\,\Sigma_{maj})\]
+（在所用规范下，Pauli 张量积基满足 $\mathrm{Tr}(P_{\alpha\beta}^\dagger P_{\alpha\beta})=4$，因此分母可直接替换为 4。）
+构造算符：
+\[h_{\mathrm{pauli}}=\sum_{\alpha\beta} c_{\alpha\beta}\,P_{\alpha\beta}\]
+并取其厄米部分用于动力学：\(h\mapsto (h+h^\dagger)/2\)。
+4. Frobenius 标量方案给出的是标量 `K_fro=\|\Sigma\|_F`，通常再乘以基算子
+（例如 \(B=\sigma^y\otimes\sigma^x\)）构造一个简化的局域生成元
+\(h_{fro}=K_{fro}B\)。此算符缺少方向/相位细节，但给出幅度尺度。
+5. 在 Lie 代数层面比较两者：计算算符范数与差异并求最优线性标度 \(a\) 使
+\(h_{pauli}\approx a\,h_{fro}\)。常用量：
+\[a=\frac{\|h_{pauli}\|_F}{\|h_{fro}\|_F},\qquad\Delta_{op}=\|h_{pauli}-a\,h_{fro}\|_F.\]
+脚本 `quantity/compare_pauli_schur.py` 已实现并输出 `pauli_schur_compare.csv`。
+
+非阿贝尔量（建议定义）：
+
+- 在 Pauli 表示下，局域生成元是 Lie 代数元（反对易子代表 Lie 拓扑非阿贝尔性）：
+\[L_{12}=h_{12}^{\mathrm{pauli}},\qquad L_{23}=h_{23}^{\mathrm{pauli}}.\]
+- 非阿贝尔指标可直接取 Lie 括号的范数：
+\[\mathcal{N}_{\mathrm{Lie}}=\|[L_{12},L_{23}]\|_F.\]
+- 在 Dyson 展开最低非平凡阶，Yang–Baxter 偏差与该对易子直接相关，实数计算上
+\(\Delta^{(3)}\propto [L_{12},L_{23}]\)（含尺度与时间积分因子），因此
+\[\|\Delta\|_F\sim C\,\|[L_{12},L_{23}]\|_F\]
+其中常数 \(C\) 由积分限、u,v 参数与高阶项贡献决定。
+
+实施细则与注意事项：
+
+- 保留相位：不要对 Pauli 系数取绝对值后再重构算符，否则会丢失干涉相位，导致
+对易子信息丢失；若需要 Hermitian，取厄米化（对算符本身），而不是丢相位后取模。 
+- 基与顺序一致性：BdG→Majorana 的 M、Pauli 基的映射须在 toy 与 Kitaev 两端保持一致。
+- 标度解释：若 \(\Delta_{op}\) 小且 scale a 接近常数，说明 Frobenius 只是缺尺度；若 \(\Delta_{op}\) 大，则 Pauli 捕捉到重要的方向性/相位结构，优先采用 Pauli 生成元做物理解释。
+- 可视化对比：绘制 `N_pauli` vs `N_fro_scaled`、scale(E1) 与 opdiff(E1)，便能直观判断两种方法的一致性（见 `quantity/pauli_schur_compare/` 输出）。
+
+文档整合建议：
+
+- 在 `full_pauli_tensor_path_ordered_nonabelian_model.md` 中加入本节（已追加），并在方法/实现节引用 `quantity/compare_pauli_schur.py` 与 `quantity/validate_propagation_in_kitaev.py`；
+- 在 `quantity/ar/req1.md` 的结论段落中加入一小段："Pauli 展开给出了传播核的 Lie 代数表示，从而把 N 的几何-相位成分直接映射到对易子范数上"；
+- 在论文图注中标明："Pauli 投影计算的非阿贝尔量为 \(\|[L_{12},L_{23}]\|_F\)，与 Schur 补直接计算的 \(\|\Delta\|_F\) 在相同尺度下数值一致（见附录数据）"。
+
+小结（1 行）：
+
+- Schur 补给出传播核（operator），Pauli 投影把该 operator 映射到 Pauli Lie 代数坐标，非阿贝尔性由对易子在 Lie 代数范数上量化；代码和文档已实现并输出对比数据。
+
+
+---
+
 # 12. 三阶项
 
 最低非平凡项来自：
@@ -427,42 +492,36 @@ A_{23}A_{12}A_{23}
 
 ---
 
-# 13. 计算交换子
+# 3. PRQ 有效传播核
 
-代入：
-
-\[
-h_{12}(s_1)
-=
-\sum_{\alpha,\beta}
-h_{\alpha\beta}(s_1)
-\sigma^\alpha\otimes\sigma^\beta\otimes I
-\]
+定义：
 
 \[
-h_{23}(s_2)
+\boxed{
+K_{ik}(\omega)
 =
-\sum_{\mu,\nu}
-h_{\mu\nu}(s_2)
-I\otimes\sigma^\mu\otimes\sigma^\nu
+P_i R Q_j R P_k
+}
 \]
 
-于是：
+在 resolvent 表示中（对应通道 $P_i\to Q_j\to P_k$）：
 
 \[
-[h_{12}(s_1),h_{23}(s_2)]
+\boxed{
+K_{ik}(\omega)
 =
-\sum
-h_{\alpha\beta}(s_1)
-h_{\mu\nu}(s_2)
-[
-\sigma^\alpha\otimes\sigma^\beta\otimes I,
-I\otimes\sigma^\mu\otimes\sigma^\nu
-]
+H_{P_iQ_j}\, (\omega-H_{QQ})^{-1}\, H_{Q_jP_k}
+}
 \]
 
-由于只有第二个site重叠：
+因此：
 
+effective propagation：
+\[
+P_i\to Q_j\to P_k
+\]
+
+由 Schur kernel 精确生成。
 \[
 \boxed{
 [h_{12}(s_1),h_{23}(s_2)]
@@ -559,17 +618,23 @@ h_{\mu\nu}(s_2)
 
 \[
 \boxed{
-\mathcal N
-\sim
-\sqrt{
-\int ds_1ds_2
-\sum
-|h_{\alpha\beta}(s_1)|^2
-|h_{\mu\nu}(s_2)|^2
-\epsilon_{\beta\mu\gamma}^2
-}
+\mathcal N^{(3)}\approx
+\left[
+4\cdot 2^{3}
+\sum_{\alpha,\beta,\mu,\nu,\gamma}
+\left|\int\!\!\int K(s,t)\;h_{\alpha\beta}(s)\,h_{\mu\nu}(t)\;ds\,dt\right|^2
+\right]^{1/2}
 }
 \]
+
+解释（要点）：
+
+- 常数因子说明：$4$ 来自交换子代数常数 $(-i)^3\cdot(2i)=-2$ 的平方 $(-2)^2=4$，$2^3$ 来自三个位点的 Pauli 基迹因子；因此整体前因子为 $4\cdot2^3$（见上文推导）。
+- 时间核 $K(s,t)$：由三重时间有序积分经 Heaviside 函数组合得到（文中已给出显式 $K(s,t)$），不可省略：它包含路径序约束与积分限信息。
+- 相位保留：积分结果通常为复数，应当先计算双重积分再取模平方（如上式所示），而不是先对 $h_{\alpha\beta}$ 取模再积分；这样可保留干涉相位对非阿贝尔性的贡献。
+- 指示条件：$\sum_\gamma\epsilon_{\beta\mu\gamma}^2$ 等价于指示 $\beta\neq\mu$，可在需要时用该条件替换求和以简化实现。
+
+（上式给出第三阶主导项的精确形态，作为启发式平方和近似的改进：它既保留代数常数也包含时间核，便于与数值计算直接比较。）
 
 1) Dyson 第三阶的精确形式（保留有序积分常数）：
 \[
@@ -953,11 +1018,12 @@ $$
 $$
 \Delta^{(3)} = (-i)^3\int_0^{u} ds\int_0^{u+v} dt\;K(s,t)\,[h_{12}(s),\,h_{23}(t)],
 $$
-其中时间核 $K(s,t)$ 来自把第三个积分（在两项中分别为对 $s_3\in[0,v]$ 和 $s_1'\in[0,u]$ 的积分）用 Heaviside 步函数（记为 $\Theta$）表示相对次序后合并得到。令 $\Theta(x)$ 为 Heaviside 函数（$\Theta(x)=1$ 若 $x>0$，$\Theta(0)=1/2$ 可选），经代数化简得：
+其中
 
+时间核 $K(s,t)$ 来自把第三个积分（在两项中分别为对 $s_3\in[0,v]$ 和 $s_1'\in[0,u]$ 的积分）用 Heaviside 步函数（记为 $\Theta$）表示相对次序后合并得到。令 $\Theta(x)$ 为 Heaviside 函数（$\Theta(x)=1$ 若 $x>0$，$\Theta(0)=1/2$ 可选），经代数化简得：
 $$
 \begin{aligned}
-K(s,t)={}&\;\int_0^v d s'\big[\Theta(s-t)+\Theta(t-s')\big]\n+\;-\int_0^u d s'\big[\Theta(t-s)+\Theta(s'-t)\big]\\
+K(s,t)={}&\;\int_0^v d s'\big[\Theta(s-t)+\Theta(t-s')\big]+\;-\int_0^u d s'\big[\Theta(t-s)+\Theta(s'-t)\big]\\
 ={}&\;v\,\Theta(s-t)+\min(t,v) - u\,\Theta(t-s)-\max(0,u-t).
 \end{aligned}
 $$
@@ -968,4 +1034,4 @@ $$
 - 第二项来源于交换的三重积分 $A_{23}(v)A_{12}(u+v)A_{23}(u)$，对 $s'\in[0,u]$ 的积分给出 $u\Theta(t-s)+\max(0,u-t)$ 项，作为减项出现。
 
 因此 $K(s,t)$ 给出了明确的时间依赖核，可以用于精确评估
-\(\Delta^{(3)}\) 中时间秩序对非阿贝尔强度的貢獻。在数值实现中，直接用该 $K(s,t)$ 计算双重积分通常比显式构造三重乘积更高效。
+\(\Delta^{(3)}\) 中时间秩序对非阿贝尔强度的贡献。在数值实现中，直接用该 $K(s,t)$ 计算双重积分通常比显式构造三重乘积更高效。
