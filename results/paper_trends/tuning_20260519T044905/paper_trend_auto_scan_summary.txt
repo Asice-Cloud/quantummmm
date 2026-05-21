@@ -1,5 +1,0 @@
-Auto scan best parameters for paper-like trend matching
-====================================================
-Fig3 score: 0.024376, delta_abs=0.160000
-Fig4 score: 0.968623, delta0_a=0.570000, delta0_b=0.570000, amp=0.030000
-Fig5 score: 0.965736, delta0=0.570000, amp_low=0.015000, amp_high=0.020000
