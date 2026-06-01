@@ -246,105 +246,65 @@ $$
 - 若方向仍随时间变化，就保留这组 `Wei-Norman` 方程，或再转入 `Magnus` 展开；
 - 对 Step 1 和 Step 2，则仍然维持完整的 `Sp(2)` 时间有序指数。
 
-## 9. 论文情形下的具体演化形式
+## 9. 把论文的分段门控代入（符号化的最终 ODE）
 
-如果你要的是“论文这套门控协议到底长什么样”，那么目前能写到的最具体层次就是下面这个分段演化。
-
-### 9.1 三段总演化
-
-设三个切换时刻为 `T_1<T_2<T_3`，并记初值为 `\Psi(0)`。则全协议的演化算符可写成
+根据论文中给出的门控 schedule，令
 
 $$
-U(t)=
-\begin{cases}
-U^{(1)}(t,0), & 0\le t\le T_1,\\[4pt]
-U^{(2)}(t,T_1)\,U^{(1)}(T_1,0), & T_1\le t\le T_2,\\[4pt]
-U^{(3)}(t,T_2)\,U^{(2)}(T_2,T_1)\,U^{(1)}(T_1,0), & T_2\le t\le T_3.
-\end{cases}
+x:=\frac{\pi t}{\tau},\qquad f_+(x):=\frac{1+\cos x}{2},\qquad f_-(x):=\frac{1-\cos x}{2}.
 $$
 
-其中每一段都是对应的时间有序指数
+Step 3 的原始物理量为
 
 $$
-U^{(s)}(t_b,t_a)=\mathcal T\exp\left(\int_{t_a}^{t_b}K^{(s)}(t')\,dt'\right),
-\qquad s=1,2,3.
+|t_3^{(3)}(t)|=t_c\,f_+(x),\qquad E_d^{(3)}(t)=E_0\,f_-(x).
 $$
 
-因此状态矢量的具体形式就是
+在之前的约定里我们用
 
 $$
-\Psi(t)=U(t)\Psi(0).
+K^{(3)}(t)=\kappa_0 X_{12}+\alpha(t)X_{3a}+\beta(t)X_{ab}.
 $$
 
-这就是 full-space 下最直接、也最严格的“具体演化形式”。
-
-### 9.2 Step 3 的显式因子分解
-
-对 Step 3，前文已经得到
+因此可取符号化替换（归一化常数以所选基底为准）：
 
 $$
-K^{(3)}(t)=\kappa_0X_{12}+K^{(3)}_{su(2)}(t),
-\qquad [X_{12},K^{(3)}_{su(2)}(t)]=0.
+\alpha(t)=C_{t3}\,t_c\,f_+(x),\qquad
+\beta(t)=C_{Ed}\,E_0\,f_-(x),\qquad
+\kappa_0=C_{E1}\,E_1,
 $$
 
-所以 Step 3 的传播子可以严格写成
+其中 $C_{t3},C_{Ed},C_{E1}$ 是基底归一化常数（例如在 4.2 节的矩阵记号下常为 2 或 −2），可以根据你具体采用的 `so(5)\leftrightarrow sp(2)` 同构固定。
+
+把 $\alpha,\beta$ 映到四元数角速度分量，我们写
 
 $$
-U^{(3)}(t,T_2)=e^{\Phi(t,T_2)X_{12}}\,\widetilde U^{(3)}(t,T_2),
+\Omega(t)=\omega_1(t)\mathbf i+\omega_3(t)\mathbf k,\qquad \omega_1(t)=\gamma_1\,\alpha(t),\quad \omega_3(t)=\gamma_3\,\beta(t),
 $$
 
-其中
+其中 $\gamma_1,\gamma_3$ 也是由基底選擇導出的常数（可取 1 如果已在 $C_{t3},C_{Ed}$ 中包含比例因子）。
+
+代入第 8 节的 Euler / Wei–Norman 公式（取 $\omega_2\equiv0$），得到 Step 3 的最终三标量 ODE：
 
 $$
-\Phi(t,T_2)=\int_{T_2}^{t}\kappa_0\,dt'.
-$$
-
-若 `\kappa_0` 是常数，则直接化成 `\Phi(t,T_2)=\kappa_0(t-T_2)`。
-
-而 `\widetilde U^{(3)}` 就是那个真正的 `SU(2)` / 单位四元数部分。
-
-### 9.3 Step 3 的四元数演化
-
-把 `\widetilde U^{(3)}` 识别成单位四元数 `q(t)`，则有
-
-$$
-q(t)=\mathcal T\exp\left(\frac12\int_{T_2}^{t}\Omega(t')\,dt'\right),
-\qquad
-\Omega(t)=\omega_1(t)\mathbf i+\omega_3(t)\mathbf k.
-$$
-
-对应的分量方程是
-
-$$
-\dot q_0=-\frac12\big(\omega_1 q_1+\omega_3 q_3\big),
+\dot b(t)=\omega_3(t)\sin a(t),
 $$
 
 $$
-\dot q_1=\frac12\big(\omega_1 q_0-\omega_3 q_2\big),
+\dot c(t)=\frac{\omega_3(t)\cos a(t)}{\cos b(t)},
 $$
 
 $$
-\dot q_2=\frac12\big(-\omega_1 q_3+\omega_3 q_1\big),
+\dot a(t)=\omega_1(t)-\omega_3(t)\cos a(t)\tan b(t).
 $$
 
-$$
-\dot q_3=\frac12\big(\omega_1 q_2+\omega_3 q_0\big).
-$$
-
-如果在某个子区间里方向固定，那么还可以进一步直接写成
+把 $\omega_{1,3}(t)$ 展开回论文变量就是：
 
 $$
-q(t)=\cos\frac{\Theta(t)}{2}+\hat n\sin\frac{\Theta(t)}{2},
-\qquad
-\Theta(t)=\int_{T_2}^{t}\lambda(t')\,dt'.
+\omega_1(t)=\gamma_1 C_{t3} t_c f_+(\tfrac{\pi t}{\tau}),\qquad
+\omega_3(t)=\gamma_3 C_{Ed} E_0 f_-(\tfrac{\pi t}{\tau}).
 $$
 
-### 9.4 现在已经具体到什么程度
+初始条件一般取为 $a(0)=b(0)=c(0)=0$（即 $q(0)=1$），而 $\Phi(t)=C_{E1}E_1 t$ 給出可分离的 $u(1)$ 相位因子。
 
-所以，对论文的情形来说，“具体的演化形式”目前已经明确到了下面这个层次：
-
-- Step 1 和 Step 2：保留为分段 `Sp(2)` 时间有序指数；
-- Step 3：严格分解为一个对易的 `u(1)` 相位因子和一个 `SU(2)` 单位四元数演化；
-- 若 Step 3 的方向进一步固定，就能直接写成余弦-正弦的闭式。
-
-如果你下一步要我继续，我建议直接把 Step 3 的 `\omega_1(t),\omega_3(t)` 依据论文的具体门控函数代入，然后把这组方程再往可积分形式整理一次。
+备注：若你愿意我可以把上面常数取为具体值（例如 $C_{t3}=2,C_{Ed}=2,C_{E1}=2,\gamma_1=\gamma_3=1$），并把完整的 ODE 以符号或数值形式写入 `derivation_1.md`，或直接生成用于数值积分的 Python 脚本。
