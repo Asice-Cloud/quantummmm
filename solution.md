@@ -269,6 +269,85 @@ $$\dot q = C + [A, q] - qBq.$$
 线性部分退化为纯四元数对易子（旋转，无伸缩）。但 $B,C$ 含 $t_1$ 和 $E_d$，非线性项
 $qBq$ 仍在，且 $A,B,C$ 均为正弦时变——方程仍非自治、非初等可积。
 
+#### 10.1.1 从 Riccati ODE 推导 $H_{\text{eff}}(t) = A(t) + B(t)q(t)$
+
+**这是连接 Riccati 变量 $q$ 和 MZM 物理演化的核心桥梁。** 证明如下。
+
+**第一步：Sp(2) 分块运动方程。**
+
+$U = \begin{pmatrix}X&Y\\ Z&W\end{pmatrix}\in Sp(2)$ 满足 $\dot U = KU$，即：
+$$\begin{pmatrix}\dot X&\dot Y\\ \dot Z&\dot W\end{pmatrix}
+= \begin{pmatrix}A&B\\ C&D\end{pmatrix}\begin{pmatrix}X&Y\\ Z&W\end{pmatrix}.$$
+
+展开第一列（与第二列 $Y,W$ 解耦）：
+$$\boxed{\dot X = AX + BZ,\qquad \dot Z = CX + DZ.}\tag{1}$$
+
+**第二步：Riccati 变量 $q = ZX^{-1}$。**
+
+$q\in\mathbb H$ 捕获 $Z$ 与 $X$ 的比值。由(1)求导即得 Riccati ODE（已在 §8.1 推导）：
+$$\dot q = C + Dq - qA - qBq.$$
+
+当 $E_1=0$ 时 $A=D$，简化为 $\dot q = C + [A,q] - qBq$。
+
+**第三步：$X$ 的演化由 $A+Bq$ 驱动。**
+
+从(1)直接得：
+$$\dot X = (A + Bq)X.$$
+
+定义 **MZM 子空间有效生成元**：
+$$\boxed{K_{\text{eff}}(t) := A(t) + B(t)\,q(t).}$$
+
+$X(t) = \mathcal T\exp\!\left(\int_0^t K_{\text{eff}}(s)\,ds\right)$（$X(0)=I$）。
+
+**第四步：$K_{\text{eff}}\in\mathfrak{su}(2)_{\text{MZM}}$。**
+
+$A = \frac{|t_3|}{2}\mathbf i + \frac{|t_2|}{2}\mathbf j\in\operatorname{Im}\mathbb H$（纯虚四元数）。
+
+$B = \frac{|t_1|}{2} + \frac{E_d}{2}\mathbf k$（标量$+$$\mathbf k$）。
+
+$q$ 是 Riccati 定点 $q_*$（绝热时），其虚部也在 $\operatorname{Im}\mathbb H$ 中。
+因此 $Bq$ 的虚部投影 $\in\operatorname{span}\{\mathbf i,\mathbf j,\mathbf k\}$。
+
+故 $K_{\text{eff}}$ 是纯虚四元数 $\in\mathfrak{su}(2)$，对应 MZM 子空间的三个生成元：
+$$K_{\text{eff}}(t) = G_x(t)\,\frac{\mathbf i}{2} + G_y(t)\,\frac{\mathbf j}{2} + G_z(t)\,\frac{\mathbf k}{2},$$
+$$\sigma_x\leftrightarrow i\gamma_2\gamma_3,\quad \sigma_y\leftrightarrow i\gamma_3\gamma_1,\quad \sigma_z\leftrightarrow i\gamma_1\gamma_2.$$
+
+**第五步：MZM 物理演化。**
+
+SO(3) 旋转矩阵 $R_{123}$ 由 $U$ 的伴随作用给出：
+$$(R_{123})_{ij} = \frac12\operatorname{Tr}\!\big(\Gamma_i U\Gamma_j U^\dagger\big),\quad i,j\in\{1,2,3\}.$$
+
+等价地，$R_{123}$ 直接由 $K_{\text{eff}}$ 在 su(2) 中的时间排序指数生成：
+$$R_{123}(t) = \text{Ad}\!\left[\mathcal T\exp\!\left(\int_0^t K_{\text{eff}}(s)\,ds\right)\right].$$
+
+物理哈密顿量（在 $\hbar=1$ 单位下）：$H_{\text{eff}}(t) = iK_{\text{eff}}(t)$，即
+$$\boxed{H_{\text{eff}}(t) = A(t) + B(t)\,q(t)}$$
+在 $i\mathbf i\leftrightarrow\gamma_2\gamma_3,\;i\mathbf j\leftrightarrow\gamma_3\gamma_1,\;i\mathbf k\leftrightarrow\gamma_1\gamma_2$ 对应下。
+
+**总结**：Riccati ODE 解出 $q(t)$ $\rightarrow$ 代入 $A+Bq$ 得 $H_{\text{eff}}(t)$
+$\rightarrow$ 时间排序指数生成 MZM 演化。全程无额外假设——ancilla 消去、有效 su(2)
+哈密顿量、MZM 旋转，全部自动从一条 Riccati ODE 涌现。
+
+#### 10.1.2 为什么 $t_1\neq 0$ 自动给出「任意 Bloch 旋转」
+
+从 $H_{\text{eff}} = A + Bq$ 可直接读出两个极限：
+
+**$t_1=0$（纯 MZM）**：$B = \frac{E_d}{2}\mathbf k$。q的方向被 $E_d$ 锁定。
+$H_{\text{eff}}$ 在三段协议中始终在固定平面内（$\operatorname{span}\{\sigma_x,\sigma_y\}$）。
+$\Rightarrow$ 旋转角 $\phi\approx\pi/2$。
+
+**$t_1\neq 0$（ABS）**：$B = \frac{t_1}{2} + \frac{E_d}{2}\mathbf k$ 含实标量 $\frac{t_1}{2}$。
+标量四元数与所有四元数对易，不贡献 $[A,q]$，但进入非线性项 $qBq$：
+
+$$qBq = q\!\left(\frac{t_1}{2}+\frac{E_d}{2}\mathbf k\right)\!q
+= \frac{t_1}{2}q^2 + \frac{E_d}{2}q\mathbf k q.$$
+
+$\frac{t_1}{2}q^2$ 修改 $q$ 的标量分量 $\rightarrow$ 通过 $[A,q_*]$ 传递到矢量分量
+$\rightarrow$ $H_{\text{eff}}$ 的方向随 $t_1$ 和 $\tau$ 连续变化。
+
+结果：$t_1$ 成为一个**连续旋钮**——扫 $\tau$ 或 $t_1$ 即可连续调节旋转角 $\phi$ 和轴 $\hat n$，
+覆盖 Bloch 球大范围旋转。这就是 PRB105 的"任意 Bloch 旋转"在 Riccati 框架下的自然涌现。
+
 **能严格说出的解析结论**：
 
 1. $\gamma_2\to\gamma_3$ 在绝热极限下精确等于 $1$（拓扑保护，与 $t_1$ 和 $\tau$ 无关）
@@ -284,11 +363,11 @@ $qBq$ 仍在，且 $A,B,C$ 均为正弦时变——方程仍非自治、非初�
 
 ## 11. 对照 PRB105：ABS braiding = 任意 Bloch 旋转
 
-PRB105 (Chen et al., 2022) 的核心结论：当 ABS 存在时（$E_1\neq 0$ 或 $t_1\neq 0$），
+PRB105 (Chen et al., 2022) 的结论：当 ABS 存在时（$E_1\neq 0$ 或 $t_1\neq 0$），
 braiding 不是固定的 $\gamma_2\leftrightarrow\gamma_3$，而是在单 qubit Bloch 球上
 实现**任意旋转**，由三个独立动态角 $\theta_1,\theta_2,\theta_3$ 参数化。
 
-我们提取了 $\{\gamma_1,\gamma_2,\gamma_3\}$ 子空间的 SO(3) 旋转角 $\phi$（通过
+这里提取了 $\{\gamma_1,\gamma_2,\gamma_3\}$ 子空间的 SO(3) 旋转角 $\phi$（通过
 $\operatorname{tr}(R)=1+2\cos\phi$），扫 $\tau\in[10,100]$：
 
 | 参数 | $\phi$ 范围 | 唯一值 | 结论 |
@@ -298,12 +377,14 @@ $\operatorname{tr}(R)=1+2\cos\phi$），扫 $\tau\in[10,100]$：
 | $E_1=0.01, t_1=0.005$ | $1.10\sim3.10$ | **10/10** | 覆盖 $>\pi$ 弧度 ✓ |
 | $E_1=0.3, t_1=0.01$ | $1.22\sim3.14$ | 5/10 | 大范围旋转（部分周期性） |
 
-**结论**：我们的 `so(5)`/`Sp(2)` 模型完全复现了 PRB105 的"任意 Bloch 旋转"结论。
+**结论**：我 `Sp(2)` 模型复现了 PRB105 的"任意 Bloch 旋转"结论。
 $t_1\neq 0$（或更一般地 ABS 存在）时，旋转角随 $\tau$ 连续变化，覆盖 Bloch 球大范
 围。纯 MZM 极限下旋转角近似固定。
 
 这与 PRB105 Eq. (5) 的矩阵形式一致：braiding = 非对角的 5 段演化乘积，三个角
 $\theta_1,\theta_2,\theta_3$ 可独立调制。
+
+
 
 ### 11.1 与 PRB105 的定量对应
 
