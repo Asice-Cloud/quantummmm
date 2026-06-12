@@ -11,7 +11,7 @@ import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-pi=np.pi;tc=0.3;E0=0.3;E1_fixed=0.01
+pi=np.pi;tc=0.3;E0=0.3;E1_fixed=0.005
 
 def fp(t,tau): return 0.5*(1+np.cos(pi*t/tau))
 def fm(t,tau): return 0.5*(1-np.cos(pi*t/tau))
@@ -43,7 +43,7 @@ def prop(bld,tau,e,t1c):
 def fid(R):
     ov=0.5*(R[0,0]+1j*R[1,0]+1j*R[0,1]-R[1,1]);return np.abs(ov)**2
 
-N_TAU,N_T1=80,100
+N_TAU,N_T1=120,60
 tau_p=np.linspace(0.2,12.0,N_TAU);tau_c=tau_p*100
 t1_v=E1_fixed*10**np.linspace(-1,1,N_T1)
 F=np.zeros((N_T1,N_TAU))
@@ -86,5 +86,5 @@ ax.text(0.02,0.98,f'$E_1={E1_fixed}$ meV',transform=ax.transAxes,
         fontsize=9,va='top',bbox=dict(boxstyle='round',facecolor='wheat',alpha=0.8))
 
 plt.tight_layout()
-plt.savefig('fig1d_final.png',dpi=250)
+plt.savefig('fig1d_final_0005.png',dpi=250)
 print(f'\nDone. Range: [{F.min():.4f},{F.max():.4f}]')

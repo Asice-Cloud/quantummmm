@@ -5,7 +5,7 @@ from scipy.ndimage import gaussian_filter, zoom
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-tc=E0=0.3; E1_fixed=0.005
+tc=E0=0.3; E1_fixed=0.01  # 论文 Fig1d 图注值
 
 # ── 四元数 ops ──
 def qm(p,q):

@@ -10,7 +10,7 @@ from scipy.ndimage import gaussian_filter, zoom
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-pi = np.pi; tc = 0.3; E0 = 0.3; E1_fixed = 0.005  # 匹配论文 Fig1d 振荡数量，名义值 0.001~0.01 之间
+pi = np.pi; tc = 0.3; E0 = 0.3; E1_fixed = 0.01  # 解读B: t₁在Step3也出现
 
 def fp(t, tau):  return 0.5 * (1.0 + np.cos(pi * t / tau))
 def fm(t, tau):  return 0.5 * (1.0 - np.cos(pi * t / tau))
@@ -105,5 +105,5 @@ ax.text(0.98, 0.02,
         color='white')
 
 plt.tight_layout()
-plt.savefig('fig1d_reproduction_fixed.png', dpi=200)
-print(f"\n✓ Saved: fig1d_reproduction_fixed.png")
+plt.savefig('fig1d_t1_step3.png', dpi=200)
+print(f"\n✓ Saved: fig1d_t1_step3.png")
