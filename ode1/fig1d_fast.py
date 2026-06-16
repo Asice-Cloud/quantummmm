@@ -10,7 +10,7 @@ from scipy.ndimage import gaussian_filter, zoom
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-pi = np.pi; tc = 0.3; E0 = 0.3; E1_fixed = 0.01  # 解读B: t₁在Step3也出现
+pi = np.pi; tc = 0.3; E0 = 0.3; E1_fixed = 0.01  # 论文图注值，高分辨率验证
 
 def fp(t, tau):  return 0.5 * (1.0 + np.cos(pi * t / tau))
 def fm(t, tau):  return 0.5 * (1.0 - np.cos(pi * t / tau))
@@ -53,7 +53,7 @@ def fid(R):
 # ═══════════════════════════════════════════════════════════
 # 扫描
 # ═══════════════════════════════════════════════════════════
-N_TAU, N_T1 = 80, 100
+N_TAU, N_T1 = 120, 80  # 高分辨率 τ 扫，捕捉窄带
 tau_p = np.linspace(0.2, 12.0, N_TAU)
 tau_c = tau_p * 100.0  # 单位转换: τ(100/meV) → τ(meV⁻¹)
 t1_v  = E1_fixed * 10**np.linspace(-1.0, 1.0, N_T1)
@@ -72,12 +72,12 @@ for i in range(N_TAU):
 
 print(f"Raw range: [{F.min():.4f}, {F.max():.4f}]")
 
-# ── 平滑 + 超采样 ──
-F_s = gaussian_filter(F, sigma=0.8, mode='nearest')
-F_z = zoom(F_s, 3, order=3)
+# ── 轻平滑 + 超采样 ──
+F_s = gaussian_filter(F, sigma=0.3, mode='nearest')  # 减轻平滑，保留窄带
+F_z = zoom(F_s, 2, order=3)  # 2x 超采样
 
-tau_z = np.linspace(0.2, 12.0, N_TAU*3)
-lg_z  = np.linspace(-1.0, 1.0, N_T1*3)
+tau_z = np.linspace(0.2, 12.0, N_TAU*2)
+lg_z  = np.linspace(-1.0, 1.0, N_T1*2)
 
 # ── 绘图 ──
 from matplotlib.colors import LinearSegmentedColormap
@@ -105,5 +105,5 @@ ax.text(0.98, 0.02,
         color='white')
 
 plt.tight_layout()
-plt.savefig('fig1d_t1_step3.png', dpi=200)
-print(f"\n✓ Saved: fig1d_t1_step3.png")
+plt.savefig('fig1d_E1_0_01_hires.png', dpi=200)
+print(f"\n✓ Saved: fig1d_E1_0_01_hires.png")

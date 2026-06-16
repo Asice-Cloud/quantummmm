@@ -5,7 +5,7 @@ from scipy.ndimage import gaussian_filter, zoom
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-tc=E0=0.3; E1_fixed=0.01  # 论文 Fig1d 图注值
+tc=E0=0.3; E1_fixed=0.004  # 匹配论文 Fig 1(d) 振荡周期 (交叉验证)
 
 # ── 四元数 ops ──
 def qm(p,q):
@@ -98,5 +98,5 @@ ax.set_xlabel(r'$\tau$ (100/meV)',fontsize=13)
 ax.set_ylabel(r'$\lg(t_1/E_1)$',fontsize=13)
 ax.set_title(f'Sp(2): $|\\langle\\psi_1^-|U(6\\tau)|\\psi_1^+\\rangle|^2$  $E_1={E1_fixed}$ meV',fontsize=12)
 plt.colorbar(ax.contourf(*np.meshgrid(tau_z,lg_z),F_z,levels=levels,cmap=cmap,extend='both'),ax=ax,label='Fidelity',ticks=np.linspace(0,1,6))
-plt.tight_layout(); plt.savefig('fig1d_riccati.png',dpi=200)
-print('✓ fig1d_riccati.png')
+plt.tight_layout(); plt.savefig('fig1d_sp2_E1_0_004.png',dpi=200)
+print('✓ fig1d_sp2_E1_0_004.png')
