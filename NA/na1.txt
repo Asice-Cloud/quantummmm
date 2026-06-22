@@ -1,0 +1,3603 @@
+Non-Abelian Stokes theorem in action
+
+arXiv:math-ph/0012035v3 16 Jan 2002
+
+Boguslaw Broda1
+Department of Theoretical Physics
+University of Lódź
+Pomorska 149/153
+PL 90–236 Lódź
+Poland
+Abstract
+In this short review main issues related to the non-Abelian Stokes
+theorem have been addressed. The two principal approaches to the nonAbelian Stokes theorem, operator and two variants (coherent-state and
+holomorphic) of the path-integral one, have been formulated in their simplest possible forms. A recent generalization for a knotted loop as well as a
+suggestion concerning higher-degree forms have been also included. Nonperturbative applications of the non-Abelian Stokes theorem, to (semi-)topological gauge theories, have been presented.
+
+1
+
+Introduction
+
+For tens years the (standard, i.e. Abelian) Stokes theorem is one of the central
+points of (multivariable) analysis on manifolds. Lower-dimensional versions of
+this theorem, known as the (proper) Stokes theorem, in dimensions 1 and 2, and
+the, so-called Gauss theorem, in dimensions 2 and 3, respectively, are well-known
+and extremally useful in practice, e.g. in classical electrodynamics (Maxwell
+equations). In fact, it is diﬃcult, if not impossible, to imagine lectures on
+classical electrodynamics without intensive use of the Stokes theorem. The
+standard Stokes theorem is also being called the Abelian Stokes theorem, as it
+applies to (ordinary, i.e. Abelian) diﬀerential forms. Classical electrodynamics
+is an Abelian (i.e. U (1)) gauge ﬁeld theory (gauge ﬁelds are Abelian forms),
+therefore its integral formulas are governed by the Abelian Stokes theorem. But
+much of interesting and physically important phenomena is described by nonAbelian gauge theories. Hence it would be very desirable to have at our disposal
+a non-Abelian version of the Stokes theorem. Since non-Abelian diﬀerential
+1 e-mail: bobroda@krysia.uni.lodz.pl
+
+1
+
+forms need a bit diﬀerent treatment, one is forced to use a more sophisticated
+formalism to deal with this new situation.
+The aim of this chapter is to present a short review of the non-Abelian
+Stokes theorem. At ﬁrst, we will give an account of diﬀerent formulations of the
+non-Abelian Stokes theorem and next of various applications of thereof.
+
+1.1
+
+Abelian Stokes theorem
+
+Before we engage in the non-Abelian Stokes theorem it seems reasonable to
+recall its Abelian version. The (Abelian) Stokes theorem says (see, e.g. [Spi65],
+for an excellent introduction to the subject) that we can convert an integral
+around a closed curve C bounding some surface S into an integral deﬁned on
+this surface. Namely, in e.g. three dimensions
+I
+Z
+~ · ~n dσ,
+~ · d~s =
+curlA
+A
+C
+
+(1)
+
+S
+
+where the curve C is the boundary of the surface S, i.e. C = ∂S (see, Fig.1),
+
+∂S = C
+S
+
+✻
+
+Figure 1: Integration areas for the lowest-dimensional (non-trivial) version of
+the Abelian Stokes theorem.
+~ is a vector ﬁeld, e.g. the vector potential of electromagnetic ﬁeld, and ~n is a
+A
+unit outward normal at the area element dσ.
+More generally, in any dimension,
+Z
+Z
+dω,
+ω=
+
+(2)
+
+N
+
+∂N
+
+where now N is a d-dimensional submanifold of the manifold M , ∂N is its
+(d − 1)-dimensional boundary, ω is a (d − 1)-form, and dω is its diﬀerential, a
+d-form. We can also rewrite Eq.1 in the spirit of Eq.2, i.e.
+I
+Z
+1
+i
+Ai dx =
+(∂i Aj − ∂j Ai ) dxi ∧ dxj ,
+2 S
+∂S=C
+2
+
+(3)
+
+where Ai (i = 1, 2, 3) are components of the vector ~
+A, and the Einstein summation convention after repeating indices is assumed.
+In electrodynamics, we deﬁne the stress tensor of electromagnetic ﬁeld
+Fij = ∂i Aj − ∂j Ai ,
+and the magnetic induction, its dual, as
+Bk =
+
+1
+εijk Fij ,
+2
+
+where εijk is the totally antisymmetric (pseudo-)tensor. RHS of Eq.3 represents
+then the magnetic ﬂux through S. Thus, we can rewrite Eq.3 in the form of 1
+Z
+I
+1
+i
+Fij dxi ∧ dxj
+(4)
+Ai dx =
+2
+∂S=C
+Z S
+=
+Bi ni dσ.
+S
+
+~ plays the role of connection (it deﬁnes the parallel
+In turn, in geometry A
+transport around C), and F is the curvature of this connection. A “global
+version” of the Abelian Stokes theorem,
+
+ Z
+ I
+
+i
+i
+i
+j
+Ai (x) dx = exp
+exp i
+Fij (x) dx ∧ dx ,
+2 S
+∂S=C
+
+(5)
+
+which is rather a trivial generalization of Eq.4, is a very good starting point for
+our further discussion concerning the non-Abelian Stokes theorem. The object
+on LHS of 5 is called the holonomy, and more generally, for open curves C,
+global connection.
+
+1.2
+
+Historical remarks
+
+The birth of the ideas related to the (non-)Abelian Stokes theorem dates back
+to the ninetenth century and is connected with the emergence of the Abelian
+Stokes theorem. The Abelian Stokes theorem can be treated as a prototype of
+the non-Abelian Stokes theorem or a version of thereof when we conﬁne ourselves
+to an Abelian group.
+
+3
+
+A work closer to the proper non-Abelian Stokes theorem, by Schlesinger
+[Sch27], where generally non-commuting matrix-values functions have been considered appeared in 1927. In fact no work on the genuine non-Abelian Stokes
+theorem could appear before the birth of very idea of non-Abelian gauge ﬁelds in
+the beginning of ﬁfthies. And really, ﬁrst papers on the non-Abelian Stokes theorem appeared in the very end of seventhies. At ﬁrst, the non-Abelian Stokes
+theorem emerged in the operator version [Hal79] (the ﬁrst appearance of the
+non-Abelian Stokes theorem, see Eq.3.8 therein), [Are80], [Bra80], [FGK81], and
+later on, in the very end of eighties, in the path-integral one [DP89], [Bro92].
+
+1.3
+
+Contents
+
+The propert part of the paper consists of two sections. The ﬁrst section is devoted to the non-Abelian Stokes theorem itself. In the beginning, we introduce
+necessary notions and conventions. The operator version of the non-Abelian
+Stokes theorem is formulated in the ﬁrst subsection. The second subsection concerns the path-integral versions of the non-Abelian Stokes theorem: coherentstate approach and holomorphic approach. The last subsection describes generalizations of the non-Abelian Stokes theorem. First of all, to topologically
+more general situations, and also to higher-degree forms. The second section
+is devoted to applications of the non-Abelian Stokes theorem in mathematical
+and theoretical physics. In the ﬁrst subsection an approach to the computation
+of Wilson loops in two-dimensional Yang-Mills theory is presented. The second
+subsection deals with the analogous problem for three-dimensional (topological)
+Chern-Simons gauge theory. Other possibilities, including higher-dimensional
+gauge theories and QCD are mentioned in the last subsection.
+
+2
+
+Non-Abelian Stokes theorem
+
+What is the non-Abelian Stokes theorem? To answer this question we should
+recall ﬁrst of all the form of the well-known Abelian Stokes theorem. Namely
+
+4
+
+(see, Eq.2)
+
+Z
+
+ω=
+
+Z
+
+dω,
+
+(6)
+
+M
+
+∂M
+
+where the integral of the form ω along the boundary ∂N of the submanifold N is
+equated to the integral of the diﬀerential dω of this form over the submanifold N .
+The diﬀerential form ω is usually an ordinary (i.e. Abelian) diﬀerential form, but
+it could also be something more general, e.g. connection one-form A. Thus, the
+non-Abelian Stokes theorem should be a version of 6 for non-Abelian (say, Liealgebra valued) forms. Since it could be risky to directly integrate Lie-algebra
+valued diﬀerential forms, the generalization of 6 may be a non-trivial task. We
+should not be too ambitious perhaps from the very beginning, and not try to
+formulate the non-Abelian Stokes theorem in full generality at once, as it could
+be diﬃcult or even impossible simply. The lowest non-trivial dimensionality of
+the objects entering 6 is as follows: dim N = 2 (dim ∂N = 1) and deg ω = 1
+(deg dω = 2). A short reﬂection leads us to the ﬁrst candidate for the LHS of
+the non-Abelian Stokes theorem, the Wilson loop
+
+ I
+A ,
+P exp i
+
+(7)
+
+C
+
+called the holonomy, in mathematical context, where P denotes the, so-called,
+path ordering, A is a non-Abelian connection one-form, and C is a closed loop,
+a boundary of the surface S (∂S = C). Correspondingly, the RHS of the nonAbelian Stokes theorem should contain a kind of integration over S. Therefore,
+the actual Abelian prototype of the non-Abelian Stokes theorem is of the form
+5 rather than of 4. More often, the trace of Eq.7 is called the Wilson loop,
+ I
+
+WR (C) = TrR P exp i
+A ,
+(8)
+C
+
+or even the “normalized” trace of it,
+ I
+
+1
+TrR P exp i
+A ,
+dim R
+C
+
+(9)
+
+where the character R means a(n irreducible) representation of the Lie group G
+corresponding to the given Lie algebra g. Of course, one can easily pass from
+
+5
+
+7 to 8 and ﬁnally to 9. In fact, the operator 7 is a particular case of a more
+general parallel-transport operator
+
+ Z
+UL = P exp i A ,
+
+(10)
+
+L
+
+where L is a smooth path, which for the L a closed loop (L = C) yields 7.
+Eq.10 could be considered as an ancestor of Eq.7. As the LHS of the nonAbelian Stokes theorem we can assume any of the formulas given above for
+the closed loop C (i.e. Eqs.7, 8, 9) yielding possibly various versions of the
+non-Abelian Stokes theorem. For some reason or another, sometimes it is more
+convenient to use the Wilson loop in the operator version 7 rather than in the
+version with the trace 8. Sometimes it does not make any bigger diﬀerence.
+The RHS should be some expression deﬁned on the surface S, and essentially
+constituting the non-Abelian Stokes theorem.
+From the point of view of a physicist the expression 10 is typical in quantum
+mechanics and corresponds to the evolution operator. By the way, Eqs.8, 9 are
+very typical in gauge theory, e.g. in QCD. Thus, guided by our intuition we can
+reformulate our chief problem as a quantum-mechanical one. In other words,
+the approaches to the LHS of the non-Abelian Stokes theorem are analogous to
+the approaches to the evolution operator in quantum mechanics. There are the
+two main approaches to quantum mechanics, and especially to the construction
+of the evolution operator: opearator approach and path-integral approach. The
+both can be applied to the non-Abelian Stokes theorem successfully, and the
+both provide two diﬀerent formulations of the non-Abelian Stokes theorem.
+Conventions
+
+Sometimes, especially in a physical context, a coupling con-
+
+stant, denoted e.g. e, appears in front of the integral in Eqs.7–10. For simplicity,
+we will omit the coupling constant in our formulas.
+The non-Abelian curvature or the strength ﬁeld on the manifold M is deﬁned
+by
+Fij (A) = ∂i Aj − ∂j Ai − i[Ai , Aj ].
+Here, the connection or the gauge potential A assuming values in a(n irreducible)
+6
+
+representation R of the compact, semisimple Lie algebra g of the Lie group G
+is of the form
+Ai (x) = Aai (x)T a ,
+
+i = 1, . . . , dim M,
+
+a
+where the Hermitian generators, T a† = T a , T a = Tkl
+, k, l = 1, . . . , dim R, fulﬁl
+
+the commutation relations
+[T a , T b ] = if abc T c ,
+
+a, b, c = 1, . . . , dim G.
+
+(11)
+
+The line integral 10 can be rewritten in more detailed (being frequently used in
+our further analysis) forms,
+′′
+
+" Z
+
+′
+
+x′′
+
+U (x , x ) = P exp i
+
+Ai (x) dx
+
+x′
+
+or
+
+" Z
+
+x′′
+
+Aai (x)T a dxi
+
+Ukl = P exp i
+
+i
+
+x′
+
+#
+
+#
+
+,
+
+,
+
+without parametrization, and
+( Z
+
+x′′
+
+U (t′′ , t′ ) = P exp i
+
+x′
+
+)
+i
+dx
+(t)
+Aai [x(t)]T a
+dt ,
+dt
+
+with an explicit parametrization, or some variations of thereof. Here, the oriented smooth path L starting at the point x′ and endng at the point x′′ is
+parametrized by the function xi (t), where t′ ≤ t ≤ t′′ , and x′i = xi (t′ ),
+x′′i = xi (t′′ ).
+
+2.1
+
+Operator formalism
+
+Unfortunately, it is not possible to automatically generalize the Abelian Stokes
+theorem (e.g. Eq.4) to the non-Abelian one. In the non-Abelian case one faces
+a qualitatively diﬀerent situation because the integrand on the LHS assumes
+values in a Lie algebra g rather than in the ﬁeld of real or complex numbers.
+The picture simpliﬁes signiﬁcantly if one switches from the “local” language to
+a global one (see, Eq.5). Therefore we should consider the holonomy 7 around
+a closed curve C,
+
+
+ I
+i
+Ai dx .
+P exp i
+C
+
+7
+
+x
+
+S
+
+L
+
+C
+
+O
+
+Figure 2: Parallel-transport operator along the path L in the surface S.
+The holonomy represents a parallel-transport operator around C assuming values in a non-Abelian Lie group G. (Interestingly, in the Abelian case, the
+holonomy has a physical , it is an object playing the role of the phase which can
+be observed in the Aharonov-Bohm experiment, whereas Ai itself has not such
+an interpretation.)
+Non-Abelian Stokes theorem The non-Abelian generalization of Eq.5 should
+read
+
+ I
+P exp i
+
+i
+
+Ai (x)dx
+
+∂S=C
+
+
+
+ Z
+
+i
+i
+j
+= P exp
+Fij (x)dx ∧ dx ,
+2 S
+
+where the LHS has been already roughly deﬁned. As far as the RHS is concerned, the symbol P denotes some “surface ordering”, whereas Fij (x) is a
+“path-dependent curvature” given by the formula
+def
+
+Fij (x) = U −1 (x, O)Fij (x)U (x, O),
+where U (x, O) is a parallel-transport operator along the path L in the surface
+S joining the base point O of ∂S with the point x, i.e.
+
+ Z
+i
+U (x, O) = P exp i Ai (y)dy .
+L
+
+See, Fig.2, and further sections for more details.
+
+8
+
+2.1.1
+
+Calculus of paths
+
+As a kind of a short introduction for properly manipulating parallel-transport
+operators along oriented curves we recall a number of standard facts. It is
+obvious that we can perform some operations on the parallel transport operators.
+We can superpose them, we can introduce an identity element, and ﬁnally we
+can ﬁnd an inverse element for each element.
+Roughly, the structure is similar to the structure of the group with the
+following standard postulates satisﬁed: (1) associativity, (U1 U2 )U3 = U1 (U2 U3 );
+(2) existence of an identity element, IU = U I = U ; (3) existence of an inverse
+element U −1 , U −1 U = U U −1 = I. But let us note that not all elements can be
+
+✻
+
+x1
+
+✻
+
+-1
+✻
+
+
+
+
+
+=
+✻ x
+
+
+
+
+
+
+x1
+
+=
+
+
+
+
+
+ 
+x2
+
+x2
+
+❄
+
+Figure 4: Inverse element.
+
+Figure 3: Allowable composition of elements.
+
+superposed. Although parallel-transport operators are elements of a Lie group
+G but their geometrical interpretation has been lost in the notation above. We
+can superpose two elements only when the end point of the ﬁrst element is the
+initial point of the second one. Thus, U1 U2 could be meaningfull in the form
+(Fig.3)
+U (x1 , x)U (x, x2 ) = U (x1 , x2 ).
+
+9
+
+Obviously,
+I = U (x, x),
+and (Fig.4)
+U −1 (x1 , x2 ) = U (x2 , x1 ).
+The above formulas become a particularly convincing in a graphical form. Perhaps, one of the most useful facts is expressed by the following Fig.3:
+
+✻
+
+x1
+
+✻
+
+=
+
+✛
+✻
+
+✲✻
+x
+
+x2
+
+Figure 5: Deformation of a path.
+It appears that this structure ﬁts into the structure of the, so-called, grouppoid.
+2.1.2
+
+Ordering
+
+There are a lot of diﬀerent ordering operators in our formulas which have been
+collected in this section.
+Dyson series We know from quantum theory that the path-ordered exponent
+of an operator Â can be expressed by the power series called the Dyson series,
+#
+" Z ′′
+t
+
+Â(t) dt
+
+P exp i
+
+t′
+
+10
+
+"
+
+= P 1+
+
+∞ n Z t′′
+X
+i
+
+#
+
+Z t′′
+
+Z t′′
+
+dt1
+dtn Â(t1 )Â(t2 ) . . . Â(tn )
+dt2 . . .
+n! t′
+t′
+t′
+Z t′′
+Z t′′
+∞ n Z t′′
+h
+i
+X
+i
+dt1
+dt2 . . .
+dtn P Â(t1 )Â(t2 ) . . . Â(tn )
+= 1+
+n! t′
+t′
+t′
+n=1
+′′
+Z
+Z
+Z
+∞
+tn−1
+t
+t1
+X
+dtn Â(t1 )Â(t2 ) . . . Â(tn ),
+= 1+
+in
+dt2 . . .
+dt1
+n=1
+
+t′
+
+t′
+
+t′
+
+n=1
+
+where
+h
+i
+
+
+def
+P Â1 (t1 ) . . . Ân (tn ) = Âσ(1) tσ(1) . . . Âσ(n) tσ(n) ),
+
+tσ(1) ≥ . . . ≥ tσ(n) .
+
+For example, for two operators
+h
+i
+P Â1 (t1 )Â2 (t2 ) ≡ θ (t1 − t2 ) Â1 (t1 )Â2 (t2 ) + θ (t2 − t1 ) Â2 (t2 )Â1 (t1 ),
+
+where θ is the step function.
+
+Since the operators/matrices appearing in our considerations
+
+Conventions
+
+are, in general, non-commutative, we assume the following conventions:
+N
+Y
+
+def
+
+Xn = XN XN −1 . . . X2 X1 ,
+
+(12)
+
+def
+
+(13)
+
+n=1
+
+Pt (X1 X2 . . . XN −1 XN ) = XN XN −1 . . . X2 X1 ,
+whereas for two parameters
+Ps,t
+
+N
+Y
+
+Xm,n
+
+m,n=1
+def
+
+=
+
+N Y
+N
+Y
+
+Xm,n
+
+n=1 m=1
+
+≡
+2.1.3
+
+XN,N XN −1,N . . . X1,N XN,N −1 . . . X1,2 XN,1 . . . X2,1 X1,1 .
+
+Theorem
+
+The non-Abelian Stokes theorem in its original operator form roughly claims
+that the holonomy round a closed curve C = ∂S equals a surface-ordered exponent of the twisted curvature, namely
+
+
+ Z
+ I
+A = P exp i F ,
+P exp i
+S
+
+C
+
+11
+
+(14)
+
+✛
+
+❄
+
+(0,1)
+
+(1,1)
+
+(0,0)
+
+(1,0)
+
+✻
+
+✲
+
+Figure 6: The parametrized loop C as a boundary of the “big” square S with
+the coordinates {(0, 0), (1, 0), (1, 1), (0, 1)}.
+where F is the twisted curvature
+F ≡ U −1 F U.
+A more precise form of the non-Abelian Stokes theorem as well as an exact
+meaning of the notions appearing in the theorem will be given in the course of
+the proof.
+Proof Following [Are80] and [Men83] we will present a short, direct proof of
+the non-Abelian Stokes theorem.
+In our parametrization, the ﬁrst step consists of the decomposition of the
+initial loop (see, Fig.6) into small lassos according to the rules given in the
+section 2.1.1
+
+ I
+N
+Y
+−1
+A = lim (Ps,t )
+Um,n
+Wm,n Um,n ,
+P exp i
+C
+
+N →∞
+
+m,n=1
+
+where the objects involved are deﬁned as follows: parallel-transport operators
+n
+from the reference point (0, 0) to the point with coordinates ( m
+N , N ) consists of
+
+12
+
+✲
+
+✻
+
+Figure 7: Approaching the “small” plaquette inside the “big” square.
+two segments (see, Fig.7)
+!
+n
+Z (0, Nn ) !
+Z (m
+N ,N )
+A ,
+A P exp i
+Um,n = P exp i
+def
+
+n
+(0, N
+)
+
+(0,0)
+
+parallel-transport operator round a small plaquette Sm,n
+!
+I
+def
+A ,
+Wm,n = Tr P exp i
+Sm,n
+
+where Sm,n is a boundary of a (small) square with coordinates
+
+
+ 
+ 
+
+m n m−1 n
+m−1 n−1
+m n−1
+Sm,n :
+,
+,
+,
+.
+,
+,
+,
+,
+N N
+N
+N
+N
+N
+N N
+
+Now
+
+−1
+Um,n
+Wm,n Um,n
+
+=
+=
+=
+=
+
+
+
+
+i
+1
+−1
+Um,n
+1 + 2 Fm,n + O
+Um,n
+N
+N3
+
+
+i −1
+1
+1 + 2 Um,n
+Fm,n Um,n + O
+N
+N3
+
+
+1
+i
+1 + 2 Fm,n + O
+N
+N3
+
+
+1
+Wm,n + O
+,
+N3
+
+where Wm,n has been calculated in the Appendix to this section (see, Eq.15),
+def
+
+−1
+Fm,n Um,n ,
+Fm,n = Um,n
+
+13
+
+. .. . .. .. . .. .. . .. . .. .. . .. . .. .. . .. . .. .. . .. . .. .. . .. .
+................................................ ...
+✛
+..
+✻
+
+❄
+
+✲
+
+Figure 8: The small plaquette.
+and
+def
+
+Wm,n = exp
+
+
+
+
+i
+.
+F
+m,n
+N2
+
+Then
+
+ I
+A
+=
+P exp i
+C
+
+=
+
+=
+
+
+N
+Y
+
+lim (Ps,t )
+
+N →∞
+
+m,n=1
+
+lim (Ps,t )
+
+N →∞
+
+N
+Y
+
+Wm,n + O
+
+
+exp
+
+m,n=1
+
+lim (Pt )
+
+N →∞
+
+N
+Y
+
+exp
+
+m,n=1
+
+
+
+
+
+1
+N3
+
+
+
+i
+Fm,n + O
+N2
+
+i
+Fm,n + O
+N2
+
+
+
+
+
+1
+N3
+
+1
+N3
+
+
+
+
+
+.
+
+The last equality follows from the fact that operations corresponding to the
+change of the order of the operators yield the commutator
+
+
+
+
+1
+1
+1
+,
+Fm′ ,n′ , 2 Fm′′ ,n′′ = O
+N2
+N
+N4
+and there is maximum N − 1 transpositions possible in the framework of sordering, so
+(N − 1) O
+
+
+
+1
+N4
+
+
+
+14
+
+=O
+
+
+
+1
+N3
+
+
+
+.
+
+Thus, we arive at the ﬁnal form of the non-Abelian Stokes theorem,
+
+
+ Z
+
+
+ I
+N
+Y
+i
+Fm,n = P exp i F .
+A = lim (Pt )
+exp
+P exp i
+N →∞
+N2
+S
+C
+m,n=1
+Appendix In this paragraph we will perform a fairly standard calculus and
+derive the contribution coming from a small loop Wm,n . Namely,
+!
+!
+n−1
+n
+Z (m
+Z (m
+N ,N )
+N, N )
+Wm,n = P exp i
+A P exp i
+A
+n−1
+n−1
+(m
+( m−1
+N, N )
+N , N )
+!
+!
+n−1
+n−1
+Z ( m−1
+Z (m
+N , N )
+N, N )
+P exp i
+A P exp i
+A
+n−1
+n
+(m
+(m
+N, N )
+N ,N )
+"
+
+#
+2
+
+1 i y
+1
+i y
+A
++O
+=
+1 + Am,n +
+N
+2 N m,n
+N3
+"
+
+#
+2
+
+i x
+1 i x
+1
+· 1 + Am,n−1 +
+A
++O
+N
+2 N m,n−1
+N3
+"
+
+2
+#
+
+1 i y
+1
+i y
++O
+A
+· 1 − Am−1,n +
+N
+2 N m−1,n
+N3
+"
+2
+
+#
+
+i x
+1 i x
+1
+· 1 − Am,n +
++O
+A
+N
+2 N m,n
+N3
+
+
+i
+i
+Aym,n − Aym−1,n −
+Axm,n − Axm,n−1
+= 1+
+N
+N
+ 2
+ 2
+ 2
+
+2
+i
+i
+i
+2
++
+Aym,n +
+Axm,n +
+Aym,n Axm,n
+N
+N
+N
+ 2
+ 2
+ 2
+2
+i
+i
+i
+y
+y
+x
+Am,n −
+Am,n Am,n −
+Axm,n Aym,n
+−
+N
+N
+N
+
+2
+
+
+ 2
+2
+i
+1
+i
+Axm,n + −
+Aym,n Axm,n + O
+−
+N
+N
+N3
+
+
+i
+i2
+1
+= 1 + 2 (∂x Ay − ∂y Ax ) − 2 (Ax Ay − Ay Ax ) + O
+N
+N
+N3
+
+
+1
+i
+,
+(15)
+= 1 + 2 Fm,n + O
+N
+N3
+where
+
+F = ∂x Ay − ∂y Ax − i [Ax , Ay ]
+(ocassionally, we put x and y in the upper position), and
+ 
+1
+A = Am,n + O
+.
+N
+15
+
+Then
+
+
+
+i
+Wm,n = exp
+Fm,n + O
+N2
+Other approaches
+
+
+
+1
+N3
+
+
+
+.
+
+There is a lot of other approaches to the (operator) non-
+
+Abelian Stokes theorem, more or less interrelated. The analytic approach advocated in [Bra80] and [HM98]. The approach using the, so-called, product
+integration [KMR99] and [KMR00]. And last, but not least, a (very interesting)
+coordinate-gauge approach [SS98], and [Hal79] as well as its lattice formulation
+[Bat82].
+
+2.2
+
+Path-integral formalism
+
+There are two main approaches to the non-Abelian Stokes theorem in the framework of the path-integral formalism: coherent-state approach and holomorphic
+approach. In the literature, the both approaches occur in few, a bit diﬀerent,
+incarnations. Also, the both have found applications in diﬀerent areas of mathematical and/or theoretical physics, and therefore the both are usefull. The
+ﬁrst one is formulated more in the spirit of group theory, whereas the second
+one follows from traditional path-integral formulation of quantum mechanics or
+rather quantum ﬁeld theory. Similarly to the situation in quantum theory, the
+path-integral formalism is easier in some applications and more intuitive then
+the operator formalism but traditionally it is mathematically less rigorous. In
+the same manner as quantum mechanics, initially formulated in the operator
+language and next reformulated into the path-integral one, we can translate the
+operator form of the non-Abelian Stokes theorem into the path-integral one.
+In order to formulate the non-Abelian Stokes theorem in the path-integral
+language we will make the following three steps:
+1. We will determine a coherent-state/holomorphic path-integral representation for the parallel-transport operator deriving an appropriate transition
+amplitude (a path-integral counterpart of the LHS in Eq.14);
+2. For a closed curve C we will calculate the trace of the path-integral form
+
+16
+
+of the parallel-transport operator, quantum theory in an external gauge
+ﬁeld A;
+3. We will apply the Abelian Stokes theorem to the exponent of the integrand
+of the path integral yielding the RHS of the non-Abelian Stokes theorem
+(a counterpart of RHS in Eq. 2.8).
+Since the both path-integral derivations of the tran-
+
+Preliminary formulas
+
+sition amplitude have a common starting point that is independent of the particular approach, we present it here:
+#
+" Z ′′
+t
+
+A(t)dt = lim
+
+P exp i
+
+N
+Y
+
+t′
+
+N →∞
+
+t′′ − t′
+,
+N
+
+tn = nǫ + t′ ,
+
+(1 + iǫAn ) ,
+
+(16)
+
+n=1
+
+where
+An = A(tn ),
+
+ǫ=
+
+tN = t′′ ,
+
+t0 = t′ .
+
+(17)
+
+From this moment the both approaches diﬀer.
+2.2.1
+
+Coherent-state approach
+
+Group-theoretic coherent states
+
+According to [ZFG90] (see, also [Per86])
+
+the group-theoretic coherent states emerge in the following construction:
+1. For g, a semisimple Lie algebra of a Lie group G, we introduce the standard
+Cartan basis {Hi , Eα , E−α }:
+[Hi , Hj ] =
+
+0,
+
+[Hi , Eα ] =
+
+αi Eα ,
+
+[Eα , E−α ] =
+
+αi Hi ,
+
+[Eα , Eβ ] =
+
+Nα;β Eα+β .
+
+(18)
+
+2. We chose a unitary irreducible representation R of the group G, as well
+as a normalized state the, so-called, reference state |Ri. The choice of the
+reference state is in principle arbitrary but not unessential. Usually it is
+17
+
+an “extremal state” (the highest weight state), the state anihilated by Eα ,
+i.e. Eα |Ri = 0.
+3. A subgroup of G that consists of all the group elements h that will leave
+the reference state |Ri invariant up to a phase factor is the maximumstability subgroup H. Formally,
+h |Ri = |Ri eiφ(h) ,
+
+h ∈ H.
+
+The phase factor is unimportant here because we shall generally take the
+expectation value of any operator in the coherent state.
+4. For every element g ∈ G, there is a unique decomposition of g into a
+product of two group elements, one in H and the other in the quotient
+G/H:
+g = ξh,
+
+g ∈ G,
+
+h ∈ H,
+
+ξ ∈ G/H.
+
+In other words, we can obtain a unique coset space for a given |Ri.
+5. One can see that the action of an arbitrary group element g ∈ G on |Ri
+is given by
+g |Ri = ξh |Ri = ξ |Ri eiφ(h) .
+The combination
+def
+
+|ξ, Ri = ξ |Ri
+is the general group deﬁnition of the coherent states. For simplicity, we
+will denote the coherent states as |g, Ri.
+The coherent states |g, Ri are generally non-orthogonal but normalized to unity,
+hg, R |g, Ri = 1.
+Furthermore, for an appropriately normalized measure dµ(g), we have a very
+important for our furher analysis identity the, so-called, resolution of unity
+Z
+|g, Ri dµ(g) hg, R| = I.
+(19)
+18
+
+Path integral
+
+Our ﬁrst aim is to calculate the “transition amplitude” between
+
+the two coherent states |g ′ , Ri and |g ′′ , Ri
+*
+" Z ′′
+#
+t
+
+′′
+
+g , R P exp i
+
+A(t) dt
+
+′
+
+g ,R
+
+t′
+
+= lim
+
+N →∞
+
+Z
+
+...
+
+Z
+
++
+
+hgN , R |(1 + iǫAN )| gN −1 , Ri dµ(gN −1 )
+
+hgN −1 , R |(1 + iǫAN −1 )| gN −2 , Ri dµ(gN −2 )
+. . . dµ(g1 ) hg1 , R |(1 + iǫA1 )| g0 , Ri ,
+
+(20)
+
+where we have used 16 and 19. To continue, one should evaluate a single amplitude (i.e. the amplitude for an inﬁnitesimal “time” ǫ), i.e.
+hgn , R |(1 + iǫAn )| gn−1 , Ri
+= hgn , R|gn−1 , Ri + i hgn , R |An | gn−1 , Ri ǫ.
+Now
+hgn , R|gn−1 , Ri = hg(tn ), R|g(tn−1 ), Ri
+=
+=
+
+R g † (tn )g(tn ) R − R g † (tn )ġ(tn ) R ǫ + O ǫ2
+
+= 1 − R g † (tn )ġ(tn ) R ǫ + O ǫ2 ,
+=
+
+whereas
+
+R g † (tn )g(tn−1 ) R = R g † (tn )g(tn − ǫ) R
+
+
+R g † (tn ) g(tn ) − ġ(tn )ǫ + O ǫ2 R
+
+i hgn , R |An | gn−1 , Ri ǫ
+
+= i hg(tn ), R |A(tn )| g(tn−1 ), Ri ǫ
+= i R g † (tn )A(tn )g(tn − ǫ) R ǫ
+
+Then
+
+
+= i R g † (tn )A(tn )g(tn ) R ǫ + O ǫ2 .
+
+hgn , R |(1 + iǫAn )| gn−1 , Ri
+= 1 − R g † (tn )ġ(tn ) R ǫ + i R g † (tn )A(tn )g(tn ) R ǫ + O ǫ2
+
+
+= exp R −g † (tn )ġ(tn ) + ig † (tn )A(tn )g(tn ) R ǫ + O ǫ2 .
+19
+
+
+
+
+
+Returning to 20
+*
+′′
+
+" Z
+
+t′′
+
+g , R P exp i
+
+A(t) dt
+
+t′
+
+#
+
+′
+
+g ,R
+
++
+
+=
+
+Z
+
+!
+Z t′′
+[Dµ(g)] exp i
+L dt ,
+t′
+
+where the “lagrangian” appearing in the path integral is deﬁned as
+
+and
+
+
+
+def
+L = R ig † (t)ġ(t) + g † (t)A(t)g(t) R = hR |Ag (t)| Ri ,
+[Dµ(g)] =
+
+Y
+
+(21)
+
+dµ[g(t)].
+
+t′ <t<t′′
+
+According to [HU00], wee can transform L in Eq.21 to the form originally
+proposed by [DP89]. Namely, for any Lie-algebra element K we have in the
+Cartan basis 18
+hR |K| Ri =
+
+*
+
+R
+
+X
+
+λi Hi + . . . R
+
+i
+
++
+
+=
+
+X
+i
+
+λi hR |Hi | Ri ,
+
+where dots mean E∓α generators vanishing between |Ri’s. Since
+Hi |Ri = mi |Ri ,
+then
+X
+i
+
+λi hR |Hi | Ri =
+=
+
+X
+i
+
+λi hR |Ri | Ri =
+
+X
+
+λi mi
+
+i
+
+1X
+1
+mi Tr(Hi K) = Tr(m · H K),
+κ i
+κ
+
+where the normalization
+Tr(Hi Hj ) = κδij
+has been assumed. Thus,
+L =
+=
+=
+
+hR |Ag (t)| Ri
+1X
+Tr [mi Hi Ag (t)]
+κ i
+
+
+1 
+Tr m · H ig † (t)ġ(t) + g † (t)A(t)g(t) .
+κ
+20
+
+(22)
+
+Non-Abelian Stokes theorem Finally, the LHS of the non-Abelian Stokes
+theorem reads
+
+Z
+
+!
+I t′′
+L dt ,
+Dµ(g) exp i
+t′
+
+where
+Dµ(g) =
+
+Y
+
+dµ[g(t)],
+
+t′ ≤t<t′′
+
+and g(t′ ) = g(t′′ ). Or, in the language of diﬀerential forms
+ I 
+Z
+Dµ(g) exp i L ,
+C
+
+where now
+Dµ(g) =
+
+Y
+
+dµ[g(x)],
+
+x∈C
+
+and
+L=
+with
+
+1X
+def
+Tr [m · HAgi (x)] dxi = Bi dxi
+κ i
+
+Agi (x) = ig † (x)∂i g(x) + g † (x)Ai (x)g(x),
+Ag (t) = Agi [x(t)]
+
+dxi (t)
+.
+dt
+
+Here Bi is an Abelian diﬀerential form, so obviously
+
+ Z
+ Z
+ I
+Z
+B = Dµ(g) exp i dB .
+Dµ(g) exp i
+S
+
+C=∂S
+
+2.2.2
+
+Holomorphic approach
+
+Quantum-mechanics background
+
+For our further convenience let us for-
+
+mulate an auxiliary “Schrödinger problem” governing the parallel-transport operator 10 for the Abelian gauge potential A,
+i
+
+dz
+= −ẋi Ai z,
+dt
+
+(23)
+
+which expresses the fact that the “wave function” z should be covariantly constant along the line L, i.e.
+def
+
+Dt z =
+
+
+
+
+d
+i
+− iẋ Ai z = 0,
+dt
+21
+
+where Dt is the absolute covariant derivative.
+First of all, let us derive the path-integral expression for the parallel-transport
+operator U along L. To this end, we should consider the non-Abelian formula
+(diﬀerential equation) analogous to Eq.23,
+i
+
+dzk
+a
+= −ẋi (t)Aai [x(t)]Tkl
+zl ,
+dt
+
+or
+def
+
+(Dt z)k =
+
+
+
+(24)
+
+
+d
+i a
+a
+δkl − iẋ Ai [x(t)]Tkl zl = 0,
+dt
+
+where z is an auxiliary “wave function” in an irreducible representation R of the
+gauge Lie group G, which is to be parallelly transported along L parametrized
+by xi (t), t′ ≤ t ≤ t′′ . Formally, Eq.24 can be instantaneously integrated out
+yielding
+zk (x′′ ) = Ukl (x′′ , x′ )zl (x′ ),
+where x′′ = x(t′′ ), x′ = x(t′ ), and
+!
+Z t′′
+U (x′′ , x′ ) ≡ U (t′′ , t′ ) = P exp i
+ẋi (t)Ai [x(t)] dt ,
+t′
+
+as expected.
+Let us now consider the following auxiliary classical-mechanics problem with
+the classical Lagrangian
+L (z̄, z) = iz̄Dt z.
+
+(25)
+
+The equation of motion for z following from Eq.25 reproduces Eq.24, and yields
+the classical Hamiltonian
+a
+a
+H = iẋi (t)Aai [x(t)]Tkl
+πk zl = −ẋi (t)Aai [x(t)]Tkl
+z̄k zl .
+
+(26)
+
+The corresponding auxiliary quantum-mechanics problem is given, according to
+Eq.26, by the Schrödinger equation
+i
+
+d
+|Φi = Ĥ(t)|Φi,
+dt
+
+(27)
+
+with
+a +
+Ĥ(t) = −Â(t) = −ẋi (t)Aai [x(t)]T̂ a = −ẋi (t)Aai [x(t)]Tkl
+âk âl ≡ Hkl (t)â+
+k âl ,
+
+22
+
+where the creation and anihilation operators satisfy the standard commutation
+(−) or anticommutation (+) relations
+[âk , â+
+l ]∓ = δkl ,
+
++
+[â+
+k , âl ]∓ = [âk , âl ]∓ = 0.
+
+It can be easily checked by direct computation that we have really obtained a
+realization of the Lie algebra g in a Hilbert (Fock) space,
+[T̂ a , T̂ b ]− = if abc T̂ c ,
+a +
+in accordance with 11, where T̂ a = Tkl
+âk âl . For an irreducible representation
+
+R the second-order Casimir operator C2 is proportional to the identity operator
+I, which in turn, is equal to the number operator N̂ in our Fock representation,
+i.e. if T a → T̂ a , then I → N̂ = δkl â+
+k âl . Thus, we obtain an important for our
+further considerations constant of motion N̂ ,
+[N̂ , Ĥ]− = 0.
+
+(28)
+
+It is interesting to note that this approach works equally well for commutation
+relations as well as for anticommutation relations.
+Let us now derive the holomorphic path-integral representation
+
+Path integral
+
+for the kernel of the parallel-transport operator,
+*
+" Z ′′
+# +
+t
+
+z̄ ′′ P exp i
+
+Â(t) dt
+
+z′
+
+Z D
+
+
+
+t′
+
+=
+
+Z
+
+E
+dz̄N −1 dzN −1
+zN −1 e−z̄N −1zN −1
+N →∞
+2πi
+E
+
+D
+
+−z̄N −2 zN −2 dz̄N −2 dzN −2
+z̄N −1 1 + iǫÂN −1 zN −2 e
+2πi
+ E
+D 
+dz̄
+dz
+1
+1
+(29)
+z̄1 1 + iǫÂ1 z0 .
+. . . e−z̄1 z1
+2πi
+lim
+
+...
+
+z̄N
+
+1 + iǫÂN
+
+
+
+Now we should calculate the single expectation value
+D
+
+z̄n
+
+E
+
+E
+D
+
+1 + iǫÂn zn−1 = hz̄n |zn−1 i + i z̄n Ân zn−1 ǫ.
+
+Here
+hz̄n |zn−1 i = ez̄n zn−1 ,
+23
+
+whereas
+D
+E
+i z̄n Ân zn−1 ǫ =
+
+i hz̄n |z̄n An zn−1 | zn−1 i ǫ
+
+=
+
+iǫz̄n An zn−1 hz̄n | zn−1 i .
+
+=
+
+ez̄n zn−1 + iǫz̄n An zn−1 ez̄n zn−1
+
+
+ez̄n zn−1 1 + iǫz̄n An zn + O ǫ2
+
+Thus
+D
+
+z̄n
+
+
+
+1 + iǫÂn
+
+
+
+zn−1
+
+E
+
+=
+
+ez̄n zn−1 e+iǫz̄n An zn +O(ǫ ) .
+2
+
+=
+
+Combining this expression with the exponent in 29 we obtain
+e−z̄n zn ez̄n zn−1 +iǫz̄n An zn +O(ǫ )
+
+= e−z̄n (zn −zn−1 )+iǫz̄n An zn +O(ǫ )
+
+
+= exp (−z̄n żn + ǫz̄n An zn ) ǫ + O ǫ2 .
+
+2
+
+2
+
+Finally,
+U (z̄ , z ; t , t ) =
+
+*
+
+≡
+
+*
+
+=
+
+Z
+
+′′
+
+′
+
+′′
+
+′
+
+z̄
+
+′′
+
+# +
+Z t′′
+Ĥ(t)dt z ′
+P exp −i
+"
+
+t′
+
+" Z
+
+t
+
+z̄ ′′ P exp i
+
+t′
+
+
+
+2
+
+′′
+
+Â(t) dt
+
+#
+
+(
+
+
+
+z′
+
++
+
+D z exp z̄(t′′ )z(t′′ ) + i
+
+Z t′′
+
+[iz̄(t)ż(t)
+
+t′
+
++z̄(t)A(t)z(t)] dt} ,
+"
+#
+Z t′′
+ 2 
+′′
+′′
+D z exp z̄(t )z(t ) + i
+L dt ,
+
+≡
+
+Z
+
+
+
+
+D2 z =
+
+t′
+
+where
+
+and L is of “classical” form 25.
+
+Y
+
+dz̄(t) dz(t)
+,
+2πi
+′′
+
+t′ <t<t
+
+Let us conﬁne our attention to the one-particle subspace of the Fock space.
+As the number operator N̂ is conserved by virtue of Eq.28, if we start from the
+one-particle subspace of the Fock space, we shall remain in this subspace during
+all the evolution. The transition amplitude Ukl (t′′ , t′ ) between the one-particle
+24
+
++
+states |1k i = â+
+k |0i and |1l i = âl |0i is given by the following scalar product in
+
+the holomorphic representation
+*
+" Z
+Ukl
+
+=
+
+t′′
+
+1k P exp i
+
+Â(t) dt
+
+t′
+
+=
+
+Z
+
+′′
+
+*
+
+h1k |z i z̄
+′′ ′′
+
+′′
+
+=
+
+1l
+
+" Z
+
++
+
+t′′
+
+P exp i
+
+Â(t) dt
+
+t′
+
+′ ′
+
+e−z̄ z −z̄ z
+Z
+
+#
+
+#
+
+z
+
+′
+
++
+
+hz̄ ′ |1l i
+
+dz̄ ′′ dz ′′ dz̄ ′ dz ′
+(2πi)2
+"
+
+#
+Z t′′
+D z zk (t )z̄l (t ) exp −z̄(t )z(t ) + i
+L dt ,
+2
+
+′′
+
+′
+
+′
+
+′
+
+(30)
+
+t′
+
+where now
+D2 z =
+
+Y
+
+dz̄(t) dz(t)
+.
+2πi
+′′
+
+t′ ≤t≤t
+
+Depending on the statistics, there are the two (∓) possibilities (fermionic and
+bosonic)
+zk z̄l ∓ z̄l zk = z̄k z̄l ∓ z̄l z̄k = zk zl ∓ zl zk = 0,
+equivalent as far as one-particle subspace of the Fock space is concerned, which
+takes place in our further considerations.
+One can easily check that Eq.30 represents the object we are looking for.
+Namely, from the Schrödinger equation (Eq.27) it follows that for the general
+one-particle state αk â+
+k |0i (summation after repeating indices) we have
+i
+
+d
++
++
++
+(αm â+
+m |0i) = Hkl (t)âk âl αm âm |0i = Hkl (t)αl (âk |0i).
+dt
+
+(31)
+
+Using the property of linear independence of Fock-space vectors in Eq.31, and
+comparing Eq.31 to Eq.24, we can see that Eq.30 really represents the matrix
+elements of the parallel-transport operator. For closed paths, x(t′ ) = x(t′′ ) = x,
+Eq.30 gives the holonomy operator Ukl (x) and Ukk is the Wilson loop. Interestingly enough, the Wilson loop, which is supposed to describe a quark-antiquark
+interaction, is represented by a “true” quark and antiquark ﬁeld, z and z̄, respectively. So, the mathematical trick can be interpreted “physically”.
+Obviously, the “full” trace of the kernel in Eq. 3.9 is obtained by imposing appropriate boundary conditions, and integrating with respect to all the
+25
+
+variables without the boundary term. Analogously, one can also derive the
+parallel-transport operator (a generalization of the one just considered) for symmetric n-tensors (bosonic n-particle states) and for n-forms (fermionic n-particle
+states).
+Let us now deﬁne a (bosonic or fermionic)
+
+The non-Abelian Stokes theorem
+
+Euclidean two-dimensional “topological” quantum ﬁeld theory of multicomponent ﬁelds z̄, z transforming in an irreducible representation R of the Lie algebra
+g on the compact surface S, dimS = 2, ∂S = C, S ⊂ M , dim M = d, in an
+external non-Abelian gauge ﬁeld A, by the classical action
+
+Z 
+1
+iDi z̄Dj z + z̄Fij z dxi ∧ dxj ,
+Scl =
+i, j = 1, . . . , d,
+2
+S
+or in a parametrization xi (σ 1 , σ 2 ), by the action
+Z
+Lcl (z̄, z)d2 σ
+Scl =
+
+
+ZS
+1
+εAB iDA z̄DB z + z̄FAB z d2 σ,
+=
+2
+S
+
+(32)
+
+(33)
+A, B = 1, 2,
+
+where
+DA = ∂A xi Di ,
+
+def
+
+FAB = ∂A xi ∂B xj Fij .
+
+Di = ∂i − iAi ,
+
+At present, we are prepared to formulate a holomorphic path-integral version
+of the non-Abelian Stokes theorem,
+
+
+Z
+I
+2
+′′ ′
+′ ′
+D z zk z̄k exp −z̄ z + i
+iz̄ Dz
+C
+Z
+=
+D2 z zk′′ z̄k′ exp (−z̄ ′ z ′ + iScl ),
+
+(34)
+
+or in the polar parametrization xi (σ 1 , σ 2 ) t′ ≤ σ 1 ≡ t ≤ t′′ , 0 ≤ σ 2 ≡ s ≤ 1,
+(
+)
+Z
+Z ′′
+t
+
+D2 z zk (t′′ )z̄k (t′ ) exp −z̄(t′ )z(t′ ) + i
+
+=
+
+Z
+
+"
+
+L[z̄(t), z(t)]dt
+
+(35)
+
+t′
+
+#
+Z 1Z t′′
+D2 z zk (t′′ , 1)z̄k (t′ , 1) exp −z̄(t′ , 1)z(t′ , 1) + i
+Lcl dt ds ,
+
+26
+
+0
+
+t′
+
+where L(z, z̄) and Lcl (z̄, z) are deﬁned by Eq.25 and Eq.33, respectively. The
+measure on both sides of Eqs.34 and 35 is the same, i.e. it is concentrated on
+the boundary ∂S, and the imposed boundary conditions are free.
+It should be noted that the surface integral on the RHS of Eqs.34 and 35
+depends on the curvature F as well as on the connection A entering the covariant
+derivatives, which is reminiscent of the path dependence of the curvature F in
+the operator approach.
+A quite diﬀerent formulation of the holomorphic approach to the non-Abelian
+Stokes theorem has been proposed in [Lun97].
+Appendix For completness of our derivations, we will remind the reader a few
+standard facts being used above. First of all, we assume the following (non-quite
+standard, but convinient) deﬁnition
+|z i
+
+def
+
++
+
+1
+
+2
+
++
+
+eza +z̄a+ 2 |z| |0 i = eza ez̄a |0 i
+∞
+∞
+n
+X
+X
++
+zn
+(z n a+ )
+√ |n i ,
+|0 i =
+eza |0 i =
+n!
+n!
+
+=
+
+=
+
+k=0
+
+k=0
+
+where |0 i is the Fock vacuum, i.e. â |0 i = 0, and the Baker-Campbell-Hausdorﬀ
+formula has been applied in the ﬁrst line. We could also treat |z i as a coherent
+state for the Heisenberg group. We can easily calculate
+hz̄ | zi =
+
+∞
+X
+
+∞
+n
+X
+z̄ m z n
+(z̄z)
+√
+= ez̄z .
+hm | ni =
+n!
+m!
+n!
+m,n=0
+n=0
+
+The identity operator is of the form
+Z
+dz̄ dz
+.
+I=
+|z i hz̄ | e−z̄z
+2πi
+Really,
+I |z ′ i =
+=
+
+Z
+
+Z
+
+|z i h z̄| z ′ i e−z̄z
+
+dz̄ dz
+=
+2πi
+
+Z
+
+′
+
+|z i ez̄z −z̄z
+
+dz̄ dz
+2πi
+
+|z i δ(z ′ − z) dz = |z ′ i .
+
+All these formulas for a single pair of creation and annihilation operators obviously apply to a more general situation of dim R pairs. The matrix elements
+27
+
+are
+D
+
+z̄ Â z
+
+E
+
+=
+=
+=
+=
+
+D
+
+D
+
+D
+
+0e
+0e
+z̄
+
+P
+
+k
+
+P
+
+Aa
+
+a
+
+k
+
+X
+
+X
+
+z̄k âk
+
+Aa
+
+a
+
+a
+
+A
+
+a
+
+X
+
+a +
+Tkl
+âk âl e
+
+k,l
+
+X
+
+z̄k âk
+
+X
+
+X
+
+a
+Tkl
+z̄k zl e
+
+k,l
+
+a
+Tkl
+z̄k zl z
+
+k,l
+
+hz̄ |z̄Az| zi ,
+
+E
+
+P
+
+k
+
+P
+
+k
+
+zk â+
+k
+
+zk â+
+k
+
+0
+0
+
+E
+
+E
+
+where we have used the formula
+h
+i
++
++
+= zezâ .
+â, ezâ
+∓
+
+Now
+D
+
+
+ E
+1k 1 + iǫÂ 1l
+
+*
+
+= δkl + iǫ 0 âk
+= δkl + iǫ
+
+X
+
+X
+a
+
+a
+
+A
+
+X
+
++
+Tija â+
+i âj âl
+
+i,j
+
+0
+
++
+
+a
+Aa Tkl
+= (1 + iǫA)kl .
+
+a
+
+Also,
+h1k | z i = zk .
+2.2.3
+
+Measure
+
+The described theory possesses the following “topological” gauge symmetry:
+δz(x) = θ(x),
+
+δz̄(x) = θ̄(x),
+
+(36)
+
+where θ(x) and θ̄(x) are arbitrary except at the boundary ∂S where they vanish.
+The origin of the symmetry 36 will become clear when we convert the action 32
+into a line integral. Integrating by parts in Eq.32 and using the Abelian Stokes
+theorem we obtain
+Scl = i
+
+I
+
+z̄Di z dxi ,
+
+∂S
+
+or in a parametrized form
+Scl = i
+
+I
+
+z̄Dt z dt.
+
+∂S
+
+28
+
+To covariantly quantize the theory we shall introduce the BRS operator s. According to the form of the topological gauge symmetry 36, the operator s is
+easily deﬁned by
+s z = φ,
+
+s z̄ = χ̄,
+
+sφ = 0,
+
+sχ̄ = 0,
+
+sφ̄ = β̄,
+
+sχ = β,
+
+sβ̄ = 0,
+
+sβ = 0,
+
+where φ and χ̄ are ghost ﬁelds in the representation R, associated to θ and θ̄,
+respectively, φ̄ and χ are the corresponding antighosts, and β̄, β are Lagrange
+multipliers. All the ﬁelds possess a suitable Grassmann parity correlated with
+the parity of z̄ and z. Obviously s2 = 0, and we can gauge ﬁx the action in
+Eq.32 in a BRS-invariant manner by simply adding the following s-exact term:
+Z
+
+ 2
+′
+S = s
+φ̄△z ± z̄△χ d σ
+Z S
+
+β̄△z ± φ̄△φ ± χ̄△χ + z̄△β d2 σ.
+=
+S
+
+The upper (lower) sign stands for the ﬁelds z̄, z of bosonic (fermionic) statistics.
+
+Integration after the ghost ﬁelds yields some numerical factor and the quantum
+action
+S = Scl +
+
+Z
+
+S
+
+If necessary, one can insert
+
+
+β̄△z + z̄△β d2 σ.
+
+(37)
+
+√
+g into the second term, which is equivalent to
+
+change of variables. Thus the partition function is given by
+Z
+Z = eiS Dz̄ Dz Dβ̄ Dβ,
+with the boundary conditions: β̄|∂S = β|∂S = 0.
+One can observe that the job the ﬁelds β̄ and β are supposed to do consists
+in eliminating a redundant integration inside S. The gauge-ﬁxing condition
+following from Eq.37 imposes the following constraints
+△z = 0,
+
+△z̄ = 0.
+
+Since values of the ﬁelds z and z̄ are ﬁxed on the boundary ∂S = C, we deal
+with the two well-deﬁned 2-dimensional Dirichlet problems. The solutions of
+29
+
+the Dirichlet problems ﬁx values of z and z̄ inside S. Another, more singular
+gauge-ﬁxing, is proposed in [Bro92].
+The issue of the measure has been also discussed in [HU00].
+
+2.3
+
+Generalizations
+
+2.3.1
+
+Topology
+
+Up to now we have investigated the non-Abelian Stokes theorem for topologically trivial situation. The term topologically trivial situation means, in this
+context, that the loop we are integrating along in the non-Abelian Stokes theorem is unknotted in the sense of theory of knots [Rol76]. It appears that in
+contradistinction to the Abelian case, the non-Abelian one is qualitatively different. If the loop C is topologically non-trivial and the bounded surface S
+(∂S = C) is not simply connected, the parameter space given in the form of a
+unit square (as in the proof of the non-Abelian Stokes theorem) is not appropriate. The non-Abelian Stokes theorem presented in the original form applies
+only to a surface S homeomorphic to a disk (square). But still, of course,
+the standard (topologically trivial) version of the non-Abelian Stokes theorem
+makes sense locally. What means locally will appear clear in the due course.
+The non-Abelian Stokes theorem for knots (and also for links—multicomponent
+loops) has been formulated by Hirayama, Kanno, Ueno and Yamokoshi in 1998
+[HKUY98]. Interestingly, it follows from this new version of the non-Abelian
+Stokes theorem that the value of the line integral along C can be non-trivial
+(diﬀerent from 1 even for the ﬁeld strenght Fµν (x) vanishing everywhere on
+the surface S. It is an interesting result which could have some applications
+in physics. One can speculate that it could give rise to a new version of the
+Aharonov-Bohm eﬀect.
+To approach the non-Abelian Stokes theorem for knots we should recall a
+necessary portion of the standard lore of theory of knots. Since the ﬁrst task
+is to ﬁnd an oriented surface S whose boundary is C, we should construct the,
+so-called, Seifert surface, satisfying the above-mentioned condition by deﬁnition. It appears that the Seifert surface for any knot assumes a standard form
+30
+
+homeomorphic to a (ﬂat) disk with 2g (“thin”) strips attached. The number g is
+called the genus. The strips may, of course, be horribly twisted and intertwined
+[Rol76].
+Now we should decompose C and next S into pieces so that one can put
+from the pieces the slices of that are topologically trivial, and this way they
+are subject to the standard non-Abelian Stokes theorem. Such decomposition
+is shown in Fig.9. Explicitly, it reads
+C
+
+=
+=
+
+
+C10(g−1)+9 . . . C11 (C9 C7 C4 C1 ) C0
+!
+g−1
+Y
+C10k+9 C10k+7 C10k+4 C10k+1 C0 ,
+
+for
+
+k=0
+
+g ≥ 1,
+
+(38)
+
+and
+C = C0 ,
+
+for
+
+g = 0.
+
+Next
+C
+
+−1
+C10(g−1)+10
+h
+
+−1
+|
+}C
+= C10(g−1)+6 C10(g−1)+6 {z
+10(g−1)+9 C10(g−1)+8 C10(g−1)+3
+|
+{z
+}
+S4g
+
+−1 −1
+C12 C11 C10
+. . . C13 C13
+
+C3−1
+
+=
+
+g−1
+Y
+
+|
+
+|
+
+{z
+S5
+
+C3 C8−1 C7 C5
+{z
+S3
+
+i h
+
+−1
+C9 C8
+· C6 C6−1 C10
+|
+}
+{z
+}
+S4
+
+
+
+}
+
+C6−1
+
+|
+
+C6 C5−1 C4 C2
+{z
+S2
+
+i
+C3 C3−1 C2−1 C1 C0
+} |
+{z
+}
+
+
+
+S1
+
+
+−1
+−1
+C10k+10
+C10k+6 C10k+6
+C10k+9 C10k+8
+{z
+}
+|
+k=0
+S4k+4
+
+−1
+C10k+3
+
+|
+
+−1
+C10k+3 C10k+8
+C10k+7 C10k+5
+
+{z
+
+S4k+3
+
+
+
+}
+
+
+−1
+−1
+C10k+6
+C10k+6 C10k+5
+C10k+4 C10k+2
+|
+{z
+}
+S4k+2
+
+−1
+−1
+C10k+2
+C10k+1 C10k
+C10k+3 C10k+3
+
+=
+
+g−1
+Y
+
+|
+
+{z
+
+S4k+1
+
+
+
+}
+
+−1
+−1
+C10k+6 S4k+4 C10k+3
+S4k+3 C10k+6
+S4k+2 C10k+3 S4k+1 ,
+
+k=0
+
+31
+
+C 10(g-1)+9
+
+C 10(g-1)+6
+
+C 11
+
+C 13
+
+C
+
+C 10
+
+S4g
+
+C9
+C6
+C4
+
+C2
+
+S4
+
+C1
+S2
+
+S1
+C7
+C5
+
+S3
+C4
+S2
+C9
+
+S4
+C8
+
+C7
+
+S3
+
+O
+
+S1
+
+C3
+
+C1
+
+C0
+
+Figure 9: Decomposition of the knotted loop C.
+
+32
+
+where C10k+10 |k=g−1 ≡ C10g = 1.
+Further details are described in the original paper [HKUY98], and continued
+in [BD01].
+2.3.2
+
+Higher-dimensional forms
+
+The theorem being considered up to now is a very particular, though seemingly
+the most important, non-Abelian version of the Stokes theorem. It connects a
+non-Abelian diﬀerential one-form in dimension 1 and a two-form in dimension
+2. The forms are of a very particular shape, namely, the connection 1-form and
+the curvature 2-form. Now, we would like to discuss possible generalizations to
+arbitrary, higher-dimensional diﬀerential forms in arbitrary dimensions. Since
+there may be a lot of variants of such generalizations depending on a particular
+mathematical and/or physical context, we will start from giving a general recipe.
+Our idea is very simple. First of all, working in the framework of the pathintegral formalism, we should construct a topological ﬁeld theory of auxiliary
+topological ﬁelds on ∂N , the boundary of the d-dimensional submanifold N , in
+(an) external (gauge) ﬁeld(s) we are interested in. Next, we should quantize
+the theory, i.e. build the partition function in the form of a path-integral, where
+auxiliary topological ﬁelds are properly integrated out. Thus, the LHS of the
+non-Abelian Stokes theorem has been constructed. Applying the Abelian Stokes
+theorem to the (eﬀective) action (in the exponent of the path-integral integrand)
+we obtain the “RHS” of the non-Abelian Stokes theorem. If we also wish to
+extend the functional measure to the whole N we should additionaly quantize
+the theory on the RHS to eliminate the redundant functional integration inside
+N.
+The example candidate for the topological ﬁeld theory deﬁning the LHS of
+the non-Abelian Stokes theorem could be given by the (classical) action
+I
+
+1
+STop =
+z̄dA ζ + dA ζ̄z + z̄Bz ,
+2 ∂N
+
+(39)
+
+where z and z̄ are zero-forms, ζ and ζ̄ are (d − 2)-forms (all the forms are in an
+
+33
+
+irreducible reprezentation R(G)), dA is the exterior covariant derivative
+dA ζ̄ ≡ dζ̄ − AT ζ̄.
+
+dA ζ ≡ dζ + Aζ,
+
+The non-Abelian B-ﬁeld naturally appears in the context of (topological) gauge
+theory (see, Eq.45). Now, the Abelian Stokes theorem should do.
+Generalization of the non-Abelian Stokes theorem to higher-degree forms
+in the operator language seems more diﬃcult and practically has not been attempted (see, however [Men83] for an introductory discussion of this issue).
+
+3
+
+Applications
+
+The number of applications of the non-Abelian Stokes theorem is not so large
+as in the case of the Abelian Stokes theorem but neverthelles it is the main
+motivation to formulate the non-Abelian Stokes theorem at all. It is interesting
+to note that in contradistinction to the Abelian Stokes theorem, which formulation is “homogenous” (unique), diﬀerent formulations of the non-Abelian
+Stokes theorem are usefull for particular purposes/applications. From a purely
+techincal point of view, one can classify applications of the non-Abelian Stokes
+theorem as exact and approximate. The term exact applications means that
+one can perform successfully an “exact calculus” to obtain an interesting result,
+whereas the term approximate application means that a more or less controllable
+approximation (typically, perturbative) is involved in the calculus. Since exact
+applications seem to be more convincing and more illustrative for the subject
+we will basically conﬁne ourselves only to presentation few of them.
+Since the non-Abelian Stokes theorem applies to non-Abelian gauge theories,
+and non-Abelian gauge theories are non-linear, it is not so strange that exact
+applications are scarce. In fact they are limited to low-dimensional cases and/or
+topological models, which are usually exactly solvable. Our ﬁrst case considered
+is pure, two-dimensional ordinary (almost topological) Yang-Mills gauge theory.
+But a rich source of applications of the non-Abelian Stokes theorem is coming
+from topological ﬁeld theory of Chern-Simons type. Path-integral procedure
+
+34
+
+gives the possibility of obtaining skein relations for knot and link polynomial
+invariants. In particular, it appears that only the path-integral version of the
+non-Abelian Stokes theorem permits us to nonperturbatively and covariantly
+generalize the method of obtaining topological invariants [B90].
+As a by-product of our approach we have computed the parallel-transport
+operator U in the holomorphic path-integral representation. In this way, we
+have solved the problem of saturation of Lie-algebra indices in the generators
+T a . This issue appears, for example, in the context of equation of motion
+for Chern-Simons theory in the presence of Wilson lines (an interesting connection with the Borel-Weil-Bott theorem and quantum groups has been also
+suggested). Our approach enables us to write those equations in terms of z̄ and
+z purely classically. Incidentally, in the presence of Chern-Simons interactions
+the auxiliary ﬁelds z̄ and z acquire fractional statistics, which could be detected
+by braiding. To determine the braiding matrix one should, in turn, ﬁnd the
+so-called monodromy matrix, e.g. making use of non-Abelian Stokes theorem.
+
+3.1
+
+Two-dimensional Yang-Mills theory
+
+There is a huge literature on the subject of the two-dimensional Yang-Mills
+theory approaching it from diﬀerent points of view. One of the latest papers is
+[AK00], where a list of references to earlier papers is given. Two-dimensional
+Yang-Mills theory is a speciﬁc theory. From the dynamical point of view it is
+almost trivial—there are no local degrees of freedom, as a standard canonical
+analysis indicates. In fact it is “semi-topological” ﬁeld theory, i.e. roughly it
+only describes combinatorial/topological phenomena and surface areas.
+There are lot of important and interesting aspects in two-dimensional YangMills theory. One of them is the issue of determination of “physical” observables—
+Wilson loops (8). Calculation of the Wilson loops WR (C) in two-dimensional
+Yang-Mills theory can be facilitated by the use of the non-Abelian Stokes theorem.
+A nice feature of (Euclidean) two-dimensional Yang-Mills gauge theory de-
+
+35
+
+ﬁned by the action
+1
+S2dYM (A) =
+4
+
+Z
+
+√
+a
+FAB
+(A)F a AB (A) g d2 x,
+
+A, B = 1, 2,
+
+(40)
+
+M
+
+is the possibility to recast the action, and next, and more importantly, the whole
+partition function to the form
+Z=
+
+Z
+
+DF e−S2dYM (F ) ,
+
+(41)
+
+where now F is an independent ﬁeld, and the action S2dYM is of the same form
+as the original Eq.40 but this time without A dependence.
+Let us now consider “physical” observables, i.e. Wilson loops. Confronting
+the partition function 41 with the form of the Wilson loop transformed by the
+non-Abelian Stokes theorem to a surface expression 14 we can see that a kind of
+a Gaussian functional integral emerges. For an Abelian theory, we would exactly
+obtain an easy Gaussian functional integral, but in a non-Abelian case we should
+be more careful because F is a path-dependent object. The fact that F is pathdependent can be ignored in the case of a single loop due to the commutativity
+of the inﬁnitesimal surface integrals (see below). Since, accordingly to the nonAbelian Stokes theorem
+ Z
+
+√ 2
+WR (C) = TrR P exp i F g d x ,
+S
+
+where F = F 12 . For the expectation value
+Z
+hWR (C)i = Z −1 DF exp (−S2dYM )WR (C),
+we obtain ([Bro90])
+
+ Z
+
+
+Z
+Z
+1
+√
+√
+hWR (C)i ∝
+DF exp −
+F a F a g d2 x TrR P exp i F g d2 x
+2 M
+! S
+Z Y
+Z
+1
+√
+dF (x) exp −
+=
+F a F a g d2 x
+2 M\S
+x∈M\S
+
+
+ Z 
+Z Y
+1 a a
+a a √
+2
+− F F + iF T
+gd x
+dF (x) exp i
+·TrR P
+2
+S
+x∈S
+
+
+Z
+√ 2
+1 a a
+gd x .
+∝ TrR exp − T T
+2
+S
+36
+
+Thus, ﬁnally
+
+
+
+
+1
+1
+hWR (C)i = TrR exp − C2 (R)S = dim R exp − C2 (R)S ,
+2
+2
+where
+S=
+
+Z
+
+√ 2
+g d x,
+
+S
+
+and
+T a T a = C2 (R),
+
+TrR I = dim R.
+
+In the case of n non-overlapping regions {Si }, i = 1, . . . , n, Ci = ∂Si , Si ∩Sj = ∅
+for i 6= j, and n irreducible representations Ri of the group G with the generators
+Ti , we immediately obtain, literally repeating the last derivation, the formula
+for the expectation value of the product of the n Wilson loops
++
+*n
+
+
+n
+Y
+Y
+1
+dim Ri exp − C2 (Ri )Si .
+WRi (Ci ) =
+2
+i=1
+i=1
+The case of the overlapping regions {Si } is a bit more complicated [Bro90].
+First of all, one has to decompose the union of all regions {Si }, ∂Si = Ci into
+a disjoint union of connected, i.e. not intersected by the loops, regions {Sα }.
+
+Each loop Ci is next deformed into an equivalent loop Ci′ , which is a product
+of “big” (not inﬁnitesimal) lassos independently (a lasso per a region) covering
+each connected region Sαi , Sαi = Sα ∩ Si (Sαi ∈ {Sα }). The lassos coming
+
+from the diﬀerent loops Ci′ but covering the same connected region Sα should
+
+necessarily be arranged in such a way to enter the region Sα at the same base
+point Oα . Consequently, the connected region Sα , Sα ⊂ Si1 ∩. . .∩Sik , i ≤ k ≤ n,
+can be covered with the k identical copies of the net of “small” (inﬁnitesimal)
+lassos. Every Gaussian functional integration with respect to the inﬁnitesimal
+area δS enclosed by an inﬁnitesimal lasso can be easily performed yielding
+
+
+1
+(42)
+exp − δS Tα2 ,
+2
+where
+Tα =
+
+X
+i∈α
+
+Ti ,
+
+Ti = I ⊗ . . . ⊗ Ti ⊗ . . . ⊗ I.
+
+37
+
+Integration with respect to the consecutive inﬁnitesimal areas gives the terms of
+the form 42. Since Tα is a generator of g in a product representation Rα , Rα =
+Ri1 ⊗ . . . ⊗ Rik , Tα2 is a Casimir operator. Accordingly, 42 commutes with the
+product of the parallel-transport operators acting in the product representation
+Rα . Since the products in the pairs connect every inﬁnitesimal area δS with
+the base point Oα , they cancel each other. This fact means that the integral
+with respect to the whole region Sα is given only by the inﬁnite product of the
+terms 42 and reads
+
+
+
+1
+Mα = exp − Sα Tα2 .
+(43)
+2
+The full expectation value of the n loops {Ci } consists of the trace of a product of
+Mα -blocks 43 joined with the parallel-transport operators, which are remnants
+of the primary decomposition of the loops. These joining curves enclose zero
+areas, and can be deformed into points (without destroying Mα -blocks) giving
+some “linking” operators Lα . An operator Lα is of a very simple form, namely
+it is a product of the Kronecker deltas, which contract indices belonging to
+the same representation but to diﬀerent M ’s. Thus, L causes that the matrix
+multiplication of M ’s is performed in a prescribed order in each representation
+sector independently. In other words, M mixes, with some weights, indices
+of diﬀerent representations (braiding), whereas L sets the order of the matrix
+multiplications in a representation sector. M depends on the metric (area of S)
+and group-theoretic quantities, whilts the concrete form of L depends on the
+topology of the overlaps. Thus, the expectation value of the product of the n
+Wilson loops is ﬁnally given by
+* n
++
+Y
+Y
+WRi (Ci ) =
+Lα Mα .
+α
+
+i=1
+
+This analysis is a bit simpliﬁed and shortened but gives the ﬂavor of the power
+of the non-Abelian Stokes theorem in practical instances.
+
+3.2
+
+Three-dimensional topological quantum field theory
+
+Topological quantum ﬁeld theory has recently become a fascinating and fashionable subject in mathematical physics. At present, main applications of topo38
+
+logical ﬁeld theory are in mathematics (topology of low-dimensional manifolds)
+rather than in physics. Its application to the issue of classiﬁcation of knots
+and links is one of the most interesting. To approach this problem one usually tries to somehow encode the topology of a knot/link . As was ﬁrst noted
+by Witten [Wit89], the problem can be attacked by means of standard theoretical physics techniques of quantum ﬁeld theory. In particular, using threedimensional Chern-Simons gauge theory one can derive not only all the wellknown polynomial invariants of knots and links but many of their generalizations as well. Most authors working in the topological ﬁeld theory description of
+polynomial invariants follow Witten’s original approach, which relies heavily on
+the underlying conformal-ﬁeld-theory structure. There is also a genuinely threedimensional covariant approach advocated in its perturbative version in [Smo89]
+and [CGM90] using the non-Abelian Stokes theorem in its operator formulation.
+We shall sketch an application of the non-Abelian Stokes theorem to a genuinely
+three-dimensional, non-perturbative, covariant path-integral approach to polynomial invariants of knots and links in the framework of (topological) quantum
+Chern-Simons gauge ﬁeld theory.
+To begin with, we introduce the classical topological Chern-Simons action
+on the three-dimensional sphere S 3
+
+
+Z
+k
+2
+SCS =
+Tr A ∧ dA + A ∧ A ∧ A
+4π S 3
+3
+
+
+Z
+2
+k
+3
+ijk
+d x ε Tr Ai ∂j Ak + Ai Aj Ak ,
+=
+4π S 3
+3
+
+(44)
+
+where k ∈ Z± . The use of Eq.44 is not obligatory. One could as well choose the
+action of the so-called BF -theory
+Z
+k
+SBF =
+d3 x εijk Tr(Bi Fjk ),
+4π S 3
+
+(45)
+
+where Bi = Bia (x)T a is an auxiliary gauge ﬁeld, and now k ∈ R± .
+To encode the topology of a link L = {Ci } into a path integral we introduce
+an auxiliary one-dimensional topological ﬁeld theory (topological quantum mechanics) in an external gauge ﬁeld A, living on the corresponding loop Ci . The
+39
+
+classical action of this theory is chosen in the form (see, Eq.25)
+I
+dt z̄i Dt zi ,
+SCi (A) = i
+
+(46)
+
+Ci
+
+where the multiplet of scalar ﬁelds z̄i , zi transforms in a irreducible representation Ri . The partition function corresponding to 46 has the following standard
+form
+Zi (A) =
+
+Z
+
+D2 zi exp [iSCi (A)] .
+
+It is obvious that the observables SCi (A) are akin to the Wilson loops.
+We deﬁne the topological invariant of the link L as the (normalized) expectation value
+*
+
+Y
+
++
+
+Zi (A)
+
+i
+
+≡
+
+Z
+
+−1 Z
+Y
+Zi (A),
+dµ exp(iS)
+dµ exp(iS)
+
+(47)
+
+i
+
+where S consists of SCS plus quantum terms, and the measure should also contain the auxiliary ﬁelds. We can calculate 47 recursively, using the so-called
+skein relations. Thus, our present task reduces to the derivation of the corresponding skein relation. To this end, we consider a pair of loops, say C1 and
+C2 , where a part of C1 , forming a small loop ℓ (ℓ = ∂N ), is wrapped round
+C2 . In other words, C2 pierces N at a point P .
+
+Such an arrangement can be
+
+interpreted as a preliminary step towards ﬁnding the corresponding monodromy
+matrix M. Having given the loop ℓ we can utilize the non-Abelian Stokes theorem (actually the Abelian Stokes theorem for 46) in its holomorphic version,
+obtaining Eq.32. In general position, N and C2 can intersect in a ﬁnite number
+of points, and the contribution to the path-integral coming from these points
+can be explicitly calculated. We replace the curvature in 32 by the functional
+derivative operator
+Fija (x) −→
+
+δ
+4π
+εijk a
+.
+ik
+δAk (x)
+
+This substitution yields an equivalent expression provided the order of terms in
+47 is such that the functional derivative can act on SCS producing F . Using
+formal translational invariance of the product measure DA, and functionally
+integrating by parts in 47 with respect to A, we obtain, for each intersection
+40
+
+✻
+
+✻
+
+N
+
+C1
+
+C2
+
+Figure 10: C1 and C2 , where a part of C1 , forming a small loop ℓ (ℓ = ∂N ), is
+wrapped round C2 .
+point P , the monodromy operator
+
+
+4π
+(z̄1 T1a z1 )(z̄2 T2a z2 )(P ) .
+M = exp
+ik
+
+(48)
+
+To calculate the matrix elements of 48 one utilizes the following scalar product
+Z
+1
+(f, g) =
+f g exp(z̄z)dz̄dz.
+2πi
+This kind of the scalar product is implicit in our derivations of the path integral.
+Expanding 48 in a power series, multiplying with respect to this scalar product,
+and re-summing, we get the monodromy matrix
+
+
+4π a
+a
+T ⊗ T2 .
+M = (z̄1 z̄2 , M z2 z1 ) = exp
+ik 1
+The square root of the monodromy matrix gives rise to the, so-called, braiding
+matrix B resposible for a proper form of skein relations, yielding knot/link
+invariants.
+
+3.3
+
+Other applications
+
+We could continue the idea of the previous section and try to generalize it to
+higher-dimensional (topological) theories. To this end we should use a generalization of the non-Abelian Stokes theorem to non-Abelian forms of higher
+41
+
+degree, e.g. following the approach proposed in Eq.39, and yielding the resluts
+obtained in [Bro94].
+Quite a diﬀerent story is the possibility to apply the non-Abelian Stokes
+theorem (in the coherent-state version) to computations in QCD (QCD string,
+area-low, etc.) [AE97], [DP95], [Sim92] and gravity [DP01]. Such calculations are usually posssible only perturbatively, since their results as not rigorously controlable are uncertain. Concerning coordinate-gauge approach and
+ﬁeld strength and dual formalism, extended lattice formulation for spin systems
+has been proposed in [BH84-1], and for gauge theories in [BH84-2].
+
+4
+
+Summary
+
+In this short review we have addressed main issues related to the non-Abelian
+Stokes theorem. The two principal approaches (operator and path-integral) to
+the non-Abelian Stokes theorem have been formulated in their simplest possible
+forms. A generalization for a knotted loop as well as a suggestion concerning
+higher-degree forms have been also presented. Only non-perturbative applications of the non-Abelian Stokes theorem (to low-dimensional gauge theories)
+have been described. The review is not comprehensive and is rather directed
+towards topological aspects reﬂecting author’s interests.
+Acknowledgments
+
+The author is grateful to Professors M. Blau and P.
+
+Kosiński for interesting discussions at very early stages of the development of
+some of these ideas. The author would also like to thank Professors D. Diakonov, M. B. Halpern and F. Mansouri for their comments. The work has
+been supported by the grant of the University of Lódź.
+
+References
+[AE97]
+
+D. V. Antonov and D. Ebert, “Curvature expansion for the gluodynamics string including perturbative gluonic contributions”, Mod.
+Phys. Lett. A 12 (1997) 2047.
+
+42
+
+[Are80]
+
+I. Ya. Aref’eva, “Non-Abelian Stokes formula”, Theor. Math. Phys.
+43 (1980) 353 (translated from Teor. Mat. Fiz. 43 (1980) 111).
+
+[AK00]
+
+J. M. Aroca, and Yu. Kubyshin, “Calculation of Wilson loops in
+two-dimensional Yang-Mills theories”, Ann Phys. 283 (2000) 11.
+
+[Bat82]
+
+G. Batrouni, “Gauge invariant mean plaquette method for lattice
+gauge theories”, Nucl. Phys. B 208 (1982) 12, 467.
+
+[BH84-1] G. Batrouni, M. B. Halpern, “Link formulation of lattice spin systems”, Phys. Rev. D 30 (1984) 1775.
+[BH84-2] G. Batrouni, M. B. Halpern, “String, corner, and plaquette formulation of ﬁnite lattice gauge theory”, Phys. Rev. D 30 (1984) 1782.
+[Bra80]
+
+N. E. Bralić, “Exact computation of loop averages in two dimensional Yang-Mills theory”, Phys. Rev. D 22 (1980) 3090 (Ph.D thesis,
+Chicago University, 44p. 1980).
+
+[Bro90]
+
+B. Broda, “Two-dimensional topological Yang-Mills theory”, Phys.
+Lett. B 244 (1990) 444.
+
+[B90]
+
+B. Broda, “A three-dimensional covariant approach to monodromy
+(skein relations) in Chern-Simons theory”, Mod. Phys. Lett. A 5
+(1990) 2747.
+
+[Bro92]
+
+B. Broda, “A topological-ﬁeld-theory approach to the non-Abelian
+Stokes theorem”, J. Math. Phys. 33 (1992) 1511.
+
+[Bro94]
+
+B. Broda, “Quantum theory of non-Abelian diﬀerential forms and
+link polynomials”, Mod. Phys. Lett. A 9 (1994) 609.
+
+[B94]
+
+B. Broda, “A path-integral approach to polynomial invariants of
+links”, J. Math. Phys. 35 (1994) 5314.
+
+[Bro95]
+
+B. Broda, “Non-Abelian Stokes theorem”, Advanced electromagnetism: Foundations, theory, applications, eds. T. W. Barrett, and
+D. M. Grimes, World Sci. Publ. Co., 1995, 10p.
+43
+
+[BD01]
+
+B. Broda, G. Duniec, “Practical non-Abelian Stokes theorem for
+topologically nontrivial Wilson loops”, e-print: math-ph/0109028.
+
+[CCR99]
+
+A. S. Cattaneo, P. Cotta-Ramusino, and M. Rinaldi, “Loop and path
+spaces and four-dimensional BF theories: Connections, holonomies
+and observables”, Commun. Math. Phys. 204 (1999) 493.
+
+[CF91]
+
+R. V. Chacon, A. T. Fomenko, “Stokes’ formula for Lie algebra valued connection and curvature forms”, Adv. in Math. 88 (1991) 258.
+
+[Cor96]
+
+J. M. Cornwall, “The baryon Wilson loop area law in QCD”, Phys.
+Rev. D 54 (1996) 6527.
+
+[CGMM90] P. Cotta-Ramusino, E. Guadagnini, M. Martellini and M. Mintchev,
+“Quantum ﬁeld theory and link invariants”, Nucl. Phys. B 330
+(1990) 557 .
+[DP89]
+
+D. I. Diakonov, and V. Yu. Petrov, “A formula for the Wilson loop”,
+Phys. Lett. B 224 (1989) 131.
+
+[DP95]
+
+D. I. Diakonov, and V. Yu. Petrov, “How to introduce monopolequark interactions in a gauge-invariant way?” Nonperturbative approaches to QCD, Pro. of Intern. Workshop at ECT, Trento, 1995.
+
+[DP01]
+
+D. I. Diakonov, and V. Yu. Petrov, “Non-Abelian Stokes Theorems
+in Yang-Mills and Gravity Theories”, J. Exp. Theor. Phys. 92 (2001)
+905, NORDITA and St.Petersburg NPI, e-print: hep-th/0008035.
+
+[Dio83]
+
+L. Diósi, “Comments on the non-Abelian Stokes theorem”, Phys.
+Rev. D 27 (1983) 2552.
+
+[FS80]
+
+L. D. Faddeev, and A. A. Slavnov, “Gauge ﬁelds. Introduction to
+Quantum Theory”, Chapter N-2, Benjamin, New York, 1980
+
+[FGK81]
+
+P. M. Fishbane, S. Gasiorowicz, and P. Kaus, “Stokes’ theorems for
+nonabelian ﬁelds”, Phys. Rev. D 24 (1981) 2324.
+
+44
+
+[Gro85]
+
+L. Gross, “A Poincaré lemma for connection forms”, J. Funct. Anal.
+63 (1985) 1.
+
+[Hal79]
+
+M. B. Halpern, “Field-strength and dual variable formulations of
+gauge theory”, Phys. Rev. D 19 (1979) 517.
+
+[HKUY98] M. Hirayama, M. Kanno, M. Ueno, and H. Yamakoshi, “NonAbelian Stokes theorem for loop variables associated with nontrivial
+loops”, Prog. Theor. Phys. 100 (1998) 817.
+[HM98]
+
+M. Hirayama, and S. Matsubara, “Stokes theorem for loop variables
+of non-Abelian gauge ﬁeld”, Prog. Theor. Phys. 99 (1998) 691.
+
+[HU00]
+
+M. Hirayama, and M. Ueno, “Nonabelian Stokes theorem for Wilson
+loops associated with general gauge groups”, Prog. Theor. Phys. 103
+(2000) 151.
+
+[Iya81]
+
+M. Iyanaga, “Generalization of Stokes theorem and pure gauge
+ﬁelds”, J. Math. Phys. 22 (1981) 2713.
+
+[KMR99] R. L. Karp, F. Mansouri and J. S. Rno, “Product integral formalism
+and non-Abelian Stokes theorem”, J. Math. Phys. 40 (1999) 6033.
+[KMR00] R. L. Karp, F. Mansouri and J. S. Rno, “Product integral representations of Wilson lines and Wilson loops, and non-Abelian Stokes
+theorem”, Turk. J. Phys. 24 (2000) 365.
+[Kon98]
+
+K.-I. Kondo, “Abelian magnetic monopole dominance in quark conﬁnement”, Phys. Rev. D 58 (1998) 105016.
+
+[Lun97]
+
+F. A. Lunev, “Pure bosonic worldline path integral representation
+for fermionic determinants, non-Abelian Stokes theorem, and quasiclassical approximation in QCD”, Nucl. Phys. B 494 (1997) 433.
+
+[Men83]
+
+M. B. Menski, “The group of paths: Measurements, ﬁelds, particles”,
+Chapter N-6–7, Nauka, Moscow, 1983 (in Russian).
+
+45
+
+[Rol76]
+
+D. Rolfsen, “Knots and links”, Publish or Perish, Inc., Wilmington,
+1976.
+
+[Sch27]
+
+L. Schlesinger, “Parallelverschiebung und Krummungstensor”, Math.
+Ann 99 (1927) 413.
+
+[SS98]
+
+V. I. Shevchenko, Yu. A. Simonov, “Generalized coordinate gauge,
+nonabelian Stokes theorem and dual QCD Lagrangian,” Phys. Lett.
+B 437 (1998) 146.
+
+[Sim89]
+
+Y. A. Simonov, “Topological charges and convergence of the cluster
+expansion”, Sov. J. Nucl. Phys. 50 (1989) 310.
+
+[Sim92]
+
+Yu. A. Simonov, “Cluster expansion, non-Abelian Stokes theorem
+and magnetic monopoles”, Preprint ITEP 88-110, 1988, 28p.
+
+[Smo89]
+
+L. Smolin, “Invariants of links and critical points of the ChernSimons path integrals”, Mod. Phys. Lett. A 4 (1989) 1091.
+
+[Spi65]
+
+M. Spivak, “Calculus on Manifolds. A Modern Approach to Classical
+Theorems of Advanced Calculus”, Benjamin, New York, 1965.
+
+[Sto89]
+
+M. Stone, “Supersymmetry and the quantum mechanics of spin”,
+Nucl. Phys. B 314 (1989) 557.
+
+[Szc87]
+
+J. Szcze֒ sny, “The nonabelian Stokes theorem and Bianchi identities”,
+Acta Phys. Polon. B 18 (1987) 707.
+
+[Wit89]
+
+E. Witten, “Quantum ﬁeld theory and the Jones polynomial”, Commun. Math. Phys. 121 (1989) 351.
+
+[ZFG90]
+
+W.-M. Zhang, D. H. Feng, and R. Gilmore, “Coherent states: Theory
+and some applications”, Rev. Mod. Phys. 62 (1990) 867.
+
+46
+
+
