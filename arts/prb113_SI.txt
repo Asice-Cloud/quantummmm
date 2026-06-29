@@ -1,0 +1,605 @@
+Supplementary information for Adiabatic nonabelian braiding of imperfect Majoranas
+
+                    Maximilian Nitsch, Viktor Svensson, William Samuelson, Konstantin Nestmann,
+                       Jeroen Danon, Karsten Flensberg, Rubén Seoane Souto, Martin Leijnse
+                                                           (Dated: March 26, 2026)
+
+
+
+    I. REALIZATION OF THE BRAIDING                                      chain, this parameter directly connects to the MBS po-
+                                                                                                          2
+  PROTOCOL VIA MINIMAL KITAEV CHAINS                                    larization M via M = 1−ζ      1+ζ 2 . In the case of minimal
+                                                                        Kitaev chains, this introduces a dependence of ζ on the
+  Here we describe a possible realization of the gen-                   energy detuning ϵk . However, Ref. [15] shows that the
+eralized braiding protocol based on minimal Kitaev                      dependence is minimal and a simultaneous gate tuning
+chains [1–7]. A single such system consists of two spin-                of ξl , tcot , ∆car enables a tuning of the coupling ϵk while
+polarized QDs (l = 1, 2) holding a single fermionic state               keeping the MBS polarization, and therefore ζ, approxi-
+each, that couple via a narrow superconductor                           mately constant. Therefore, in the analysis in the main
+                                                                        paper, we assume that ζ is a constant system parameter
+              ξl nl + tcot c†1 c2 + ∆car c†1 c†2 + H.c..
+          X
+     H=                                                  (S1)           independent of the variables ϵk .
+          l=1,2                                                            The transformation in Eq. (S4) changes the system
+                                                                        Hamiltonian as
+Here, ξl are the single-particle energies of the QDs. tcot
+and ∆car are the elastic co-tunneling and crossed An-                                               H → H + H̃,                              (S5)
+dreev reflection amplitudes, which are tunable using elec-
+trostatic gates [6, 8, 9]. For tcot = ∆car , ξ1 , ξ2 = 0 this           which rescales the tunnel coupling t12 , t13 in H and intro-
+system has a degenerate ground state sector described                   duces contributions via H̃ that stem from the fermionic
+by two MBSs γ, γ̃ each localized on one QD, see Ref. [3].               character of the coupled operators
+Deviations from tcot = ∆car lead to a splitting of the                                         1                           1
+                                                                         H = ϵ1 iγ1 γ̃1 +             t12 iγ1 γ2 +                t13 iγ1 γ3 ,
+ground state expressed via a coupling ϵ of the two MBSs                                   1+ζ       2                 1 + ζ2
+                                                                                                                                               (S6)
+                                                                                ζ2                        ζ2
+               Hc = ϵ iγγ̃,      ϵ = ∆car − tcot .              (S2)     H̃ =        t12 iγ̃ 1 γ̃ 2 +           t 13 iγ̃ 1 γ̃ 3 .
+                                                                              1 + ζ2                   1 + ζ2
+Next, we build a braiding setup by connecting three min-                One of the main effects of H̃ is to lift the ground state
+imal Kitaev chains, as shown in Fig. 1(a) of the main pa-               degeneracy δE ̸= 0 [15, 17]. If the protocol is adiabatic
+per. Each system hosts a pair of MBSs. The inner QDs                    compared to δE, its outcome is trivial: the system re-
+of the three systems are connected via tunnel couplings                 mains in its original state. For a protocol that is dia-
+            3                                                           batic with respect to δE, the splitting instead leads to a
+                                                                        dynamical phase, which makes the result dependent on
+            X
+      H=          ϵk iγk γ̃k + t12 iγ1 γ2 + t13 iγ1 γ3 ,        (S3)
+            k=1                                                         the exact strengths and durations of the time-dependent
+                                                                        couplings.
+where fluxes Φ12 , Φ13 through the superconducting loops                   The ground state degeneracy can be recovered via the
+have been used to make the tunnel couplings t12 , t13 real-             following correction term
+valued.
+   The braiding protocol is defined by the Hamilto-                                        Hcorr = Λ iγ2 γ̃2 + Λ iγ3 γ̃3 ,                   (S7)
+nian in Eq. (S3) where the time-dependent parameters                    which uses the two remaining MBS overlaps in the left
+ϵ1 (t), t12 (t), t13 (t) implement the coupling-based braiding          and right MBS pairs, which for a minimal Kitaev chain
+protocol [10–16] while we keep ϵ2 , ϵ3 = 0.                             can be tuned via tcot and ∆car . In general, Λ(t) is a time-
+   Next, we generalize the system by considering the pos-               dependent parameter that has to be tuned along with the
+sibility of spatially overlapping MBSs, meaning that the                protocol. Choosing the same overlap for both systems is
+’outer’ MBSs γ̃k are partially located on the inner QD                  a possible, but not a necessary, choice that simplifies the
+together with γk . This leads to a change in the tunnel                 analytical solution. This yields the full Hamiltonian.
+coupling between the inner QDs, which is described by
+the transformation                                                                           Htot = H + H̃ + Hcorr .                         (S8)
+                   1              ζ                                     The energy splitting ∆ between the degenerate ground
+            γk → p      γk + i p        γ̃k ,                   (S4)
+                  1+ζ 2          1 + ζ2                                 state sector and the excited states is given by
+                                                                                         s
+that interpolates between perfectly localized MBSs (ζ =                                             1
+                                                                                    ∆ = ϵ21 +              (t2 + t213 ), (S9)
+0) and trivial states (ζ = 1). For the two-site Kitaev                                          (1 + ζ 2 )2 12
+                                                                                                                                2
+
+which we use to define the dimensionless parameters                 where we defined
+                                          1                                        λ̃ = λ sin θ + η cos(θ) sin(θ),
+         ρ1 = ϵ1 /∆,    ρ(k=2,3) =             t1k /∆,                                                                      (S19)
+                                        1 + ζ2              (S10)
+                                2
+                                                                                   η̃ = η sin2 θ − λ cos θ.
+          λ = Λ/∆,      η=ζ .
+                                                                    Next, we demand that this new basis decouples the MBS
+We now arrive at the dimensionless Hamiltonian in
+                                                                    pair γ1D , γ∆
+                                                                                D
+                                                                                  from the pair γηD , γθ′D , which means that the
+Eq. (1) of the main paper
+                                                                    terms proportional to iγ∆  γη and iγ1D γθ′D have to be zero
+                                                                                             D D
+
+   h = Htot /∆ = iγ1 γ∆ + η (ρ2 iγ̃1 γ̃2 + ρ3 iγ̃1 γ̃3 )
+                                                            (S11)                                             !
+                               + λ (iγ2 γ̃2 + iγ3 γ̃3 ).                                µβ + λ̃αµ − ν̃αν = 0,
+                                                                                                                            (S20)
+                                                                                                              !
+                                                                                      −αν + λ̃βν + ν̃βµ = 0.
+   II.    DIAGONALIZING THE HAMILTONIAN
+                                                                    This can be satisfied by introducing two angles θα , θµ
+                                                                    defined as
+  In the following we will to through the diagonalization                                                       !
+of Eq. (S11), which is the first step needed in the an-                                1             2λ̃η̃
+alytical solution for the result of the adiabatic braiding                     θµ = − arctan                     ,
+                                                                                       2         1 + λ̃2 − η̃ 2     (S21)
+protocol. We start by introducing γ∆ which is defined by                                                      
+                                                                               θα = − arctan −η̃ tan θµ + λ̃ ,
+   γ∆ = cos θ γ̃1 + sin θ cos ϕ γ2 + sin θ sin ϕ γ3 ,       (S12)
+expressed in via the angles θ, ϕ defined as                         which yield the previously introduced basis components
+                       ρ1 = cos(θ),                                                  α = cos θα ,     β = sin θα ,
+                                                                                                                            (S22)
+                       ρ2 = sin(θ) cos(ϕ),                  (S13)                     µ = cos θµ ,    ν = sin θµ ,
+                       ρ3 = sin(θ) sin(ϕ).
+                                                                    and allows writing the Hamiltonian in the fully diagonal
+This rotation of the γ̃1 , γ2 , γ3 basis enforces the introduc-     form
+tion of the following two rotated orthogonal MBSs
+                                                                              ˜ iγ1D γ∆
+                                                                            h=∆       D
+                                                                                        + ε iγηD γθ′D + λ iγϕ′ γη′ ,        (S23)
+  γθ′ = − sin θ γ̃1 + cos θ cos ϕ γ2 + cos θ sin ϕ γ3 ,
+                                                            (S14)
+  γϕ′ = − sin ϕ γ2 + cos ϕ γ3 .                                     The Hamiltonian is defined such that the overall gap is
+                                                                    given by
+In a similar way, we choose to rotate the MBSs γ̃2 , γ̃3 as
+                                                                                       ˜
+                                                                                       ∆ = αµ − λ̃βµ + η̃βν,                (S24)
+                  γη = cos ϕ γ̃2 + sin ϕ γ̃3 ,
+                                                            (S15)
+                  γη′ = − sin ϕ γ̃2 + cos ϕ γ̃3 .                   that can be shown to be positive. This means that the
+γ1 is the only MBS that we do not rotate. Rewriting the             low-energy sector is defined by
+Hamiltonian in this rotated basis yields                                                    iγ1D γ∆
+                                                                                                  D
+                                                                                                    = −1,                   (S25)
+     h = iγ1 γ∆ + i γ∆ γη (λ sin θ + η cos θ sin θ)
+                                                                    which will stay constant throughout the protocol. Within
+                   + i γη γθ′ (η sin2 θ − λ cos θ)          (S16)   this low-energy sector there are the additional smaller
+                   + i γϕ′ γη′ λ.                                   splittings λ and
+What we achieved by these rotations is to decouple the                            ε = βν + λ̃αν + η̃αµ = η̃ α/µ,            (S26)
+MBS pair γϕ′ , γη′ . Now we aim to diagonalize the remain-
+ing Hamiltonian by the ansatz                                       coupled to the parities iγϕ′ γη′ and iγηD γθ′D . The last step
+                                                                    in Eq. (S26) can be shown via Eq. (S20). In general,
+         γ1D = α γ1 + β γη ,       γηD = α γη − β γ1 ,
+                                                            (S17)   this means that the low-energy states are not degener-
+          D
+         γ∆ = µ γ∆ + ν γθ′         γθ′ D = µ γθ′ − ν γ∆ .           ate. Finally, we determine how to tune λ to establish
+Inserting this ansatz in the Hamiltonian yields                     degeneracy. For this, we make use of the conservation
+                                                                    of total parity. The basis definitions Eqs. (Eq. (S12)),
+              h =iγ1D γ∆
+                       D
+                         (αµ − λ̃βµ + η̃βν)                         (Eq. (S14)), (Eq. (S15)), and (Eq. (S17)) define how each
+                   + iγηD γθ′D (βν + λ̃αν + η̃αµ)                   MBS evolves under the implemented transformation:
+                       D D
+                   + iγ∆ γη (µβ + λ̃αµ − ν̃αν)              (S18)                      γ1 → γ1D ,            D
+                                                                                                      γ̃1 → γ∆ ,
+                   + iγ1D γθ′D (−αν + λ̃βν + ν̃βµ)                                     γ2 → γθ′ D ,   γ̃2 → γηD ,           (S27)
+                   + iγϕ′ γη′ λ,                                                       γ3 → γϕ′ ,     γ̃3 → γη′ .
+                                                                                                                          3
+
+This allows us to express the total parity σ = ±1 at any        Therefore, the correction pulls one of the high-energy
+point of the protocol as                                        states down to Eeven, high = −1 and completely closes
+                                                                the gap to the low-energy sector for η = 1. For η < 1,
+               σ = iγ1 γ˜1 · iγ2 γ˜2 · iγ3 γ˜3                  the gap remains finite but is reduced compared to the
+                                                       (S28)
+                 = iγ1D γ∆
+                         D
+                           · iγθ′D γηD · iγϕ′ γη′ .             σ = −1 case in the main paper.
+                                                                   There are therefore two distinct protocols, depending
+Inserting Eq. (S25) into Eq. (S28) yields                       on the total parity. One with a reduced gap and one with
+                                                                a larger gap. Which parity sector that has the larger
+                    iγϕ′ γη′ = σ · iγηD γθ′D ,         (S29)    gap depends on the signs of the different parameters in
+                                                                Eq. (S11). To consider the effect of different signs, we
+which we can reinsert into the Hamiltonian to find              check if a sign switch is equivalent to a change of basis of
+             ˜ iγ1D γ∆
+           h=∆       D
+                       + (ε + σ · λ) iγηD γθ′D .       (S30)    Majoranas, in which case it doesn’t affect the resulting
+                                                                physics.
+Therefore, the necessary value of λ to obtain degeneracy           Consider first switching the sign of ρ2 . This is equiva-
+in the ground state sector with total parity σ leads to         lent to the transformation
+Eq. (11) in the main paper:                                                               γ2 → −γ2
+                                                                                                                      (S35)
+                      ε(η, λ) + σλ = 0.                (S31)                              γ̃2 → −γ̃2 ,
+
+In comparison to Eq. (11) of the main paper, Eq. (S31)          which doesn’t change the physics. A similar argument
+is valid for both total parities σ. This equation looks         applies to the signs of ρ3 and η which also do not affect
+simple, but proves to be very difficult to solve in the         the protocol. The sign of λ is also unimportant since its
+general case due to the dependence of ε on α, µ, which          value is defined by optimizing for degeneracy.
+in turn depend on λ. We will show below that for the              On the other hand, if ρ1 is negative the protocol will
+calculation of the Berry phase it is sufficient to solve this   work differently. Changing the sign of ρ1 is equivalent to
+equation during the second protocol step defined by ρ1 =
+                                                                                          γ1 → −γ1 ,
+0. In this parameter limit it simplifies crucially.
+                                                                                          γ2 → −γ2 ,                  (S36)
+                                                                                          γ3 → −γ3 .
+ III.   PROTOCOL DEPENDENCE ON PARITY
+          SECTOR AND SIGN CHOICES                               Since an odd number of Majoranas changed sign, even
+                                                                and odd parity are exchanged. This version of the pro-
+  Eq. (S31) shows a crucial difference in the braiding          tocol has a larger gap in the even sector.
+protocol performance between both total parities (σ =              Another sign flip is attained with the transformation
+±1). Evaluating Eq. (S31) for the fermionic limit (η = 1)       γ̃3 → −γ̃3 which transforms the Hamiltonian as
+at the beginning and end of the protocol θ ≪ 1 yields
+                                                                        h → iγ1 γ∆ + η (ρ2 iγ̃1 γ̃2 − ρ3 iγ̃1 γ̃3 )
+                          1                                                                                           (S37)
+     ε(θ, λ) = −λ − θ   2
+                                + O(θ3 ),                                            + λ (iγ2 γ̃2 − iγ3 γ̃3 ),
+                      (−1 + λ)
+                        1                                       and maps even to odd parity. In this form, the gap is
+     ⇒ 0 = − λ − θ2          + σ λ + O(θ3 )            (S32)    larger in the even sector. Note that the error and correc-
+                    (−1 + λ)
+                              1                                 tion term have the same relative signs between the two
+          =(−1 + σ) λ − θ2          + O(θ3 ),                   terms. If that is violated, the protocol fails to establish
+                           (−1 + λ)
+                                                                degeneracy between the ground states.
+which enforces the condition λ = 0 + O(θ2 ) for odd total          For different signs than in the main paper, some of the
+parity (σ = −1). On the other hand, for even total parity       intermediate formulas in the derivation need to be modi-
+(σ = 1), achieving degeneracy requires a big correction         fied, but the final result for the MBS similarity (Eq. (15)
+λ = 1 + O(θ). As a consequence, the low-energy states           in the main paper) is the same as long as the error and
+are degenerate at energies                                      correction terms have the same relative signs between
+                                                                their respective terms.
+                Eeven, low /∆ = −1 + O(θ),             (S33)
+
+but the high-energy states are strongly split into the en-           IV.   DIAGONALIZING TWO COUPLED
+ergies                                                                         GROUPS OF MBSS
+
+              Eeven, high /∆ = 1 ± (ε − λ)                        Analytically diagonalizing the Hamiltonian was possi-
+                                                       (S34)
+                                = 1 ± 2 + O(θ).                 ble because the Hamiltonian consists of two groups of
+                                                                                                                                   4
+
+MBSs ⃗γL , ⃗γR with only inter-group couplings. In this         where we made use of
+case, diagonalization does not mix the two groups, as we
+show in this section.                                             ∂θ γ1D = γηD · ∂θ θα ,         D
+                                                                                             ∂θ γ∆ = γθ′ D · (1 + ∂θ θµ ), (S47)
+  The Hamiltonian can be written as
+                                                                which can be checked via the Eqs.         (Eq. (S12)),
+                        H = i⃗γLT M⃗γR ,               (S38)    (Eq. (S14)), (Eq. (S15)), (Eq. (S17)), and (Eq. (S22)).
+where M is a real matrix. The singular value decomposi-         This yields for the integrand
+tion of M is M = U T SV where U and V are real orthogo-
+                                                                                  1 D D            D ′D
+nal matrices and S is diagonal. Real orthogonal matrices           [P, ∂θ P ] =    (γ γ · ∂θ θα + γ∆ γθ · (1 + ∂θ θµ )).
+                                                                                  2 1 η
+preserve the canonical anticommutation relations, so                                                                  (S48)
+                          χL = U⃗γL ,
+                          ⃗                            (S39)    By applying
+                          χR = V ⃗γR ,
+                          ⃗                            (S40)              ϕ=0              D ′D               ϕ=0
+                                                                   γ1D γηD = γ1 γ̃2 ,     γ∆ γθ = γ∆ γθ′ = γ̃1 γ2 ,             (S49)
+is a valid basis of MBSs. In this basis, the Hamiltonian
+takes the canonical diagonalized form                           we can further simplify the integrand to
+
+                              χTL S⃗
+                         H = i⃗    χR ,                (S41)                      1
+                                                                  [P, ∂θ P ] =      (γ1 γ̃2 · ∂θ θα + γ̃1 γ2 · (1 + ∂θ θµ )).   (S50)
+which doesn’t mix the groups. During adiabatic time-                              2
+evolution, these groups evolve separately.                      This simplification was crucial because the integrand of
+                                                                Eq. (S45) now consists of two constant matrices which
+                                                                can be commuted as they are acting on different pairs of
+  V.   CALCULATION OF THE BERRY PHASE
+                                                                MBSs. As the integrand commutes with itself throughout
+                                                                the integration, we can neglect the time-ordering T . We
+  After we diagonalized the Hamiltonian and enforced            find
+degeneracy, we can solve the time evolution of the ground
+state manifold via the calculation of the Berry phase             Zπ/2                    Zπ/2
+which is given by (Eq. (12) in the main paper)                                    1
+                                                                 − [P, ∂θ P ] dθ = γ̃2 γ1     ∂θ θα dθ
+                          I                                                     2
+                                                                    0                            0
+            U (η) = T exp − [P, ∂ω P ] dω ,          (S42)
+                                                                                                     Zπ/2
+                                                                                           1
+                                                                                          + γ2 γ̃1      (1 + ∂θ θµ ) dθ,
+i.e., a time-ordered (TH ) path integral over the full proto-                              2
+col parametrized by dω. The projection operator onto                                                 0
+
+the ground state manifold P is found by using the parity                   θα,µ |θ=0 =0
+                                                                                  = γ̃2 γ1 θα,23 /2 + γ2 γ̃1 (π/4 + θµ,23 /2).
+operator defined in Eq. (S25)                                                                                            (S51)
+                              1                                 This solution reveals a particularly interesting fact about
+                   P =          (1 − iγ1D γ∆
+                                           D
+                                             ).        (S43)    the diagonal basis Eq. (S17) parametrized by the angles
+                              2
+                                                                θα , θµ . These are in general functions of the protocol
+The solution simplifies drastically if we split the path
+                                                                parametrization θ, ϕ and vary throughout the protocol.
+integral into the three protocol steps defined in the main
+                                                                However, θα , θµ are constant during the second protocol
+paper
+                                                                step, which can be checked by considering Eq. (S31) in
+             I          Z0         Zπ/2     Zπ/2                the limit θ = π/2. This motivates the definition
+                 dω =         dθ +     dϕ +     dθ.    (S44)
+                                                                 θα,23 = θα (θ = π/2, ϕ),         θµ,23 = θµ (θ = π/2, ϕ), (S52)
+                        π/2          0            0
+
+We start by solving the first step of the protocol              describing these angles exactly during the time interval
+                                                              τ23 . Using this definition, we obtain the final result
+                         Zπ/2
+                                          
+                                           
+           U12 = T exp − [P, ∂θ P ] dθ .               (S45)       U12 = exp(γ̃2 γ1 θα,23 /2) exp(γ2 γ̃1 (π/4 + θµ,23 /2)),
+                                                                                                                        (S53)
+                        
+                                          
+                                           
+                                    0
+                                                                which depends on the previously defined θα,23 , θµ,23 but
+  For this, we solve                                            not on the path they take during the protocol. This is a
+         i                                                      direct consequence of the path independence of the Berry
+ ∂θ P = − ∂θ (γ1D γ∆
+                   D
+                     )                                          phase.
+         2                                              (S46)
+         i                                                        This result also provides the Berry phase U31 for the
+      = − (γηD γ∆
+                D
+                   · ∂θ θα + γ1D γθ′ D · (1 + ∂θ θµ )),         third protocol step. We find it by exchanging 2 → 3
+         2
+                                                                                                                                5
+
+and applying the hermitian conjugate to invert the time              (Eq. (S15)) and splitting Eq. (S60) into two sets of MBSs
+ordering of the induced coupling
+                                                                      U23 =
+                                                                                                                                
+   U31 = exp(γ1 γ̃3 θα,23 /2) exp(γ̃1 γ3 (π/4 + θµ,23 /2)).                 1 Zπ/2
+                                                                                                                                
+                                                                                                                                 
+                                                        (S54)         T exp −       2
+                                                                                   µ γ2 γ3 − µν γ̃1 (− sin ϕ γ2 + cos ϕ γ3 ) dϕ
+Now the only thing left to solve is the second step of the                  2
+                                                                                                                                
+                                                                                                                                 
+                                                                                0
+protocol. As before we begin by calculating                                                                                     
+                                                                            1 Zπ/2
+                                                                                                                                
+                                                                                                                                 
+               i                                                     ·T exp −       2
+                                                                                   β γ̃2 γ̃3 + αβγ1 (− sin ϕ γ̃2 + cos ϕ γ̃3 ) dϕ ,
+       ∂ϕ P = − ∂ϕ (γ1D γ∆D
+                            ),
+               2                                                            2
+                                                                                                                                
+                                                                                                                                 
+                                                                                    0
+               i
+            = − ((∂ϕ γ1D ) γ∆D
+                               + γ1D (∂ϕ γ∆ D
+                                              )),            (S55)                                                        (S61)
+               2
+               i                                                     which can be solved separately, and we will restrict the
+            = − (β23 γη′ γ∆
+                          D
+                             + γ1D µ23 γϕ′ )),                       presented solution to the first line. This is possible be-
+               2
+                                                                     cause combinations of γ̃1 , γ2 , γ3 commute with combina-
+where we defined                                                     tions of γ1 , γ̃2 , γ̃3 .
+                                                                       µν
+                                                                     U23  =
+                     µ23 = µ(θ = π/2, ϕ),                    (S56)                                                             
+                                                                            1 Zπ/2
+                                                                                                                               
+                                                                                                                                
+analogously to Eq. (S52). In the same way we define                  T exp −       µ2 γ2 γ3 − µν γ̃1 (− sin ϕ γ2 + cos ϕ γ3 ) dϕ .
+ν23 , α23 , β23 . This definition already implies that the ba-              2
+                                                                                                                               
+                                                                                                                                
+                                                                                   0
+sis components are constant during the second protocol                                                                       (S62)
+step, which was already argued in Eq. (S52). This implies            Next, we choose a Pauli matrix representation
+
+   ∂ϕ µ = ∂ϕ ν = ∂ϕ α = ∂ϕ β = 0          at      θ = π/2,   (S57)     γ3 γ̃1 = iσx ,    γ2 γ̃1 = −iσy ,   ⇒ iσz = σx σy = γ2 γ3 ,
+                                                                                                                             (S63)
+which was used as
+                                                                     which we insert into Eq. (S62)
+            ∂ϕ γ1D = β23 ∂ϕ γη = β23 γη′ ,                                                                                 
+                     θ=π/2               θ=π/2
+                                                             (S58)                i Zπ/2
+                                                                                                                           
+                 D
+                                                 µ23 γϕ′ ,
+                                                                                                                            
+            ∂ ϕ γ∆    =      µ23 ∂ϕ γ∆    =                           µν
+                                                                     U23 = T exp            2
+                                                                                         −µ σz − µν(sin ϕ σy + cos ϕ σx ) dϕ .
+                                                                                 2
+                                                                                                                           
+                                                                                                                            
+                                                                                          0
+in the calculation of Eq. (S55). We can use this result to
+                                                                                                                       (S64)
+obtain
+                                                                     Next, we reexpress Eq. (S64) as the solution to a differ-
+              1                                                      ential equation
+  [P, ∂ϕ P ] =  (β γ1D γη′ + µ γ∆
+                                D ′
+                                  γϕ )
+              2                                                                             µν             µν
+              1                                                                         ∂ω U23 (ω) = A(ω) U23 (ω),           (S65)
+           = (µ2 γ2 γ3 + β 2 γ̃2 γ̃3 + αβγ1 γη′ − µν γ̃1 γϕ′ ).
+              2                                                      evaluated at
+                                                          (S59)
+The first two summands of this result are very similar to                                  µν    µν
+                                                                                          U23 = U23 (ω = π/2),               (S66)
+the integrand obtained in the previous protocol step in
+Eq. (S50). The difficulty with Eq. (S59) lies in the sum-            with the initial condition
+mands proportional to γ1 γη′ and γ̃1 γϕ′ because these are
+                                                                                               µν
+not constant operators. They evolve during the integra-                                       U23 (ω = 0) = 12 ,             (S67)
+tion. As a consequence of the operators in the integral
+of                                                                   where we defined
+                                                                                 i
+                            Zπ/2
+                                                                       A(ω) =      (−µ2 σz − µν(sin ω σy + cos ω σx ).     (S68)
+                                                                                  2
+            U23 = T exp − [P, ∂ϕ P ] dϕ ,                 (S60)
+                           
+                           
+                                  0
+                                               
+                                                                    By solving the differential equation, we find
+                                                                       µν
+                                                                      U23 = exp{−iπ/4σz } exp{−iπ/4 ν(µσy − νσz )}, (S69)
+not being constant, also the integrands do not commute
+with one another. Therefore, we cannot neglect the time              which we rewrite back into MBSs
+ordering T . To solve this expression, we will instead
+                                                                        µν
+rewrite Eq. (S60) into matrix form and afterwards into a               U23 = exp{π/4 γ3 γ2 } exp{−π/4 ν(µγ3 γ̃1 + νγ3 γ2 )}.
+differential equation. We begin by inserting (Eq. (S14)),                                                               (S70)
+                                                                                                                                    6
+
+                                       αβ
+Together with the second contribution U23 solved in the           Eqs. (Eq. (S72)), (Eq. (S76)) together yield the solution
+same way we find                                                  for the angles
+
+   U23 = exp{π/4 γ3 γ2 } exp{π/4 ν(µγ3 γ̃1 + νγ3 γ2 )}
+                                                                                                                         !
+                                                                          π             π                   ση 2
+         · exp{π/4 γ̃3 γ̃2 } exp{π/4 α(βγ̃3 γ1 − αγ̃3 γ̃2 )}.          ϕ = (1 + ν23 ) =          1+ p                        ,
+                                                                          4             4                1 + η2 + η4
+                                                          (S71)                                                          !       (S77)
+The last remaining step is to multiply all contributions                   π             π                    1
+                                                                       ϕ̃ = (1 − α23 ) =          1− p                       ,
+to obtain                                                                  4             4            1 + η2 + η4
+
+U (η) = U31 U23 U12
+                                                                  presented in Eq. (13) of the main paper.
+     = exp{π/4(1 + ν23 )γ3 γ2 } exp{π/4(1 − α23 )γ̃3 γ̃2 },
+                                                   (S72)
+where we used the identities
+                                                                  VII.    FUNCTIONAL DEPENDENCE BETWEEN
+        µ23 = cos(θµ,23 ),    ν23 = sin(θµ,23 ),                         PARITY MEASUREMENTS AND MBS
+                                                         (S73)                    SIMILARITY
+        α23 = cos(θα,23 ),    β23 = sin(θα,23 ).
+
+From this follows that a double braid implements the                In the following, we derive the functional connection
+rotation                                                          between the MBS similarity in Eq. (15) of the main paper
+                                                                  and a parity measurement.
+                                                                    We start by evaluating the MBS similarity as
+    VI. SOLUTION OF THE DEGENERACY
+   CONDITION IN THE SECOND PROTOCOL                                                           2
+                                                                  S(U ) = Tr U 2 (η)† U 2 (0) /4,
+                                                                            
+                INTERVAL                                               n                          π      o2
+                                                                  = Tr exp −2(ϕ − ϕ̃)γ3 γ2 exp 2 γ3 γ2          /4,
+                                                                                                      4
+  The general solution of Eq. (S72) includes the param-                n     π                  o2
+eters ν23 , α23 which are obtained by solving the degener-        = Tr exp 2        − ϕ + ϕ̃ γ3 γ2     /4,
+                                                                                  4
+acy condition Eq. (S31) in protocol interval τ23 charac-               n     π                   π                o2
+terized by θ = π/2, where Eq. (S31) simplifies to                 = Tr cos 2        − ϕ + ϕ̃ + sin 2        − ϕ + ϕ̃ γ3 γ2 /4,
+                                                                           π 4                        4
+                                                                        2
+                       α23      λ23                               = cos 2       − ϕ + ϕ̃ ,
+                           = −σ     ,                    (S74)             4
+                       µ23       η
+                                                                                    
+                                                                  = sin2 2 ϕ − ϕ̃ .
+which together with                                                                                                        (S78)
+                                                                  Inserting ϕ, ϕ̃, as defined in Eq. (S77), followed by further
+     ν23
+                 
+                   1
+                            
+                                 2λ23 η
+                                                                analytical simplification yields the solution presented in
+         = − tan     arctan                     ,                 Eq. (15) of the main paper.
+     µ23           2          1 + λ223 − η 2
+                                                     (S75)       For the parity measurement, we assume that the sys-
+     β23                       ν23
+         = − tan arctan −η         + λ23      ,                   tem is initialized in a state |ψ⟩ by initializing the left and
+     α23                       µ23
+                                                                  right parities within the ground state sector of the total
+                                                                  odd total parity σ = −1
+obtained from Eq. (S21) yields the solution
+
+                                  η                                                iγ2 γ̃2 |ψ⟩ = iγ3 γ̃3 |ψ⟩ = ± |ψ⟩ .           (S79)
+                   λ23 = −σ p             ,
+                                 1 + η2
+                                ση 2                              We start by evaluating the protocol-induced transforma-
+                    ν23 = p                   ,                   tion of the parities
+                              1 + η2 + η4
+                                  1
+                   α23 = p                    ,                   U 2 (η) iγ2 γ̃2 U 2 (η)†
+                              1 + η2 + η4                (S76)
+                              p                                        =i exp(2ϕγ3 γ2 )γ2 exp(−2ϕγ3 γ2 )
+                                1 + η2                                                                   
+                   µ23 = p             ,                                exp 2ϕ̃ γ̃3 γ̃2 γ̃2 exp −2ϕ̃ γ̃3 γ̃2 ,
+                           1 + η2 + η4                                                                             
+                             p
+                          ση 1 + η 2                                   =i(cos(4ϕ)γ2 + sin(4ϕ)γ3 ) (cos 4ϕ̃ γ̃2 + sin 4ϕ̃ γ̃3 ).
+                   β23 = p             .
+                           1 + η2 + η4                                                                                           (S80)
+                                                                                                                       7
+
+
+
+
+                                                               FIG. S2: Protocol with asymmetric MBS overlaps η2 =
+                                                               η1 /2, η3 = η1 /5. The markers show the MBS Similarity
+                                                               for numerical solutions with T ∆ = 2000, k = 10. The
+                                                               analytic curve is obtained by using ηeff in the analytical
+                                                               formulas.
+FIG. S1: Comparison between finite time numerical sim-
+ulations of the corrected and uncorrected protocol, and        where k determines how sharp the step is and T is the
+the adiabatic result for the corrected protocol. We show       time for a single braid. The different couplings are ob-
+the mean and one standard deviations calculated over a         tained by shifting the smooth step function as
+range of protocol times. (a) Short protocol times with                          ρ1 = f (t/T )/N,
+T ∆ = 60 ± 12, k = 10. (b) Longer protocol times with
+                                                                                ρ2 = f (t/T − 1/3)/N,              (S84)
+T ∆ = 200 ± 40, k = 10.
+                                                                                ρ3 = f (t/T − 2/3)/N,
+Subsequent measurement of iγ2 γ̃2 and iγ3 γ̃3 yield
+                                                               where the normalization factor N is there to ensure that
+                                                                     2
+                                                               P
+   ⟨ψ|U 2 (η) iγ2 γ̃2 U 2 (η)† |ψ⟩                                i ρi = 1. The precise parametrization is unimportant
+                                                               as long as it is adiabatic with respect to the large gap
+    = ⟨ψ| (cos(4ϕ)γ2 + sin(4ϕ)γ3 )                             (T ∆ ≫ k) and diabatic with respect to the smallest gap
+                                                               (T ∆e−2k ≪ k). We set k = 10 in all our simulations.
+                      
+     (cos 4ϕ̃ γ̃2 + sin 4ϕ̃ γ̃3 ) |ψ⟩ ,
+                                                   (S81)   The parameter λ is chosen at each point in time so that
+    = ± (cos(4ϕ) cos 4ϕ̃ iγ2 + sin(4ϕ) sin 4ϕ̃ ,               the ground state sector is degenerate in the appropriate
+                                                               parity sector. This is done by solving Eq. (S31) with a
+    = ± (1 − 2 sin2 (2(ϕ − ϕ̃)),                               numerical root-finding algorithm at each time step. The
+    = ± (1 − 2S(U )),                                          code we used for these calculations can be found at [18].
+                                                                  Figure S1 shows a comparison between numerical re-
+where we used that ⟨ψ| iγ2 γ̃3 |ψ⟩ = ⟨ψ| iγ3 γ̃2 |ψ⟩ = 0.      sults for the MBS similarity and the analytical result of
+                                                               the main paper (Eq. (15)). For the numerical solutions,
+                                                               we show the mean and one standard deviation by averag-
+                                                               ing over a range of protocol times T . The top figure (a)
+        VIII.     NUMERICAL SIMULATIONS                        is for a short protocol time with large diabatic errors. T
+                                                               is sampled uniformly in an interval where T ∆ = 60 ± 12.
+  To crosscheck our results, investigate diabatic effects      The bottom figure (b) uses a longer protocol time with
+and compare with the uncorrected protocol, we solve the        T ∆ = 200 ± 40. The corrected protocol has no errors
+time-dependent Schrödinger equation for the full unitary      from a dynamical phase, and in this case very small dia-
+time evolution operator U (η, t),                              batic errors.
+
+                  ∂t U (η, t) = iH(t)U (η, t),
+                                                       (S82)         IX.   ASYMMETRIC MBS OVERLAPS
+                    U (η, 0) = 1,
+
+with H(t) given by Eq. (S11) (Eq. (1) of the main pa-             In the main paper, we have assumed that the MBS
+per). The couplings ρi are turned on and off periodically      overlaps are symmetric, i.e., η1 = η2 = η3 . In this sec-
+according to the function                                      tion, we consider asymmetric errors and find empirically
+                                                               that a suitably generalized version of the analytical re-
+        f (t) = 1/2 + tanh(k cos(2πt/T ))/2,           (S83)   sults works very well even in this case. The Hamiltonian
+                                                                                                                              8
+
+is now                                                            [6] C.-X. Liu, G. Wang, T. Dvir, and M. Wimmer, Phys.
+                                                                      Rev. Lett. 129, 267701 (2022).
+    H/∆ =ρ1 iγ1 γ̃1 + ρ2 iγ1 γ2 + ρ3 iγ1 γ3                       [7] R. Seoane Souto and R. Aguado, Subgap states in
+              √                    √                                  semiconductor-superconductor devices for quantum tech-
+         + ρ2 η1 η2 iγ̃1 γ̃2 + ρ3 η1 η3 iγ̃1 γ̃3 )      (S85)         nologies: Andreev qubits and minimal majorana chains,
+             + λ2 iγ2 γ̃2 + λ3 iγ3 γ̃3 ,                              in New Trends and Platforms for Quantum Technolo-
+                                                                      gies, edited by R. Aguado, R. Citro, M. Lewenstein, and
+                                                                      M. Stern (Springer Nature Switzerland, Cham, 2024) pp.
+and the correction term now includes two parameters: λ2               133–223.
+and λ3 . At each step in time, we numerically optimize            [8] T. Dvir, G. Wang, N. van Loo, C.-X. Liu, G. P. Mazur,
+these for energy degeneracy of the ground states.                     A. Bordin, S. L. D. ten Haaf, J.-Y. Wang, D. van Driel,
+  We generalize the analytical result to account for the              F. Zatelli, X. Li, F. K. Malinowski, S. Gazibegovic,
+three different overlaps η1 , η2 , η3 by defining an effective        G. Badawy, E. P. A. M. Bakkers, M. Wimmer, and L. P.
+                                                                      Kouwenhoven, Nature 614, 445 (2023).
+MBS overlap                                                       [9] A. Bordin, G. Wang, C.-X. Liu, S. L. D. ten Haaf, N. van
+                                                                      Loo, G. P. Mazur, D. Xu, D. van Driel, F. Zatelli, S. Gaz-
+                                    √
+                              q
+                     ηeff =       η1 η2 η3 ,            (S86)         ibegovic, G. Badawy, E. P. A. M. Bakkers, M. Wim-
+                                                                      mer, L. P. Kouwenhoven, and T. Dvir, Phys. Rev. X 13,
+                                                                      031031 (2023).
+which we use in in place of η in the analytical result.          [10] B. van Heck, A. R. Akhmerov, F. Hassler, M. Burrello,
+This formula was obtained by testing different ways of                and C. W. J. Beenakker, New J. Phys. 14, 035019 (2012).
+taking the mean of the overlaps and this one worked the          [11] J. D. Sau, D. J. Clarke, and S. Tewari, Phys. Rev. B 84,
+                                                                      094505 (2011).
+best. Figure S2 shows a comparison between a numeri-
+                                                                 [12] T. Karzig, F. Pientka, G. Refael, and F. von Oppen,
+cal solution and the analytic curve using ηeff . We have              Phys. Rev. B 91, 201102(R) (2015).
+plotted a range of ηeff where the numerical optimization         [13] M. Hell, M. Leijnse, and K. Flensberg, Phys. Rev. Lett.
+for λ2 and λ3 was successful, and the curves agree very               118, 107701 (2017).
+well. For larger values of ηeff , the optimization failed.       [14] D. J. Clarke, J. D. Sau, and S. Das Sarma, Phys. Rev. B
+                                                                      95, 155451 (2017).
+                                                                 [15] A. Tsintzis, R. S. Souto, K. Flensberg, J. Danon, and
+                                                                      M. Leijnse, PRX Quantum 5, 010323 (2024).
+                                                                 [16] S. Miles, F. Zatelli, A. M. Bozkurt, M. Wimmer, and
+ [1] A. Y. Kitaev, Phys. Usp. 44, 131 (2001).                         C.-X. Liu, arXiv:2501.16056 (2025).
+ [2] J. D. Sau and S. Das Sarma, Nat. Commun. 3, 964             [17] T. Huang, R. Zhang, X. Li, X.-J. Liu, X. C. Xie,
+     (2012).                                                          and Y. Wu, Unified model for non-abelian braiding
+ [3] M. Leijnse and K. Flensberg, Phys. Rev. B 86, 134528             of majorana and dirac fermion zero modes (2025),
+     (2012).                                                          arXiv:2410.05957 [cond-mat.mes-hall].
+ [4] I. C. Fulga, A. Haim, A. R. Akhmerov, and Y. Oreg, New      [18] M. Nitsch, V. Svensson, W. Samuelson, K. Nestmann,
+     J. Phys. 15, 045020 (2013).                                      J. Danon, K. Flensberg, R. Seoane Souto, and M. Leijnse,
+ [5] A. Tsintzis, R. S. Souto, and M. Leijnse, Phys. Rev. B           Code for the article ”adiabatic nonabelian braiding of
+     106, L201404 (2022).                                             imperfect majoranas” (2025).
+
