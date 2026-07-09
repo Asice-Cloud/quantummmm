@@ -1,1262 +1,815 @@
-# Majorana 编织的纤维丛与曲率描述
+# 从 Sp(2) Riccati 到纯 MZM 七维封闭系统
 
-## 一、几何图景总览
+## 目标
 
-```
-                          总空间 P = M × SO(5)
-                         ┌─────────────────────┐
-                         │  纤维 ≅ SO(5)       │  ← 5 Majorana 的旋转自由度
-                         │  ┌───────────────┐   │
-                         │  │  H_EM = Σh_ij· │   │
-                         │  │  (iγ_iγ_j)     │   │  ← 联络 A = H dt
-                         │  │   ↓            │   │
-                         │  │  U= Hol_γ(A)   │   │  ← 和乐 = 演化算符
-                         │  └───────────────┘   │
-                         └──────┬──────────────┘
-                                │ π (投影)
-                    ┌───────────┴───────────┐
-                    │  底流形 M             │
-                    │                        │
-                    │  参数坐标:              │
-                    │  (E₁, t₁, τ, t₂, t₃)  │  ← 编织路径 = M 中的回路 γ
-                    │                        │
-                    │  π₁(M) = B₂ ≅ ℤ       │  ← 基本群 = 辫子群
-                    └────────────────────────┘
-```
-
-**核心命题**：纯编织是拓扑（仅依赖同伦类），动力学相位是几何（依赖同伦类内具体路径的曲率积分）。
+消去 ancilla 自由度（$\gamma_a, \gamma_b$），得到仅含三个 MZM（$\gamma_1, \gamma_2, \gamma_3$）的封闭动力学系统。
 
 ---
 
-## 二、底流形 M：Majorana 的"配置空间"
+## 一、起点：Sp(2) Riccati 框架（回顾）
 
-### 2.1 定义
+### 1.1 有效哈密顿量
 
-两个被交换的 MZM（$\gamma_2, \gamma_3$）的有效"位置"由门控耦合 $(t_2, t_3)$ 参数化。
-编织过程中，$(t_2, t_3)$ 的轨迹是：
+$$H_{EM}(t) = iE_d\gamma_a\gamma_b + iE_1\gamma_1\gamma_2 + i|t_2|\gamma_a\gamma_2 - i|t_1|\gamma_b\gamma_1 - i|t_3|\gamma_a\gamma_3$$
 
-$$\gamma(t) = (t_2(t), t_3(t)) = t_c \cdot 
-\begin{cases}
-(f_-(t), 0)       & 0 \le t < \tau \quad \text{(Step 1)} \\
-(f_+(t), f_-(t))  & \tau \le t < 2\tau \quad \text{(Step 2)} \\
-(0, f_+(t))       & 2\tau \le t \le 3\tau \quad \text{(Step 3)}
-\end{cases}$$
+### 1.2 Sp(2) 旋量表示
 
-这是一个**包围原点**的回路（原点 $(0,0)$ 对应门全部关闭——不允许的配置）。
+通过 $so(5) \cong sp(2)$ 同构，将 Majorana 算符替换为 $2\times2$ 四元数 Gamma 矩阵。演化矩阵 $U \in Sp(2)$ 满足：
 
-### 2.2 基本群
+$$\dot U = KU, \quad K = \begin{pmatrix} A & B \\ C & D \end{pmatrix} \in \mathfrak{sp}(2)$$
 
-底流形 $X = \mathbb{R}^2 \setminus \{(0,0)\}$（两个 MZM 耦合参数的有效空间，排除同时为零的奇点）：
-
-$$\pi_1(X) \cong \mathbb{Z} \cong B_2$$
-
-回路 $\gamma$ 的绕数 $w=1$ 对应一次 $\gamma_2 \leftrightarrow \gamma_3$ 交换。
-**这就是辫子群 $B_2$ 在此处的具体实现。**
-
-### 2.3 扩展到完整参数空间
-
-完整的底流形还包括 ancilla 自由度参数：
-
-$$M = \{(E_1, t_1, \tau, E_d, t_2, t_3) \mid \text{物理允许的值}\}$$
-
-维度 $\dim M = 6$（这里 $t_2, t_3$ 的幅值由 $t_c$ 固定，时间轮廓由协议固定，但原则上可以变化）。
-
----
-
-## 三、纤维与主丛
-
-### 3.1 主丛构造
-
-$$G = \text{SO}(5) \hookrightarrow P = M \times \text{SO}(5) \xrightarrow{\pi} M$$
-
-- **结构群** $G = \text{SO}(5)$：5 个 Majorana 双线性的所有可能规范旋转
-- **右作用**：$R_g: (x, h) \mapsto (x, hg)$ for $g \in \text{SO}(5)$
-- **纤维**：$\pi^{-1}(x) \cong \text{SO}(5)$，即点 $x \in M$ 上所有可能的内部参考系选择
-
-### 3.2 联络 1-形式
-
-联络是 $\mathfrak{so}(5)$-值的 1-形式。因为底流形上的时间坐标 $t$ 是唯一的演化参数，
-联络简化为沿 $t$ 方向的分量：
-
-$$\boxed{\mathcal{A}(t; E_1, t_1, \tau) = A(t; E_1, t_1, \tau)\, dt}$$
-
-其中 $A(t)$ 是 §3.3 中的 $5 \times 5$ 反对称矩阵，由 $H_{EM}$ 的系数给出。
-
-在 $\mathfrak{so}(5)$ 显式基底 $\{X_{ij} = i\gamma_i\gamma_j\}_{1\le i<j\le 5}$ 下：
-
-$$\mathcal{A}(t) = \sum_{i<j} 2h_{ij}(t)\, X_{ij}\; dt$$
-
-其中 $h_{ij}(t)$ 是表 1 中的系数。
-
-**表 1：$H_{EM}$ 各成分的联络分量**
-
-| 项 | 系数 $h_{ij}(t)$ | $\mathfrak{so}(5)$ 生成元 | 参数依赖 |
-|---|---|---|---|
-| $iE_1\gamma_1\gamma_2$ | $E_1$ | $X_{12}$ | 恒定 |
-| $i\vert t_2\vert\gamma_a\gamma_2$ | $t_c \cdot g_{42}(t)$ | $X_{24}$ | $t_c, f_\pm(t)$ |
-| $-i\vert t_1\vert\gamma_b\gamma_1$ | $-t_1 \cdot g_{15}(t)$ | $X_{15}$ | $t_1, f_\pm(t)$ |
-| $-i\vert t_3\vert\gamma_a\gamma_3$ | $t_c \cdot g_{34}(t)$ | $X_{34}$ | $t_c, f_\pm(t)$ |
-| $iE_d\gamma_a\gamma_b$ | $E_0 \cdot g_{45}(t)$ | $X_{45}$ | $E_0, f_\pm(t)$ |
-
-门控函数 $g_{ij}(t)$ 在各步的取值见 §3.3。
-
-### 3.3 各步的联络显式
-
-**Step 1** ($0 \le t < \tau$)：
-$$A^{(1)}(t) = 2E_1 X_{12} + 2t_c f_-(t) X_{24} + 2t_1 f_-(t) X_{15} + 2E_0 f_+(t) X_{45}$$
-
-**Step 2** ($\tau \le t < 2\tau$)：
-$$A^{(2)}(t) = 2E_1 X_{12} + 2t_c f_+(t) X_{24} + 2t_c f_-(t) X_{34} + 2t_1 f_+(t) X_{15}$$
-
-**Step 3** ($2\tau \le t \le 3\tau$)：
-$$A^{(3)}(t) = 2E_1 X_{12} + 2t_c f_+(t) X_{34} + 2E_0 f_-(t) X_{45}$$
-
----
-
-## 四、曲率：动力学的几何起源
-
-### 4.1 一般定义
-
-曲率 2-形式（$\mathfrak{so}(5)$-值）：
-
-$$F = d\mathcal{A} + \frac{1}{2}[\mathcal{A}, \mathcal{A}]$$
-
-其中 $[\mathcal{A}, \mathcal{A}](X,Y) = [\mathcal{A}(X), \mathcal{A}(Y)]$ 是李括号。
-
-**在仅含时间参数的情况下**，$\mathcal{A} = A(t)dt$，由于外微分 $d(dt)=0$ 且 $dt \wedge dt = 0$，有：
-
-$$F_{\text{1D time}} = d\mathcal{A} + \mathcal{A} \wedge \mathcal{A} = 0 \quad \text{（平凡！）}$$
-
-**曲率的非平凡性体现在参数空间中**。把 $(E_1, t_1, \tau, t)$ 都视为底流形坐标：
-
-$$\mathcal{A}(E_1, t_1, \tau, t) = A(t; E_1, t_1, \tau)\, dt$$
-
-此时 $\mathcal{A}$ 只有 $dt$ 分量，所以 $d\mathcal{A}$ 有 $dE_1 \wedge dt$, $dt_1 \wedge dt$, $d\tau \wedge dt$ 分量。由于 $\mathcal{A} \wedge \mathcal{A} = 0$（只有一个基底方向），曲率为：
-
-$$\boxed{F = \frac{\partial A}{\partial E_1}\, dE_1 \wedge dt + \frac{\partial A}{\partial t_1}\, dt_1 \wedge dt + \frac{\partial A}{\partial \tau}\, d\tau \wedge dt}$$
-
-### 4.2 曲率的显式分量
-
-对 $\mathcal{A}$ 求偏导（表 1 + §3.3 显式）：
-
-**$E_1$ 方向的曲率**（所有三步相同）：
-$$\frac{\partial A}{\partial E_1} = 2 X_{12} \quad \Longrightarrow \quad F_{E_1, t} = 2 X_{12}$$
-
-**$t_1$ 方向的曲率**（Step 1 & 2；Step 3 中 $t_1 = 0$ 故无贡献）：
-$$\frac{\partial A}{\partial t_1} = 
-\begin{cases}
-2 f_-(t) X_{15} & \text{Step 1} \\
-2 f_+(t) X_{15} & \text{Step 2} \\
-0                  & \text{Step 3}
-\end{cases}$$
-
-**$\tau$ 方向的曲率**：$\tau$ 出现在门控函数中
-$$\frac{\partial f_\pm}{\partial \tau} = \pm\frac{\pi t}{2\tau^2}\sin\left(\frac{\pi t}{\tau}\right)$$
-
-所以
-$$\frac{\partial A^{(1)}}{\partial \tau} = 2t_c \frac{\partial f_-}{\partial\tau} X_{24} + 2t_1 \frac{\partial f_-}{\partial\tau} X_{15} + 2E_0 \frac{\partial f_+}{\partial\tau} X_{45}$$
-
-（Step 2, 3 类似。）
-
-### 4.3 曲率的关键性质
-
-**性质 1：曲率的李代数闭包 = 和乐群李代数（Ambrose-Singer）**
-
-各步曲率分量的李代数闭包：
-
-| 步 | $\{F_{\mu,t}\}$ 张成的子代数 | 维数 | 和乐限制 |
-|---|---|---|---|
-| Step 1 | $\text{span}\{X_{12}, X_{24}, X_{15}, X_{45}\} \subset \mathfrak{so}(4)$ | 6 | $\subset$ SO(4) |
-| Step 2 | $\text{span}\{X_{12}, X_{24}, X_{34}, X_{15}\} = \mathfrak{so}(5)$ | **10（满）** | 整个 SO(5) |
-| Step 3 | $\text{span}\{X_{12}, X_{34}, X_{45}\} \subset \mathfrak{u}(1)\oplus\mathfrak{su}(2)$ | 4 | $\subset U(1)\times$SU(2) |
-
-**性质 2：$E_1=0$ 时的曲率退化**
-
-当 $E_1=0$：
-- $F_{E_1, t} = 0$（$\sigma_z$ 方向无曲率）
-- 剩余非零分量 $\{X_{24}, X_{34}, X_{15}, X_{45}\}$ 满足 $A=D$ 对称性（在 Sp(2) 表示中）
-- 此对称性保证沿闭合回路的 $\sigma_z$ 净和乐为零
-- **曲率退化 $\Rightarrow$ 和乐限制在 SO(5) 的 2 维子流形上**
-
-**性质 3：曲率对易子与非阿贝尔性**
-
-不同参数方向的曲率分量不对易：
-$$[F_{E_1,t}, F_{t_1,t}] = 4 [X_{12}, X_{15}] \neq 0$$
-
-（因为 $X_{12}=i\gamma_1\gamma_2$ 和 $X_{15}=i\gamma_1\gamma_5$ 涉及同一个 $\gamma_1$。）
-**这是 $E_1$ 和 $t_1$ 产生干涉条纹的代数根源。**
-
----
-
-## 五、和乐：演化算符作为曲率的积分
-
-### 5.1 定义
-
-沿编织回路 $\gamma$ 的和乐（平行移动）：
-
-$$\text{Hol}_\gamma(\mathcal{A}) = \mathcal{P}\exp\left(\oint_\gamma \mathcal{A}\right) = \mathcal{P}\exp\left(\int_0^{3\tau} A(t)\,dt\right) = U(3\tau) \in \text{SO}(5)$$
-
-这就是 SO(5) 演化矩阵 $R$。
-
-### 5.2 非阿贝尔 Stokes 定理
-
-和乐可以用曲率在"以 $\gamma$ 为边界的曲面"上的面积分表示（非阿贝尔推广）：
-
-$$U(3\tau) = \mathcal{P}\exp\left(\oint_\gamma \mathcal{A}\right) = \mathcal{P}_\Sigma \exp\left(\iint_\Sigma \tilde{F}\right)$$
-
-其中 $\tilde{F}$ 是曲率 $F$ 的"平行移动回拉"到参考点，$\mathcal{P}_\Sigma$ 是曲面有序化。这个公式显式说明：**和乐由曲率在参数空间中的分布决定，而不仅仅是同伦类。**
-
-### 5.3 参数依赖：和乐的变分
-
-设 $\theta = (E_1, t_1, \tau)$ 为参数。和乐的梯度：
-
-$$\boxed{\frac{\partial U(3\tau)}{\partial \theta_k} = U(3\tau) \int_0^{3\tau} U(t)^\dagger\; \frac{\partial A(t)}{\partial \theta_k}\; U(t)\, dt}$$
-
-这给出"参数改变时编织结果如何变化"的精确公式。
-
-对 $E_1$：
-$$\frac{\partial U}{\partial E_1} = 2 U(3\tau) \int_0^{3\tau} U(t)^\dagger X_{12} U(t)\, dt$$
-
-（$X_{12}$ 在所有三步都存在，故积分范围为全程。）
-
-对 $t_1$：
-$$\frac{\partial U}{\partial t_1} = 2 U(3\tau) \left[\int_0^\tau f_- U^\dagger X_{15} U\, dt + \int_\tau^{2\tau} f_+ U^\dagger X_{15} U\, dt\right]$$
-
-（Step 3 中 $t_1=0$ 故无贡献。）
-
----
-
-## 六、缩并到 MZM 子空间：有效 SU(2) 曲率
-
-### 6.1 绝热缩并
-
-当 ancilla 自由度快于 MZM 时（大 $\tau$ 极限），可以将联络缩并到 $\{\gamma_1,\gamma_2,\gamma_3\}$ 子空间。
-这便是 **维数约化**——大的 $\mathfrak{so}(5)$ 曲率在子空间上诱导有效 SU(2) 曲率。
-
-有效联络（一阶）：
-$$\mathcal{A}_{\text{eff}} = A_{\text{eff}}(t)\, dt, \quad A_{\text{eff}}(t) \in \mathfrak{su}(2)$$
-
-在 Pauli 基底 $\{\sigma_x, \sigma_y, \sigma_z\}$ 中（映射见 §8）：
-
-### 6.2 $E_1=0, t_1 \neq 0$ 情形的显式有效联络
-
-由 report §7 的结果：
-$$A_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x + D(t)\,\sigma_y$$
-
-其中：
-- $\varepsilon(t)$：编织项（$\sim t_c$ 门控），其路径积分 $\Phi_G = \int \varepsilon\,dt = \pi/2$
-- $D(t)$：$t_1$ 诱导的动态项
-
-有效和乐：
-$$\boxed{U_{\text{eff}}(3\tau) = \exp\!\big(-i\phi\,\hat{n}\cdot\vec{\sigma}\big)}$$
-$$\phi = \sqrt{\Phi_G^2 + \Phi_D^2}, \quad \tan\alpha = \frac{\Phi_D}{\Phi_G}$$
-$$\hat{n} = (\cos\alpha,\;\sin\alpha,\;0), \quad \Phi_D = \int_0^{3\tau} D(t)\,dt$$
-
-### 6.3 $E_1 \neq 0$ 情形的完整有效联络
-
-$$A_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x + D_{t_1}(t)\,\sigma_y + D_{E_1}(t)\,\sigma_z$$
-
-其中三项不对易：
-$$[\sigma_x, \sigma_y] = 2i\sigma_z, \quad [\sigma_y, \sigma_z] = 2i\sigma_x, \quad [\sigma_z, \sigma_x] = 2i\sigma_y$$
-
-**非零曲率分量的完整表格**：
-
-$$F_{xy} \propto \sigma_z, \quad F_{yz} \propto \sigma_x, \quad F_{zx} \propto \sigma_y$$
-
-所有三个分量均非零 $\iff E_1 \neq 0$ 且 $t_1 \neq 0$。
-
-$E_1=0$ 时 $F_{xy}=0$，$F_{yz}=F_{zx}=0$（只有两个独立分量非零）→ 和乐流形降至 2 维。
-
----
-
-## 七、保真度作为和乐的距离函数
-
-### 7.1 定义
-
-Fig 1(d) 的保真度可以写为和乐空间中两点之间的距离：
-
-$$\text{fid}(E_1, t_1, \tau) = \left|\langle\psi_1^+|\,\text{Hol}_{\gamma(E_1,t_1,\tau)}\,\text{Hol}_{\gamma(E_1,t_1,\tau)}\,|\psi_1^-\rangle\right|^2$$
-
-这是以下函数的采样：
-$$\text{fid}: M \to [0,1], \quad (E_1, t_1, \tau) \mapsto \text{fidelity}$$
-
-### 7.2 梯度（保真度的变分）
-
-由和乐的变分公式（§5.3），可以计算保真度对参数的导数：
-
-$$\frac{\partial\,\text{fid}}{\partial\theta_k} = 2\,\text{Re}\left[\langle\psi_1^+|U^2|\psi_1^-\rangle^* \cdot \langle\psi_1^+|\frac{\partial(U^2)}{\partial\theta_k}|\psi_1^-\rangle\right]$$
-
-其中 $\partial(U^2)/\partial\theta_k = (\partial U/\partial\theta_k)U + U(\partial U/\partial\theta_k)$，而 $\partial U/\partial\theta_k$ 由 §5.3 给出。
-
-**Fig 1(d) 的等高线 = 这些梯度的积分曲线**。
-
----
-
-## 八、联络和曲率在四元数 Sp(2) 表示中的形式
-
-利用 $\mathfrak{so}(5) \cong \mathfrak{sp}(2)$，一切化为 $2 \times 2$ 四元数。
-
-### 8.1 Pauli 对应
-
-$$i\mathbf{i} \leftrightarrow \sigma_x \leftrightarrow i\gamma_2\gamma_3$$
-$$i\mathbf{j} \leftrightarrow \sigma_y \leftrightarrow i\gamma_3\gamma_1$$
-$$i\mathbf{k} \leftrightarrow \sigma_z \leftrightarrow i\gamma_1\gamma_2$$
-
-### 8.2 联络在 Sp(2) 中的分块形式
-
-$$\mathcal{A}_{\text{sp}}(t) = K(t)\,dt = \begin{pmatrix} A(t) & B(t) \\ C(t) & D(t) \end{pmatrix} dt$$
-
-其中 $A,B,C,D \in \mathbb{H}$，$A,D$ 为纯虚四元数（这样 $K \in \mathfrak{sp}(2)$）。
-
-**对参数 $E_1$ 的偏导**：
-$$\frac{\partial K}{\partial E_1} = \begin{pmatrix} \mathbf{i}/2 & 0 \\ 0 & -\mathbf{i}/2 \end{pmatrix} = \Sigma_{12}$$
-
-**对参数 $t_1$ 的偏导**（Step 1）：
-$$\frac{\partial K}{\partial t_1} = f_-(t) \cdot \begin{pmatrix} 0 & 1/2 \\ -1/2 & 0 \end{pmatrix} = f_-(t)\,\Sigma_{15}$$
-
-**MZM 子空间有效联络**：
-$$K_{\text{eff}} = A + Bq \in \operatorname{Im}\mathbb{H}$$
-
-（$q = ZX^{-1}$ 是 Riccati 变量。）
-
-在 Pauli 分量中：
-$$\underbrace{K_{\text{eff}}}_{\text{anti-Hermitian}} = \omega_x(i\sigma_x) + \omega_y(i\sigma_y) + \omega_z(i\sigma_z)$$
-$$\underbrace{H_{\text{eff}} = iK_{\text{eff}}}_{\text{Hermitian}} = \omega_x\sigma_x + \omega_y\sigma_y + \omega_z\sigma_z$$
-
-### 8.3 有效曲率的分量显式（$E_1 \neq 0$ 一般情况）
-
-三个频率分量来自：
-$$\omega_x = \frac{|t_3|}{2} + \operatorname{Re}_{\mathbf{i}}(Bq)$$
-$$\omega_y = \frac{|t_2|}{2} + \operatorname{Re}_{\mathbf{j}}(Bq)$$
-$$\omega_z = \frac{E_1}{2} + \operatorname{Re}_{\mathbf{k}}(Bq)$$
-
-其中 $\operatorname{Re}_{\mathbf{i}}(q) = q_1$，$\operatorname{Re}_{\mathbf{j}}(q) = q_2$，$\operatorname{Re}_{\mathbf{k}}(q) = q_3$。
-
-$Bq$ 项包含 $q$ 的非线性演化（通过 Riccati ODE：$\dot{q} = C + Dq - qA - qBq$）。
-
-**$E_1=0$ 时 $\omega_z$ 的性质**：虽然 $E_1=0$ 时 $\omega_z$ 的 $Bq$ 贡献可以瞬时非零，但门控函数的时间积分对称性保证 $\int_0^{3\tau} \omega_z(t)\,dt = 0$。这是 $A=D$ 对称性在联络语言中的表现。
-
----
-
-## 九、数值曲率计算方案
-
-可以用现有 SO(5) 代码直接计算上述所有几何量。
-
-### 9.1 曲率分量的数值提取
-
-联络在 $t$ 时刻的值由 `A_step1/2/3()` 给出（$5 \times 5$ 反对称矩阵）。
-参数偏导用有限差分：
-
-$$F_{E_1, t} \approx \frac{A(t; E_1+\delta, t_1, \tau) - A(t; E_1-\delta, t_1, \tau)}{2\delta}$$
-
-或者用 §4.2 的解析显式直接编码（更快）。
-
-### 9.2 和乐对参数的梯度
-
-$$\frac{\partial U}{\partial E_1} \approx \frac{U(E_1+\delta) - U(E_1-\delta)}{2\delta}$$
-
-每个差分点只需调一次 `so5_protocol()`。
-
-### 9.3 平行移动曲率（用于 Stokes 定理验证）
-
-在路径上的各点计算"平行移动回原点"的曲率：
-$$\tilde{F}(t) = U(t)^\dagger\,F(t)\,U(t) \in \mathfrak{so}(5)$$
-
-验证（非阿贝尔 Stokes）：
-$$U(3\tau) \stackrel{?}{\approx} \exp\left(\int_0^{3\tau} \tilde{F}(t)\,dt\right)$$
-
-仅当 $\tilde{F}(t)$ 在不同时刻对易时才精确成立（1 阶 Magnus）。
-
----
-
-## 十、总结：三层几何结构
-
-```
-┌─────────────────────────────────────────────────────────┐
-│ 第 0 层：拓扑（同伦类）                                   │
-│ π₁(M) = B₂ ≅ ℤ                                          │
-│ → 纯编织 U₀ 仅依赖绕数 w（=1 为单次 γ₂↔γ₃ 交换）         │
-│ → 平坦联络 F=0 时，和乐仅由此层决定                        │
-├─────────────────────────────────────────────────────────┤
-│ 第 1 层：联络的非平坦性（曲率）                             │
-│ F = dA + A∧A ≠ 0 分量:                                    │
-│   F_{E₁,t} = 2 X₁₂            → σ_z 方向的"力"            │
-│   F_{t₁,t} = 2g(t) X₁₅        → σ_y 方向的"力"            │
-│   F_{τ,t}  = ∂A/∂τ            → 非绝热修正                │
-│ → 同一同伦类内不同路径给出不同的和乐                        │
-├─────────────────────────────────────────────────────────┤
-│ 第 2 层：曲率的非对易性（非阿贝尔结构）                      │
-│ [F_{E₁,t}, F_{t₁,t}] = 4[X₁₂, X₁₅] ≠ 0                   │
-│ → E₁ 和 t₁ 的效应不能简单叠加                             │
-│ → 产生 Fig 1(d) 的干涉条纹                                │
-│ → 退化条件 E₁=0：F 的部分分量消失 → 和乐限制在 2 维子流形   │
-└─────────────────────────────────────────────────────────┘
-```
-
-### 核心物理图像
-
-编织系统是一个 SO(5)-主丛，底流形 $M$ 被编织协议参数化。$H_{EM}$ 定义了联络，演化算符 $U$ 是和乐。**纯编织**是拓扑（$\pi_1(M)$ 的非平凡表示），**动力学相位**是联络曲率 $F$ 在 $M$ 上的积分。$E_1$ 和 $t_1$ 在曲率中产生不对易的分量，导致非平凡的参数依赖——这就是 Fig 1(d) 的完整几何解释。
-
----
-
-## 十一、从对易关系反推：和乐群的三个层次
-
-### 11.0 核心命题
-
-**从 $H_{EM}$ 各生成元的对易关系出发，严格推导和乐群的结构层次，
-证明以下对应关系：**
+其中 $A,B,C,D \in \mathbb{H}$ 的显式（来自生成元 $\Sigma_{ij}$ 的投影）：
 
 $$\boxed{\begin{aligned}
-E_1 = t_1 = 0 &\;\Longleftrightarrow\; \text{和乐群} \cong B_2 \;\Longleftrightarrow\; \text{平坦联络（纯拓扑）} \\
-E_1 = 0,\; t_1 \neq 0 &\;\Longleftrightarrow\; \text{和乐群} \cong \text{SO}(2) \;\Longleftrightarrow\; A=D\;\text{对称性} \\
-E_1 \neq 0,\; t_1 \neq 0 &\;\Longleftrightarrow\; \text{和乐群} \cong \text{SU}(2) \;\Longleftrightarrow\; \text{全非阿贝尔}
+A(t) &= \frac{E_1+|t_3|}{2}\,\mathbf i + \frac{|t_2|}{2}\,\mathbf j \\[4pt]
+D(t) &= \frac{-E_1+|t_3|}{2}\,\mathbf i + \frac{|t_2|}{2}\,\mathbf j \\[4pt]
+B(t) &= \frac{|t_1|}{2} + \frac{E_d}{2}\,\mathbf k \\[4pt]
+C(t) &= -\frac{|t_1|}{2} + \frac{E_d}{2}\,\mathbf k
 \end{aligned}}$$
 
-### 11.1 预备：MZM 子空间的有效生成元
+**关键性质**：
+- $A, D \in \operatorname{Im}\mathbb{H}$（纯虚四元数，各 3 实分量，但仅 $\mathbf i, \mathbf j$ 分量非零）
+- $B, C \in \operatorname{span}\{1, \mathbf k\}$（标量 + $\mathbf k$，各 2 实分量）
+- $C = -\bar B$（即 $C_0 = -B_0$, $C_{\mathbf k} = B_{\mathbf k}$）
+- $A = D \iff E_1 = 0$
 
-在绝热消除 ancilla 后（$\tau$ 足够大），MZM 子空间 $\{\gamma_1, \gamma_2, \gamma_3\}$ 上的
-有效哈密顿量（Hermitian，在 Pauli 基底中）：
+### 1.3 Riccati 变量与 ODE
 
-$$\boxed{H_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x + D_{t_1}(t)\,\sigma_y + E_1\,\sigma_z}$$
+将 $U = \begin{pmatrix} X & Y \\ Z & W \end{pmatrix}$ 的第一列提取出来，定义：
 
-其中 Pauli 矩阵对应关系为：
-$$\sigma_x \leftrightarrow i\gamma_2\gamma_3,\quad \sigma_y \leftrightarrow i\gamma_3\gamma_1,\quad \sigma_z \leftrightarrow i\gamma_1\gamma_2$$
+$$q(t) := Z(t)X(t)^{-1} \in \mathbb{H}, \quad q(0) = 0$$
 
-三个系数：
-- $\varepsilon(t)$：来自 $t_2, t_3, E_d$ 的编织驱动（始终非零，提供几何相位）
-- $D_{t_1}(t) \propto t_1 \cdot g(t)$：$t_1$ 诱导的 $\sigma_y$ 动态耦合
-- $E_1$：$\gamma_1$–$\gamma_2$ 杂化能（恒定，$\sigma_z$ 方向）
+$q$ 满足 Riccati ODE：
 
-它们满足 $\mathfrak{su}(2)$ 对易关系：
-$$[\sigma_x, \sigma_y] = 2i\sigma_z,\quad [\sigma_y, \sigma_z] = 2i\sigma_x,\quad [\sigma_z, \sigma_x] = 2i\sigma_y$$
+$$\boxed{\dot q(t) = C(t) + D(t)q(t) - q(t)A(t) - q(t)B(t)q(t), \qquad q(0) = 0}$$
 
-有效演化算符（单次编织）：
-$$U_{\text{eff}}(3\tau) = \mathcal{P}\exp\!\left(-i\int_0^{3\tau} H_{\text{eff}}(t)\,dt\right) \in \text{SU}(2)$$
+$q$ 有 4 个实分量，编码了 ancilla 对 MZM 的全部瞬时影响。
 
-### 11.2 关键引理：和乐李代数由时间-对易子生成
+### 1.4 MZM 子空间演化
 
-**引理（简化的 Ambrose-Singer）**：对于时变哈密顿量 $H(t)$，和乐群 $\text{Hol}$ 的李代数
-$\mathfrak{hol}$ 由 $\{H(t)\}_{t \in [0,T]}$ 及其所有多重对易子张成。
+MZM 子空间的演化由 $X(t)$ 描述：
 
-$$\mathfrak{hol} = \text{Lie}\big\langle \{H(t) : t \in [0,3\tau]\} \big\rangle$$
+$$\dot X(t) = K_{\text{eff}}(t)\,X(t), \qquad K_{\text{eff}}(t) := A(t) + B(t)q(t)$$
 
-即：取所有时刻的 $H(t)$ 作为生成元集合，计算它们之间的所有可能的李括号，
-得到的李代数的实线性张成就是 $\mathfrak{hol}$。
+$X(0) = 1$（初始化时 MZM 子空间未受扰动）。
 
-**物理含义**：如果 $H(t)$ 在所有时刻都限制在某个子代数 $\mathfrak{h} \subset \mathfrak{su}(2)$ 中，
-那么整个演化 $U(t)$ 也被限制在对应的李子群 $H \subset \text{SU}(2)$ 中。
-这就是 report §2.4 中李代数闭包分析的严格数学基础。
+$X \in \mathbb{H}$ 是 MZM → MZM 的振幅。归一化来自 $U^\dagger U = I$：
+
+$$|X|^2 + |Z|^2 = 1 \;\Rightarrow\; |X|^2 = \frac{1}{1+|q|^2}$$
 
 ---
 
-### 11.3 情形一：$E_1 = t_1 = 0$ → 和乐群 $\cong B_2$
+## 二、消去 ancilla：定义 $K := K_{\text{eff}} = A + Bq$
 
-**条件**：$E_1 = 0$ 且 $t_1 = 0$。
+### 2.1 变量替换
 
-**$H_{\text{eff}}$ 的形式**：
-$$H_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x$$
+定义：
 
-其中 $\varepsilon(t)$ 在所有三步中非零（来自 $t_2, t_3, E_d$）。
+$$\boxed{K(t) := A(t) + B(t)q(t) \in \mathbb{H}}$$
 
-**对易子分析**：
-$$[H_{\text{eff}}(t_1), H_{\text{eff}}(t_2)] = \varepsilon(t_1)\varepsilon(t_2)\,[\sigma_x, \sigma_x] = 0 \quad \forall\, t_1, t_2$$
+则 $q = B^{-1}(K - A)$（当 $B \neq 0$ 时）。注意到 $B(t)$ 仅在 $|t_1(t)| = E_d(t) = 0$ 时奇异——这在三步协议中最多发生在孤立的步边界瞬刻，可处理为极限。
 
-**所有时刻的 $H_{\text{eff}}(t)$ 均正比于 $\sigma_x$，相互对易。**
+$K$ 有 4 个实分量。将其分解为标量部分与矢量部分：
 
-**和乐李代数**：
-$$\mathfrak{hol} = \text{span}_{\mathbb{R}}\{\sigma_x\} \cong \mathfrak{u}(1)$$
+$$\boxed{K = k_0 + \Omega}, \quad k_0 := \operatorname{Re}(K), \quad \Omega := \operatorname{Im}(K) \in \operatorname{span}\{\mathbf i, \mathbf j, \mathbf k\} \cong \mathbb{R}^3$$
 
-李代数维数降为 1。
+$\Omega$ 即 MZM 的有效磁场（旋转轴 × 角频率）。
 
-**和乐（路径有序化退化为普通指数）**：
-$$U_{\text{eff}}(3\tau) = \exp\!\left(-i\left[\int_0^{3\tau} \varepsilon(t)\,dt\right]\sigma_x\right)$$
+### 2.2 $K$ 的自洽 ODE
 
-编织路径积分给出 $\int_0^{3\tau} \varepsilon(t)\,dt = \pi/2$（报告 §7.3 的 $\Phi_G$），因此：
-$$U_{\text{eff}}(3\tau) = \exp(-i\frac{\pi}{2}\sigma_x) = -i\sigma_x = \begin{pmatrix}0 & -i \\ -i & 0\end{pmatrix}$$
+对 $K = A + Bq$ 求导：
 
-这正是 $\gamma_2 \leftrightarrow \gamma_3$ 交换在旋量表示中的矩阵（$\gamma_2 \to \gamma_3,\; \gamma_3 \to -\gamma_2$）。
+$$\dot K = \dot A + \dot B q + B\dot q$$
 
-**和乐群的离散性**：虽然 $\mathfrak{hol} \cong \mathfrak{u}(1)$ 是连续 1 维李代数，
-但编织协议给出了**固定的** $\pi/2$ 旋转角。重复编织 $n$ 次：
-$$U^n = \exp(-i\frac{n\pi}{2}\sigma_x)$$
+代入 Riccati ODE $\dot q = C + Dq - qA - qBq$，并用 $q = B^{-1}(K - A)$：
 
-这是一个 $\mathbb{Z}_4$ 循环群（因为 $U^4 = I$）。$\mathbb{Z}_4$ 是 $B_2 \cong \mathbb{Z}$
-在 SU(2) 旋量表示中的像。
+$$\begin{aligned}
+\dot K &= \dot A + \dot B B^{-1}(K-A) \\
+       &\quad + B\Big[C + D B^{-1}(K-A) - B^{-1}(K-A)A - B^{-1}(K-A)B B^{-1}(K-A)\Big]
+\end{aligned}$$
 
-$$\boxed{\text{Hol} \cong \mathbb{Z}_4 \cong B_2 / \ker(\rho) \;\Longleftrightarrow\; \text{平坦有效联络}}$$
+利用 $B B^{-1} = 1$ 化简最后一项：$B^{-1}(K-A)B B^{-1}(K-A) = B^{-1}(K-A)^2$。
 
-**几何解释**：曲率 $F = [H(t_1), H(t_2)] = 0$。和乐仅依赖同伦类（绕数 $w$），不依赖路径的具体形状。
-这就是**纯拓扑编织**。
+两边左乘 $B$ 后整理，得到 $K$ 的封闭 ODE：
+
+$$\boxed{\dot K = \dot A + \dot B B^{-1}(K-A) + BC + BD B^{-1}(K-A) - (K-A)A - (K-A)^2}$$
+
+**每一项都只含 $K$ 和已知的时间函数 $A,B,C,D,\dot A,\dot B$。ancilla 变量 $q$ 已被完全消去。**
+
+初始条件：由 $q(0) = 0$ 得
+
+$$\boxed{K(0) = A(0)}$$
+
+（$A(0)$ 由 $t=0$ 时的门控参数给定。在三步协议中，Step 1 开始时 $t_2(0)=t_3(0)=E_1$（若 $E_1\neq 0$），故 $A(0)$ 可能非零。）
+
+### 2.3 分拆为标量与矢量方程
+
+令 $A = \mathbf a$, $D = \mathbf d$（纯矢量），$B = b_0 + b_3\mathbf k$, $C = -b_0 + b_3\mathbf k$。
+
+四元数 $B$ 与 $B^{-1}$ 均在 $\operatorname{span}\{1,\mathbf k\}$ 内，记：
+
+$$B^{-1} = \frac{b_0 - b_3\mathbf k}{b_0^2 + b_3^2} =: \beta_0 + \beta_3\mathbf k, \quad \beta_0 := \frac{b_0}{|B|^2},\; \beta_3 := -\frac{b_3}{|B|^2}$$
+
+**乘积 $BD B^{-1}$**：$D$ 是纯矢量 $\mathbf d = d_1\mathbf i + d_2\mathbf j$。$B$ 对其的共轭作用是一个 $\mathbf i$–$\mathbf j$ 平面内的旋转：
+
+$$BD B^{-1} = \tilde d_1 \mathbf i + \tilde d_2 \mathbf j$$
+
+其中
+$$\tilde d_1 = \frac{(b_0^2-b_3^2)d_1 - 2b_0b_3 d_2}{|B|^2}, \qquad \tilde d_2 = \frac{2b_0b_3 d_1 + (b_0^2-b_3^2)d_2}{|B|^2}$$
+
+**乘积 $BC$**：$BC = (b_0 + b_3\mathbf k)(-b_0 + b_3\mathbf k) = -b_0^2 + b_3^2$（标量）。
+
+**乘积 $\dot B B^{-1}$**：在 $\operatorname{span}\{1,\mathbf k\}$ 内，记作 $\gamma_0 + \gamma_3\mathbf k$。
+
+$$\dot B B^{-1} = \frac{\dot b_0 b_0 + \dot b_3 b_3}{|B|^2} + \frac{\dot b_3 b_0 - \dot b_0 b_3}{|B|^2}\,\mathbf k$$
+
+**项 $-(K-A)A$**：$K-A = k_0 + \Omega - \mathbf a$，$A = \mathbf a$（纯矢量）。
+
+$$-(K-A)A = -(k_0 + \Omega - \mathbf a)\mathbf a = -k_0\mathbf a + \mathbf a\cdot(\Omega - \mathbf a) - \mathbf a \times (\Omega - \mathbf a)$$
+
+（此处 $\mathbf a \times (\Omega - \mathbf a) = \mathbf a \times \Omega$，因为 $\mathbf a \times \mathbf a = 0$。）
+
+标量部分：$\mathbf a \cdot (\Omega - \mathbf a)$，矢量部分：$-k_0\mathbf a - \mathbf a \times \Omega$。
+
+**项 $-(K-A)^2$**：对于一般四元数，
+
+$$(K-A)^2 = \big(k_0^2 - |\Omega - \mathbf a|^2\big) + 2k_0(\Omega - \mathbf a)$$
+
+因此 $-(K-A)^2$ 的标量部分为 $-(k_0^2 - |\Omega - \mathbf a|^2)$，矢量部分为 $-2k_0(\Omega - \mathbf a)$。
+
+将它们写成完整形式：分解 $\dot K = \dot k_0 + \dot\Omega$：
+
+$$\boxed{\begin{aligned}
+\dot k_0 &= \operatorname{Re}\!\big[\dot B B^{-1}(K-A)\big] + (b_3^2 - b_0^2) + \mathbf a\cdot\Omega - |\mathbf a|^2 - k_0^2 + |\Omega - \mathbf a|^2 \\[6pt]
+\dot\Omega &= \dot{\mathbf a} + \operatorname{Im}\!\big[\dot B B^{-1}(K-A)\big] + \tilde{\mathbf d} - k_0\mathbf a - \mathbf a\times\Omega - 2k_0(\Omega - \mathbf a)
+\end{aligned}}$$
+
+其中 $\tilde{\mathbf d} = BD B^{-1}$ 的矢量部分，$\operatorname{Re}/\operatorname{Im}$ 分别取四元数的标量/矢量部分。
 
 ---
 
-### 11.4 情形二：$E_1 = 0$，$t_1 \neq 0$ → 和乐群 $\cong \text{SO}(2)$
+## 三、MZM 纯态的封闭演化
 
-**条件**：$E_1 = 0$ 且 $t_1 \neq 0$。
+### 3.1 纯 MZM 四元数
 
-**$H_{\text{eff}}$ 的形式**：
-$$H_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x + D_{t_1}(t)\,\sigma_y$$
+定义单位四元数 $r(t)$ 为 $X(t)$ 的方向部分：
 
-两项系数有不同的时间依赖：$\varepsilon(t)$ 来自门控 $t_2, t_3$，$D_{t_1}(t) \propto t_1 \cdot g(t)$。
+$$r(t) := \frac{X(t)}{|X(t)|} \in \mathbb{H}, \qquad |r(t)| = 1$$
 
-**对易子分析**：
-$$[H_{\text{eff}}(t_1), H_{\text{eff}}(t_2)] = \big[\varepsilon_1\sigma_x + D_1\sigma_y,\; \varepsilon_2\sigma_x + D_2\sigma_y\big]$$
+$r \in SU(2)$，仅 3 个实自由度，完全编码了三个 MZM 的量子态。其与 SO(3) 编织矩阵 $R_{123}$ 的关系是标准旋量覆盖：
 
-展开（$[\sigma_x, \sigma_y] = 2i\sigma_z$，其余对易子为零）：
-$$\begin{aligned}
-&= \varepsilon_1 D_2[\sigma_x, \sigma_y] + D_1\varepsilon_2[\sigma_y, \sigma_x] \\
-&= 2i(\varepsilon_1 D_2 - D_1\varepsilon_2)\,\sigma_z
-\end{aligned}$$
+$$(R_{123})_{ij} = \frac{1}{2}\operatorname{Tr}(\sigma_i\, r\, \sigma_j\, r^\dagger)$$
 
-$$\boxed{[H_{\text{eff}}(t_1), H_{\text{eff}}(t_2)] = 2i\big(\varepsilon(t_1)D_{t_1}(t_2) - D_{t_1}(t_1)\varepsilon(t_2)\big)\,\sigma_z}$$
+其中 $\sigma_1, \sigma_2, \sigma_3$ 对应 $i\gamma_2\gamma_3, i\gamma_3\gamma_1, i\gamma_1\gamma_2$。
 
-因为 $\varepsilon(t)$ 和 $D_{t_1}(t)$ 有不同的时间轮廓（一个跟 $t_2/t_3$ 走，一个跟 $t_1$ 走），
-差 $(\varepsilon_1 D_2 - D_1\varepsilon_2)$ 一般非零。
+### 3.2 $r$ 的运动方程
 
-**和乐李代数**：对易子生成了 $\sigma_z$ 分量，因此：
-$$\mathfrak{hol} = \text{span}_{\mathbb{R}}\{\sigma_x,\; \sigma_y,\; \sigma_z\} \cong \mathfrak{su}(2)$$
+由 $\dot X = KX$ 及 $X = \rho r$（$\rho = |X|$）：
 
-**李代数看似满 3 维 $\mathfrak{su}(2)$，为何和乐群是 SO(2)？**
+$$\dot\rho\, r + \rho\, \dot r = K \rho r$$
 
-**关键——$A=D$ 对称性约束**：
+两边右乘 $r^{-1}$，分别取实部与虚部：
 
-李代数 $\mathfrak{hol} \cong \mathfrak{su}(2)$ 是所有**可能**路径能生成的完全集。但**特定编织协议**
-施加了 $A=D$ 对称性约束（report §7.5bis），该约束源于在 $\mathfrak{sp}(2)$ 表示中：
+- 实部：$\dot\rho / \rho = k_0$（标量部分仅缩放模长，已被 $|X|^2 + |Z|^2 = 1$ 自洽约束）
+- 虚部：
 
-$$E_1 = 0 \;\Longrightarrow\; A(t) = D(t) = \frac{|t_3|}{2}\mathbf{i} + \frac{|t_2|}{2}\mathbf{j}$$
+$$\boxed{\dot r(t) = \Omega(t)\, r(t)}$$
 
-对称性 $A=D$ 导致 Riccati ODE 中：
-$$\dot{q} = C + [A, q] - qBq$$
+**这是 Bloch 方程的四元数形式：$\dot r = \frac{1}{2}(\vec\omega \cdot \vec\sigma)\, r$，有效磁场为 $\Omega(t)$。**
 
-线性部分 $[A, q]$ 产生的瞬时 $\sigma_z$ 分量在编织全程的**时间积分恰好抵消**。
-定量证明（report §7.5）：
+### 3.3 完整七维封闭系统
 
-$$\begin{aligned}
-\int_0^{\tau} \text{Step 1 瞬时 }\sigma_z\,dt &\propto +\int f_m\,dt \\
-\int_{\tau}^{2\tau} \text{Step 2 瞬时 }\sigma_z\,dt &\propto \pm\int (f_p + f_m)\,dt \\
-\int_{2\tau}^{3\tau} \text{Step 3 瞬时 }\sigma_z\,dt &\propto -\int f_p\,dt
-\end{aligned}$$
+$$\boxed{\begin{aligned}
+\dot k_0 &= f_0(k_0, \Omega; t) \\[4pt]
+\dot\Omega &= \mathbf{f}(k_0, \Omega; t) \\[4pt]
+\dot r &= \Omega\, r
+\end{aligned}}$$
 
-由于 $\int_0^\tau f_m\,dt = \int_0^\tau f_p\,dt = \tau/2$，三步求和：
-$$\boxed{\int_0^{3\tau} \omega_z(t)\,dt = 0}$$
+| 层次 | 变量 | 维数 | 自治？ | 含义 |
+|------|------|------|--------|------|
+| 有效驱动层 | $(k_0, \Omega)$ | 4 | ✅ | ancilla 历史的痕迹，仅由门控参数驱动 |
+| MZM 响应层 | $r$ | 3 | ❌（被 $\Omega$ 驱动） | 纯 MZM 旋转 |
 
-**净 $\sigma_z$ 和乐为零。** 这就是数值事实
-$\int \omega_z\,dt = 0$ 在李代数层面的根源。
+**ancilla 从未出现在任何方程中。其唯一痕迹是初始条件 $K(0) = A(0)$，出现一次后消失。**
 
-**和乐的形式**：由于净 $\sigma_z = 0$，有效和乐被限制在 $\sigma_x$–$\sigma_y$ 平面内：
-
-$$U_{\text{eff}}(3\tau) = \exp\!\big(-i\phi\,(\cos\alpha\,\sigma_x + \sin\alpha\,\sigma_y)\big)$$
-
-其中 $\phi = \sqrt{(\pi/2)^2 + \Phi_D^2}$，$\tan\alpha = \Phi_D/(\pi/2)$，
-$\Phi_D = \int_0^{3\tau} D_{t_1}(t)\,dt \propto t_1\tau$。
-
-**和乐群的结构**：
-
-- **固定 $t_1, \tau$**：和乐是绕固定轴 $\hat{n} = (\cos\alpha, \sin\alpha, 0)$ 旋转 $\phi$ 角。
-  重复编织给出该轴的任意倍数旋转：
-  $$\text{Hol}(t_1, \tau) = \{\exp(-i\theta\,\hat{n}\cdot\vec{\sigma}) : \theta \in \mathbb{R}\} \cong \text{SO}(2) \cong U(1)$$
-
-  这是**1 维连通 Abel 李子群**。
-
-- **变动 $t_1$**：轴 $\hat{n}$ 在 $\sigma_x$–$\sigma_y$ 平面内连续偏转，但**始终无法产生 $\sigma_z$ 分量**。
-  所有可达到的和乐构成 SU(2) 中的 2 维子流形（不是子群）。
-
-$$\boxed{\text{固定参数：Hol} \cong \text{SO}(2) \;\Longleftrightarrow\; A=D\;\text{对称性} \;\Longleftrightarrow\; \int\omega_z = 0}$$
-
-**几何解释**：曲率分量 $F_{t_1,t}$ 只在 $\sigma_x$–$\sigma_y$ 平面内产生效应。
-沿编织回路的曲率面积分在 $\sigma_z$ 方向恰好正负抵消——曲率在 $\sigma_z$ 方向是"闭合"的
-（类似磁场通过闭合曲面的总通量为零）。
+初始条件汇总：
+$$K(0) = A(0), \quad r(0) = 1$$
 
 ---
 
-### 11.5 情形三：$E_1 \neq 0$，$t_1 \neq 0$ → 和乐群 $\cong \text{SU}(2)$
+## 四、退化极限
 
-**条件**：$E_1 \neq 0$ 且 $t_1 \neq 0$。
+### 4.1 $E_1 = 0$：$A = D$
 
-**$H_{\text{eff}}$ 的形式**：
-$$H_{\text{eff}}(t) = \varepsilon(t)\,\sigma_x + D_{t_1}(t)\,\sigma_y + E_1\,\sigma_z$$
+$$\dot\Omega = \dot{\mathbf a} + (\text{旋转项}) - \mathbf a \times \Omega - 2k_0(\Omega - \mathbf a)$$
 
-所有三个 Pauli 方向全部非零。
+此时 $A = D$ 使得系统具有额外对称性，$\Omega(t)$ 的轨迹约束在 $\mathbf i$–$\mathbf j$ 平面。$\Omega(t)$ 可以预先积分为门控参数的显式泛函（report §7 的解析解）。
 
-**对易子分析**：
+### 4.2 $B = 0$（$t_1 = E_d = 0$）
 
-$$\begin{aligned}
-[H(t_1), H(t_2)] &= 2i\big(\varepsilon_1 D_2 - D_1\varepsilon_2\big)\,\sigma_z \\
-&\quad + 2i\big(D_1 E_1 - E_1 D_2\big)\,\sigma_x \\
-&\quad + 2i\big(E_1\varepsilon_2 - \varepsilon_1 E_1\big)\,\sigma_y
-\end{aligned}$$
+$K = A$，$\dot r = \mathbf a(t)\, r$——平凡。
 
-关键差异——$E_1 \neq 0$ 时新增了两类对易子：
+### 4.3 瞬时 $B = 0$（步边界）
 
-$$[\sigma_y\text{-项}, \sigma_z\text{-项}] \propto \sigma_x,\qquad [\sigma_z\text{-项}, \sigma_x\text{-项}] \propto \sigma_y$$
+$\dot B B^{-1}$ 会发散。此时应回归 Riccati 表述（$q$ 的 ODE）跨越该瞬刻。数值实现可检测 $|B|$ 并切换。
 
-这三个对易子**在时间上无法全部抵消**，因为 $E_1$ 是常数而 $\varepsilon(t), D_{t_1}(t)$ 是时变的。
+---
 
-**$A \neq D$ 对称性破缺**（report §7.5bis）：
+## 五、变量对比
 
-$\mathfrak{sp}(2)$ 表示中：
-$$A = \frac{E_1 + |t_3|}{2}\mathbf{i} + \frac{|t_2|}{2}\mathbf{j},\quad D = \frac{-E_1 + |t_3|}{2}\mathbf{i} + \frac{|t_2|}{2}\mathbf{j}$$
+| 方案 | 变量数 | ancilla 显式出现？ | 方程自治？ |
+|------|--------|-------------------|------------|
+| SO(5) 直接 | 25 | ✅ | ✅ |
+| Sp(2) 直接 | 10 | ✅ | ✅ |
+| Riccati ($q$) | 4 | ✅（$q$ 即 ancilla 比值） | ✅ |
+| **$K$ 有效生成元** | **4** | **❌** | **✅** |
+| **$(K, r)$ 联合** | **7** | **❌** | **✅** |
 
-$$A - D = E_1\,\mathbf{i} = E_1\,\sigma_x \neq 0$$
+---
 
-$A \neq D$ 打破了 §11.4 中使 $\int\omega_z = 0$ 的对称性。Riccati ODE 的完整形式被恢复：
+---
 
-$$\dot{q} = C + Dq - qA - qBq$$
+## 七、PRB113 路线：SO(5) 正交旋转尝试解耦
 
-$Dq$ 和 $-qA$ 不再对称相消 → $\sigma_z$ 净积累 ≠ 0 →
-三 Pauli 方向全部可独立到达。
+PRB113 (Nitsch et al., 2026) 通过**连续正交旋转 Majorana 基**，将对角化后的哈密顿量中解耦的 Majorana 对分离出来，得到低能有效扇区。本节将此方法应用于我们的 5-Majorana 模型。
 
-**和乐李代数**：
-$$\mathfrak{hol} = \text{span}_{\mathbb{R}}\{\sigma_x, \sigma_y, \sigma_z\} \cong \mathfrak{su}(2)$$
+### 7.1 SO(5) 反对称矩阵形式
 
-**和乐群**：生成元不对易（$[\sigma_x, \sigma_y] = 2i\sigma_z \neq 0$），
-且三个方向的路径积分均可独立为非零。
+将 $H_{EM}$ 写为 $H = \frac{i}{2} \sum_{ij} M_{ij} \gamma_i \gamma_j$，其中基底排序为 $\{\gamma_1, \gamma_2, \gamma_3, \gamma_a, \gamma_b\}$：
 
-$$\boxed{\text{Hol} \cong \text{SU}(2) \;\Longleftrightarrow\; E_1 \neq 0,\;t_1 \neq 0 \;\Longleftrightarrow\; \text{全非阿贝尔}}$$
+$$M(t) = \begin{pmatrix}
+0 & E_1 & 0 & 0 & |t_1| \\
+-E_1 & 0 & 0 & -|t_2| & 0 \\
+0 & 0 & 0 & |t_3| & 0 \\
+0 & |t_2| & -|t_3| & 0 & E_d \\
+-|t_1| & 0 & 0 & -E_d & 0
+\end{pmatrix}$$
 
-通过调节 $(E_1, t_1, \tau)$ 三个独立参数，可以遍历 SU(2) 中任意群元素。
-具体地：
+（已逐项验证符号正确性。）
 
-| 参数 | 控制的自由度 | SU(2) 参数 |
+$M(t)$ 是 $5 \times 5$ 实反对称矩阵，总是可以通过一个 $SO(5)$ 旋转 $O(t)$ 对角化为：
+
+$$O^T(t) M(t) O(t) = \begin{pmatrix}
+0 & & & & \\
+& 0 & \varepsilon_1 & & \\
+& -\varepsilon_1 & 0 & & \\
+& & & 0 & \varepsilon_2 \\
+& & & -\varepsilon_2 & 0
+\end{pmatrix}$$
+
+其中 $\pm i\varepsilon_1, \pm i\varepsilon_2$ 是 $M$ 的特征值（一个特征值恒为零，对应瞬时零模）。
+
+### 7.2 与 PRB113 的关键区别
+
+| | PRB113 | 本模型 |
 |---|---|---|
-| $t_c, E_0$（编织） | 基准 $\sigma_x$ 旋转 $\Phi_G = \pi/2$ | 固定 |
-| $t_1$ | $\sigma_y$ 旋转 $\Phi_D$ | 第 1 连续自由度 |
-| $E_1$ | $\sigma_z$ 旋转 $\Phi_{E_1}$ | 第 2 连续自由度 |
-| $\tau$ | 所有旋转角度的缩放 | 第 3 连续自由度 |
+| Majorana 数 | 6（3 对） | 5（2 对 + 1 个） |
+| 瑕疵参数 | $\zeta$（静态常数） | $E_1, t_1$（时变） |
+| 编织耦合 | $\epsilon_1, t_{12}, t_{13}$（时变） | $t_2, t_3, E_d$（时变） |
+| 修正项 | $\Lambda$（调谐至简并） | 无独立修正参数 |
 
-三个自由度恰好匹配 $\dim\text{SU}(2) = 3$。
+**PRB113 能成功对角化并解耦的核心原因**：瑕疵 $\zeta$ 是常数 → 在协议第二步（$\theta = \pi/2$）期间，对角化角度 $\theta_\alpha, \theta_\mu$ 为常数 → 被积函数与自身对易 → 时间排序 $\mathcal{T}$ 可忽略。
 
-**数值验证**（report §7.5bis，`bloch_E1_nonzero_trajectories.py`）：
+**本模型的困难**：$E_1, t_1$ 随门控函数 $f_\pm(t)$ 时变 → 对角化旋转在所有时刻都在变化 → 没有"常数角度"区间。
 
-| 情形 | $v_x$ | $v_y$ | $v_z$ | Bloch 覆盖 |
-|---|---|---|---|---|
-| $E_1 = 0$，3 独立 $t_1$ | $[-1,1]$ | **$0$** | $[-1,1]$ | 1D 曲线 |
-| **$E_1 \neq 0$**，3 独立 $t_1$ | $[-1,1]$ | **$[-1,1]$** | $[-1,1]$ | **整个球面** |
+### 7.3 第一步：$E_1 = t_1 = 0$ 极限下的 SO(4) 结构
 
-$E_1 \neq 0$ 释放了 $\sigma_y$ 方向 → 遍历 Bloch 球面全部点 → SU(2) 的群作用可迁。
+此时 $M$ 退化为：
+
+$$M_0(t) = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & -|t_2| & 0 \\
+0 & 0 & 0 & |t_3| & 0 \\
+0 & |t_2| & -|t_3| & 0 & E_d \\
+0 & 0 & 0 & -E_d & 0
+\end{pmatrix}$$
+
+$\gamma_1$ **完全解耦**。剩余 $\{\gamma_2, \gamma_3, \gamma_a, \gamma_b\}$ 构成一个 SO(4) 子系统：
+
+$$M_0^{(4)} = \begin{pmatrix}
+0 & 0 & -|t_2| & 0 \\
+0 & 0 & |t_3| & 0 \\
+|t_2| & -|t_3| & 0 & E_d \\
+0 & 0 & -E_d & 0
+\end{pmatrix}$$
+
+这恰好是纯净编织的极限——report 中已验证此时编织保真度 $\to 1$（$\tau \ge 50$），$\gamma_2 \leftrightarrow \gamma_3$ 交换精确成立。
+
+### 7.4 第二步：PRB113 风格的方向提取
+
+定义 ancilla $\gamma_a$ 所耦合的"有效方向"：
+
+$$\boxed{\gamma_\Delta(t) := \frac{|t_2|\gamma_2 - |t_3|\gamma_3 + E_d\gamma_b}{N(t)},\quad N(t) := \sqrt{|t_2|^2 + |t_3|^2 + E_d^2}}$$
+
+则 ancilla 相关的项简并为：
+
+$$i|t_2|\gamma_a\gamma_2 - i|t_3|\gamma_a\gamma_3 + iE_d\gamma_a\gamma_b = iN(t)\,\gamma_a\gamma_\Delta$$
+
+这正是 PRB113 的 $i\gamma_1\gamma_\Delta$ 项的对应物（我们的 $\gamma_a$ 对应他们的 $\gamma_1$，我们的 $\gamma_\Delta$ 对应他们的编织方向）。
+
+在 $\{\gamma_2, \gamma_3, \gamma_b\}$ 的三维空间中，$\gamma_\Delta$ 是一个时变方向。补全正交基：
+
+$$\boxed{\begin{aligned}
+\gamma_{\theta'} &:= \frac{-|t_3|\gamma_2 - |t_2|\gamma_3}{\sqrt{|t_2|^2 + |t_3|^2}} \\[4pt]
+\gamma_{\phi'} &:= \frac{E_d|t_2|\gamma_2 - E_d|t_3|\gamma_3 - (|t_2|^2+|t_3|^2)\gamma_b}{N(t)\sqrt{|t_2|^2 + |t_3|^2}}
+\end{aligned}}$$
+
+三者构成标准正交基：$\{\gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}\}$（均为合法 Majorana 算符）。
+
+在此基下，SO(4) 子块的哈密顿量为：
+
+$$H_0 = iN(t)\,\gamma_a\gamma_\Delta$$
+
+$\gamma_{\theta'}, \gamma_{\phi'}$ 与 $\gamma_a$ 无耦合——它们仅在基旋转变化时通过 Berry 联络产生效应。
+
+### 7.5 第三步：引入 $E_1, t_1 \neq 0$
+
+现在将 $\gamma_1$ 重新纳入。原始耦合项：
+
+$$iE_1\gamma_1\gamma_2 - i|t_1|\gamma_b\gamma_1$$
+
+用逆变换表达 $\gamma_2, \gamma_b$ 为 $\{\gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}\}$：
+
+$$\begin{aligned}
+\gamma_2 &= \frac{|t_2|}{N}\gamma_\Delta - \frac{|t_3|}{\sqrt{t_2^2+t_3^2}}\gamma_{\theta'} + \frac{E_d|t_2|}{N\sqrt{t_2^2+t_3^2}}\gamma_{\phi'} \\[4pt]
+\gamma_b &= \frac{E_d}{N}\gamma_\Delta - \frac{\sqrt{t_2^2+t_3^2}}{N}\gamma_{\phi'}
+\end{aligned}$$
+
+代入后，$\gamma_1$ 的耦合项变为：
+
+$$iE_1\gamma_1\gamma_2 - i|t_1|\gamma_b\gamma_1 = i\gamma_1\!\left[\,\alpha_\Delta\gamma_\Delta + \alpha_{\theta'}\gamma_{\theta'} + \alpha_{\phi'}\gamma_{\phi'}\,\right]$$
+
+其中：
+
+$$\boxed{\begin{aligned}
+\alpha_\Delta &= E_1\frac{|t_2|}{N} + |t_1|\frac{E_d}{N} \\[4pt]
+\alpha_{\theta'} &= -E_1\frac{|t_3|}{\sqrt{t_2^2+t_3^2}} \\[4pt]
+\alpha_{\phi'} &= E_1\frac{E_d|t_2|}{N\sqrt{t_2^2+t_3^2}} + |t_1|\frac{\sqrt{t_2^2+t_3^2}}{N}
+\end{aligned}}$$
+
+### 7.6 全哈密顿量在新基下
+
+$$\boxed{H = iN(t)\,\gamma_a\gamma_\Delta + i\gamma_1\!\left[\alpha_\Delta\gamma_\Delta + \alpha_{\theta'}\gamma_{\theta'} + \alpha_{\phi'}\gamma_{\phi'}\right]}$$
+
+**结构解读**：
+
+- **第一项** $iN\gamma_a\gamma_\Delta$：$\gamma_a$ 仅与 $\gamma_\Delta$ 耦合——与 PRB113 结构一致
+- **第二项**：$\gamma_1$ 同时与 $\gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}$ 三个方向耦合
+
+**这与 PRB113 的关键差异**：在 PRB113 中，$\gamma_1$ 仅与 $\gamma_\Delta$ 耦合（$i\gamma_1\gamma_\Delta$），因为他们的瑕疵 $\tilde{H}$ 涉及的 $\tilde{\gamma}_1$ 已经在 $\gamma_\Delta$ 方向中。我们的模型中，$\gamma_1$ 同时耦合到三个正交方向——这是因为 $E_1$ 和 $t_1$ 作用在 $\gamma_2$ 和 $\gamma_b$ 上，而这两者在旋转基中都有 $\gamma_{\theta'}, \gamma_{\phi'}$ 的分量。
+
+### 7.7 能否进一步解耦？
+
+现在哈密顿量涉及 5 个 Majorana：$\{\gamma_1, \gamma_a, \gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}\}$。耦合结构为：
+
+$$\begin{aligned}
+\gamma_a &\leftrightarrow \gamma_\Delta \quad (\text{强度 } N) \\
+\gamma_1 &\leftrightarrow \{\gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}\} \quad (\text{强度 } \alpha_{\Delta}, \alpha_{\theta'}, \alpha_{\phi'})
+\end{aligned}$$
+
+这等价于一个 $4 \times 4$ 反对称子矩阵（$\gamma_1, \gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}$）与 $\gamma_a$ 通过 $N$ 耦合：
+
+$$M' = \begin{pmatrix}
+0 & \alpha_\Delta & \alpha_{\theta'} & \alpha_{\phi'} & 0 \\
+-\alpha_\Delta & 0 & 0 & 0 & N \\
+-\alpha_{\theta'} & 0 & 0 & 0 & 0 \\
+-\alpha_{\phi'} & 0 & 0 & 0 & 0 \\
+0 & -N & 0 & 0 & 0
+\end{pmatrix}$$
+
+这里排序为 $\{\gamma_1, \gamma_\Delta, \gamma_{\theta'}, \gamma_{\phi'}, \gamma_a\}$。
+
+**$\gamma_{\theta'}$ 和 $\gamma_{\phi'}$ 仅通过 $\gamma_1$ 与系统其余部分耦合**——它们不与 $\gamma_a$ 或 $\gamma_\Delta$ 直接耦合。
+
+这暗示可以进一步旋转 $\{\gamma_{\theta'}, \gamma_{\phi'}\}$ 平面，使 $\gamma_1$ 只与其中一个耦合：
+
+$$\gamma_\perp := \frac{\alpha_{\theta'}\gamma_{\theta'} + \alpha_{\phi'}\gamma_{\phi'}}{\sqrt{\alpha_{\theta'}^2 + \alpha_{\phi'}^2}},\qquad
+\gamma_{\perp'} := \frac{\alpha_{\phi'}\gamma_{\theta'} - \alpha_{\theta'}\gamma_{\phi'}}{\sqrt{\alpha_{\theta'}^2 + \alpha_{\phi'}^2}}$$
+
+则：
+
+$$H = iN\gamma_a\gamma_\Delta + i\gamma_1\!\left[\alpha_\Delta\gamma_\Delta + \alpha_\perp\gamma_\perp\right]$$
+
+其中 $\alpha_\perp := \sqrt{\alpha_{\theta'}^2 + \alpha_{\phi'}^2}$。**$\gamma_{\perp'}$ 完全解耦！**
+
+最终有效哈密顿量仅涉及 4 个 Majorana：
+
+$$\boxed{H_{\text{eff}} = iN(t)\,\gamma_a\gamma_\Delta + i\alpha_\Delta(t)\,\gamma_1\gamma_\Delta + i\alpha_\perp(t)\,\gamma_1\gamma_\perp}$$
+
+### 7.8 结构的物理含义
+
+$$\underbrace{iN\gamma_a\gamma_\Delta}_{\text{编织驱动}} + \underbrace{i\alpha_\Delta\gamma_1\gamma_\Delta}_{\text{E₁ 沿编织方向的泄漏}} + \underbrace{i\alpha_\perp\gamma_1\gamma_\perp}_{\text{E₁+t₁ 正交方向的泄漏}}$$
+
+| 项 | 系数 | 物理来源 |
+|---|---|---|
+| $iN\gamma_a\gamma_\Delta$ | $N = \sqrt{t_2^2+t_3^2+E_d^2}$ | 编织门控 |
+| $i\alpha_\Delta\gamma_1\gamma_\Delta$ | $\alpha_\Delta = \frac{E_1|t_2| + |t_1|E_d}{N}$ | 沿编织方向的瑕疵耦合 |
+| $i\alpha_\perp\gamma_1\gamma_\perp$ | $\alpha_\perp = \sqrt{\alpha_{\theta'}^2+\alpha_{\phi'}^2}$ | 正交于编织方向的瑕疵耦合 |
+
+**至此实现了从 5 Majorana → 4 Majorana 的降维**（$\gamma_{\perp'}$ 解耦）。剩余 4 个 Majorana $\{\gamma_1, \gamma_a, \gamma_\Delta, \gamma_\perp\}$ 构成一个 SO(4) 子系统——恰好是 PRB113 处理的那种结构。
+
+### 7.9 与 PRB113 的对齐
+
+PRB113 在 $\theta = \pi/2$（第二步）时，将剩余耦合写为 $i\gamma_1^D\gamma_\Delta^D$ 和 $i\gamma_\eta^D\gamma_{\theta'}^D$ 的形式。我们现在的 $\{\gamma_1, \gamma_a, \gamma_\Delta, \gamma_\perp\}$ 恰好对应他们的低能四 Majorana 子系统。可以进一步做类似于他们 Eq.(S17) 的旋转 ansatz：
+
+$$\begin{aligned}
+\gamma_1^D &= \cos\vartheta_1\,\gamma_1 + \sin\vartheta_1\,\gamma_a \\
+\gamma_a^D &= \cos\vartheta_1\,\gamma_a - \sin\vartheta_1\,\gamma_1 \\
+\gamma_\Delta^D &= \cos\vartheta_2\,\gamma_\Delta + \sin\vartheta_2\,\gamma_\perp \\
+\gamma_\perp^D &= \cos\vartheta_2\,\gamma_\perp - \sin\vartheta_2\,\gamma_\Delta
+\end{aligned}$$
+
+选择合适的 $\vartheta_1(t), \vartheta_2(t)$ 可以使哈密顿量对角化。$\vartheta_1, \vartheta_2$ 的时变由 $N, \alpha_\Delta, \alpha_\perp$ 决定。
+
+**关键**：在协议第二步（$t_2$ 关闭，$t_3$ 主导），$\alpha_\Delta \to E_1|t_3|/N$，$\alpha_\perp$ 有确定的时间依赖。如果 $\alpha_\Delta$ 和 $\alpha_\perp$ 的比值在第二步保持恒定，则 $\vartheta_1, \vartheta_2$ 为常数 → 可忽略 $\mathcal{T}$ → 得到类似 PRB113 的解析 Berry 相位。
+
+### 7.10 结论：正交旋转路线的成果与局限
+
+| 成果 | 说明 |
+|------|------|
+| ✅ 5→4 降维 | $\gamma_{\perp'}$ 完全解耦 |
+| ✅ 结构对齐 | 剩余 4 Majorana 结构与 PRB113 一致 |
+| ✅ 哈密顿量对角化 | 可通过角度 $\vartheta_1, \vartheta_2$ 实现 |
+| ⚠️ 不同 | 我们的"瑕疵"全部时变——$\vartheta_1, \vartheta_2$ 未必为常数 |
+| ⚠️ 不同 | 无独立调谐参数 $\Lambda$ 来恢复简并 |
+
+**与 Riccati 路线的对比**：
+
+| | Riccati（Sp(2)） | 正交旋转（SO(5)） |
+|---|---|---|
+| 降维方式 | $q = ZX^{-1}$（ancilla 比值） | 连续正交旋转 + 解耦 |
+| 最终变量数 | 4（$q$） | 4（$\vartheta_1, \vartheta_2$ 参数化的 SO(4) 旋转） |
+| ancilla 显式 | ✅（$q$ 是 ancilla 比值） | ❌（完全消去） |
+| 代数结构 | $\mathfrak{sp}(2)$ 四元数 | $\mathfrak{so}(5)$ 实矩阵 |
+| 优势 | 方程紧凑，数值高效 | MZM 演化在"裸"旋转框架中更直观 |
+| 劣势 | $q$ 物理含义间接 | 旋转角 $\vartheta_{1,2}$ 的 ODE 比 Riccati 更复杂 |
+
+**核心发现**：两条路线是完全对偶的。Riccati 用 4 维四元数 $q$ 编码 ancilla 记忆，正交旋转用 4 维角度 $(\vartheta_1, \vartheta_2)$ + Berry 相位编码同样的信息。区别在于：Riccati 的方程更简单（矩阵 Riccati 是规范形），但物理图像不直观；正交旋转的物理图像清晰（直接看到哪个 Majorana 对解耦），但角度 ODE 更复杂。
+
+$E_1 = t_1 = 0$ 时两条路线都退化到平凡情况：$\gamma_1$ 完全自由，编织完美。$E_1 \neq 0$ 时两条路线都不可进一步简化——这是物理本身决定的，不是方法的局限。
 
 ---
 
-### 11.6 总结：三步反推证明的完整逻辑链
+### 7.11 绝热消除：$H_{\text{eff}} = h_0 I + \mathbf{h} \cdot \boldsymbol{\sigma}$
+
+现在最关键的一步：从 4-Majorana 子系统绝热消除快变量，得到 MZM 的 $2\times2$ 有效哈密顿量。
+
+#### 7.11.1 4-Majorana 的矩阵表示
+
+取 $\{\gamma_1, \gamma_\perp, \gamma_\Delta, \gamma_a\}$ 的 Pauli 矩阵表示（4 维 Hilbert 空间 = 2 量子比特）：
+
+$$\begin{aligned}
+\gamma_1 &= \sigma_x \otimes I, & \gamma_\perp &= \sigma_y \otimes I \\
+\gamma_\Delta &= \sigma_z \otimes \sigma_x, & \gamma_a &= \sigma_z \otimes \sigma_y
+\end{aligned}$$
+
+验证：全部 4 个两两反对易，$\gamma_i^2 = I$。✓
+
+哈密顿量 $H = iN\gamma_a\gamma_\Delta + i\alpha_\Delta\gamma_1\gamma_\Delta + i\alpha_\perp\gamma_1\gamma_\perp$ 在此表示下：
+
+$$\boxed{H = N\,(I \otimes \sigma_z) + \alpha_\Delta\,(\sigma_y \otimes \sigma_x) - \alpha_\perp\,(\sigma_z \otimes I)}$$
+
+在基 $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$（第一量子比特 = MZM，第二 = ancilla 快模）下：
+
+$$H = \begin{pmatrix}
+N - \alpha_\perp & 0 & 0 & -i\alpha_\Delta \\
+0 & -(N + \alpha_\perp) & -i\alpha_\Delta & 0 \\
+0 & i\alpha_\Delta & N + \alpha_\perp & 0 \\
+i\alpha_\Delta & 0 & 0 & -(N - \alpha_\perp)
+\end{pmatrix}$$
+
+#### 7.11.2 分块结构
+
+$H$ 自然分裂为两个总宇称扇区：
+
+- **偶宇称** $\{|00\rangle, |11\rangle\}$：$H_{\text{even}} = \begin{pmatrix} N-\alpha_\perp & -i\alpha_\Delta \\ i\alpha_\Delta & -(N-\alpha_\perp) \end{pmatrix}$
+- **奇宇称** $\{|01\rangle, |10\rangle\}$：$H_{\text{odd}} = \begin{pmatrix} -(N+\alpha_\perp) & -i\alpha_\Delta \\ i\alpha_\Delta & N+\alpha_\perp \end{pmatrix}$
+
+#### 7.11.3 绝热极限 $N \gg \alpha_\Delta, \alpha_\perp$
+
+$N(t)$ 在编织过程中 $\sim 0.3$ meV（门控振幅），而 $E_1, t_1 \ll 0.3$（瑕疵参数）。因此 ancilla 模（$i\gamma_a\gamma_\Delta = I\otimes\sigma_z$）是快变量。
+
+偶宇称扇区低能态 $|E_-\rangle$ 对应 $I\otimes\sigma_z = -1$（即第二个量子比特为 $|1\rangle$）：
+
+$$H_{\text{even}}|E_-\rangle \approx -(N - \alpha_\perp) - \frac{\alpha_\Delta^2}{2(N-\alpha_\perp)}$$
+
+奇宇称扇区低能态 $|O_-\rangle$ 同样对应 $I\otimes\sigma_z = -1$：
+
+$$H_{\text{odd}}|O_-\rangle \approx -(N + \alpha_\perp) - \frac{\alpha_\Delta^2}{2(N+\alpha_\perp)}$$
+
+两者之间的能隙：
+
+$$\Delta E = E_{\text{even}} - E_{\text{odd}} \approx 2\alpha_\perp$$
+
+#### 7.11.4 有效 $2\times2$ 哈密顿量
+
+在以 $\{|E_-\rangle, |O_-\rangle\}$ 为基的 2 维低能流形中：
+
+$$\boxed{H_{\text{eff}} = -\left(N + \frac{\alpha_\Delta^2}{2N}\right) I + \alpha_\perp\,\sigma_z + O\!\left(\frac{1}{N^2}\right)}$$
+
+**这就是你想要的 $H_{\text{eff}} = h_0 I + \mathbf{h} \cdot \boldsymbol{\sigma}$ 形式！**
+
+| 项 | 系数 | 物理来源 |
+|---|---|---|
+| $h_0 I$ | $-(N + \alpha_\Delta^2/2N)$ | 整体能量平移（含 $\alpha_\Delta$ 的二阶微扰修正） |
+| $h_z \sigma_z$ | $\alpha_\perp$ | $E_1, t_1$ 在垂直于编织方向的投影 |
+| $h_x \sigma_x$ | 0 | 瞬时哈密顿量不产生此分量 |
+| $h_y \sigma_y$ | 0 | 瞬时哈密顿量不产生此分量 |
+
+#### 7.11.5 编织从哪来？Berry 相位
+
+瞬时 $H_{\text{eff}}$ 只有 $\sigma_z$ 分量——但这**不是**编织的结果。编织（$\gamma_2 \leftrightarrow \gamma_3$ 交换 = $\sigma_x$ 旋转）来自 **Berry 联络**：
+
+$$A_\mu = \langle\psi_-|\partial_\mu|\psi_-\rangle$$
+
+低能本征态 $|\psi_-(t)\rangle$ 自身随参数 $\{N, \alpha_\Delta, \alpha_\perp\}$ 旋转。这个旋转在参数空间的闭环积分给出非对易的 Berry 相位（Wilczek-Zee 联络）：
+
+$$U_{\text{braid}} = \mathcal{P} \exp\!\left(-\oint A_\mu\, d\lambda^\mu\right)$$
+
+展开后，$U_{\text{braid}}$ 一般包含 $\sigma_x, \sigma_y, \sigma_z$ 全部三个分量。
+
+| | 瞬时 $H_{\text{eff}}$ | 完整演化 $U$ |
+|---|---|---|
+| $\sigma_z$ | ✅（来自 $\alpha_\perp$） | ✅ |
+| $\sigma_x$ | ❌ | ✅（来自 Berry 相位） |
+| $\sigma_y$ | ❌ | ✅（来自 Berry 相位） |
+
+#### 7.11.6 $E_1 = 0$ 时的验证
+
+$E_1 = 0, t_1 \neq 0$ 时：
+
+$$\begin{aligned}
+\alpha_\Delta &= \frac{|t_1|E_d}{N} \quad (\text{仅 } t_1 \text{ 贡献}) \\[4pt]
+\alpha_\perp &= \frac{|t_1|\sqrt{t_2^2+t_3^2}}{N}
+\end{aligned}$$
+
+瞬时 $H_{\text{eff}} = h_0 I + \alpha_\perp \sigma_z$。$\alpha_\perp \propto |t_1|$ 在小 $t_1$ 下是小量。Berry 相位给出 $\sigma_x$ 分量（编织），$\sigma_z$ 分量来自 $t_1$ 的动态相位——与 report §7 的解析解 $R_{123} = \exp(-i\phi\,\hat n\cdot\vec\sigma)$ 完全一致，其中 $\hat n = (\cos\alpha, \sin\alpha, 0)$ 在 $xy$ 平面。
+
+#### 7.11.7 $E_1 \neq 0$ 时
+
+$$\alpha_\Delta = \frac{E_1|t_2| + |t_1|E_d}{N}, \quad \alpha_\perp = \sqrt{\alpha_{\theta'}^2 + \alpha_{\phi'}^2}$$
+
+其中 $\alpha_{\theta'} = -E_1|t_3|/\sqrt{t_2^2+t_3^2},\;\alpha_{\phi'} = (E_1 E_d|t_2| + |t_1|(t_2^2+t_3^2))/(N\sqrt{t_2^2+t_3^2})$.
+
+瞬时 $H_{\text{eff}}$ 仍是 $h_0 I + \alpha_\perp \sigma_z$，但 $\alpha_\perp$ 同时含 $E_1$ 和 $t_1$。两者在时变门控下不对易 → $\alpha_\perp(t)$ 的积分产生复杂干涉 → 这正是 report 中 Fig 1(d) 的物理。
+
+---
+
+### 7.12 与 Riccati 路线的最终对比
+
+| | Riccati（Sp(2) 四元数） | 正交旋转（SO(5)） |
+|---|---|---|
+| 从 5 Majorana 到 | $q \in \mathbb{H}$（4 维） | $\{\gamma_1, \gamma_a, \gamma_\Delta, \gamma_\perp\}$（4 Majorana） |
+| ancilla 的归宿 | 编码在 $q = ZX^{-1}$ 中 | $\gamma_a$ 被 $N$ 拉开，绝热消除 |
+| MZM 有效理论 | $\dot r = \Omega\, r$（Bloch 球） | $H_{\text{eff}} = h_0 I + h_z \sigma_z$ + Berry 联络 |
+| 数值复杂度 | 4 维 Riccati ODE（极简） | 4 维角度 ODE（较繁） |
+| 物理透明度 | $q$ 含义间接 | ✅ 直观：能看到哪个 Majorana 对解耦 |
+| **能否写 $H_{\text{eff}} = \mathbf{h}\cdot\boldsymbol{\sigma}$** | 间接（需从 $\Omega$ 反推） | ✅ **直接**：$h_z = \alpha_\perp$，$h_x, h_y$ 来自 Berry |
+
+**答案**：是的，通过 SO(5) 正交旋转 + 绝热消除，我们明确得到了 $H_{\text{eff}} = h_0 I + \alpha_\perp \sigma_z$。瞬时哈密顿量只有 $\sigma_z$ 分量；编织的 $\sigma_x, \sigma_y$ 分量来自 Berry 相位——这恰好是 PRB113 的核心机制。
+
+---
+
+### 路线一：Sp(2) Riccati → K_eff → MZM
 
 ```
-输入：H_EM 的对易关系
-  │
-  ├── [H(t₁), H(t₂)] = 0 ∀t₁,t₂ ?
-  │     │
-  │     ├── 是 → E₁ = t₁ = 0
-  │     │        𝔥𝔬𝔩 = span{σ_x} ≅ 𝔲(1)
-  │     │        Hol ≅ ℤ₄ ≅ B₂/im(ρ)
-  │     │        纯拓扑编织，平坦联络
-  │     │
-  │     └── 否 → 继续判断
-  │           │
-  │           ├── A = D（𝔰𝔭(2)对称性）？
-  │           │     │
-  │           │     ├── 是 → E₁ = 0, t₁ ≠ 0
-  │           │     │        𝔥𝔬𝔩 = 𝔰𝔲(2)（全李代数）
-  │           │     │        但 ∫ω_z dt = 0（对称性约束）
-  │           │     │        Hol ≅ SO(2)（固定参数）
-  │           │     │        轴在 σ_x-σ_y 平面内
-  │           │     │
-  │           │     └── 否 → E₁ ≠ 0, t₁ ≠ 0
-  │           │              𝔥𝔬𝔩 = 𝔰𝔲(2)（全李代数）
-  │           │              ∫ω_z dt ≠ 0（对称性破缺）
-  │           │              Hol ≅ SU(2)（全非阿贝尔）
-  │           │              遍历 Bloch 球面
+物理: H_EM (5 Majorana: γ₁,γ₂,γ₃,γ_a,γ_b)
+  ↓ Sp(2) 表示
+四元数: q = ZX⁻¹ (ancilla 记忆, 4 维)
+  ↓ 变量替换 K = A + Bq
+四元数: K = k₀ + Ω (有效驱动, 4 维, 无 ancilla)
+  ↓
+Ω 驱动 r: ṙ = Ω r (纯 MZM, 3 维)
+  ↓
+通往: 编织矩阵 R₁₂₃
 ```
 
-### 11.7 配置空间流形性质的推论
+### 路线二：SO(5) 正交旋转 → 解耦 → 有效 4-Majorana
 
-从和乐群反推底流形的几何结构：
+```
+物理: H_EM (5 Majorana)
+  ↓ SO(5) 反对称矩阵 M(t)
+旋转基: {γ_Δ, γ_θ', γ_ϕ'} (跟随编织方向)
+  ↓ 进一步旋转解耦 γ_{⊥'}
+4 Majorana: {γ₁, γ_a, γ_Δ, γ_⊥} (SO(4) 子系统)
+  ↓ ansatz 对角化 (ϑ₁, ϑ₂)
+Berry 相位 → 编织矩阵 R₁₂₃
+```
 
-| 和乐群 | 底流形 $M$ 的有效曲率 | $\dim M_{\text{eff}}$ | 物理 |
-|---|---|---|---|
-| $B_2$（离散） | $F = 0$（平坦） | 0（纯拓扑） | 纯编织，仅依赖同伦类 |
-| SO(2) | $F_{t_1,t} \neq 0$，但 $\int F|_{z} = 0$ | 1（轴固定在平面内） | $t_1$ 调节旋转角和轴偏角 |
-| SU(2) | $F_{E_1,t}, F_{t_1,t}, [F, F] \neq 0$ | 3（全曲率释放） | $E_1, t_1, \tau$ 独立控制 SU(2) |
+### 两条路线的统一
 
-**核心推论**：配置空间流形 $M$ 的有效维度 = 和乐群参数的独立个数。
-纯编织时流形退化为离散点集（各同伦类各一点），
-动力学项 $E_1, t_1$ 逐级"撑开"流形，使其重新获得连续维度。
-
-这正是 **"动力学影响 = 配置空间流形的曲率"** 命题的严格证明。
-
----
-
-# 附录：三个核心问题的回答
-
-## Q1: 纤维丛理论是否完整描述了演化？
-
-### 回答：是。三个方面论证。
-
-**1. 等价性论证**
-
-原始 Schrödinger 方程 $i\partial_t|\psi\rangle = H|\psi\rangle$ 等价于 $\dot U = -iHU$。
-在 SO(5) 旋量表示中，这等价于联络的平行移动方程：
-
-$$\frac{d}{dt}g(t) + \mathcal{A}\left(\frac{d}{dt}\right) \cdot g(t) = 0$$
-
-其中 $g(t) \in \text{SO}(5)$ 是纤维坐标（即 $R(t)$），$\mathcal{A}(d/dt) = A(t)$ 是联络在切矢量 $d/dt$ 上的取值。这是主丛上**水平提升**的标准方程。
-
-演化算符是和乐：
-$$U(t) = \text{Hol}_{\gamma|_{[0,t]}}(\mathcal{A})$$
-
-**2. 曲率的完整性**
-
-在仅含时间参数的原始设定中，曲率 $F = d\mathcal{A} + \mathcal{A} \wedge \mathcal{A}$ 恒为零（因为 $dt \wedge dt = 0$）。这**不是缺陷**——它反映的是：仅存在一个独立参数 $(t)$ 时，任何 1-形式 $\mathcal{A} = A(t)dt$ 局部都是平坦的（总可以通过重新参数化消去）。
-
-曲率在以下扩展中变为非平凡：
-- **参数空间扩展**：$(E_1, t_1, \tau, t)$ → $F$ 有非零分量（§4.2）
-- **控制空间扩展**：允许每个时间片的 $A(t)$ 独立变化 → $F$ 在无穷维空间中非零
-
-**3. 理论覆盖了所有物理内容**
-
-| 物理概念 | 几何对应 | 是否完整捕获 |
+| | Riccati | 正交旋转 |
 |---|---|---|
-| 态演化 | 纤维的平行移动 | ✓ |
-| 编织算符 | 闭合回路 $\gamma$ 的和乐 | ✓ |
-| 动力学相位 | 曲率 $F$ 的面积分（非阿贝尔 Stokes） | ✓ |
-| 非绝热效应 | $\partial A/\partial\tau$ 即 $F_{\tau,t}$ | ✓ |
-| 参数依赖 | 和乐映射 $h: M_{\text{param}} \to \text{SO}(5)$ 的微分 | ✓ |
-| ABS 效应 | 曲率分量 $F_{E_1,t}, F_{t_1,t}$ 及其对易子 | ✓ |
+| 数学结构 | $\mathfrak{sp}(2) \subset \mathbb{H}^{2\times2}$ | $\mathfrak{so}(5) \subset \mathbb{R}^{5\times5}$ |
+| 降维机制 | 四元数比值 $q=ZX^{-1}$ | Gram-Schmidt 正交化 + 解耦 |
+| 最终自由度 | $(k_0, \Omega, r)$ = 7 | $(\vartheta_1, \vartheta_2, r)$ = 7 |
+| $E_1=0$ 极限 | $A=D$ → 解析解 | $\alpha_\perp=0$, $\gamma_1$ 半解耦 |
+| $E_1\neq 0$ | 4 维 Riccati ODE（最简） | 4 维角度 ODE |
 
-**唯一不包含的是退相干等开放系统效应**——这需要非幺正演化，超出了主丛联络的范畴（需要推广到密度矩阵的几何）。
+**共同结论**：
+
+1. ancilla 可以完全消去，MZM 存在 7 维封闭动力学
+2. $E_1=0$ 时可解析（两条路线均给出闭式解）
+3. $E_1\neq 0$ 时需解 4 维 ODE（ancilla 记忆不可消除）
+4. 4 维是物理本身要求的极小表示——Riccati 和正交旋转是对偶描述
 
 ---
 
-## Q2: 如何量化 $E_1$ 和 $t_1$ 的影响（非阿贝尔性）？
+## 八点五、Sp(2) 描述的进一步开发空间
 
-### 回答：五个递进的量化指标。
+SO(5) 正交旋转在「理解」上胜出，但 Sp(2) 在「深度」上有独特的开发潜力。
 
-### 2.1 局部非阿贝尔性：曲率对易子的范数
+### 8.5.1 $K_{\text{eff}}$ 自身的 Riccati 结构
 
-最直接的代数指标——曲率分量是否对易：
+将 $\dot K$ 的方程（§2.2）与 Riccati ODE 对比：
 
-$$\boxed{\mathcal{C}_{E_1,t_1}(t) := \big\| [F_{E_1,t}, F_{t_1,t}] \big\|}$$
+$$\dot q = C + Dq - qA - qBq \qquad \text{(q 的 Riccati)}$$
 
-显式计算（用 $\mathfrak{so}(5)$ 的 Killing 范数 $\|X\|^2 = -\frac{1}{2}\text{Tr}(X^2)$）：
+$$\dot K = \dot A + \dot B B^{-1}(K-A) + BC + BD B^{-1}(K-A) - (K-A)A - (K-A)^2 \qquad \text{(K 的方程)}$$
 
-$$F_{E_1,t} = 2X_{12}, \quad F_{t_1,t} = 2g(t)X_{15}$$
+整理 $\dot K$ 为 $K$ 的二次型：
 
-$$[X_{12}, X_{15}] = 2i X_{25} \neq 0 \quad \text{（因为 } \gamma_1 \text{ 同时出现在两者中）}$$
+$$\boxed{\dot K = \tilde C + \tilde D K - K \tilde A - K \tilde B K}$$
 
-$$\boxed{\big\|[F_{E_1,t}, F_{t_1,t}]\big\| = 8|g(t)| \cdot \|X_{25}\|}$$
+其中：
 
-$g(t)$ 在各步的取值：
+$$\begin{aligned}
+\tilde C &= \dot A - \dot B B^{-1}A + BC - BD B^{-1}A + A^2 \\
+\tilde D &= \dot B B^{-1} + BD B^{-1} + A \\
+\tilde A &= \dot B B^{-1} + A \\
+\tilde B &= 1 \quad \text{(!)}
+\end{aligned}$$
 
-| 步 | $g(t)$ | $\|F_{E_1,t} \wedge F_{t_1,t}\|$ |
+**$K$ 也满足 Riccati ODE，且 $\tilde B = 1$ 意味着非线性项极简：$-K^2$。**
+
+这是一个重大简化——$K$ 的 Riccati 方程中，非线性项没有任何参数依赖，就是朴素的 $-K^2$。对于四元数 $K = k_0 + \Omega$：
+
+$$-K^2 = -(k_0^2 - |\Omega|^2) - 2k_0\Omega$$
+
+**可开发方向**：$K$-Riccati 的非线性项与参数无关，这是 $q$-Riccati 不具备的性质。它意味着 $K$ 的动力学在所有参数区域有统一的非线性结构——特别适合做不动点分析、稳定性分析和相图。
+
+### 8.5.2 几何解释：$q$ 作为齐性空间坐标
+
+$q = ZX^{-1}$ 的定义在数学上有精确的几何含义。$U = \begin{pmatrix} X & Y \\ Z & W \end{pmatrix} \in Sp(2)$，而 $q$ 参数化了商空间：
+
+$$q \in Sp(2) / (Sp(1) \times Sp(1)) \cong S^4$$
+
+具体来说，$Sp(2)$ 对第一列 $(X, Z)^T$ 的作用通过右下角的 $Sp(1) \times Sp(1)$ 稳定子群产生商空间——这正是四元数射影空间 $\mathbb{H}P^1 \cong S^4$。
+
+| 对象 | 几何含义 |
+|------|---------|
+| $Sp(2)$ | 全对称群（10 维） |
+| $q \in \mathbb{H}$ | $S^4$ 上的仿射坐标（4 维） |
+| $q = 0$ | ancilla 未占据的「原点」 |
+| $|q| \to \infty$ | ancilla 完全占据（$X \to 0$） |
+| $|X|^2 = 1/(1+|q|^2)$ | $S^4$ 上的径向函数 |
+
+**可开发方向**：$S^4$ 上的 Riccati 流具有 $Sp(2)$ 等距群的对称性。这意味着存在守恒量（Casimir 不变量），可以降维。$S^4$ 上的测地线对应最简单的演化——$E_1 = t_1 = 0$ 时 $q$ 的轨迹是否沿测地线？
+
+### 8.5.3 $E_1 = 0$ 对称性及其破缺的系统分类
+
+$E_1 = 0 \iff A = D$。此时 Riccati ODE 对称群的李代数从一般的 $\mathfrak{sp}(2)$ 约化为一个子代数：
+
+$$\dot q = C + [A, q] - qBq$$
+
+线性部分退化为纯对易子 $[A,q]$——这是 $\mathfrak{sp}(1) \cong \mathfrak{su}(2)$ 的伴随作用，仅旋转 $q$ 的矢量部分。
+
+**对称性层级**：
+
+| 条件 | Riccati 形式 | 对称性 | 守恒量 |
+|------|-------------|--------|--------|
+| $E_1=t_1=0$ | $\dot q = [A,q] - qBq$（$B,C$ 纯 $\mathbf k$） | 最大 | $|q|$ 的演化受限 |
+| $E_1=0, t_1\neq 0$ | $\dot q = C + [A,q] - qBq$ | 中等 | 轴锁定 $xy$ 平面 |
+| **$E_1\neq 0, t_1\neq 0$** | $\dot q = C + Dq - qA - qBq$（$A\neq D$） | **最小** | 无 |
+
+**可开发方向**：用对称性破缺参数 $\delta = A-D = E_1\mathbf i$ 做微扰展开。$E_1 = 0$ 的解析解作为零阶，$\delta$ 展开给出 $E_1 \neq 0$ 的近似解析公式——不依赖数值 ODE。
+
+### 8.5.4 控制论视角：$\Omega(t)$ 作为 Bloch 球的操控函数
+
+关键观察：MZM 的运动方程 $\dot r = \Omega(t) r$ 中，$\Omega(t)$ 就是控制函数。问题是：通过选择门控参数 $(E_1, t_1, \tau, \text{门控形状})$，$\Omega(t)$ 能覆盖 $\mathbb{R}^3$ 中的哪些曲线？
+
+这正是控制论中的**可达集（reachable set）** 问题：
+
+| 控制参数 | 可控的 $\Omega$ 分量 |
+|----------|---------------------|
+| $t_2(t)$ | $\Omega_x, \Omega_y$（编织驱动） |
+| $t_3(t)$ | $\Omega_x, \Omega_y$（编织驱动） |
+| $E_d(t)$ | $\Omega_z$（通过 $Bq$ 的 $\mathbf k$ 分量） |
+| $E_1$ | $\Omega$ 全部分量（打破 $A=D$） |
+| $t_1$ | $\Omega$ 全部分量（驱动 $q$ 的幅值） |
+
+**可开发方向**：
+1. 给定目标 Bloch 矢量 $\mathbf{n}_{\text{target}}$，是否存在门控协议驱动 $r(0) \to r_{\text{target}}$？
+2. $E_1 = 0$ 时可达集是 $S^2$ 上的 1 维曲线（已确认）；$E_1 \neq 0$ 时是否覆盖整个球面？（report 数值表明是）
+3. 最优控制：最小 $\tau$ 或最小 $t_1$ 下实现目标旋转
+
+### 8.5.5 从 Sp(2) 回到 SO(5)：双重覆盖的显式利用
+
+$\text{Sp}(2) \cong \text{Spin}(5)$ 是 $\text{SO}(5)$ 的双重覆盖。这意味着：
+- SO(5) 中的正交旋转 $O(t)$ 对应 Sp(2) 中的两个矩阵 $\pm U(t)$
+- SO(5) 中 $\gamma_{\perp'}$ 的解耦对应 Sp(2) 中某个子矩阵的块对角化
+
+**可开发方向**：将 SO(5) 正交旋转的结果「翻译」回 Sp(2) 语言。特别地，$\gamma_{\perp'}$ 的解耦应对应 $q$ 的某个分量为零或守恒。这将把两条路线统一在一个框架内。
+
+### 8.5.6 总结：Sp(2) 未开发的潜力
+
+| 方向 | 难度 | 潜在收益 |
+|------|------|---------|
+| $K$ 的简化 Riccati（$\tilde B=1$） | ⭐ 低 | 统一非线性结构，便于不动点分析 |
+| $S^4$ 几何与守恒量 | ⭐⭐ 中 | 可能发现新的运动积分，降维 |
+| $E_1$ 微扰展开 | ⭐⭐ 中 | $E_1\neq 0$ 的半解析公式 |
+| 控制论可达集 | ⭐⭐ 中 | 指导门控协议设计 |
+| Sp(2)↔SO(5) 统一 | ⭐⭐⭐ 高 | 两条路线完美统一 |
+
+**最值得优先推进的**：$E_1$ 微扰展开（实用性最高——直接给近似解析公式）和 $K$ 的简化 Riccati（结构最优雅——$\tilde B=1$ 是意外之喜）。
+
+---
+
+## 九、综合评判：Riccati vs SO(5) 正交旋转
+
+### 9.1 信息量对比
+
+| 维度 | Riccati | SO(5) 正交旋转 |
+|------|---------|---------------|
+| **ancilla 的归宿** | 编码在 $q$ 的 4 个分量中 | $\gamma_{\perp'}$ 解耦，$\gamma_a$ 被 $N$ 拉开 |
+| **MZM 有效理论** | $\dot r = \Omega\, r$（Bloch 方程） | $H_{\text{eff}} = h_0 I + \alpha_\perp \sigma_z$ + Berry 联络 |
+| **解耦的 Majorana** | 不可见 | ✅ $\gamma_{\perp'}$ 显式解耦 |
+| **快/慢模分离** | 不可见 | ✅ $i\gamma_a\gamma_\Delta$（快，能隙 $2N$）vs $\{\gamma_1,\gamma_\perp\}$（慢） |
+| **Berry 联络结构** | 隐含在 $\Omega(t)$ 的时变中 | ✅ 可直接从基矢旋转计算 $A_\mu$ |
+| **参数的角色** | $A,B,C,D$ 四块混在一起 | ✅ $\alpha_\Delta$（沿编织方向）vs $\alpha_\perp$（正交方向）清晰分离 |
+
+**结论**：SO(5) 正交旋转提供的信息远超 Riccati。Riccati 擅长「算」，SO(5) 擅长「理解」。
+
+### 9.2 消除动力学相位、恢复纯几何驱动的条件
+
+SO(5) 框架下，低能有效哈密顿量：
+
+$$H_{\text{eff}} = h_0 I + \alpha_\perp \sigma_z$$
+
+动力学相位来自 $\int \alpha_\perp(t)\,dt$。纯几何驱动要求此积分为零（或为 $2\pi$ 的整数倍）。
+
+$\alpha_\perp$ 的显式结构：
+
+$$\alpha_\perp = \sqrt{\alpha_{\theta'}^2 + \alpha_{\phi'}^2}$$
+
+$$\alpha_{\theta'} = -\frac{E_1|t_3|}{\sqrt{t_2^2+t_3^2}}, \quad
+\alpha_{\phi'} = \frac{E_1 E_d|t_2| + |t_1|(t_2^2+t_3^2)}{N\sqrt{t_2^2+t_3^2}}$$
+
+由此直接读出消除动力学相位的条件：
+
+| 条件 | 物理含义 |
+|------|---------|
+| $E_1 = 0$ **且** $t_1 = 0$ | 纯净 MZM 极限，$\alpha_\perp \equiv 0$——完美几何编织 |
+| $\int_0^{3\tau} \alpha_\perp(t)\,dt = 2\pi n$ | 动力学相位恰好绕整数圈——编织保真度恢复 |
+| $E_1 = 0$，$\int_0^{3\tau} \alpha_\perp(t)\,dt = 0$ | $t_1$ 的时间积分抵消——需要特殊的门控形状 |
+
+与 PRB113 的对比：
+
+| | PRB113 | 本模型 |
 |---|---|---|
-| Step 1 | $f_-(t)$ | $8 f_-(t) \cdot \|X_{25}\|$ |
-| Step 2 | $f_+(t)$ | $8 f_+(t) \cdot \|X_{25}\|$ |
-| Step 3 | 0 | 0（$t_1$ 被关断） |
+| 瑕疵参数 | $\zeta$ 静态常数 | $E_1, t_1$ 时变 |
+| 恢复简并的手段 | 调谐 $\Lambda$（独立自由参数） | 调谐 $t_1, E_1$（但它们是「瑕疵」本身） |
+| 操控自由度 | 瑕疵 + 修正 = 两个独立旋钮 | 所有参数都参与编织协议 |
 
-**非阿贝尔性的时间累积**：
-$$\boxed{\mathcal{C}_{\text{total}} = \int_0^{3\tau} \big\|[F_{E_1,t}, F_{t_1,t}]\big\|\,dt = 8\|X_{25}\| \cdot \left[\int_0^\tau f_-(t)dt + \int_\tau^{2\tau} f_+(t)dt\right]}$$
+**关键洞察**：PRB113 有独立修正参数 $\Lambda$ 来抵消瑕疵 $\zeta$ 的动力学效应——这是他们能"恢复简并"的核心。我们的模型没有这个自由度——$t_1$ 和 $E_1$ 本身就是编织门控的一部分，无法独立调谐。**SO(5) 框架清楚地揭示了这个结构性的不对称。**
 
-由于 $\int_0^\tau f_-(t)dt = \int_\tau^{2\tau} f_+(t)dt = \tau/2$：
-$$\boxed{\mathcal{C}_{\text{total}} = 8\|X_{25}\| \cdot \tau}$$
+### 9.3 Yang-Baxter 方程的适用性
 
-**结论**：非阿贝尔性随编织时间 $\tau$ 线性累积——这解释了 Fig 1(d) 中大 $\tau$ 区复杂的干涉结构。
+编织算符 $B_{23}$（交换 $\gamma_2 \leftrightarrow \gamma_3$）应满足辫群关系：
 
-### 2.2 全局非阿贝尔性：BCH 修正的相对大小
+$$B_{12} B_{23} B_{12} = B_{23} B_{12} B_{23}$$
 
-Magnus 展开 $U = \exp(\Omega_1 + \Omega_2 + \Omega_3 + \cdots)$：
+在 SO(5) 框架中分析：
 
-- $\Omega_1 = \int_0^{3\tau} A(t)dt$：阿贝尔近似（所有分量对易时的结果）
-- $\Omega_2 = \frac{1}{2}\int_0^{3\tau}\int_0^t [A(t_1), A(t_2)]\,dt_1 dt_2$：首阶非阿贝尔修正
+1. **纯净 MZM 极限（$E_1=t_1=0$）**：$\gamma_1$ 完全解耦，编织算符 $B_{23} \in SO(3)_{\gamma_2,\gamma_3}$ 是对 $\{\gamma_2,\gamma_3\}$ 的标准 $\pi/2$ 旋转。此时 Yang-Baxter 平凡成立（因为 $B_{12}$ 和 $B_{23}$ 作用在不同的 Majorana 对上，类似直积结构）。
 
-**非阿贝尔比**（无量纲）：
+2. **ABS 存在（$E_1\neq 0$ 或 $t_1\neq 0$）**：编织算符不再只是 $\gamma_2,\gamma_3$ 的旋转——$\gamma_1$ 通过 $\alpha_\perp$ 参与演化。$B_{23}$ 在低能 2 维流形上的表示 $U \in SU(2)$ 一般不是辫群的标准表示。
 
-$$\boxed{\eta := \frac{\|\Omega_2\|}{\|\Omega_1\|}}$$
+   SO(5) 框架可以直接检验：Berry 联络 $A_\mu$ 在参数空间中的路径积分给出 $U = \mathcal{P}\exp(-\oint A_\mu d\lambda^\mu)$。Yang-Baxter 要求 $U_{12} U_{23} U_{12} = U_{23} U_{12} U_{23}$，这等价于 $U$ 属于辫群的某个表示。
 
-- $\eta = 0$：纯阿贝尔（所有分量对易）
-- $\eta \ll 1$：弱非阿贝尔（低阶 Magnus 可用）
-- $\eta \sim 1$：强非阿贝尔（必须用路径有序化）
+3. **SO(5) 框架的优势**：Berry 联络 $A_\mu$ 的曲率 $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + [A_\mu, A_\nu]$ 在低能流形上是一个 $2\times2$ 矩阵值 2-形式。Yang-Baxter 等价于曲率在参数空间某些面上的积分为零（平坦联络对应辫群表示）。SO(5) 框架可以直接计算这些量。
 
-$\Omega_1$ 和 $\Omega_2$ 的显式表达：
+### 9.4 最终评判：两条路线的分工
 
-$$\Omega_1 = 2E_1\tau X_{12} + 2t_c\tau\left(X_{24} + X_{34}\right)_{\text{eff}} + 2t_1\tau X_{15} + \cdots$$
+```
+         SO(5) 正交旋转                  Riccati (Sp(2))
+              │                              │
+     ┌────────┼────────┐              ┌──────┼──────┐
+     │        │        │              │      │      │
+   物理     解析     理论            数值    快速    验证
+   洞察     条件     连接            计算    扫描    对照
+     │        │        │              │      │      │
+     ▼        ▼        ▼              ▼      ▼      ▼
+  解耦的    消除动   Yang-          4变量   参数    论文
+  Majorana  力学相   Baxter         ODE    空间    复现
+  对        位的     方程                   热图
+            条件
+```
 
-$$\Omega_2 = 2E_1 t_1 \cdot \iint [X_{12}, X_{15}] \cdot (\text{门控积分}) + \cdots$$
+**推荐工作流**：
 
-$[X_{12}, X_{15}]$ 的双重积分涉及门控函数的时间排序。在 $f_\pm$ 的对称性下：
+1. **用 SO(5) 做分析**：找出解耦的 Majorana 对，确定 $\alpha_\perp$ 的显式，分析消除动力学相位的条件，检查 Yang-Baxter 相容性
+2. **用 Riccati 做计算**：4 维 ODE 高效数值积分，产出保真度热图、Bloch 球轨迹、参数扫描
+3. **交叉验证**：两个框架在数值上必须一致（偏差 $<10^{-9}$）
 
-$$\boxed{\Omega_2 \propto E_1 t_1 \tau^2 \cdot [X_{12}, X_{15}]}$$
-
-因此：
-$$\boxed{\eta \sim \frac{E_1 t_1 \tau}{t_c + E_1 + t_1}}$$
-
-### 2.3 几何相 vs 动力学相：有效旋转角的分解
-
-在有效 SU(2) 层面，总旋转角 $\phi$ 分解为：
-
-$$\phi = \sqrt{\Phi_G^2 + \Phi_D^2}$$
-
-其中 $\Phi_G = \pi/2$（纯几何），$\Phi_D = \Phi_D(E_1, t_1, \tau)$（全部动力学贡献）。
-
-**动力学污染比**：
-$$\boxed{\delta := \frac{\Phi_D}{\Phi_G} = \frac{2}{\pi}\Phi_D}$$
-
-- $\delta = 0$：纯几何编织
-- $\delta > 0$：动力学相位污染
-
-对 $E_1=0, t_1 \neq 0$：
-$$\Phi_D = \int_0^{3\tau} D(t)\,dt \propto t_1\tau \quad \Rightarrow \quad \delta \propto t_1\tau$$
-
-对 $E_1 \neq 0, t_1 = 0$：
-$$\Phi_D = \Phi_{E_1} \propto E_1\tau \quad \Rightarrow \quad \delta \propto E_1\tau$$
-
-**可由现有代码直接提取**：`analyze_e1_t1.py` 中 `R_to_axis_angle()` 返回 $\phi$，减去 $\pi/2$ 即得动力学贡献。
-
-### 2.4 和乐的参数敏感度
-
-和乐对 $E_1$ 和 $t_1$ 的梯度比：
-
-$$\boxed{\chi := \frac{\|\partial U/\partial E_1\|}{\|\partial U/\partial t_1\|}}$$
-
-显式（用 §5.3 的变分公式）：
-$$\frac{\partial U}{\partial E_1} = 2U(3\tau)\int_0^{3\tau} U^\dagger X_{12} U\,dt$$
-$$\frac{\partial U}{\partial t_1} = 2U(3\tau)\int_0^{2\tau} g(t) U^\dagger X_{15} U\,dt$$
-
-$\chi$ 度量了编织结果对两个参数相对敏感度——哪一个是更大的误差源。
-
-### 2.5 数值诊断表（来自 `analyze_e1_t1.py` 输出）
-
-可以直接读出非阿贝尔效应的数值特征（$\tau=50$ 示例）：
-
-| 情形 | 旋转轴 $n_z$ | $\phi - \pi/2$ | Fidelity | 非阿贝尔性 |
-|---|---|---|---|---|
-| $E_1$=0, $t_1$=0 | 0 | 0 | 0.999985 | **无（纯几何）** |
-| $E_1$=0, $t_1$=0.01 | 0.409 | 0.202 | 0.639 | 弱（$t_1$ 仅绕 $\sigma_y$） |
-| $E_1$=0.01, $t_1$=0 | −0.662 | 0.896 | 0.048 | 中（$E_1$ 绕 $\sigma_z$） |
-| $E_1$=$t_1$=0.01 | −0.492 | 0.364 | 0.438 | **强（全部三个方向对易）** |
-| $t_1 \gg E_1$ | +0.351 | 0.359 | 0.591 | 强（$\sigma_y$ 主导） |
-
-非阿贝尔性在 $E_1 \approx t_1$ 处最强（所有分量均等参与），在 $E_1=0$ 或 $t_1=0$ 处退化。
-
----
-
-## Q3: 能否指导消除动力学项，获得纯几何编织？
-
-### 回答：能。纤维丛视角给出了系统的消除策略。
-
-### 3.1 纯几何编织的几何条件
-
-在纤维丛语言中，纯几何编织意味着**和乐仅依赖闭合回路 $\gamma$ 的同伦类，而不依赖 $\gamma$ 在参数空间中的具体形状**。
-
-这等价于：**在 MZM 子空间的有效子丛上，联络是平坦的**（$F_{\text{eff}} = 0$），或者平坦偏离的路径积分恰好抵消。
-
-**条件 1（平凡解）**：$E_1 = t_1 = 0$（已经在纯 MZM 极限中得到验证）。
-
-**条件 2（非平凡解）**：曲率 $F \neq 0$ 但沿编织回路的**平行移动曲率的面积分为零**：
-
-$$\iint_\Sigma \tilde{F} = 0 \quad \text{模去 } 2\pi \text{ 整数倍的平凡相位}$$
-
-$\Sigma$ 是以编织回路 $\gamma$ 为边界的参数空间曲面。
-
-### 3.2 策略 A：自旋回波（Dynamical Decoupling）
-
-在编织中点插入 $\pi$ 脉冲，使动力学相位正负抵消。
-
-**脉冲方案**：在 $t = 3\tau/2$（Step 2 中点）施加 $\pi$ 旋转：
-
-$$U_\pi = \exp(-i\pi \cdot \sigma_x/2) = -i\sigma_x$$
-
-施加到 MZM 子空间（$\gamma_1, \gamma_2, \gamma_3$）上。$\sigma_x$ 的选择是关键：
-- $[\sigma_x, \sigma_x] = 0$：几何编织生成元不受影响
-- $\{\sigma_x, \sigma_y\} = 0$：$t_1$ 的 $\sigma_y$ 耦合被反向
-- $\{\sigma_x, \sigma_z\} = 0$：$E_1$ 的 $\sigma_z$ 耦合被反向
-
-**演化分解**：
-$$U_{\text{total}} = U(3\tau/2 \to 3\tau) \cdot U_\pi \cdot U(0 \to 3\tau/2)$$
-
-设 $U(0 \to 3\tau/2)$ 为前半段、$U(3\tau/2 \to 3\tau)$ 为后半段。如果协议是对称的（$t$ 和 $3\tau-t$ 的门控值相同），则：
-
-$$U(3\tau/2 \to 3\tau) = U_\pi \cdot U(0 \to 3\tau/2)^\dagger \cdot U_\pi^\dagger$$
-
-代入得：
-$$U_{\text{total}} = U_\pi \cdot U(0 \to 3\tau/2)^\dagger \cdot U_\pi^\dagger \cdot U_\pi \cdot U(0 \to 3\tau/2) = U_\pi \cdot \left[U(0 \to 3\tau/2)^\dagger \cdot U(0 \to 3\tau/2)\right]$$
-
-方括号内为恒等算符，故 $U_{\text{total}} = U_\pi = -i\sigma_x$——**恰好是一次完美的 $\gamma_2 \leftrightarrow \gamma_3$ 交换，且无动力学相位！**
-
-**实际实现**：在现有的三段协议中插入 $\pi$ 脉冲。脉冲可以通过短暂调节 $E_d$ 或外加微波驱动来实现。关键是 $\pi$ 脉冲必须作用在 MZM 子空间而非 ancilla 上。
-
-### 3.3 策略 B：对称路径设计（Geometric Cancellation）
-
-利用门控函数 $f_\pm(t)$ 的时间对称性来抵消动力学贡献。
-
-**方法**：设计 $f_\pm(t)$ 使得动力学生成元的时间积分满足：
-
-$$\int_0^{3\tau} \omega_z(t)\,dt = 0, \quad \int_0^{3\tau} \omega_y^{\text{dyn}}(t)\,dt = 0$$
-
-其中 $\omega_y^{\text{dyn}}$ 是 $t_1$ 对 $\omega_y$ 的贡献（扣除几何部分）。
-
-**已有结果**：report 中 $E_1=0$ 时 $A=D$ 对称性自动保证 $\int \omega_z dt = 0$。推广到一般情况：可以通过选择非对称门控函数（如使用三个独立 $t_1$ 值 $t_1^{(1)}, t_1^{(2)}, t_1^{(3)}$）来主动调零动力学相位。
-
-### 3.4 策略 C：逆向协议（Braiding Reversal）
-
-对单个动力学源（仅 $E_1$ 或仅 $t_1$ 非零），可以使用逆协议消除：
-
-对于只有 $t_1 \neq 0$（$E_1=0$）的情况，执行协议 $\gamma$ 后立即执行其逆转 $\gamma^{-1}$（交换门控顺序），中间插入符号反转：
-
-$$U_{\text{pure}} = U(\gamma) \cdot \text{（符号翻转 } t_1 \to -t_1\text{）} \cdot U(\gamma^{-1})$$
-
-几何部分：$U_{\text{geo}}(\gamma) \cdot U_{\text{geo}}(\gamma^{-1}) = U_{\text{geo}}(\gamma)^2$（两次交换 = 全编织）
-动力学部分：正负抵消
-
-### 3.5 策略 D：辅助能级工程（Counter-Diabatic Driving）
-
-添加辅助哈密顿量 $H_{\text{cd}}(t)$，使得在瞬时本征基下没有非绝热跃迁：
-
-$$H_{\text{cd}}(t) = i\sum_n \left(|\partial_t n(t)\rangle\langle n(t)| - \langle n(t)|\partial_t n(t)\rangle \cdot |n(t)\rangle\langle n(t)|\right)$$
-
-总哈密顿量 $H + H_{\text{cd}}$ 的演化完全跟随瞬时本征态，累积的相位全部是 Berry 相位（几何）。
-
-对于 Majorana 系统，瞬时本征态可以从 SO(5) 矩阵 $R(t)$ 的对角化得到。$H_{\text{cd}}$ 所需的矩阵元可以通过计算 $R(t)$ 的时间导数获得。
-
-### 3.6 策略 E：参数空间中的绝热回路
-
-在 $(E_1, t_1)$ 参数空间中设计一条闭合回路，使其：
-- 围绕"原点"（对应于编织的非平凡绕数）一圈
-- $H_{\text{eff}}$ 的瞬时本征态绝热跟随
-- 动力学相位 $\int \langle \psi | H | \psi \rangle dt = 0$（回路对称性）
-
-这是**和乐量子计算**（holonomic quantum computation）的范式：纯几何门来自参数空间中回路的非阿贝尔和乐。
-
-### 3.7 各策略的可行性对比
-
-| 策略 | 前提条件 | 实现难度 | 动力学消除程度 | 实验可行性 |
-|---|---|---|---|---|
-| A. 自旋回波 | 能在编织中点插入 $\pi$ 脉冲 | 低 | **完全消除**（理想情况） | 高（微波脉冲） |
-| B. 对称路径 | 可调 $t_1$ 在各步独立取值 | 低 | 对 $E_1=0$ 完全消除 | 高（调节门控包络） |
-| C. 逆向协议 | 可反转门控序列 | 中 | 对单一源完全消除 | 中（需精确控制时序） |
-| D. 逆向驱动 | 可计算并施加 $H_{\text{cd}}$ | 高 | 完全（含非绝热修正） | 低（需复杂波形） |
-| E. 绝热回路 | $\tau$ 足够大 | 中 | 动力学相位回路积分抵消 | 中（需二维参数扫描） |
-
-### 3.8 最推荐方案：A + B 组合
-
-**策略 B** 直接从现有协议改进：使用三步独立 $t_1$ 值，利用 $A=D$ 对称性确保 $\int \omega_z = 0$。**策略 A** 作为补充——中点插入 $\pi$ 脉冲——从理论上是最彻底的（对易关系保证完全抵消），实验上也是 Majorana 量子计算中的标准技术（"braid refocusing"）。
-
-两者的组合可以在不改变器件结构的前提下，将 $E_1$ 和 $t_1$ 引起的动力学相位污染降到最低，实现接近纯几何的编织。
-
----
-
-# 附录 B：SO(2) → SU(2) 过渡的数值验证
-
-## B.1 问题
-
-纤维丛理论预言 $E_1=0$ 时 $A=D$ 对称性使和乐限制在 SO(2)（旋转轴在 $\sigma_x$–$\sigma_y$ 平面内），
-$E_1 \neq 0$ 时 $A \neq D$ 释放 $\sigma_z$ 方向，和乐扩展为 SU(2)。
-
-**问题是：这个过渡是突变还是渐变？**
-
-## B.2 方法
-
-固定 $\tau$ 和 $t_1$，扫 $E_1 \in [0, 0.05]$ meV，提取：
-
-- $\hat{n}_z$：旋转轴在 $\sigma_z$ 方向的分量（= 0 为 SO(2)，$\neq 0$ 为 SU(2) 特征）
-- $\int \omega_z\,dt$：$\sigma_z$ 方向动力学相位净累积
-- $\phi$：总旋转角
-- Fidelity：双次编织保真度
-
-## B.3 结果（$\tau=50$, $t_1=0.01$）
-
-| $E_1$ (meV) | $\vert\hat{n}_z\vert$ | $\phi$ (rad) | Fidelity | 群特征 |
-|---|---|---|---|---|
-| **0** | **0** | 1.773 | 0.639 | **纯 SO(2)** |
-| 0.003 | 0.114 | 1.593 | 0.973 | SU(2)，弱 $\sigma_z$ 参与 |
-| 0.014 | 0.649 | 2.496 | 0.044 | SU(2)，强 $\sigma_z$ 参与 |
-| 0.033 | 0.007 | 1.656 | 0.985 | SU(2)，$\sigma_z$ 近抵消 |
-
-## B.4 三个核心发现
-
-### 发现 1：过渡是连续的
-
-$\vert\hat{n}_z\vert$ 在 $E_1=0$ 处为 0（确认 SO(2)），随后随 $E_1$ **连续增长**，没有跳变。
-小 $E_1$ 区 $\vert\hat{n}_z\vert \propto E_1$，因为 $\int\omega_z\,dt \propto E_1\tau$。
-
-李代数在任何 $E_1>0$ 处都是满 $\mathfrak{su}(2)$（因为 $[\sigma_x,\sigma_y]=2i\sigma_z$ 一直非零），
-但 $\sigma_z$ 分量的**可及性**（magnitude）随 $E_1$ 逐渐增长。
-
-### 发现 2：$\vert\hat{n}_z\vert$ 不是 $E_1$ 的单调函数
-
-$E_1=0.033$ 时 $\vert\hat{n}_z\vert=0.007$，几乎回到零。这不是倒退到 SO(2)——
-是 $E_1$ 和 $t_1$ 的动力学相位在特定 $E_1$ 值**干涉相消**，导致 $\int\omega_z\,dt \approx 0$。
-这是 SU(2) 内部的一个"偶然 SO(2) 点"。
-
-### 发现 3：大 $\tau$ 对小 $E_1$ 更敏感
-
-| $\tau$ | $E_1=0.003$ 时的 $\vert\hat{n}_z\vert$ |
-|---|---|
-| 100 | 0.216 |
-| 50 | 0.114 |
-| 20 | 0.053 |
-| 10 | 0.109 |
-
-大 $\tau$ 放大了 $E_1$ 的效应：$\int\omega_z\,dt \propto E_1\tau$，累积相位随 $\tau$ 线性增长。
-因此**在更绝热的系统中，更小的 $E_1$ 就能产生明显的 SU(2) 特征**。
-
-## B.5 物理图像
-
-$$\boxed{\text{SO(2)} \xrightarrow{E_1 > 0} \text{SU(2)} \text{ 是连续的}}$$
-
-类比：平面上的一根针。针尖严格在平面内时只能绕平面内的轴旋转（SO(2)）。
-针尖一旦离开平面（$E_1>0$），理论上就能到达三维空间中任何方向（SU(2)）。
-但偏移量 $\vert\hat{n}_z\vert \propto E_1\tau$ 越小，到达纯 $\sigma_z$ 方向需要越大的累积时间。
-
-**群结构的"大小"不是离散跳变，而是由 $\int\omega_z\,dt$ 的累积量连续参数化的。**
-
-## B.6 对实验的启示
-
-1. 无法通过减小 $E_1$ 完全消除 SU(2) 效应——任何 $E_1>0$ 原则上都允许 $\sigma_z$ 旋转
-2. 但可以通过选择特定 $E_1$（干涉相消点）使净 $\sigma_z$ 效应接近零
-3. 更实用的方案是自旋回波（附录 A，策略 A）——主动抵消而非被动等待相消点
-
----
-
-### 代码
-
-验证脚本：`e1_so2_to_su2.py`，输出图：`e1_so2_to_su2.png`，`e1_omega_z_evolution.png`。
-
----
-
-# 附录 C：同时消除 $E_1$ 和 $t_1$ 的方案
-
-## C.1 单 π 脉冲为什么不行
-
-$E_1 \neq 0$ 且 $t_1 \neq 0$ 时，$H = H_{\text{geo}} + H_{\text{dyn}}$，其中动力学部分包含
-两个不对易的分量（$\sigma_y$ 来自 $t_1$，$\sigma_z$ 来自 $E_1$）。前半段演化
-$U_{\text{前}} = \mathcal{P}\exp(-i\int(H_{\text{geo}}+H_{\text{dyn}}))$ 中两者已经不可分割地混合。
-
-中点插入 $\pi_x$ 脉冲后，后半段哈密顿量变为 $H_{\text{geo}} - H_{\text{dyn}}$，
-但 $U_{\text{后}} \neq U_{\text{前}}^\dagger$——因为 $[H_{\text{geo}}, H_{\text{dyn}}] \neq 0$，
-前半段的几何和动力学演化不能因子化分离。
-
-**数值验证**：单 $\pi_x$ 脉冲对 $E_1=t_1=0.01$ 反而使 fidelity 从 0.438 降至 0.024。
-
-## C.2 多脉冲 Dynamical Decoupling（有效方案）
-
-策略：在编织过程中等间距插入 **多个** $\pi_x$ 脉冲（翻转 $\gamma_1$）。
-每个脉冲翻转 $E_1$ 和 $t_1$ 项的符号，多脉冲将动力学相位分段平均抵消。
-
-**数值结果**（$E_1=t_1=0.01$, $\tau=50$，完整 SO(5)）：
-
-| 脉冲数 $N$ | Fidelity | 效果 |
-|---|---|---|
-| 0 | 0.438 | 基准（无消除） |
-| 4 | 0.586 | 开始改善 |
-| 8 | **0.940** | 已经很好 |
-| 16 | 0.949 | — |
-| 32 | **0.989** | 接近完美 |
-| 64 | **0.9990** | — |
-| 128 | **0.9996** | 几乎完美 |
-
-**结论**：$N \gtrsim 8$ 即可获得 $>0.94$ 的 fidelity，$N \gtrsim 64$ 达到机器精度级别的消除。
-
-**对各类 $(E_1, t_1)$ 的效果**（固定 $N=3$）：
-
-| 情形 | $N=0$ | $N=3$ | 增益 |
-|---|---|---|---|
-| 纯 MZM | 1.000 | 1.000 | — |
-| $E_1=0, t_1=0.01$ | 0.639 | 0.935 | **+0.296** |
-| $E_1=0.01, t_1=0$ | 0.048 | 0.775 | **+0.726** |
-| $E_1=t_1=0.01$ | 0.438 | 0.549 | +0.110 |
-| $E_1=t_1=0.05$ | 0.562 | 0.266 | −0.296 |
-
-大 $E_1, t_1$ 时 $N=3$ 不够，需要更多脉冲（$E_1=t_1=0.05$ 时 $N=64$ 可到 0.998）。
-
-## C.3 XY4 序列不适用
-
-尝试交替 $\pi_x, \pi_y$ 的 XY4 序列，效果反而不如纯 $\pi_x$——
-$\pi_y$（翻转 $\gamma_2$）同时也翻转了几何编织项 $\sigma_x$，破坏了编织本身。
-对于需要保护 $\sigma_x$ 几何驱动的场景，**只应该使用 $\pi_x$ 脉冲**。
-
-## C.4 物理原理
-
-$$\boxed{\text{多次 } \pi_x \text{ 脉冲} \;\longrightarrow\; \text{动力学相位分段平均} \;\longrightarrow\; \text{净消除}}$$
-
-$N \to \infty$ 极限等价于 $\int \omega_z dt = \int \omega_y^{\text{dyn}} dt = 0$，
-即曲率在 $\sigma_z$ 和 $\sigma_y$ 方向闭合。
-
-这与 NMR 中 CPMG 序列消除静态失谐的原理完全一致——
-区别在于这里要保护的是时变的 $\sigma_x$ 几何驱动而非恒等算符。
-
-## C.5 实验可行性
-
-$\pi_x$ 脉冲 = 翻转 $\gamma_1$ 的符号。在 Majorana 系统中可以通过：
-- 短暂的 $\gamma_1$–$\gamma_2$ 耦合脉冲（调整 $E_1$）
-- 或 $\gamma_1$ 与 ancilla 的交换操作
-
-实现一个快速 $\pi$ 旋转。脉冲宽度需要 $\ll \tau/N$（脉冲间隔），
-对大 $\tau$ 这很容易满足。
-
-验证脚本：`pi_pulse_both.py`, `multipulse_and_cd.py`。
-
----
-
-# 附录 D：纯参数抵消路径（不需脉冲）
-
-## D.1 基本思想
-
-多脉冲 DD 需要主动控制，但存在更简单的方案：**仅调节编织时间 $\tau$**。
-当动力学相位累积为 $\pi$ 的整数倍时，double braid 中自动消除。
-
-## D.2 数值验证（完整 SO(5)）
-
-对给定的不可调系统参数 $(E_1, t_1)$，扫 $\tau \in [2, 200]$ 找最优解：
-
-| $E_1$ (meV) | $t_1$ (meV) | 最优 $\tau$ | Fidelity | 绝热性 |
-|---|---|---|---|---|
-| 0.01 | 0.005 | 180 | **0.941** | ✓ 深绝热 |
-| 0.01 | 0.01 | 17 | 0.875 | △ 边缘 |
-| 0.01 | 0.02 | **30** | **0.980** | ✓ 绝热 |
-| 0.02 | 0.01 | 90 | **0.941** | ✓ 绝热 |
-| 0.02 | 0.02 | 17 | 0.723 | △ |
-
-存在**多个抵消峰**。例如 $E_1=0.01, t_1=0.02$ 时，
-$\tau = 17, 22, 29, 30, 34, 37, 42, \ldots$ 均 $>0.9$。
-
-## D.3 抵消条件的推导
-
-### 精确隐式条件
-
-抵消意味着 double braid 后的 fidelity = 1。令 $R_{\text{single}}$ 为单次编织的 SO(5) 矩阵，
-则条件为：
-
-$$\boxed{\mathcal{F}(E_1, t_1, \tau) := \left|\frac{R_{00}+iR_{10}+iR_{01}-R_{11}}{2}\right|^2 = 1,\quad R = R_{\text{single}}^2}$$
-
-其中 $R_{\text{single}} = \mathcal{P}\exp\!\big(\int_0^{3\tau} A(t; E_1, t_1, \tau)\,dt\big)$
-是 $\dot{R} = A(t)R$ 的解。这是 **25 个耦合 ODE + 1 个代数条件**构成的隐式方程，
-定义参数空间 $(E_1, t_1, \tau)$ 中的 2D 曲面。
-
-### $E_1=0$ 情形（可解）
-
-**步骤 1：$A=D$ 对称性 → 轴锁定 $xy$ 平面。**
-
-$E_1=0$ 时，$\mathfrak{sp}(2)$ 中 $A(t)=D(t)$。Riccati 方程 $\dot{q}=C+[A,q]-qBq$ 
-的 $[A,q]=2A\times q$ 只产生瞬时 $\sigma_z$，三步门控积分恰好抵消：
-$\int_0^{3\tau}\omega_z dt = 0$。净旋转轴 $\hat{n}=(\cos\alpha,\sin\alpha,0)$。
-
-**步骤 2：Magnus 首阶 → 旋转角 $\phi$。**
-
-有效哈密顿量 $H_{\text{eff}}(t)=\varepsilon(t)\sigma_x+D(t)\sigma_y$。
-Magnus 展开 $U=\exp(\Omega_1+\Omega_2+\cdots)$：
-$$\Omega_1 = -i\!\int_0^{3\tau}\!\! H_{\text{eff}}dt = -i(\Phi_G\sigma_x+\Phi_D\sigma_y)$$
-$$\Phi_G = \!\int\!\varepsilon(t)dt = \frac{\pi}{2},\quad \Phi_D = \!\int\! D(t)dt \propto t_1\tau$$
-
-高阶项 $\Omega_2=-\frac12\iint[H(t_1),H(t_2)]dt_1dt_2$ 产生 $\sigma_z$ 分量，
-但 $A=D$ 保证净 $\sigma_z=0$。在大 $\tau$ 极限下 $\Omega_2$ 被 $1/\tau$ 压制：
-$$\boxed{U \approx \exp\!\big(-i\phi(\cos\alpha\sigma_x+\sin\alpha\sigma_y)\big)}$$
-$$\boxed{\phi = \sqrt{\Phi_G^2+\Phi_D^2} = \sqrt{(\pi/2)^2 + (k t_1\tau)^2},\quad \tan\alpha=\frac{\Phi_D}{\Phi_G}}$$
-
-其中 $k\approx1.64$ 是 ancilla 介导耦合系数。
-
-**步骤 3：fidelity $\to$ 抵消条件。**
-
-$\hat{n}_z=0$ 时 $\text{fid}=\sin^2(\phi)$。$\sin^2(\phi)=1 \Rightarrow \phi=\pi/2+m\pi$：
-$$\sqrt{(\pi/2)^2+(k t_1\tau)^2} = \frac{(2m+1)\pi}{2}$$
-$$\boxed{k\cdot t_1\cdot\tau = \pi\sqrt{m(m+1)},\quad m=1,2,\ldots}$$
-
-$m=1$：$k t_1\tau = \pi\sqrt{2}\approx4.44$。$m=2$：$k t_1\tau = \pi\sqrt{6}\approx7.70$。
-
-**适用范围**：大 $\tau$（绝热）。小 $\tau$ 时 $\Omega_2$ 不可忽略，公式逐渐失效。
-
-### $E_1 \neq 0$ 情形（隐式）
-
-$A \neq D$ 使 fid 分解为两个耦合因子：
-$$\text{fid} = \sin^2(\phi_{\text{eff}}) \cdot (1 - n_z^2)$$
-
-需同时满足 $\sin^2(\phi_{\text{eff}})=1$ 和 $n_z=0$——两个条件，三个变量，
-解是 $(t_1, \tau)$ 平面中的 **1D 曲线**。这就是 Fig 1(d) 中的亮带。
-
-### 数值解出的隐式曲线（$E_1=0.01$，固定）
-
-| $t_1$ (meV) | 抵消 $\tau$ | 最大 Fidelity | 分支 |
-|---|---|---|---|
-| 0.003 | 166 | 0.982 | 慢分支 |
-| 0.004 | 172 | 0.967 | 慢分支 |
-| 0.012 | 18 | 0.900 | 快分支 |
-| 0.017 | 30 | 0.949 | 快分支 |
-| **0.022** | **30** | **0.997** | **最优点** |
-| 0.025 | 30 | 0.993 | 快分支 |
-| 0.032 | 18 | 0.909 | 快分支 |
-
-两条分支：
-- **慢分支**：$t_1 \ll E_1$，需要大 $\tau \sim 170$ 来累积足够的动力学相位抵消
-- **快分支**：$t_1 \sim 2E_1$，$\tau \sim 18$–$30$，更实用
-
-最优点 $t_1 \approx 2.2 E_1$、$\tau \approx 30$ 给出 fidelity 0.997。
-
-### 微扰展开（$E_1$ 小量）
-
-以 $E_1=0$ 解析解为基准，$n_z$ 的一阶微扰：
-
-$$n_z(E_1, t_1, \tau) = E_1 \cdot \tau \cdot g(t_1\tau) + O(E_1^2)$$
-
-其中 $g$ 由 $\int [A(t_1), A(t_2)] dt_1 dt_2$ 的非对易积分决定。
-令 $n_z=0$ 给出 $E_1$ 和 $\tau$ 的隐式关系，与 $\sin^2(\phi_{\text{eff}})=1$ 联立
-即得抵消条件。具体 $g$ 函数需从 ODE 解出，无初等表达式——
-这是 $[F_{E_1}, F_{t_1}] \neq 0$ 的必然结果。
-
-### 准周期结构：两个不可公度频率的拍频
-
-fidelity $= \sin^2(\phi) \cdot (1-n_z^2)$ 是两个因子的乘积，各有不同 $\tau$ 依赖：
-
-$$\sin^2(\phi):\; \phi \approx \sqrt{(\pi/2)^2 + \omega_\phi^2\tau^2},\; \omega_\phi \propto \sqrt{E_1^2+(k t_1)^2}$$
-$$1-n_z^2:\; n_z \sim \sin(\omega_n \tau),\; \omega_n \propto E_1$$
-
-$\omega_\phi/\omega_n$ 为无理数时，fidelity 是**准周期函数**——峰间距不均匀。
-
-**数值验证**（$E_1=0.01, t_1=0.02$，$\tau \in [2,200]$）：
-
-| 峰位 $\tau$ | 18 | 22 | 26 | 30 | 38 |
-|---|---|---|---|---|---|
-| Fidelity | 0.960 | 0.935 | 0.959 | 0.985 | 0.966 |
-| $\Delta\tau$ | — | 4 | 4 | 4 | **8** |
-
-| 情形 | 峰间距 | 结构 |
-|---|---|---|
-| $E_1=0$ | 均匀 | **纯周期**（单频 $k t_1$） |
-| $E_1 \neq 0$ | 不均匀 $4,4,4,8,4,\ldots$ | **准周期**（双频 $\omega_\phi, \omega_n$ 拍频） |
-
-**物理类比**：两个频率略有不同的音叉同时敲响，拍频不均匀。
-$[F_{E_1}, F_{t_1}] \neq 0$ → 两个曲率分量像独立振荡器，干涉产生复杂拍频包络。
-
-两个因子各自是 $\tau$ 的隐函数（由 ODE 定义），可形式化写为：
-
-$$\sin^2(\phi) = \sin^2\!\big(\!\sqrt{(\pi/2)^2 + \tau^2 f_\phi}\big), \quad 1-n_z^2 = 1 - [\tau f_n]^2$$
-
-其中 $f_\phi, f_n$ 是缓变函数（来自 $[A(t_1),A(t_2)]$ 的累积），无初等闭式。
-但给定 $(E_1,t_1)$ 后可通过数值扫描一次性获得整条曲线。
-
-验证图：`quasiperiodic.png`。
-
-## D.4 $\tau$ 的物理含义与实验范围
-
-$$\tau_{\text{code}} = \tau_{\text{paper}}(100/\text{meV}) \times 100$$
-
-物理时间：$1\ \text{meV}^{-1} \approx 0.66\ \text{ps}$。
-
-| $\tau_{\text{code}}$ | 物理时间/步 | 总编织 | 状态 |
-|---|---|---|---|
-| 2 | 1.3 ps | 4 ps | 非绝热 |
-| 17 | 11 ps | 33 ps | 边缘绝热 |
-| 30 | 20 ps | 60 ps | 绝热 ✓ |
-| 90 | 60 ps | 180 ps | 深绝热 ✓ |
-| 180 | 120 ps | 360 ps | 深绝热 ✓ |
-
-两条竞争限制：
-- **下限**：$\tau \gtrsim 10$（绝热条件，ancilla gap $\sim 0.3$ meV）
-- **上限**：退相干时间（器件依赖，通常 ns–$\mu$s 量级，远大于所需）
-
-**推荐实验范围：$\tau \sim 20$–$200$（$10$–$130$ ps/步）**
-
-## D.5 操作流程
-
-1. 测量器件的 $E_1$（$\gamma_1$–$\gamma_2$ 杂化）和 $t_1$（剩余耦合）
-2. 查表或用公式 $\tau_{\text{opt}}^{(n)} \approx n\pi / \sqrt{E_1^2 + (1.64\,t_1)^2}$
-3. 选择 $n$ 使 $\tau_{\text{opt}} \gtrsim 20$（确保绝热）
-4. 以该 $\tau$ 执行编织 → 纯几何保真度
-
-**这是最简单的抵消方案——只需调一个旋钮（$\tau$），不需要任何脉冲或额外控制。**
+**一句话总结**：SO(5) 正交旋转是「理论家的工具」——告诉你系统为什么长这样、哪些参数控制哪些效应、还能往哪个方向改进。Riccati 是「计算家的工具」——用最小的变量数得出最精确的数值结果。两者不竞争，互补。
