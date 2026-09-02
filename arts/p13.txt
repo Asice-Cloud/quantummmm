@@ -1,0 +1,713 @@
+PHYSICAL REVIEW B 113, L201408 (2026)
+Letter
+
+Editors’ Suggestion
+
+Adiabatic non-Abelian braiding of imperfect Majorana bound states
+Maximilian Nitsch ,1 Viktor Svensson ,2 William Samuelson ,1 Konstantin Nestmann ,1 Jeroen Danon ,3
+Karsten Flensberg ,4 Rubén Seoane Souto ,5,6 and Martin Leijnse 1
+1
+
+Division of Solid State Physics and NanoLund, Lund University, Lund, Sweden
+2
+Department of Physics, University of Oslo, Oslo, Norway
+3
+Department of Physics, Norwegian University of Science and Technology, Trondheim, Norway
+4
+Center for Quantum Devices, Niels Bohr Institute, University of Copenhagen, Copenhagen, Denmark
+5
+Departamento de Física Teórica de la Materia Condensada, Condensed Matter Physics Center (IFIMAC),
+and Instituto Nicolás Cabrera, Universidad Autónoma de Madrid, Madrid, Spain
+6
+Quantum Advanced Research Center (QuARC), Consejo Superior de Investigaciones Científicas (CSIC),
+Sor Juana Inés de la Cruz 3, 28049 Madrid, Spain
+(Received 15 July 2025; revised 25 February 2026; accepted 3 March 2026; published 21 May 2026)
+Demonstration of a nontrivial result of quasiparticle exchange (or braiding) is usually considered the definitive
+proof of a topological phase with non-Abelian excitations, such as Majorana bound states (MBSs). However, in
+finite systems with disorder and smooth potential variations, the MBSs are imperfect in the sense that they are
+not fully isolated in space and can, to a varying degree, resemble conventional fermions. The main goal of this
+work is to reveal the braiding properties of isolated MBSs, regular fermions, and anything in between. We start
+from an experimentally attractive braiding protocol and find a way to compensate for the undesired splitting
+of the ground-state degeneracy which occurs during the protocol for imperfect MBSs. This leads to a braiding
+outcome that depends on the degree of MBS isolation but remains robust and non-Abelian except in the perfect
+fermion limit. Our protocol could be implemented in different platforms with non-Abelian excitations, including
+quantum-dot-based minimal Kitaev chains.
+DOI: 10.1103/3vcb-pxp6
+
+Introduction. All elementary particles are either fermions
+or bosons, distinguished by whether particle exchange results
+in a sign change in the wave function or not. Quasiparticles
+in lower dimensions can, in principle, satisfy more general
+exchange rules. Non-Abelian anyons are the most exotic example, with particle exchange (or braiding) described by a
+nontrivial operator acting on the multiparticle wave function [1]. Direct experimental demonstration of non-Abelian
+braiding remains one of the main open challenges in modern
+physics [2,3] and has potential applications in error-protected
+topological quantum computing [1,4–6].
+Majorana bound states (MBSs) [7–10], zero-energy excitations in one-dimensional topological superconductors,
+arguably provide the experimentally most accessible platform to demonstrate non-Abelian braiding (see, for example,
+Refs. [2,11–19]). Unfortunately, progress has been slowed by
+difficulties to unambiguously distinguish between MBSs and
+trivial states.
+The approach to realize MBSs by building up artificial
+Kitaev chains [20] from quantum dots coupled via superconductors [21–26] has seen recent rapid experimental progress
+[27–34]. However, because these chains are typically rather
+
+Published by the American Physical Society under the terms of the
+Creative Commons Attribution 4.0 International license. Further
+distribution of this work must maintain attribution to the author(s)
+and the published article’s title, journal citation, and DOI. Funded
+by Bibsam.
+2469-9950/2026/113(20)/L201408(6)
+
+short, these MBSs lack true topological protection [22]. NonAbelian braiding can still be possible with such MBSs, but
+requires fine-tuning [35–38] and is susceptible to noise [39].
+In fact, the situation might be similar for supposedly topological realizations due to finite size effects, disorder, and
+smooth confining potentials [40–44]. In all these cases, the
+low-energy states can be described as MBSs that are imperfect
+in the sense that they are not fully isolated in space. On the
+other hand, a conventional zero-energy fermion can always be
+represented as two fully overlapping MBSs. Therefore, there
+is no strict border between non-Abelian MBSs and conventional fermions but rather a smooth transition between these
+two limiting cases.
+In this Letter, we investigate the braiding properties in
+a model that interpolates between the MBS and fermion
+limits. We focus on a specific well-studied and experimentally attractive braiding protocol based on cyclically coupling
+three systems [14,15,17,19,35,36,45], one possible realization
+being three double quantum dots coupled via narrow superconducting regions as shown in Fig. 1(a). Each system is
+described by a model that hosts zero-energy MBSs that can be
+continuously tuned from being isolated (perfect MBS limit) to
+fully overlapping (conventional fermion limit).
+Even though each isolated system hosts a zero-energy state,
+deviations from fully isolated MBSs lead to a breaking of
+ground-state degeneracy when the systems are coupled during
+the protocol. Even a small induced ground-state splitting gives
+rise to a dynamical phase that destroys the stable braiding
+result, while a large splitting (compared to the inverse protocol
+
+L201408-1
+
+Published by the American Physical Society
+
+MAXIMILIAN NITSCH et al.
+
+PHYSICAL REVIEW B 113, L201408 (2026)
+
+FIG. 1. (a) Example setup to implement coupling-based braiding
+in a system hosting MBSs in three minimal Kitaev chains based on
+quantum dots (QDs) connected via a superconductor (SC). Magnetic
+fluxes 12 , 13 control the relative phases of the SC-QD couplings.
+(b) Representation of the different MBS couplings used in Eq. (1).
+(c), (d) Cartoon of isolated MBSs (c) and spatially overlapping MBSs
+(d).
+
+time) forces the system to always stay in the unique global
+ground state and gives rise to a trivial braiding result. To reveal
+the fundamental adiabatic exchange properties of imperfect
+MBSs, we develop a way to compensate for this splitting to
+maintain perfect degeneracy throughout the braiding protocol. The resulting protocol performs a braiding operation that
+features a non-Abelian result that is stable with respect to protocol speed and coupling strengths. Nevertheless, the result,
+in general, deviates from that of braiding isolated MBSs and
+converges to the trivial fermion result for fully overlapping
+MBSs. We present an analytical solution for the non-Abelian
+Berry phase that determines the braiding result in the adiabatic
+and degenerate limit and solve the general case numerically.
+Model. The braiding is realized by connecting three systems, see Fig. 1(b), where couplings (lines) between different
+MBSs (crosses) are switched on and off [14,15,17,35,36,45].
+A minimal representation is given by the Hamiltonian
+H/ = ρ1 iγ1 γ̃1 + ρ2 iγ1 γ2 + ρ3 iγ1 γ3
++ η (ρ2 iγ̃1 γ̃2 + ρ3 iγ̃1 γ̃3 )
++ λ (iγ2 γ̃2 + iγ3 γ̃3 ).
+
+(1)
+
+The model includes three pairs of MBSs, γk , γ̃k . Each pair
+encodes one fermionic state with two parity states iγk γ̃k =
+±1, thus yielding an eight-dimensional Hilbert space for the
+total system. Each term in Eq. (1) corresponds to a coupling
+between two MBSs (e.g., ρ1 iγ1 γ̃1 ), assigning a certain energy
+(∝ ±ρ1 ) to each parity (iγ1 γ̃1 = ±1). A graphical representation of all
+included couplings is shown in Fig. 1(b). Total
+parity σ = k iγk γ̃k commutes with Eq. (1) and is therefore conserved. One possible effective implementation of this
+Hamiltonian can be achieved via three minimal Kitaev chains
+[22] arranged in a T junction—see Fig. 1(a) and Supplemental
+Material (SM) [46].
+The first line of Eq. (1) includes all desired couplings
+needed for the braiding protocol. These are the only couplings that occur if each system hosts MBSs that are fully
+isolated in space—see Fig. 1(c). Couplings between γ1 and
+γ̃1 , γ2 , γ3 open an energy gap  between the high- and low-
+
+energy sectors. This gap will be kept finite throughout the
+braiding protocol, which is guaranteed by enforcing the condition ρ12 + ρ22 + ρ32 = 1. We thus obtain a well-defined ground
+state sector with two degenerate states in each total parity
+sector.
+We next discuss how to obtain the second line of Eq. (1)
+by allowing the outer MBSs γ̃k to partially overlap with the
+respective inner MBSs γk . For η = 0, γk and γ̃k describe
+MBSs that are fully localized on separate QDs—Fig. 1(c).
+In this case, tunnel couplings between the inner QDs of subsystems k and k  will couple only γk and γk  , as described
+by the first line of Eq. (1). In contrast, for 0 < η ⩽ 1, γk
+and γ̃k describe MBSs that have partial weights on both QDs
+Fig. 1(d). Therefore, the tunnel coupling will instead couple
+√
+1
+the operators √1+η
+(γk/k  + i η γ̃k/k  ). This creates additional
+couplings between γ̃k and γ̃k  as represented by the second line
+of Eq. (1), see [46] for a formal derivation. Note that we focus
+on overlaps which do not introduce a finite energy associated
+with the parity iγk γ̃k [instead described by the third line of
+Eq. (1), see below]. Furthermore, for simplicity of the analytical solution, we assume that the coefficients of the second and
+third lines of Eq. (1) (η and λ) can be tuned independently.
+For a QD-based minimal Kitaev chain, this is supported by
+findings of Ref. [35], see [46] for details. To facilitate an
+analytical solution below, we furthermore choose the same
+MBS overlap η for all MBS pairs. The final result qualitatively
+agrees with a numerical solution for the general case with an
+effective η [46]. A commonly used quality measure for MBSs
+is the Majorana polarization M [24,47–50]. An increase in η
+directly leads to a decrease of the Majorana polarization on
+the inner edges, M = 1−η
+[46].
+1+η
+In Eq. (1), there are no couplings between next-nearest
+neighbors (∝ iγi γ̃ j ). We assume that these couplings have
+been turned off by an appropriate tuning of the phases of
+the couplings, which is always possible [35] (note that phase
+control has been experimentally implemented in a three-site
+Kitaev chain [34]). In the setup in Fig. 1(a), this is accomplished by the fluxes 12 and 13 .
+There is, however, no general way to remove the remaining
+coupling terms in the second line of Eq. (1), which will break
+the ground state degeneracy and prevent robust braiding operations [35,37]. To compensate for this degeneracy breaking,
+we introduce couplings of the outer MBSs γ̃2/3 to their inner
+neighbors γ2/3 , described by the third line of Eq. (1). We
+choose these to be equal to simplify the analytical solution.
+Four signs matter for the protocol performance: the total
+parity σ , the sign of ρ1 , and there could, in principle, be a “–”
+(rather than a “+”) between the two terms in the second and
+third lines of Eq. (1). A mismatch between the relative signs
+of lines two and three prevents establishing degeneracy via the
+correction. In the SM [46], we show that the remaining eight
+sign combinations reduce to two types of protocols which
+differ from each other in the size of the gap and intermediate
+results during the protocol, but give the same final result for
+the double braid in the adiabatic limit—Eq. (15). For the
+remainder of the paper, we take σ = −1 and all other signs
+positive.
+Braiding protocol. We start by considering perfectly isolated MBSs (η = 0) without corrections (λ = 0) and show that
+the coupling-based braiding protocol realizes an exchange of
+
+L201408-2
+
+ADIABATIC NON-ABELIAN BRAIDING OF IMPERFECT …
+
+PHYSICAL REVIEW B 113, L201408 (2026)
+
+which is not part of the diagonalized Hamiltonian (Eq. (3)).
+The above parametrization of γ is fully determined by
+demanding consistency with the initial conditions and anticommutation relations
+ρ2 =0
+
+γ = γ2 ,
+
+{γ , γ } = 0.
+
+(5)
+
+Accordingly, the first step of the protocol described by
+Eqs. (3) and (4) implements the transformation γ̃1 → γ2 ,
+γ2 → −γ̃1 while leaving all other operators unchanged. This
+corresponds to the unitary
+
+
+π
+(6)
+U12 = exp
+γ2 γ̃1 .
+4
+FIG. 2. One cycle of the time-dependent tuning of the couplings
+in the braiding protocol. The protocol is split into three time intervals τ12 (orange), τ23 (blue), τ31 (green), connecting three coupling
+configurations as defined in Eqs. (2).
+
+γ2 and γ3 by cyclically varying the different MBS couplings
+[14,15,17,19,35,36,45]. This is done via a closed loop in the
+three-dimensional parameter space ρ1 , ρ2 , ρ3 , and we consider the limit where all parameters are changed adiabatically
+slow compared to the gap , ensuring that the system stays
+in the ground state sector. The loop in parameter space is split
+into three separate time intervals τ12 , τ23 , τ31 :
+τ12 :
+
+ρ1 = 1, ρ2 = 0
+
+→
+
+ρ1 = 0, ρ2 = 1,
+
+τ23 :
+
+ρ2 = 1, ρ3 = 0
+
+→
+
+ρ2 = 0, ρ3 = 1,
+
+τ31 :
+
+ρ3 = 1, ρ1 = 0
+
+→
+
+ρ3 = 0, ρ1 = 1.
+
+(2)
+
+See the solid lines in Fig. 2. Next will follow a detailed
+discussion of the first time interval, τ12 , including a solution of
+the implemented rotation for a system hosting isolated MBSs.
+The other two protocol intervals τ23 , τ31 work analogously.
+We start by coupling MBSs γ1 , γ̃1 (ρ1 = 1); see the upper
+left panel of Fig. 2. The ground state then has iγ1 γ̃1 = −1 and,
+because of the four uncoupled MBSs, is twofold degenerate
+within each total parity sector. In an experiment, the system
+should be initialized in one of these ground states (e.g., as
+described in Ref. [35]).
+During the first time interval τ12 , the coupling of γ1 is transferred from γ̃1 to γ2 by first tuning ρ2 > 0 and then ρ1 = 0;
+see the left column of Fig. 2. Tuning the couplings in this way
+guarantees a gap to excited states throughout the whole step.
+The exact parametrization of that exchange is unimportant as
+long as the changes are adiabatic.
+In general, the result of the adiabatic braiding protocol can
+be found from the non-Abelian Berry phase (see below). However, for η = 0 a simple intuitive argument suffices. During
+the time interval τ12 , introducing the coupling to the second
+MBS, γ2 , effectively couples γ1 to a superposition of γ̃1 and
+γ2 described by γ :
+H (τ ∈ τ12 )/ = iγ1 γ ,
+
+γ = ρ1 γ̃1 + ρ2 γ2 .
+
+(3)
+
+The definition of γ required by the diagonalization directly
+yields an uncoupled MBS
+γ = ρ1 γ2 − ρ2 γ̃1 ,
+
+(4)
+
+The same kind of analysis also yields the results of the time
+intervals τ23 and τ31 , where the coupling is transferred to
+γ3 and finally back to γ̃1 . These steps are described by the
+unitaries
+
+
+
+
+π
+π
+(7)
+U23 = exp
+γ3 γ2 , U31 = exp
+γ̃1 γ3 .
+4
+4
+Thus, the non-Abelian Berry phase of the complete braiding
+protocol is
+
+
+π
+U (η = 0) = U31 × U23 × U12 = exp
+γ3 γ2 , (8)
+4
+implementing an exchange of γ2 and γ3 .
+Now we consider the case of imperfect MBSs, η > 0. This
+does not affect the initialization in the ground state of iγ1 γ̃1 .
+However, turning on the coupling ρ2 iγ1 γ2 now introduces
+also couplings between γ̃1 and γ̃2 , ρ2 η iγ̃1 γ̃2 [dashed lines in
+Figs. 1(b) and 2], lifting the ground state degeneracy. This degeneracy is restored via our correction term λ (iγ2 γ̃2 + iγ3 γ̃3 )
+[dotted lines in Figs. 1(b) and 2], which has to be tuned at
+the same time as ρ1 , ρ2 . The exact relation between λ and
+ρ1 , ρ2 needed to maintain ground-state degeneracy will be
+established below.
+We can use the intuition from the η = 0 result to guess the
+possible braiding results for the general case. The protocol
+exchanges MBSs with each other when they are combined
+into a superposition of the ground-state basis during a protocol
+interval, like γ , γ . This diagonalization always combines
+pairs of next-nearest neighbors that couple to a shared MBS.
+Therefore, we can divide all available MBSs into two groups:
+γ2 , γ3 , γ̃1 and γ̃2 , γ̃3 , γ1 . The couplings between the groups
+can be arbitrary, but there are no direct couplings between
+two MBSs of the same group. We find that rotations can only
+consist of exchanges within those groups [46]. Combinations
+including γ1 , γ̃1 can be excluded because they correspond to
+rotations to excited states of the initial and final configuration
+(ρ1 = 1). Therefore, the most general operator the protocol
+can implement must be of the form
+U (η) = exp(φ γ3 γ2 ) exp(φ̃ γ̃3 γ̃2 ).
+
+(9)
+
+Next, we present an analytical solution for φ, φ̃, valid for
+arbitrary η. This solution is split into two steps. First, we
+diagonalize the Hamiltonian. This enables us to establish degeneracy by tuning λ and to describe the ground-state sector
+via a projector. This projector is then used to find the time
+
+L201408-3
+
+MAXIMILIAN NITSCH et al.
+
+PHYSICAL REVIEW B 113, L201408 (2026)
+
+evolution in the adiabatic limit, which is described by the
+non-Abelian Berry phase.
+Identifying the ground-state MBSs. We start by rewriting
+the diagonalization of H for isolated MBSs introduced in
+Eqs. (3) which was valid for the protocol interval τ12 . We
+extend this over the whole protocol time by redefining γ =
+ρ1 γ̃1 + ρ2 γ2 + ρ3 γ3 , similar to [45]. γ constitutes the MBS
+that establishes the gap  with γ1 throughout the protocol,
+thereby defining the ground-state sector.
+Due to the MBS overlap η and correction terms λ, we
+need to take additional steps to diagonalize the full system
+of Eq. (1). The full diagonalization describes the system as
+H/D = iγ1D γD , equivalent to Eqs. (3), by rotating γ1 , γ̃2 , γ̃3
+into γ1D and γ̃1 , γ2 , γ3 into γD . This rotation absorbs the terms
+of the errors and corrections and expresses their effect on the
+ground-state sector defined by iγ1D γD = −1 separated from
+the higher-energy states by D > 0, see SM [46]. From this
+diagonalization, we obtain two pieces of information that are
+necessary to implement the correction and to describe the
+effective ground-state sector. First, it introduces the ground
+state projection operator
+
+
+P = 21 1 − iγ1D γD .
+(10)
+Furthermore, η introduces a finite splitting ε of the ground
+state sector. We compensate for this splitting by tuning λ.
+From the diagonalized Hamiltonian, we find the degeneracy
+condition
+ε(λ, η) − λ = 0,
+
+(11)
+
+which defines the nonlinear dependence of the correction λ
+on the MBS overlap η, which is furthermore dependent on the
+protocol parameters ρ1 , ρ2 , ρ3 and therefore time dependent
+throughout the protocol. The required correction depends on
+σ [46], which prevents using this protocol for actual topological quantum computing, where we need to perform gates
+on the qubits without knowing their state. There is no obvious, general analytical solution to Eq. (11), but we find in
+the calculation of the Berry phase that it only requires the
+solution of this expression in the second protocol interval τ23 ,
+defined by ρ1 = 0, where it simplifies crucially—see [46]. In
+an experiment, the degeneracy condition in Eq. (11) needs
+to be determined via, for example, tunneling spectroscopy at
+each protocol step. A quasistatic deviation δλ would lead to a
+residual energy splitting ∝ δλ . The protocol duration then
+has to be short compared to the inverse of this splitting to
+avoid a dynamical phase.
+Calculating the Berry phase. As the next step, we use
+Eq. (10) to obtain the braiding operator in the ground-state
+sector from the non-Abelian Berry phase [51,52]
+ 
+
+U (η) = T exp − [P, ∂ω P] dω ,
+(12)
+where T is the time-ordered path integral. The Berry phase
+describes the induced ground-state rotation by integrating the
+effect of the ground-state projector evolution over the whole
+protocol loop. The integrand is, in general, noncommutating
+with itself at different protocol times, making the time-ordered
+integration nontrivial. We simplify the calculation by first
+splitting it into the three protocol intervals defined in Eqs. (2)
+U (η) = U31 · U23 · U12 . Afterward, we solve the time-ordered
+
+FIG. 3. MBS similarity S for a double braid as a function of the
+MBS overlap η. Green line: analytical result given by Eq. (15) for a
+perfectly corrected protocol. Blue oscillating line: Numerical result
+for the uncorrected protocol (details in Sec. VII. in the SM [46]).
+
+integration of each interval separately and multiply the operator exponentials for all time-steps—see [46]. The solution
+yields the analytical expressions for the angles φ(η), φ̃(η) in
+Eq. (9):
+
+π
+η2
+φ=
+,
+1−
+4
+1 + η2 + η4
+
+π
+1
+φ̃ =
+.
+(13)
+1−
+4
+1 + η2 + η4
+Note that these angles are only correct when acting with U (η)
+on the ground-state sector.
+Discussion. The result of the braiding protocol in the fully
+adiabatic limit for arbitrary MBS overlaps η and perfect corrections λ is given by Eq. (9) together with Eq. (13). We can
+further simplify the solution using conservation of total parity,
+γ̃3 γ̃2 = − γ3 γ2 , yielding
+U (η) = exp((φ − φ̃) γ3 γ2 ).
+
+(14)
+
+This representation highlights that the braiding protocol implements a partial exchange of γ2 , γ3 given by the angle
+φeff (η) = φ − φ̃, interpolating between a full exchange for
+isolated MBSs φeff (η = 0) = π4 and a trivial exchange for a
+fermionic system φeff (η = 1) = 0.
+Next, we introduce the MBS similarity S(U ) that quantifies
+how much the braiding result resembles that of fully isolated
+MBSs. We base S(U ) on a double braid, i.e., on U 2 , which
+provides a clearer and more sensitive experimental signature
+than a single braid [19,35]. From Eq. (14), we find the simple
+result
+⎛
+⎞
+2
+3
+π (1 − η ) ⎠
+S(U ) = Tr{U 2 (η)† U 2 (0)}2 /4 = sin2 ⎝
+,
+2 (1 − η6 )
+(15)
+which quantifies the coupling between the unitary transformation U 2 (η) implemented by the double braid protocol and
+the expected result for an isolated MBS system, U 2 (η = 0) =
+exp( π2 γ3 γ2 )—see green line in Fig. 3. For η  0.25, the result
+very closely resembles the braiding of isolated MBSs. For
+larger values, the fermionic character becomes increasingly
+evident and the result approaches the trivial fermion result
+U 2 (η = 1) = 1. However, the result remains non-Abelian for
+all η < 1.
+
+L201408-4
+
+ADIABATIC NON-ABELIAN BRAIDING OF IMPERFECT …
+
+PHYSICAL REVIEW B 113, L201408 (2026)
+
+We compare this to the result of the braiding protocol
+without corrections (λ = 0), which leads to the transformation
+Uuncorr , suffering from breaking of the ground-state degeneracy. The result is shown in Fig. 3 (blue line), which is
+based on numerically solving the time-dependent Schrödinger
+equation, see Sec. VII. in the SM [46] for a description of
+the method as well as the parameters used and Ref. [53] for
+the code. The uncorrected curve shows MBS behavior in a
+very small region around η ≈ 0. For larger MBS overlaps,
+the dynamical phase leads to an additional rotation within
+the almost degenerate ground state sector [35,37]. For even
+larger MBS overlaps, η  0.25, the energy splitting within
+the ground state sector becomes so large that the protocol acts
+adiabatically concerning the splitting and the system remains
+in the initial state. While these three regimes are universal,
+the position of boundaries between them along η depends
+on the detailed protocol parametrization and relation between
+the induced energy splitting and the speed of parameter
+changes.
+S(U ) is not easily accessible in experiments. However, it
+is closely related to the result of an experiment where (i) the
+MBS pairs γ2 , γ̃2 and γ3 , γ̃3 are initialized in a given parity
+state, (ii) the double braid is performed, and (iii) the parities
+of the same pairs are measured again. The result for fully
+isolated MBS is a parity flip, while the trivial fermion result is
+no change compared to the initialized parities.
+Conclusions. In this Letter, we have presented a generalized coupling-based braiding protocol applied to a model that
+
+interpolates between isolated MBSs and conventional zeroenergy fermions, the latter being equivalent to spatially fully
+overlapping MBSs. The MBS overlaps introduce a ground
+state splitting during the protocol, which we showed can be
+corrected for by additional MBS couplings. Except in the
+perfect fermion limit, the braiding result is non-Abelian and
+robust to changes in protocol details such as the strength and
+duration of MBS couplings. Our work expands the notion
+of what constitutes a non-Abelian state, with possible impacts ranging from topological quantum computing protocols
+to classification and experimental detection of topological
+phases. We believe that quantum-dot-based minimal Kitaev
+chains are an ideal platform to realize our protocol, as they
+allow control of all required parameters.
+Acknowledgments. We acknowledge funding from the European Research Council (ERC) under the European Unions
+Horizon 2020 research and innovation program under Grant
+Agreement No. 856526, the Spanish CM Talento Program
+(Project No. 2022-T1/IND-24070), the Spanish Ministry of
+Science, innovation, and Universities through Grant No.
+PID2022-140552NA-I00, the Swedish Research Council under Grant Agreement No. 2024-05491, the European Union’s
+Horizon Europe research and innovation program under the
+Marie Skłodowska-Curie Grant Agreement No. 101126636,
+and NanoLund, and European Union under Horizon Europe’s
+Marie Skłodowska-Curie Project No. 101104590.
+Data availability. The data that support the findings of this
+article are openly available [53].
+
+[1] C. Nayak, S. H. Simon, A. Stern, M. Freedman, and S. Das
+Sarma, Non-Abelian anyons and topological quantum computation, Rev. Mod. Phys. 80, 1083 (2008).
+[2] C. W. J. Beenakker, Search for non-Abelian Majorana braiding statistics in superconductors, SciPost Phys. Lect. Notes 15
+(2020).
+[3] A. Yazdani, F. von Oppen, B. I. Halperin, and A. Yacoby,
+Hunting for Majoranas, Science 380, eade0850 (2023).
+[4] S. Das Sarma, M. Freedman, and C. Nayak, Majorana zero
+modes and topological quantum computation, npj Quantum Inf.
+1, 15001 (2015).
+[5] T. Karzig, et al., Scalable designs for quasiparticle-poisoningprotected topological quantum computation with Majorana zero
+modes, Phys. Rev. B 95, 235305 (2017).
+[6] P. Marra, Majorana nanowires for topological quantum computation, J. Appl. Phys. 132, 231101 (2022).
+[7] F. Wilczek, Majorana returns, Nat. Phys. 5, 614 (2009).
+[8] J. Alicea, New directions in the pursuit of Majorana fermions in
+solid state systems, Rep. Prog. Phys. 75, 076501 (2012).
+[9] M. Leijnse and K. Flensberg, Introduction to topological superconductivity and Majorana fermions, Semicond. Sci. Technol.
+27, 124003 (2012).
+[10] C. Beenakker, Search for Majorana fermions in superconductors, Annu. Rev. Condens. Matter Phys. 4, 113 (2013).
+[11] D. A. Ivanov, Non-Abelian statistics of half-quantum vortices in p-wave superconductors, Phys. Rev. Lett. 86, 268
+(2001).
+[12] J. Alicea, Y. Oreg, G. Refael, F. von Oppen, and M. P. A.
+Fisher, Non-Abelian statistics and topological quantum infor-
+
+mation processing in 1D wire networks, Nat. Phys. 7, 412
+(2011).
+[13] K. Flensberg, Non-Abelian operations on Majorana fermions
+via single-charge control, Phys. Rev. Lett. 106, 090503 (2011).
+[14] J. D. Sau, D. J. Clarke, and S. Tewari, Controlling non-Abelian
+statistics of Majorana fermions in semiconductor nanowires,
+Phys. Rev. B 84, 094505 (2011).
+[15] B. van Heck, A. R. Akhmerov, F. Hassler, M. Burrello, and
+C. W. J. Beenakker, Coulomb-assisted braiding of Majorana
+fermions in a Josephson junction array, New J. Phys. 14, 035019
+(2012).
+[16] D. Aasen et al., Milestones toward Majorana-based quantum
+computing, Phys. Rev. X 6, 031016 (2016).
+[17] M. Hell, M. Leijnse, and K. Flensberg, Two-dimensional platform for networks of Majorana bound states, Phys. Rev. Lett.
+118, 107701 (2017).
+[18] S. Plugge, A. Rasmussen, R. Egger, and K. Flensberg, Majorana
+box qubits, New J. Phys. 19, 012001 (2017).
+[19] D. J. Clarke, J. D. Sau, and S. Das Sarma, Probability and
+braiding statistics in Majorana nanowires, Phys. Rev. B 95,
+155451 (2017).
+[20] A. Y. Kitaev, Unpaired Majorana fermions in quantum wires,
+Phys. Usp. 44, 131 (2001).
+[21] J. D. Sau and S. Das Sarma, Realizing a robust practical Majorana chain in a quantum-dot-superconductor linear array, Nat.
+Commun. 3, 964 (2012).
+[22] M. Leijnse and K. Flensberg, Parity qubits and poor man’s
+Majorana bound states in double quantum dots, Phys. Rev. B
+86, 134528 (2012).
+
+L201408-5
+
+MAXIMILIAN NITSCH et al.
+
+PHYSICAL REVIEW B 113, L201408 (2026)
+
+[23] I. C. Fulga, A. Haim, A. R. Akhmerov, and Y. Oreg, Adaptive
+tuning of Majorana fermions in a quantum dot chain, New J.
+Phys. 15, 045020 (2013).
+[24] A. Tsintzis, R. S. Souto, and M. Leijnse, Creating and detecting
+poor man’s Majorana bound states in interacting quantum dots,
+Phys. Rev. B 106, L201404 (2022).
+[25] C.-X. Liu, G. Wang, T. Dvir, and M. Wimmer, Tunable superconducting coupling of quantum dots via Andreev bound states
+in semiconductor-superconductor nanowires, Phys. Rev. Lett.
+129, 267701 (2022).
+[26] R. Seoane Souto and R. Aguado, Subgap states in
+semiconductor-superconductor
+devices
+for
+quantum
+technologies: Andreev qubits and minimal Majorana chains, in
+New Trends and Platforms for Quantum Technologies, edited
+by R. Aguado, R. Citro, M. Lewenstein, and M. Stern (Springer
+Nature Switzerland, Cham, 2024), p. 133.
+[27] G. Wang, T. Dvir, G. P. Mazur, C.-X. Liu, N. van Loo,
+S. L. D. ten Haaf, A. Bordin, S. Gazibegovic, G. Badawy,
+E. P. A. M. Bakkers, M. Wimmer, and L. P. Kouwenhoven, Singlet and triplet Cooper pair splitting in hybrid superconducting
+nanowires, Nature (London) 612, 448 (2022).
+[28] T. Dvir, G. Wang, N. van Loo, C.-X. Liu, G. P. Mazur, A.
+Bordin, S. L. D. ten Haaf, J.-Y. Wang, D. van Driel, F. Zatelli, X.
+Li, F. K. Malinowski, S. Gazibegovic, G. Badawy, E. P. A. M.
+Bakkers, M. Wimmer, and L. P. Kouwenhoven, Realization
+of a minimal Kitaev chain in coupled quantum dots, Nature
+(London) 614, 445 (2023).
+[29] Q. Wang, S. L. D. ten Haaf, I. Kulesh, D. Xiao, C. Thomas,
+M. J. Manfra, and S. Goswami, Triplet correlations in Cooper
+pair splitters realized in a two-dimensional electron gas, Nat.
+Commun. 14, 4876 (2023).
+[30] A. Bordin, G. Wang, C.-X. Liu, S. L. D. ten Haaf, N. van Loo,
+G. P. Mazur, D. Xu, D. van Driel, F. Zatelli, S. Gazibegovic, G.
+Badawy, E. P. A. M. Bakkers, M. Wimmer, L. P. Kouwenhoven,
+and T. Dvir, Tunable crossed Andreev reflection and elastic cotunneling in hybrid nanowires, Phys. Rev. X 13, 031031 (2023).
+[31] D. van Driel, R. Koch, V. P. M. Sietses, S. L. D. ten Haaf, C.-X.
+Liu, F. Zatelli, B. Roovers, A. Bordin, N. van Loo, G. Wang,
+J. C. Wolff, G. P. Mazur, T. Dvir, I. Kulesh, Q. Wang, A. M.
+Bozkurt, S. Gazibegovic, G. Badawy, E. P. A. M. Bakkers, M.
+Wimmer, et al., Cross-platform autonomous control of minimal
+Kitaev chains, arXiv:2405.04596.
+[32] A. Bordin, X. Li, D. van Driel, J. C. Wolff, Q. Wang, S. L. D. ten
+Haaf, G. Wang, N. van Loo, L. P. Kouwenhoven, and T. Dvir,
+Crossed Andreev reflection and elastic cotunneling in three
+quantum dots coupled by superconductors, Phys. Rev. Lett. 132,
+056602 (2024).
+[33] S. L. D. ten Haaf, Q. Wang, A. M. Bozkurt, C.-X. Liu, I.
+Kulesh, P. Kim, D. Xiao, C. Thomas, M. J. Manfra, T. Dvir, M.
+Wimmer, and S. Goswami, A two-site Kitaev chain in a twodimensional electron gas, Nature (London) 630, 329 (2024).
+[34] A. Bordin, F. J. B. Evertsz’, B. Roovers, J. D. T. Luna, W. D.
+Huisman, F. Zatelli, G. P. Mazur, S. L. D. ten Haaf, G. Badawy,
+E. P. A. M. Bakkers, C.-X. Liu, R. S. Souto, N. van Loo, and
+L. P. Kouwenhoven, Probing Majorana localization of a phasecontrolled three-site Kitaev chain with an additional quantum
+dot, arXiv:2504.13702.
+[35] A. Tsintzis, R. S. Souto, K. Flensberg, J. Danon, and M. Leijnse,
+Majorana qubits and non-Abelian physics in quantum dot–
+based minimal Kitaev chains, PRX Quantum 5, 010323 (2024).
+
+[36] S. Miles, F. Zatelli, A. M. Bozkurt, M. Wimmer, and C.-X. Liu,
+Braiding Majoranas in a linear quantum dot-superconductor
+array: Mitigating the errors from Coulomb repulsion and residual tunneling Phys. Rev. B 113, 085302 (2026).
+[37] T. Huang, R. Zhang, X. Li, X.-J. Liu, X. C. Xie, and Y.
+Wu, Unified model for non-Abelian braiding of Majorana and
+Dirac fermion zero modes Sci. China: Phys., Mech. Astron. 69,
+227211 (2026).
+[38] Y. Zhang, Y. Wu, J. Liu, and X. C. Xie, Quantifying the nonAbelian property of Andreev bound states in inhomogeneous
+Majorana nanowires, Phys. Rev. B 111, 205411 (2025).
+[39] P. Boross and A. Pályi, Braiding-based quantum control of a
+Majorana qubit built from quantum dots, Phys. Rev. B 109,
+125410 (2024).
+[40] A. Vuik, B. Nijholt, A. R. Akhmerov, and M. Wimmer, Reproducing topological properties with quasi-Majorana states,
+SciPost Phys. 7, 061 (2019).
+[41] D. J. Clarke, Experimentally accessible topological quality
+factor for wires with zero energy modes, Phys. Rev. B 96,
+201109(R) (2017).
+[42] E. Prada, R. Aguado, and P. San-Jose, Measuring Majorana
+nonlocality and spin structure with a quantum dot, Phys. Rev.
+B 96, 085418 (2017).
+[43] M. T. Deng, S. Vaitiekėnas, E. B. Hansen, J. Danon, M. Leijnse,
+K. Flensberg, J. Nygård, P. Krogstrup, and C. M. Marcus, Majorana bound state in a coupled quantum-dot hybrid-nanowire
+system, Science 354, 1557 (2016).
+[44] M.-T. Deng, S. Vaitiekėnas, E. Prada, P. San-Jose, J. Nygård,
+P. Krogstrup, R. Aguado, and C. M. Marcus, Nonlocality of
+Majorana modes in hybrid nanowires, Phys. Rev. B 98, 085125
+(2018).
+[45] T. Karzig, F. Pientka, G. Refael, and F. von Oppen, Shortcuts to non-Abelian braiding, Phys. Rev. B 91, 201102(R)
+(2015).
+[46] See Supplemental Material at http://link.aps.org/supplemental/
+10.1103/3vcb-pxp6 for the full analytical derivation of all results and additional numerical investigations.
+[47] N. Sedlmayr and C. Bena, Visualizing Majorana bound states
+in one and two dimensions using the generalized Majorana
+polarization, Phys. Rev. B 92, 115115 (2015).
+[48] N. Sedlmayr, J. M. Aguiar-Hualde, and C. Bena, Majorana bound states in open quasi-one-dimensional and twodimensional systems with transverse Rashba coupling, Phys.
+Rev. B 93, 155425 (2016).
+[49] S. V. Aksenov, A. O. Zlotnikov, and M. S. Shustin, Strong
+Coulomb interactions in the problem of Majorana modes in a
+wire of the nontrivial topological class BDI, Phys. Rev. B 101,
+125431 (2020).
+[50] W. Samuelson, V. Svensson, and M. Leijnse, Minimal quantum
+dot based Kitaev chain with only local superconducting proximity effect, Phys. Rev. B 109, 035415 (2024).
+[51] J. E. Avron, L. Sadun, J. Segert, and B. Simon, Chern numbers,
+quaternions, and Berry’s phases in Fermi systems, Commun.
+Math. Phys. 124, 595 (1989).
+[52] F. Hassler, Topological quantum computing, arXiv:2410.13547.
+[53] M. Nitsch, V. Svensson, W. Samuelson, K. Nestmann, J. Danon,
+K. Flensberg, R. Seoane Souto, and M. Leijnse, Code for
+the article “Adiabatic nonabelian braiding of imperfect Majoranas” (v1-arXiv), Zenodo (2025), https://doi.org/10.5281/
+zenodo.15879397.
+
+L201408-6
+
+

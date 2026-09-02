@@ -1,9 +1,5 @@
 # $\gamma_1,\gamma_2,\gamma_3$ 有效子空间的哈密顿量
 
-> 出发点：report.md 的全部推导，不引入任何额外近似。
-> 目标：把 ancilla $\gamma_a,\gamma_b$ 的效应精确地折叠进一个作用在
-> MZM 子空间的有效哈密顿量，给出其显式结构，并指出动力学相位的代数来源。
-
 ---
 
 ## 1. 全空间演化方程
@@ -45,13 +41,13 @@ $$
 
 | 块 | 耦合的 Majorana 对 | 作用 |
 |---|---|---|
-| $A$ | $t_2\!\to\!\gamma_a\gamma_2$，$t_3\!\to\!\gamma_a\gamma_3$，$E_1\!\to\!\gamma_1\gamma_2$ | MZM 自身 + 编织门控 |
-| $D$ | 同上但符号不同（ancilla 自旋） | ancilla 自身动力学 |
-| $B$ | $t_1\!\to\!\gamma_b\gamma_1$，$E_d\!\to\!\gamma_a\gamma_b$ | ancilla → MZM 回馈 |
-| $C$ | 同上反向 | MZM → ancilla 泄漏 |
+| $A$ | $t_2\!\to\!\gamma_a\gamma_2$，$t_3\!\to\!\gamma_a\gamma_3$，$E_1\!\to\!\gamma_1\gamma_2$ | MZM  + 编织门控 |
+| $D$ | 同上但符号不同（ancilla 自旋） | ancilla QD |
+| $B$ | $t_1\!\to\!\gamma_b\gamma_1$，$E_d\!\to\!\gamma_a\gamma_b$ | ancilla → MZM |
+| $C$ | 同上反向 | MZM → ancilla |
 
 旋量上分量 $\psi_1$ 对应 MZM 子空间，下分量 $\psi_2$ 对应 ancilla 子空间。
-$U$ 的第一列满足自封闭方程（report §4.1）：
+$U$ 的第一列满足（report §4.1）：
 $$
 \dot X = A X + B Z, \qquad \dot Z = C X + D Z.
 $$
@@ -120,8 +116,6 @@ $$
 \dot X = AX + BZ, \quad \dot Z = CX + DZ. \tag{1}
 $$
 
-这是精确方程，无任何截断或近似。方程 (1) 的两行是**耦合的**：$X$ 的演化依赖 $Z$，$Z$ 的演化依赖 $X$。
-
 ### 2.4 Riccati 变量消去 $Z$
 
 **命题**：设 $X(t)$ 可逆，令 $q(t):=Z(t)X(t)^{-1}$，则 $q$ 满足
@@ -158,9 +152,7 @@ $$
 
 **$X(t)$ 的可逆性**：$U\in\mathrm{Sp}(2)$ 满足 $U^\dagger U=\mathbb{1}$，展开左上角得 $X^\dagger X + Z^\dagger Z = \mathbb{1}$，故 $|X|^2 + |Z|^2 = 1$。初始 $X(0)=\mathbb{1}$，$|X(0)|=1$。在实际协议中 $q(t)$ 有界（数值验证 report §4.5，偏差 $<10^{-9}$），因此 $X(t)$ 全程可逆。
 
-### 2.5 $i(A+Bq)$ 是有效哈密顿量
-
-方程 (3) 完整描述了 MZM 扇区分量 $X(t)$ 的演化，且是精确的——ancilla 扇区 $Z(t)$ 的信息被**完整地**折叠进了 $q(t)$，无信息丢失。
+### 2.5 $i(A+Bq)$ 
 
 $$
 \boxed{H_{\rm eff}(t) = i\,K_{\rm eff}(t) = i\bigl(A(t) + B(t)\,q(t)\bigr).}
