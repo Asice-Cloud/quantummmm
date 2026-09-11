@@ -22,6 +22,27 @@
   font-family: 'JetBrains Mono', 'Fira Code', 'Source Han Sans SC', monospace;
 }
 
+/* 章节标题字号调小（默认主题 h1 过大） */
+.slidev-layout h1 {
+  font-size: 1.55rem !important;
+  line-height: 1.35 !important;
+  padding-bottom: 0.35rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.slidev-layout h2 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  opacity: 0.85;
+  margin-bottom: 0.4rem !important;
+}
+
+/* 封面标题保留大字号 */
+.slidev-layout.text-center h1 {
+  font-size: 2.6rem !important;
+  border-bottom: none !important;
+}
+
 /* 行内公式不要被中文字体覆盖 */
 .slidev-layout .katex,
 .slidev-layout .katex * {
