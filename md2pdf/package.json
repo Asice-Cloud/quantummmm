@@ -1,0 +1,20 @@
+{
+  "name": "md2pdf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export",
+    "export:pdf": "slidev export --format pdf",
+    "export:pptx": "slidev export --format pptx",
+    "export:png": "slidev export --format png"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.19.1",
+    "@slidev/theme-default": "^0.25.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.63.0"
+  }
+}

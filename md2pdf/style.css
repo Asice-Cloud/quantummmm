@@ -1,0 +1,35 @@
+/* 全局样式：保证中文与代码字体正确渲染 */
+
+:root {
+  --slidev-theme-primary: #0d9488;
+}
+
+.slidev-layout {
+  font-family: 'Source Han Sans SC', 'Source Han Sans', 'Noto Sans CJK SC',
+    'Microsoft YaHei', sans-serif;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Source Han Sans SC', 'Source Han Sans', 'Noto Sans CJK SC',
+    'Microsoft YaHei', sans-serif;
+}
+
+.slidev-layout code,
+.slidev-layout pre,
+.slidev-layout kbd {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Source Han Sans SC', monospace;
+}
+
+/* 行内公式不要被中文字体覆盖 */
+.slidev-layout .katex,
+.slidev-layout .katex * {
+  font-family: KaTeX_Main, KaTeX_Math, 'Source Han Sans SC', serif;
+}
+
+/* 表格与公式块避免溢出 */
+.slidev-layout .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

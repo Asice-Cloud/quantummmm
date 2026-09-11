@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.pdf
+*.pptx
+slides-export*
+.DS_Store
+.vite/
+.cache/
