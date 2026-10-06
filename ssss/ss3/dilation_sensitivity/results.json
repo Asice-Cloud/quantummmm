@@ -1,0 +1,324 @@
+{
+  "parameters": {
+    "tau_meV_inverse": 1.0,
+    "total_time_meV_inverse": 6.0,
+    "E1_scale_meV": 0.02,
+    "t1_scale_meV": 0.03,
+    "order": 6,
+    "rtol": 2e-13,
+    "atol": 2e-15,
+    "physical_E1_meV": 0.01,
+    "physical_t1_meV": 0.01,
+    "physical_x": 0.5,
+    "physical_y": 0.33333333333333337
+  },
+  "ideal_protocol_baseline": {
+    "E_leak_at_ideal_protocol": 0.16317757411900588,
+    "leak_at_ideal_protocol": 1.005644807674133,
+    "max_abs_M_minus_B": 1.4673521140532524,
+    "orthogonality_defect": 3.5810760761126446e-14
+  },
+  "checks": {
+    "propagator_coefficients_vs_finite_differences": {
+      "d1x_d0y": {
+        "finite_difference_max_abs": 0.20005693321351306,
+        "coefficient_max_abs": 0.20005693321352694,
+        "max_abs_difference": 1.482147737874584e-14,
+        "max_rel_difference": 7.408629703889066e-14
+      },
+      "d0x_d1y": {
+        "finite_difference_max_abs": 0.0985405368569363,
+        "coefficient_max_abs": 0.09854053685693821,
+        "max_abs_difference": 3.899658373995862e-15,
+        "max_rel_difference": 3.957415393075732e-14
+      },
+      "d2x_d0y": {
+        "finite_difference_max_abs": 0.050399107045147794,
+        "coefficient_max_abs": 0.05039910708453695,
+        "max_abs_difference": 6.78338857659647e-11,
+        "max_rel_difference": 1.345934278264072e-09
+      },
+      "d0x_d2y": {
+        "finite_difference_max_abs": 0.013146090201606361,
+        "coefficient_max_abs": 0.013146090245598327,
+        "max_abs_difference": 1.2576276131603947e-10,
+        "max_rel_difference": 9.566552441628017e-09
+      },
+      "d1x_d1y": {
+        "finite_difference_max_abs": 0.013535033761558068,
+        "coefficient_max_abs": 0.013535033769493273,
+        "max_abs_difference": 2.972883397789339e-11,
+        "max_rel_difference": 2.1964358938156936e-09
+      }
+    },
+    "observable_identities": {
+      "worst_residual": 0.9208230884698771,
+      "rows": [
+        {
+          "x": 0.0,
+          "y": 0.0,
+          "residual": 0.9208230884698771,
+          "orthogonality_defect": 3.5810760761126446e-14
+        },
+        {
+          "x": 0.02,
+          "y": 0.03,
+          "residual": 0.9207323281146276,
+          "orthogonality_defect": 3.4928756429488857e-14
+        },
+        {
+          "x": -0.02,
+          "y": 0.0,
+          "residual": 0.9208213623659088,
+          "orthogonality_defect": 3.604461824988466e-14
+        }
+      ],
+      "scope": "det M = prod cos theta; ||N||_F^2 = sum sin^2 theta; N singular values."
+    },
+    "parity_of_expansion_series": {
+      "max_abs_odd_degree_coefficient": 0.0,
+      "note": "(E1, t1) -> (-E1, -t1) is a Majorana relabelling; E_leak must be even."
+    },
+    "gradient_identity": [
+      {
+        "axis": "x",
+        "dE_leak_from_polar_identity": -0.0
+      },
+      {
+        "axis": "y",
+        "dE_leak_from_polar_identity": -0.0
+      }
+    ]
+  },
+  "origin_gradient": {
+    "x": 0.0,
+    "y": 0.0
+  },
+  "expansion_series_physical_units": {
+    "E_leak": {
+      "0,1": -0.0,
+      "0,2": -0.11630415687270969,
+      "0,3": -0.0,
+      "0,4": -10.375639040240443,
+      "0,5": -0.0,
+      "0,6": 37.92188917257869,
+      "1,0": -0.0,
+      "1,1": 1.4292809934269386,
+      "1,2": -0.0,
+      "1,3": -15.771373583293803,
+      "1,4": -0.0,
+      "1,5": -7.592718967160872,
+      "2,0": 6.124951533056973,
+      "2,1": -0.0,
+      "2,2": -107.16535760958166,
+      "2,3": -0.0,
+      "2,4": 739.8250023950376,
+      "3,0": -0.0,
+      "3,1": -62.19991664684672,
+      "3,2": -0.0,
+      "3,3": 584.7463104056014,
+      "4,0": -36.92538591340725,
+      "4,1": -0.0,
+      "4,2": 1179.0922089473793,
+      "5,0": -0.0,
+      "5,1": 331.23067408903137,
+      "6,0": 0.7523055185073823
+    },
+    "det_M": {
+      "0,0": 277450.0388397424,
+      "0,1": 0.0,
+      "0,2": 680481.6683591866,
+      "0,3": 0.0,
+      "0,4": 2956318.0263462244,
+      "0,5": 0.0,
+      "0,6": 14095615.15692514,
+      "1,0": 0.0,
+      "1,1": -2117917.9348778566,
+      "1,2": 0.0,
+      "1,3": -15319207.024390178,
+      "1,4": 0.0,
+      "1,5": -77673911.3254395,
+      "2,0": 5674708.572051194,
+      "2,1": 0.0,
+      "2,2": 33044400.824364007,
+      "2,3": 0.0,
+      "2,4": 195918806.36049917,
+      "3,0": 0.0,
+      "3,1": -53668589.067298755,
+      "3,2": 0.0,
+      "3,3": -326245084.06787604,
+      "4,0": 54046910.55244221,
+      "4,1": 0.0,
+      "4,2": 410890681.4774734,
+      "5,0": 0.0,
+      "5,1": -464612765.2563222,
+      "6,0": 215909205.5789913
+    },
+    "leak": {
+      "0,0": 1.0056448076740698,
+      "0,1": 0.0,
+      "0,2": 13.110097591549215,
+      "0,3": 0.0,
+      "0,4": -70.77743702283439,
+      "0,5": 0.0,
+      "0,6": 151.97863781581842,
+      "1,0": 0.0,
+      "1,1": 9.7214398924275,
+      "1,2": 0.0,
+      "1,3": -17.96575854941882,
+      "1,4": 0.0,
+      "1,5": -7.63381653805324,
+      "2,0": 1.4816098223684149,
+      "2,1": 0.0,
+      "2,2": -213.92770587930258,
+      "2,3": 0.0,
+      "2,4": 1356.3497260635859,
+      "3,0": 0.0,
+      "3,1": -64.79226335463002,
+      "3,2": 0.0,
+      "3,3": 74.9831022984227,
+      "4,0": -31.4941981565444,
+      "4,1": 0.0,
+      "4,2": 1528.110476231711,
+      "5,0": 0.0,
+      "5,1": 136.52484030088263,
+      "6,0": 188.02393428428073
+    }
+  },
+  "physical_point": {
+    "x": 0.5,
+    "y": 0.3333333333333333,
+    "E_leak_exact": 0.16338067354204977,
+    "leak_exact": 1.008072136257379,
+    "volume_exact": 0.023946386391068268,
+    "E_leak_degree2": 0.0007437928369611203,
+    "E_leak_degree2_error": 0.16263688070508864,
+    "propagator_degree2_error": 0.0002748547023761899,
+    "E_leak_degree4": 0.0007414684602331865,
+    "E_leak_degree4_error": 0.1626392050818166,
+    "propagator_degree4_error": 2.386858424380245e-07,
+    "E_leak_degree6": 0.0007414713262088582,
+    "E_leak_degree6_error": 0.1626392022158409,
+    "propagator_degree6_error": 9.89667930939575e-11,
+    "volume_series_degree4": 277873.9766686288,
+    "volume_series_degree6": 277873.97663691133,
+    "leak_series_degree6": 1.0080721362594116
+  },
+  "truncation_study": [
+    {
+      "x": 0.02,
+      "y": 0.03,
+      "E_leak_exact": 0.16317886159351783,
+      "leak_exact": 1.0056591635451766,
+      "volume_exact": 0.023975378327597906,
+      "E_leak_degree2": 1.400327035855919e-06,
+      "E_leak_degree2_error": 0.16317746126648197,
+      "propagator_degree2_error": 2.6071258128930463e-08,
+      "E_leak_degree4": 1.4002972128311833e-06,
+      "E_leak_degree4_error": 0.163177461296305,
+      "propagator_degree4_error": 5.6242770857251045e-14,
+      "E_leak_degree6": 1.4002972129819943e-06,
+      "E_leak_degree6_error": 0.16317746129630484,
+      "propagator_degree6_error": 5.362377208939506e-14,
+      "volume_series_degree4": 277450.7355328562,
+      "volume_series_degree6": 277450.7355328562,
+      "leak_series_degree6": 1.0056591635451129
+    },
+    {
+      "x": 0.1,
+      "y": 0.1,
+      "E_leak_exact": 0.16319385519212473,
+      "leak_exact": 1.005827037168467,
+      "volume_exact": 0.023967474983171744,
+      "E_leak_degree2": 3.202875468093515e-05,
+      "E_leak_degree2_error": 0.16316182643744379,
+      "propagator_degree2_error": 2.5177408267303136e-06,
+      "E_leak_degree4": 3.20211210429513e-05,
+      "E_leak_degree4_error": 0.16316183407108178,
+      "propagator_degree4_error": 1.0281421894409171e-10,
+      "E_leak_degree6": 3.202112163455038e-05,
+      "E_leak_degree6_error": 0.16316183407049017,
+      "propagator_degree6_error": 5.417888360170764e-14,
+      "volume_series_degree4": 277466.15467996406,
+      "volume_series_degree6": 277466.15467995795,
+      "leak_series_degree6": 1.0058270371684035
+    },
+    {
+      "x": -0.15,
+      "y": 0.2,
+      "E_leak_exact": 0.16317868597788418,
+      "leak_exact": 1.005954978331803,
+      "volume_exact": 0.024124361465739524,
+      "E_leak_degree2": 2.521055626841032e-05,
+      "E_leak_degree2_error": 0.16315347542161576,
+      "propagator_degree2_error": 1.1577113672348038e-05,
+      "E_leak_degree4": 2.517969314466844e-05,
+      "E_leak_degree4_error": 0.1631535062847395,
+      "propagator_degree4_error": 1.1996467083608131e-09,
+      "E_leak_degree6": 2.5179703266000384e-05,
+      "E_leak_degree6_error": 0.1631535062746182,
+      "propagator_degree6_error": 6.167288901792745e-14,
+      "volume_series_degree4": 277563.76861651096,
+      "volume_series_degree6": 277563.7686252014,
+      "leak_series_degree6": 1.0059549783317423
+    },
+    {
+      "x": 0.5,
+      "y": 0.3333333333333333,
+      "E_leak_exact": 0.16338067354204977,
+      "leak_exact": 1.008072136257379,
+      "volume_exact": 0.023946386391068268,
+      "E_leak_degree2": 0.0007437928369611203,
+      "E_leak_degree2_error": 0.16263688070508864,
+      "propagator_degree2_error": 0.0002748547023761899,
+      "E_leak_degree4": 0.0007414684602331865,
+      "E_leak_degree4_error": 0.1626392050818166,
+      "propagator_degree4_error": 2.386858424380245e-07,
+      "E_leak_degree6": 0.0007414713262088582,
+      "E_leak_degree6_error": 0.1626392022158409,
+      "propagator_degree6_error": 9.89667930939575e-11,
+      "volume_series_degree4": 277873.9766686288,
+      "volume_series_degree6": 277873.97663691133,
+      "leak_series_degree6": 1.0080721362594116
+    },
+    {
+      "x": 0.5,
+      "y": 0.03333333333333333,
+      "E_leak_exact": 0.1631380083738326,
+      "leak_exact": 1.005902891992538,
+      "volume_exact": 0.02434752148153736,
+      "E_leak_degree2": 0.0006266716590830941,
+      "E_leak_degree2_error": 0.16251133671474952,
+      "propagator_degree2_error": 0.00024936635162557674,
+      "E_leak_degree4": 0.0006262293206821773,
+      "E_leak_degree4_error": 0.16251177905315042,
+      "propagator_degree4_error": 1.8350261656030487e-07,
+      "E_leak_degree6": 0.0006262293670071631,
+      "E_leak_degree6_error": 0.16251177900682545,
+      "propagator_degree6_error": 6.383701900425365e-11,
+      "volume_series_degree4": 277997.50095398794,
+      "volume_series_degree6": 277997.50112723734,
+      "leak_series_degree6": 1.0059028919925401
+    },
+    {
+      "x": 0.05,
+      "y": 0.3333333333333333,
+      "E_leak_exact": 0.16329138702355395,
+      "leak_exact": 1.0070537657947072,
+      "volume_exact": 0.02398362598408297,
+      "E_leak_degree2": 8.787345780055395e-06,
+      "E_leak_degree2_error": 0.1632825996777739,
+      "propagator_degree2_error": 9.686254837461966e-06,
+      "E_leak_degree4": 8.656442555756356e-06,
+      "E_leak_degree4_error": 0.16328273058099818,
+      "propagator_degree4_error": 9.029312089681163e-10,
+      "E_leak_degree6": 8.656487822592246e-06,
+      "E_leak_degree6_error": 0.16328273053573136,
+      "propagator_degree6_error": 5.484501741648273e-14,
+      "volume_series_degree4": 277502.59960157593,
+      "volume_series_degree6": 277502.5996095738,
+      "leak_series_degree6": 1.0070537657946632
+    }
+  ],
+  "scope": "Fixed three-stage protocol; expansion about the ideal protocol in the smooth positive-polar branch; coefficients from time integration, not parameter fitting."
+}

@@ -1,0 +1,48 @@
+{
+  "tighter_full_reference": [
+    {
+      "x": 0.1,
+      "y": [
+        -1.0,
+        0.0,
+        1.0
+      ],
+      "max_full_metric_change": {
+        "total": 4.3576253716537394e-14,
+        "leakage": 4.8627768478581856e-14,
+        "rotation": 2.1149748619109232e-14
+      }
+    },
+    {
+      "x": 6.0,
+      "y": [
+        -1.0,
+        0.0,
+        1.0
+      ],
+      "max_full_metric_change": {
+        "total": 8.187894806610529e-16,
+        "leakage": 1.480297368924144e-16,
+        "rotation": 8.951173136040325e-16
+      }
+    },
+    {
+      "x": 12.0,
+      "y": [
+        -1.0,
+        0.0,
+        1.0
+      ],
+      "max_full_metric_change": {
+        "total": 4.440892098500626e-16,
+        "leakage": 7.401486831696023e-17,
+        "rotation": 4.440892098500626e-16
+      }
+    }
+  ],
+  "tighter_fourth_order_at_largest_tau": {
+    "total": 9.101147695478318e-07,
+    "leakage": 1.5489187710215901e-09,
+    "rotation": 9.085658507768102e-07
+  }
+}

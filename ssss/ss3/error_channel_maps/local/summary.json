@@ -1,0 +1,115 @@
+{
+  "parameters": {
+    "E1_meV": 0.01,
+    "tc_meV": 0.3,
+    "Ed_max_meV": 0.3,
+    "cycles": 2,
+    "normalization": 2,
+    "grid_shape_y_x": [
+      61,
+      81
+    ]
+  },
+  "integration_orthogonality_max": 2.0607848760789693e-11,
+  "K_coefficient_skew_defect_max": 4.0573100434926346e-12,
+  "comparison": {
+    "order_1": {
+      "invalid_rotation_fraction": 0.14814814814814814,
+      "F_surv": {
+        "min": 0.3544857480982686,
+        "max": 1.0,
+        "mean_absolute_error": 0.007039948475131824,
+        "max_absolute_error": 0.03840599643149378,
+        "rmse": 0.011205400020201282
+      },
+      "F_rot": {
+        "min": 0.0,
+        "max": 0.8995956151473794,
+        "mean_absolute_error": 0.014052710500438732,
+        "max_absolute_error": 0.05060720987057099,
+        "rmse": 0.019711507378113474
+      },
+      "both_channel_errors_below_0.02_fraction_of_entire_grid": 0.5515077919449504
+    },
+    "order_2": {
+      "invalid_rotation_fraction": 0.13580246913580246,
+      "F_surv": {
+        "min": 0.3505779265953417,
+        "max": 1.0,
+        "mean_absolute_error": 0.0008066874338944773,
+        "max_absolute_error": 0.008812849675093881,
+        "rmse": 0.0017754159338876122
+      },
+      "F_rot": {
+        "min": 0.0,
+        "max": 0.8832879204448403,
+        "mean_absolute_error": 0.0029644259477705722,
+        "max_absolute_error": 0.020121357704512288,
+        "rmse": 0.0052878854493011804
+      },
+      "both_channel_errors_below_0.02_fraction_of_entire_grid": 0.8639951426836673
+    },
+    "order_3": {
+      "invalid_rotation_fraction": 0.13580246913580246,
+      "F_surv": {
+        "min": 0.3505286771881809,
+        "max": 1.0,
+        "mean_absolute_error": 8.728703832168963e-05,
+        "max_absolute_error": 0.0007823180764602311,
+        "rmse": 0.00015944646053517712
+      },
+      "F_rot": {
+        "min": 0.0,
+        "max": 0.8856376434113548,
+        "mean_absolute_error": 0.0003247294139346245,
+        "max_absolute_error": 0.002911535704554463,
+        "rmse": 0.0005670408307634392
+      },
+      "both_channel_errors_below_0.02_fraction_of_entire_grid": 0.8641975308641975
+    },
+    "order_4": {
+      "invalid_rotation_fraction": 0.13580246913580246,
+      "F_surv": {
+        "min": 0.35080468048593916,
+        "max": 1.0,
+        "mean_absolute_error": 8.583872873837421e-06,
+        "max_absolute_error": 0.00011003006171494967,
+        "rmse": 1.7120036535448344e-05
+      },
+      "F_rot": {
+        "min": 0.0,
+        "max": 0.8856707700475823,
+        "mean_absolute_error": 2.5284928065493752e-05,
+        "max_absolute_error": 0.00018314526073248683,
+        "rmse": 4.447424016703836e-05
+      },
+      "both_channel_errors_below_0.02_fraction_of_entire_grid": 0.8641975308641975
+    },
+    "full_evolution": {
+      "invalid_rotation_fraction": 0.13580246913580246,
+      "F_surv": {
+        "min": 0.3508096281366547,
+        "max": 1.0,
+        "mean_absolute_error": 0.0,
+        "max_absolute_error": 0.0,
+        "rmse": 0.0
+      },
+      "F_rot": {
+        "min": 0.0,
+        "max": 0.885641973358087,
+        "mean_absolute_error": 0.0,
+        "max_absolute_error": 0.0,
+        "rmse": 0.0
+      }
+    }
+  },
+  "rotation_comparison_on_same_valid_points": {
+    "fraction_of_grid": 0.8518518518518519,
+    "mean_absolute_error_by_order": [
+      0.014052710500438733,
+      0.0028913031067966132,
+      0.00031232311016492827,
+      2.4910088325479513e-05
+    ]
+  }
+}

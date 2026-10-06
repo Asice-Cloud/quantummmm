@@ -1,0 +1,146 @@
+{
+  "parameters": {
+    "E1": 0.01,
+    "tc": 0.3,
+    "Ed_max": 0.3,
+    "normalization": 2,
+    "cycles": 2,
+    "x_range": [
+      0.0,
+      12.0
+    ],
+    "y_range": [
+      -1.0,
+      1.0
+    ],
+    "grid_shape_y_x": [
+      101,
+      121
+    ]
+  },
+  "common_positive_polar_fraction": 0.9931265853858113,
+  "distance_vs_trace_identity_max": 8.881784197001252e-16,
+  "full_reference_orthogonality_before_projection_max": 2.7011137770927007e-10,
+  "comparison": {
+    "order_1": {
+      "invalid_polar_points": 0,
+      "total": {
+        "mean_absolute_difference": 0.28739409011626077,
+        "max_absolute_difference": 0.6666584221144125,
+        "rmse": 0.3642137574311746,
+        "min_on_valid_points": 6.671193967614878e-10,
+        "max_on_valid_points": 0.6666674306498495
+      },
+      "leakage": {
+        "mean_absolute_difference": 0.00020691768924755837,
+        "max_absolute_difference": 0.07657128357331092,
+        "rmse": 0.0018926593654943371,
+        "min_on_valid_points": -1.4802973661668753e-16,
+        "max_on_valid_points": 0.07081414060153013
+      },
+      "rotation": {
+        "mean_absolute_difference": 0.2872993175078044,
+        "max_absolute_difference": 0.666658421482348,
+        "rmse": 0.3641307887703587,
+        "min_on_valid_points": 6.594114143609886e-10,
+        "max_on_valid_points": 0.6666666666666666
+      }
+    },
+    "order_2": {
+      "invalid_polar_points": 0,
+      "total": {
+        "mean_absolute_difference": 0.2903066527909027,
+        "max_absolute_difference": 0.6666641106314419,
+        "rmse": 0.3655604207388234,
+        "min_on_valid_points": 1.7113376789742082e-07,
+        "max_on_valid_points": 0.6733109740619407
+      },
+      "leakage": {
+        "mean_absolute_difference": 9.378249770950675e-05,
+        "max_absolute_difference": 0.03444061104491365,
+        "rmse": 0.0011441387599904205,
+        "min_on_valid_points": 0.0,
+        "max_on_valid_points": 0.1189937173420194
+      },
+      "rotation": {
+        "mean_absolute_difference": 0.2903291551341432,
+        "max_absolute_difference": 0.6666646046968266,
+        "rmse": 0.3656347758644798,
+        "min_on_valid_points": 5.841784833648944e-10,
+        "max_on_valid_points": 0.6666666666666666
+      }
+    },
+    "order_3": {
+      "invalid_polar_points": 0,
+      "total": {
+        "mean_absolute_difference": 0.28236760363567404,
+        "max_absolute_difference": 0.6666456231821265,
+        "rmse": 0.36045654362963625,
+        "min_on_valid_points": 1.500490487416073e-06,
+        "max_on_valid_points": 0.7455981215876767
+      },
+      "leakage": {
+        "mean_absolute_difference": 0.00017769874772743713,
+        "max_absolute_difference": 0.17007405993152516,
+        "rmse": 0.0029219694508326424,
+        "min_on_valid_points": 0.0,
+        "max_on_valid_points": 0.22039874310908447
+      },
+      "rotation": {
+        "mean_absolute_difference": 0.2820973695075807,
+        "max_absolute_difference": 0.6666494602764023,
+        "rmse": 0.36027932760125303,
+        "min_on_valid_points": 1.1591512934577765e-10,
+        "max_on_valid_points": 0.6666666666666666
+      }
+    },
+    "order_4": {
+      "invalid_polar_points": 84,
+      "total": {
+        "mean_absolute_difference": 0.28081178495855635,
+        "max_absolute_difference": 0.6666006513309598,
+        "rmse": 0.3579466499312732,
+        "min_on_valid_points": 1.1258925332787346e-07,
+        "max_on_valid_points": 0.9330470399816844
+      },
+      "leakage": {
+        "mean_absolute_difference": 0.005262548804210127,
+        "max_absolute_difference": 0.1666463245897499,
+        "rmse": 0.01805473951093424,
+        "min_on_valid_points": 0.0,
+        "max_on_valid_points": 0.16664632916470734
+      },
+      "rotation": {
+        "mean_absolute_difference": 0.28458242115811505,
+        "max_absolute_difference": 0.6666620965406098,
+        "rmse": 0.3624362078980364,
+        "min_on_valid_points": 3.0492460408319995e-09,
+        "max_on_valid_points": 0.6666666666666666
+      }
+    },
+    "full": {
+      "invalid_polar_points": 0,
+      "total": {
+        "mean_absolute_difference": 0.0,
+        "max_absolute_difference": 0.0,
+        "rmse": 0.0,
+        "min_on_valid_points": 0.012253810596549878,
+        "max_on_valid_points": 0.6704500654523856
+      },
+      "leakage": {
+        "mean_absolute_difference": 0.0,
+        "max_absolute_difference": 0.0,
+        "rmse": 0.0,
+        "min_on_valid_points": 0.0,
+        "max_on_valid_points": 0.10441462402332176
+      },
+      "rotation": {
+        "mean_absolute_difference": 0.0,
+        "max_absolute_difference": 0.0,
+        "rmse": 0.0,
+        "min_on_valid_points": 0.012253763368825776,
+        "max_on_valid_points": 0.6666666666666666
+      }
+    }
+  }
+}

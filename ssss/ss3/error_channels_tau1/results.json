@@ -1,0 +1,768 @@
+{
+  "parameters": {
+    "tau_meV_inverse": 1.0,
+    "total_time_meV_inverse": 6.0,
+    "E1_scale_meV": 0.02,
+    "t1_scale_meV": 0.03,
+    "normalization": 2,
+    "tc_meV": 0.3,
+    "Ed_max_meV": 0.3
+  },
+  "checks": {
+    "R0_orthogonality_norm": 1.0233493150603067e-13,
+    "K_antisymmetry_max_residual": 7.008282842946301e-15,
+    "log_exp_series_inverse_residual": 2.710505431213761e-19,
+    "Magnus_vs_log_Taylor_degree3_residual": 7.93809462606987e-15,
+    "K2_hh_mm_hm_sum_residual": 3.531246475785288e-16,
+    "polar_log_feedback_formula_residual": 2.581268532253489e-15,
+    "leakage_order4_formula_residual": 6.207057437479513e-18,
+    "rotation_order4_formula_residual": 9.9272261418204e-19,
+    "physical_D1_zero_residual": 0.0,
+    "physical_C1_columns_2_3_zero_residual": 0.0,
+    "physical_mm_second_order_A_zero_residual": 0.0,
+    "physical_rank_one_feedback_identity_residual": 1.5070410197548512e-17,
+    "explicit_mixed22_leakage_residual": 6.830473686658678e-18,
+    "explicit_mixed22_rotation_residual": 1.4535085374883794e-18,
+    "odd_degree_error_residual": 0.0,
+    "absolute_leakage_fourth_order_residual": 1.6940658945086007e-21
+  },
+  "general_block_checks": {
+    "formal_error_coefficient_residual": 2.7755575615628914e-17,
+    "formal_polar_log_coefficient_residual": 5.551115123125783e-17,
+    "finite_matrix_scaling": [
+      {
+        "scale": 0.2,
+        "leakage_remainder": 1.9915545177277144e-05,
+        "rotation_remainder": 1.403151678244785e-05,
+        "polar_log_remainder": 3.865130489662332e-05
+      },
+      {
+        "scale": 0.1,
+        "leakage_remainder": 3.1483029669810564e-07,
+        "rotation_remainder": 2.1937682490730248e-07,
+        "polar_log_remainder": 1.1977400624271473e-06
+      },
+      {
+        "scale": 0.05,
+        "leakage_remainder": 4.933650769173292e-09,
+        "rotation_remainder": 3.428128178030454e-09,
+        "polar_log_remainder": 3.7350933623782905e-08
+      }
+    ]
+  },
+  "absolute_baseline_errors": {
+    "leakage": 0.3352149358913646,
+    "rotation": 0.9577689251808637
+  },
+  "error_coefficients_physical": {
+    "absolute": {
+      "leakage": {
+        "0,0": 0.3352149358913646,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.4938699407895319,
+        "1,1": 3.240479964142564,
+        "0,2": 4.370032530516527,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": -10.498066052181967,
+        "3,1": -21.597421118210725,
+        "2,2": -71.30923529310287,
+        "1,3": -5.988586183140364,
+        "0,4": -23.592479007611054
+      },
+      "rotation": {
+        "0,0": 0.9577689251808637,
+        "1,0": -0.0,
+        "0,1": -0.0,
+        "2,0": 0.7896278250758837,
+        "1,1": -0.6136017165789149,
+        "0,2": 0.07379141335483025,
+        "3,0": -0.0,
+        "2,1": -0.0,
+        "1,2": -0.0,
+        "0,3": -0.0,
+        "4,0": -5.857583622557733,
+        "3,1": 17.567445657366132,
+        "2,2": -2.6495105682947617,
+        "1,3": -2.438639101282536,
+        "0,4": 0.4689411482903475
+      }
+    },
+    "relative": {
+      "leakage": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 14.915233611972804,
+        "1,1": 0.27198632228915987,
+        "0,2": 4.638815703973103,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": -289.5346779406909,
+        "3,1": 18.055563273835798,
+        "2,2": -187.73816823244263,
+        "1,3": -2.5932051847266986,
+        "0,4": -22.11144254731123
+      },
+      "rotation": {
+        "0,0": 0.0,
+        "1,0": -0.0,
+        "0,1": -0.0,
+        "2,0": 20.31301671885544,
+        "1,1": -2.1592981830075644,
+        "0,2": 0.17257995690813,
+        "3,0": -0.0,
+        "2,1": -0.0,
+        "1,2": -0.0,
+        "0,3": -0.0,
+        "4,0": -21.164828040855024,
+        "3,1": -8.37236339266089,
+        "2,2": 41.53458342123759,
+        "1,3": -4.790665166933927,
+        "0,4": 0.36498823597747204
+      }
+    }
+  },
+  "relative_contribution_coefficients_physical": {
+    "leakage": {
+      "degree2_C1_norm": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 14.915233611972804,
+        "1,1": 0.27198632228915987,
+        "0,2": 4.638815703973103,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 0.0,
+        "3,1": 0.0,
+        "2,2": 0.0,
+        "1,3": 0.0,
+        "0,4": 0.0
+      },
+      "degree3_C1_C2": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 0.0,
+        "3,1": 0.0,
+        "2,2": 0.0,
+        "1,3": 0.0,
+        "0,4": 0.0
+      },
+      "degree4_C2_norm": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 48.56972018749489,
+        "3,1": 17.661256337508682,
+        "2,2": 1.5350634491360762,
+        "1,3": 0.63969391908492,
+        "0,4": 0.2310987448462285
+      },
+      "degree4_C1_C3": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": -14.649074519913471,
+        "3,1": -0.3860720330893715,
+        "2,2": -18.749511389087196,
+        "1,3": -4.032725901979532,
+        "0,4": -0.5570746186280651
+      },
+      "degree4_internal_transport": {
+        "0,0": -0.0,
+        "1,0": -0.0,
+        "0,1": -0.0,
+        "2,0": -0.0,
+        "1,1": -0.0,
+        "0,2": -0.0,
+        "3,0": -0.0,
+        "2,1": -0.0,
+        "1,2": -0.0,
+        "0,3": -0.0,
+        "4,0": -100.99112990854869,
+        "3,1": 8.893858041835506,
+        "2,2": -32.071703917668074,
+        "1,3": 3.3232156443719547,
+        "0,4": -0.2668555380988013
+      },
+      "degree4_sine_saturation": {
+        "0,0": -0.0,
+        "1,0": -0.0,
+        "0,1": -0.0,
+        "2,0": -0.0,
+        "1,1": -0.0,
+        "0,2": -0.0,
+        "3,0": -0.0,
+        "2,1": -0.0,
+        "1,2": -0.0,
+        "0,3": -0.0,
+        "4,0": -222.46419369972332,
+        "3,1": -8.113479072408289,
+        "2,2": -138.4520163748062,
+        "1,3": -2.5233888462016894,
+        "0,4": -21.518611135427477
+      }
+    },
+    "rotation": {
+      "degree2_A1_norm": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 20.31301671885544,
+        "1,1": -2.1592981830075644,
+        "0,2": 0.17257995690812994,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 0.0,
+        "3,1": 0.0,
+        "2,2": 0.0,
+        "1,3": 0.0,
+        "0,4": 0.0
+      },
+      "degree3_A1_A2": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 0.0,
+        "3,1": 0.0,
+        "2,2": 0.0,
+        "1,3": 0.0,
+        "0,4": 0.0
+      },
+      "degree4_A2_norm": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 3.8898686537678975,
+        "3,1": 2.473635929263752,
+        "2,2": 0.3850592780077225,
+        "1,3": -0.0026065869193937904,
+        "0,4": 4.319244604283089e-06
+      },
+      "degree4_A1_A3": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": -39.00184215060697,
+        "3,1": -26.746452320791708,
+        "2,2": -3.0667624855522764,
+        "1,3": -0.05166950504037148,
+        "0,4": -0.025371443239872903
+      },
+      "degree4_rotation_saturation": {
+        "0,0": -0.0,
+        "1,0": -0.0,
+        "0,1": -0.0,
+        "2,0": -0.0,
+        "1,1": -0.0,
+        "0,2": -0.0,
+        "3,0": -0.0,
+        "2,1": -0.0,
+        "1,2": -0.0,
+        "0,3": -0.0,
+        "4,0": -137.53954940683357,
+        "3,1": 29.241240061617887,
+        "2,2": -3.8912692477227204,
+        "1,3": 0.24843439158349923,
+        "0,4": -0.009927947175470664
+      },
+      "degree4_leakage_feedback": {
+        "0,0": 0.0,
+        "1,0": 0.0,
+        "0,1": 0.0,
+        "2,0": 0.0,
+        "1,1": 0.0,
+        "0,2": 0.0,
+        "3,0": 0.0,
+        "2,1": 0.0,
+        "1,2": 0.0,
+        "0,3": 0.0,
+        "4,0": 151.48669486282304,
+        "3,1": -13.340787062753257,
+        "2,2": 48.10755587650212,
+        "1,3": -4.984823466557931,
+        "0,4": 0.40028330714820193
+      }
+    }
+  },
+  "absolute_leakage_fourth_order_terms_at_scale1": {
+    "N2_norm": 4.329001238962874e-05,
+    "N1_N3": -9.425549347544024e-05,
+    "N0_N4_baseline_interference": -3.912659791485967e-06
+  },
+  "second_order_generator_source_norms_scaled": {
+    "(2, 0)": {
+      "hh": {
+        "A_Frobenius_norm": 0.0022313744367145026,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.0
+      },
+      "mm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.0012363138742234364
+      },
+      "hm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.004828401980986609,
+        "D_Frobenius_norm": 0.0
+      },
+      "total": {
+        "A_Frobenius_norm": 0.0022313744367144905,
+        "C_Frobenius_norm": 0.00482840198098683,
+        "D_Frobenius_norm": 0.0012363138742234995
+      }
+    },
+    "(1, 1)": {
+      "hh": {
+        "A_Frobenius_norm": 0.0010642277033475528,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.0
+      },
+      "mm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.005163473736878668
+      },
+      "hm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.0018603426349027385,
+        "D_Frobenius_norm": 0.0
+      },
+      "total": {
+        "A_Frobenius_norm": 0.001064227703347598,
+        "C_Frobenius_norm": 0.0018603426349026746,
+        "D_Frobenius_norm": 0.005163473736878645
+      }
+    },
+    "(0, 2)": {
+      "hh": {
+        "A_Frobenius_norm": 5.290435240728705e-06,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.0
+      },
+      "mm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.0,
+        "D_Frobenius_norm": 0.0010313176143368623
+      },
+      "hm": {
+        "A_Frobenius_norm": 0.0,
+        "C_Frobenius_norm": 0.0007493797101446188,
+        "D_Frobenius_norm": 0.0
+      },
+      "total": {
+        "A_Frobenius_norm": 5.290435240672965e-06,
+        "C_Frobenius_norm": 0.0007493797101445536,
+        "D_Frobenius_norm": 0.001031317614336617
+      }
+    }
+  },
+  "scaling": [
+    {
+      "scale": 1.0,
+      "E1_meV": 0.02,
+      "t1_meV": 0.03,
+      "absolute_full": {
+        "leakage": 0.34123519138991315,
+        "rotation": 0.9577844281391217
+      },
+      "relative_full": {
+        "leakage": 0.010176390357304829,
+        "rotation": 0.006992107225321287
+      },
+      "generator_reconstruction": {
+        "1": {
+          "absolute": {
+            "leakage": 0.3411827104043849,
+            "rotation": 0.9582286618179111
+          },
+          "relative": {
+            "leakage": 0.010174927642430798,
+            "rotation": 0.0070046280339388645
+          },
+          "absolute_difference_from_full": {
+            "leakage": -5.248098552823599e-05,
+            "rotation": 0.00044423367878942965
+          },
+          "relative_difference_from_full": {
+            "leakage": -1.462714874030449e-06,
+            "rotation": 1.252080861757765e-05
+          },
+          "orthogonality_norm": 2.5611841746566897e-16
+        },
+        "2": {
+          "absolute": {
+            "leakage": 0.34124083692058704,
+            "rotation": 0.957785211411621
+          },
+          "relative": {
+            "leakage": 0.010187901004256561,
+            "rotation": 0.007005971628312624
+          },
+          "absolute_difference_from_full": {
+            "leakage": 5.645530673892285e-06,
+            "rotation": 7.832724993050988e-07
+          },
+          "relative_difference_from_full": {
+            "leakage": 1.1510646951732803e-05,
+            "rotation": 1.3864402991337066e-05
+          },
+          "orthogonality_norm": 1.0871416744815793e-16
+        },
+        "3": {
+          "absolute": {
+            "leakage": 0.341235093607606,
+            "rotation": 0.9577843562307439
+          },
+          "relative": {
+            "leakage": 0.010176404138371805,
+            "rotation": 0.00699211880338324
+          },
+          "absolute_difference_from_full": {
+            "leakage": -9.778230714019287e-08,
+            "rotation": -7.190837780779447e-08
+          },
+          "relative_difference_from_full": {
+            "leakage": 1.3781066976817358e-08,
+            "rotation": 1.1578061953620988e-08
+          },
+          "orthogonality_norm": 1.2496668623035704e-16
+        },
+        "4": {
+          "absolute": {
+            "leakage": 0.3412352097208316,
+            "rotation": 0.9577844287453594
+          },
+          "relative": {
+            "leakage": 0.010176416797350842,
+            "rotation": 0.00699212030181795
+          },
+          "absolute_difference_from_full": {
+            "leakage": 1.8330918449827038e-08,
+            "rotation": 6.062377266857766e-10
+          },
+          "relative_difference_from_full": {
+            "leakage": 2.6440046013709306e-08,
+            "rotation": 1.3076496663266823e-08
+          },
+          "orthogonality_norm": 1.6808348519422406e-16
+        }
+      },
+      "relative_degree4_terms": {
+        "leakage": {
+          "degree2_C1_norm": 0.01030421937173841,
+          "degree3_C1_C2": 0.0,
+          "degree4_C2_norm": 1.3095104292321557e-05,
+          "degree4_C1_C3": -1.1815235739356675e-05,
+          "degree4_internal_transport": -2.399148480358695e-05,
+          "degree4_sine_saturation": -0.00010617693686090912
+        },
+        "rotation": {
+          "degree2_A1_norm": 0.006984949738954955,
+          "degree3_A1_A2": 0.0,
+          "degree4_A2_norm": 1.353268889360601e-06,
+          "degree4_A1_A3": -1.381193019763204e-05,
+          "degree4_rotation_saturation": -1.62631742852423e-05,
+          "degree4_leakage_feedback": 3.5987227205380425e-05
+        }
+      },
+      "relative_degree4_total_correction": {
+        "leakage": -0.00012888855311153118,
+        "rotation": 7.265391611866683e-06
+      },
+      "absolute_degree4_total_correction": {
+        "leakage": -5.487814087729747e-05,
+        "rotation": 1.3881269889951328e-06
+      }
+    },
+    {
+      "scale": 0.5,
+      "E1_meV": 0.01,
+      "t1_meV": 0.015,
+      "absolute_full": {
+        "leakage": 0.3367302265200514,
+        "rotation": 0.9577725377258148
+      },
+      "relative_full": {
+        "leakage": 0.00256801592806995,
+        "rotation": 0.0017466898374517426
+      },
+      "generator_reconstruction": {
+        "1": {
+          "absolute": {
+            "leakage": 0.3367216139944487,
+            "rotation": 0.9578835946983908
+          },
+          "relative": {
+            "leakage": 0.0025679330563881607,
+            "rotation": 0.0017474694806998148
+          },
+          "absolute_difference_from_full": {
+            "leakage": -8.612525602691434e-06,
+            "rotation": 0.00011105697257596248
+          },
+          "relative_difference_from_full": {
+            "leakage": -8.287168178945648e-08,
+            "rotation": 7.79643248072226e-07
+          },
+          "orthogonality_norm": 3.8925973548301503e-16
+        },
+        "2": {
+          "absolute": {
+            "leakage": 0.3367305860198695,
+            "rotation": 0.9577725862148541
+          },
+          "relative": {
+            "leakage": 0.0025687495842796437,
+            "rotation": 0.0017475539064109036
+          },
+          "absolute_difference_from_full": {
+            "leakage": 3.5949981808114373e-07,
+            "rotation": 4.848903922827219e-08
+          },
+          "relative_difference_from_full": {
+            "leakage": 7.336562096935118e-07,
+            "rotation": 8.64068959161024e-07
+          },
+          "orthogonality_norm": 1.931254287793739e-16
+        },
+        "3": {
+          "absolute": {
+            "leakage": 0.3367302204436953,
+            "rotation": 0.9577725330996699
+          },
+          "relative": {
+            "leakage": 0.002568016147910987,
+            "rotation": 0.0017466900172923294
+          },
+          "absolute_difference_from_full": {
+            "leakage": -6.076356084960821e-09,
+            "rotation": -4.626144911590302e-09
+          },
+          "relative_difference_from_full": {
+            "leakage": 2.198410368678405e-10,
+            "rotation": 1.798405868669306e-10
+          },
+          "orthogonality_norm": 1.980128799977489e-16
+        },
+        "4": {
+          "absolute": {
+            "leakage": 0.33673022681039216,
+            "rotation": 0.9577725377351286
+          },
+          "relative": {
+            "leakage": 0.00256801634869915,
+            "rotation": 0.0017466900406259978
+          },
+          "absolute_difference_from_full": {
+            "leakage": 2.9034075144096505e-10,
+            "rotation": 9.3137719758829e-12
+          },
+          "relative_difference_from_full": {
+            "leakage": 4.2062919987373437e-10,
+            "rotation": 2.0317425519777998e-10
+          },
+          "orthogonality_norm": 1.5825477253042613e-16
+        }
+      },
+      "relative_degree4_terms": {
+        "leakage": {
+          "degree2_C1_norm": 0.0025760548429346027,
+          "degree3_C1_C2": 0.0,
+          "degree4_C2_norm": 8.184440182700973e-07,
+          "degree4_C1_C3": -7.384522337097922e-07,
+          "degree4_internal_transport": -1.4994678002241843e-06,
+          "degree4_sine_saturation": -6.63605855380682e-06
+        },
+        "rotation": {
+          "degree2_A1_norm": 0.0017462374347387388,
+          "degree3_A1_A2": 0.0,
+          "degree4_A2_norm": 8.457930558503756e-08,
+          "degree4_A1_A3": -8.632456373520025e-07,
+          "degree4_rotation_saturation": -1.0164483928276438e-06,
+          "degree4_leakage_feedback": 2.2492017003362765e-06
+        }
+      },
+      "relative_degree4_total_correction": {
+        "leakage": -8.055534569470698e-06,
+        "rotation": 4.540869757416677e-07
+      },
+      "absolute_degree4_total_correction": {
+        "leakage": -3.429883804831092e-06,
+        "rotation": 8.67579368121958e-08
+      }
+    },
+    {
+      "scale": 0.25,
+      "E1_meV": 0.005,
+      "t1_meV": 0.0075,
+      "absolute_full": {
+        "leakage": 0.33559440066639185,
+        "rotation": 0.9577698120045126
+      },
+      "relative_full": {
+        "leakage": 0.0006435104997583827,
+        "rotation": 0.0004365877128109652
+      },
+      "generator_reconstruction": {
+        "1": {
+          "absolute": {
+            "leakage": 0.3355925322749949,
+            "rotation": 0.957797575763955
+          },
+          "relative": {
+            "leakage": 0.0006435054551835117,
+            "rotation": 0.00043663639474367244
+          },
+          "absolute_difference_from_full": {
+            "leakage": -1.8683913969308463e-06,
+            "rotation": 2.7763759442356317e-05
+          },
+          "relative_difference_from_full": {
+            "leakage": -5.044574870999817e-09,
+            "rotation": 4.868193270723964e-08
+          },
+          "orthogonality_norm": 1.5759200148763976e-16
+        },
+        "2": {
+          "absolute": {
+            "leakage": 0.33559442323976524,
+            "rotation": 0.9577698150278406
+          },
+          "relative": {
+            "leakage": 0.0006435565779405336,
+            "rotation": 0.0004366416785412941
+          },
+          "absolute_difference_from_full": {
+            "leakage": 2.2573373392731355e-08,
+            "rotation": 3.023328032369932e-09
+          },
+          "relative_difference_from_full": {
+            "leakage": 4.6078182150931235e-08,
+            "rotation": 5.396573032889762e-08
+          },
+          "orthogonality_norm": 2.2272232803099457e-16
+        },
+        "3": {
+          "absolute": {
+            "leakage": 0.33559440028710324,
+            "rotation": 0.9577698117133369
+          },
+          "relative": {
+            "leakage": 0.000643510503211199,
+            "rotation": 0.0004365877156169429
+          },
+          "absolute_difference_from_full": {
+            "leakage": -3.792886005271612e-10,
+            "rotation": -2.9117575017778563e-10
+          },
+          "relative_difference_from_full": {
+            "leakage": 3.4528162664096418e-12,
+            "rotation": 2.8059776724376206e-12
+          },
+          "orthogonality_norm": 1.606945049777154e-16
+        },
+        "4": {
+          "absolute": {
+            "leakage": 0.3355944006709308,
+            "rotation": 0.9577698120046634
+          },
+          "relative": {
+            "leakage": 0.0006435105063603227,
+            "rotation": 0.00043658771598120705
+          },
+          "absolute_difference_from_full": {
+            "leakage": 4.538980302726259e-12,
+            "rotation": 1.5076828674409626e-13
+          },
+          "relative_difference_from_full": {
+            "leakage": 6.601940023311104e-12,
+            "rotation": 3.1702418468171345e-12
+          },
+          "orthogonality_norm": 1.9236171357502273e-16
+        }
+      },
+      "relative_degree4_terms": {
+        "leakage": {
+          "degree2_C1_norm": 0.0006440137107336507,
+          "degree3_C1_C2": 0.0,
+          "degree4_C2_norm": 5.115275114188108e-08,
+          "degree4_C1_C3": -4.615326460686201e-08,
+          "degree4_internal_transport": -9.371673751401152e-08,
+          "degree4_sine_saturation": -4.1475365961292624e-07
+        },
+        "rotation": {
+          "degree2_A1_norm": 0.0004365593586846847,
+          "degree3_A1_A2": 0.0,
+          "degree4_A2_norm": 5.286206599064847e-09,
+          "degree4_A1_A3": -5.395285233450016e-08,
+          "degree4_rotation_saturation": -6.352802455172774e-08,
+          "degree4_leakage_feedback": 1.4057510627101728e-07
+        }
+      },
+      "relative_degree4_total_correction": {
+        "leakage": -5.034709105919187e-07,
+        "rotation": 2.8380435983854232e-08
+      },
+      "absolute_degree4_total_correction": {
+        "leakage": -2.1436773780194324e-07,
+        "rotation": 5.4223710507622375e-09
+      }
+    }
+  ],
+  "scope": "Local error-channel analysis; relative and absolute errors are distinct; exponentiation preserves geometry, not a global accuracy guarantee."
+}
