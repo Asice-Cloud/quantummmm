@@ -1,0 +1,77 @@
+{
+  "identity": "K=2*A(E,eta,tc,E0)=A(2*E,2*eta,2*tc,2*E0)",
+  "absorbed_generator_factor": 1.0,
+  "matrix_parameters_meV": {
+    "E1": 0.02,
+    "eta_range": [
+      0.002,
+      0.2
+    ],
+    "tc": 0.6,
+    "E0": 0.6
+  },
+  "physical_caption_parameters_meV": {
+    "E1": 0.01,
+    "eta_range": [
+      0.001,
+      0.1
+    ],
+    "tc": 0.3,
+    "E0": 0.3
+  },
+  "time_scaling": 1.0,
+  "end_time": "6*tau",
+  "tau_range": [
+    0.0,
+    1200.0
+  ],
+  "grid": [
+    101,
+    241
+  ],
+  "source_map": "fixed_protocol_pde/state_evolution/endpoint_map.npz",
+  "source_sha256": "a2dfe57c87b8e47deafa1ac5f0249c05cfd86128326b132e702d9880378d8a5f",
+  "source_reuse_reason": "Every point has an identical generator after absorbing the factor 2.",
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "max_local_step": 0.025
+  },
+  "independent_doubled_parameter_wave_checks": [
+    {
+      "tau": 100.0,
+      "eta_over_E1": 0.1,
+      "doubled_matrix_E1": 0.02,
+      "doubled_matrix_eta": 0.002,
+      "F_original_K2A": 0.058552332886577074,
+      "F_doubled_amplitudes_factor_one": 0.05855233288657823,
+      "B_max_error": 1.3400773004289268e-11,
+      "F_error": 1.1587952819525071e-15,
+      "sqrt_F_error": 2.3869795029440866e-15
+    },
+    {
+      "tau": 300.0,
+      "eta_over_E1": 1.0,
+      "doubled_matrix_E1": 0.02,
+      "doubled_matrix_eta": 0.02,
+      "F_original_K2A": 0.10251804867369917,
+      "F_doubled_amplitudes_factor_one": 0.10251804867370205,
+      "B_max_error": 1.9273880695657233e-11,
+      "F_error": 2.886579864025407e-15,
+      "sqrt_F_error": 4.496403249731884e-15
+    },
+    {
+      "tau": 1000.0,
+      "eta_over_E1": 10.0,
+      "doubled_matrix_E1": 0.02,
+      "doubled_matrix_eta": 0.2,
+      "F_original_K2A": 0.0009213890962354553,
+      "F_doubled_amplitudes_factor_one": 0.0009213890962751958,
+      "B_max_error": 5.273281585902573e-11,
+      "F_error": 3.9740563270718177e-14,
+      "sqrt_F_error": 6.54608312000704e-13
+    }
+  ],
+  "paper_image": "Original PDF crop; not raw fidelity data."
+}

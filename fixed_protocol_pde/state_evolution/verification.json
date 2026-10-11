@@ -1,0 +1,95 @@
+{
+  "E1_map_meV": 0.01,
+  "tc_meV": 0.3,
+  "E0_meV": 0.3,
+  "generator": "K=2A",
+  "physical_end_time": "6*tau",
+  "map_grid": [
+    101,
+    241
+  ],
+  "map_tau_range": [
+    0,
+    1200
+  ],
+  "map_log10_ratio_range": [
+    -1,
+    1
+  ],
+  "trajectory_tau": 100.0,
+  "trajectory_points": 3001,
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "max_local_step": 0.025
+  },
+  "palette": "Ten fill colors extracted from the original Fig. 1(d) vector paths.",
+  "color_readout": "F is squared fidelity; sqrt(F) has the same definition as the paper colorbar. Signed B components use [-1,1].",
+  "scope": "Finite sampling of the complete state PDE; tiny rapid structures may require a finer plotting grid.",
+  "checks": {
+    "history_invariants": {
+      "max_abs_B_cubed_plus_B": 2.2700341606451957e-11,
+      "max_abs_component_norm_squared_minus_one": 3.2768232571811495e-12,
+      "F_min": -7.632305039147288e-17,
+      "F_max": 0.999984420882657
+    },
+    "endpoint_invariants": {
+      "max_abs_B_cubed_plus_B": 5.782928790779712e-11,
+      "max_abs_component_norm_squared_minus_one": 1.0051959264956167e-12,
+      "F_min": -2.936377289494565e-14,
+      "F_max": 0.9985920808375388
+    },
+    "trajectory_endpoint_wave_checks": [
+      {
+        "E1": 0.0,
+        "eta": 0.0,
+        "B_max_error": 4.847749751537428e-12,
+        "F_error": 2.220446049250313e-16
+      },
+      {
+        "E1": 0.01,
+        "eta": 0.001,
+        "B_max_error": 5.343030705373675e-12,
+        "F_error": 3.684552662974738e-15
+      },
+      {
+        "E1": 0.01,
+        "eta": 0.01,
+        "B_max_error": 3.812876338445126e-12,
+        "F_error": 5.559788740505667e-15
+      },
+      {
+        "E1": 0.01,
+        "eta": 0.1,
+        "B_max_error": 1.841739087626859e-11,
+        "F_error": 5.127842594987442e-15
+      }
+    ],
+    "geometric_F_identity_residual": 1.1102230246251565e-16,
+    "third_segment_F_variations": [
+      1.1679546219056647e-13,
+      5.787037515858628e-14
+    ],
+    "map_wave_checks": [
+      {
+        "tau": 100.0,
+        "log_ratio": -1.0,
+        "B_max_error": 1.3400773004289268e-11,
+        "F_error": 1.1587952819525071e-15
+      },
+      {
+        "tau": 300.0,
+        "log_ratio": 0.0,
+        "B_max_error": 1.9273880695657233e-11,
+        "F_error": 2.886579864025407e-15
+      },
+      {
+        "tau": 1000.0,
+        "log_ratio": 1.0,
+        "B_max_error": 5.273281585902573e-11,
+        "F_error": 3.9740563270718177e-14
+      }
+    ]
+  }
+}

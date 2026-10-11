@@ -1,0 +1,676 @@
+{
+  "units": "hbar=1; energies in meV; tau in meV^-1",
+  "scope": "Local second-stage tests with exact incoming states",
+  "diagnostics": [
+    {
+      "name": "eta_low",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.01,
+      "max_fast_mixing_indicator": 0.07715747206077386,
+      "max_slow_null_mixing_indicator": 2.1980874254874987,
+      "minimum_mu_plus_minus_mu_minus": 0.2035713750935338,
+      "fast_phase": 51.610486892286914,
+      "slow_phase": 1.8647408606907185,
+      "errors": {
+        "orthogonal_frame": 3.5354847581388728e-15,
+        "special_orthogonal_frame": 6.661338147750939e-16,
+        "skew_connection": 1.549716949863699e-14,
+        "instantaneous_rotation_blocks": 1.053586871884269e-15,
+        "analytic_frame_derivative": 1.2426060180814602e-10,
+        "slow_connection_structure": 7.748584749318494e-15
+      }
+    },
+    {
+      "name": "high_fidelity",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.023,
+      "max_fast_mixing_indicator": 0.0790361388751017,
+      "max_slow_null_mixing_indicator": 1.2326214715846653,
+      "minimum_mu_plus_minus_mu_minus": 0.19867467172426378,
+      "fast_phase": 51.610565402531336,
+      "slow_phase": 3.005078957182652,
+      "errors": {
+        "orthogonal_frame": 3.226634369914662e-15,
+        "special_orthogonal_frame": 6.661338147750939e-16,
+        "skew_connection": 1.139869879539061e-14,
+        "instantaneous_rotation_blocks": 9.618289082999088e-16,
+        "analytic_frame_derivative": 3.8728514839547756e-10,
+        "slow_connection_structure": 5.699349397695305e-15
+      }
+    },
+    {
+      "name": "E_changed",
+      "tau": 100.0,
+      "E1": 0.02,
+      "eta": 0.023,
+      "max_fast_mixing_indicator": 0.08081755027197701,
+      "max_slow_null_mixing_indicator": 0.9743238160708548,
+      "minimum_mu_plus_minus_mu_minus": 0.19436491330905242,
+      "fast_phase": 51.66987583305084,
+      "slow_phase": 3.975063635399589,
+      "errors": {
+        "orthogonal_frame": 1.7367693037923598e-15,
+        "special_orthogonal_frame": 6.661338147750939e-16,
+        "skew_connection": 7.74144710498556e-15,
+        "instantaneous_rotation_blocks": 4.96757004622115e-16,
+        "analytic_frame_derivative": 1.3332398379750643e-10,
+        "slow_connection_structure": 3.87072355249278e-15
+      }
+    },
+    {
+      "name": "long_protocol",
+      "tau": 500.0,
+      "E1": 0.01,
+      "eta": 0.02344645627,
+      "max_fast_mixing_indicator": 0.015822552105700813,
+      "max_slow_null_mixing_indicator": 0.24744008217227595,
+      "minimum_mu_plus_minus_mu_minus": 0.19847576576946127,
+      "fast_phase": 258.05284607274444,
+      "slow_phase": 15.229021935124173,
+      "errors": {
+        "orthogonal_frame": 3.244218358321759e-15,
+        "special_orthogonal_frame": 6.661338147750939e-16,
+        "skew_connection": 1.0305480551746876e-14,
+        "instantaneous_rotation_blocks": 9.61829967795226e-16,
+        "analytic_frame_derivative": 1.5408507803016391e-10,
+        "slow_connection_structure": 5.152740275873438e-15
+      }
+    }
+  ],
+  "segments": [
+    {
+      "name": "eta_low",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.01,
+      "segment": 2,
+      "d_reference": -0.11254109360151879,
+      "F_reference": 0.30943566890590735,
+      "models": {
+        "exact_frame": {
+          "d_out": -0.11254109360151901,
+          "F_out": 0.3094356689059071,
+          "d_endpoint_error": 2.220446049250313e-16,
+          "F_endpoint_error": 2.220446049250313e-16,
+          "d_max_path_error": 1.274882976964875e-13,
+          "F_max_path_error": 4.39648317751562e-14,
+          "wave_max_error": 2.601394764405653e-13,
+          "wave_norm_error": 2.6645352591003757e-15,
+          "wave_null_error": 1.990096062414554e-15
+        },
+        "slow_geometry": {
+          "d_out": -0.11286734038138899,
+          "F_out": 0.30961781919069314,
+          "d_endpoint_error": 0.00032624677987019846,
+          "F_endpoint_error": 0.0001821502847857981,
+          "d_max_path_error": 0.0003282958856283408,
+          "F_max_path_error": 0.0001835970855075808,
+          "wave_max_error": 0.01717470979073092,
+          "wave_norm_error": 3.6637359812630166e-15,
+          "wave_null_error": 1.791901337485521e-15
+        },
+        "phases_only": {
+          "d_out": -0.9999978599807763,
+          "F_out": 0.9999978599818488,
+          "d_endpoint_error": 0.8874567663792575,
+          "F_endpoint_error": 0.6905621910759414,
+          "d_max_path_error": 0.8888677099747708,
+          "F_max_path_error": 0.6908463119045862,
+          "wave_max_error": 0.7026138967620853,
+          "wave_norm_error": 1.9984014443252818e-15,
+          "wave_null_error": 1.3537133916663738e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 2.140017077460771e-06,
+        "slow_input_weight": 0.9999978599829213,
+        "slow_null_amplitude": 2.0712643655024483e-06,
+        "sphere_radius": 0.9999978599807762,
+        "initial_b": [
+          0.0,
+          -0.0,
+          -0.9999978599807762
+        ],
+        "d_out": -0.11286734038138883,
+        "F_out": 0.3096179011332051,
+        "d_vs_slow_model_error": 1.5265566588595902e-16,
+        "F_vs_slow_model_error": 8.194251194248992e-08,
+        "F_input_null_error_bound": 5.178171639620762e-07,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 2.7755575615628914e-17
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 8.881784197001252e-16
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 2.498001805406602e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "eta_low",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.01,
+      "segment": 5,
+      "d_reference": 0.8051798952497301,
+      "F_reference": 0.009487011275050847,
+      "models": {
+        "exact_frame": {
+          "d_out": 0.8051798952497305,
+          "F_out": 0.009487011275050708,
+          "d_endpoint_error": 4.440892098500626e-16,
+          "F_endpoint_error": 1.3877787807814457e-16,
+          "d_max_path_error": 1.1680656442081272e-12,
+          "F_max_path_error": 2.670641485735814e-13,
+          "wave_max_error": 9.942849864199127e-13,
+          "wave_norm_error": 2.4424906541753444e-15,
+          "wave_null_error": 3.2541045109950768e-15
+        },
+        "slow_geometry": {
+          "d_out": 0.8052969105395728,
+          "F_out": 0.009476360337444627,
+          "d_endpoint_error": 0.00011701528984264797,
+          "F_endpoint_error": 1.0650937606219296e-05,
+          "d_max_path_error": 0.006103100152892005,
+          "F_max_path_error": 0.0020173830295155126,
+          "wave_max_error": 0.05243564926681188,
+          "wave_norm_error": 1.3322676295501878e-15,
+          "wave_null_error": 2.086842780433739e-15
+        },
+        "phases_only": {
+          "d_out": 0.11254274951579629,
+          "F_out": 0.19689397498118802,
+          "d_endpoint_error": 0.6926371457339338,
+          "F_endpoint_error": 0.1874069637061372,
+          "d_max_path_error": 0.6926371457339338,
+          "F_max_path_error": 0.1874069637061372,
+          "wave_max_error": 0.8047156906683587,
+          "wave_norm_error": 1.3322676295501878e-15,
+          "wave_null_error": 1.2991596476775273e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 7.493283055964319e-06,
+        "slow_input_weight": 0.9999925067169436,
+        "slow_null_amplitude": 7.370208181962551e-06,
+        "sphere_radius": 0.9999925066897836,
+        "initial_b": [
+          0.32973268270414524,
+          -0.9373342525075401,
+          0.11254274951579661
+        ],
+        "d_out": 0.8052969105395713,
+        "F_out": 0.009476664801918201,
+        "d_vs_slow_model_error": 1.4432899320127035e-15,
+        "F_vs_slow_model_error": 3.044644735737678e-07,
+        "F_input_null_error_bound": 1.8425656255166305e-06,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 0.0
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 2.942091015256665e-15
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 3.885780586188048e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "high_fidelity",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.023,
+      "segment": 2,
+      "d_reference": -0.23767843658254087,
+      "F_reference": 0.3829615099369269,
+      "models": {
+        "exact_frame": {
+          "d_out": -0.2376784365825411,
+          "F_out": 0.38296150993692707,
+          "d_endpoint_error": 2.220446049250313e-16,
+          "F_endpoint_error": 1.6653345369377348e-16,
+          "d_max_path_error": 1.8529622280993863e-13,
+          "F_max_path_error": 1.329492071988625e-13,
+          "wave_max_error": 4.712564290223392e-13,
+          "wave_norm_error": 2.4424906541753444e-15,
+          "wave_null_error": 3.072762853257378e-15
+        },
+        "slow_geometry": {
+          "d_out": -0.23844507468759232,
+          "F_out": 0.3834363270982703,
+          "d_endpoint_error": 0.0007666381050514537,
+          "F_endpoint_error": 0.00047481716134339935,
+          "d_max_path_error": 0.0007693369933660654,
+          "F_max_path_error": 0.0004780380622231295,
+          "wave_max_error": 0.016542695247236155,
+          "wave_norm_error": 1.7763568394002505e-15,
+          "wave_null_error": 1.279468816630226e-15
+        },
+        "phases_only": {
+          "d_out": -0.9999975001589592,
+          "F_out": 0.9999975001599046,
+          "d_endpoint_error": 0.7623190635764183,
+          "F_endpoint_error": 0.6170359902229777,
+          "d_max_path_error": 0.763595439093916,
+          "F_max_path_error": 0.6172907297439331,
+          "wave_max_error": 0.68684234293582,
+          "wave_norm_error": 1.7763568394002505e-15,
+          "wave_null_error": 1.4271872719387392e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 2.4998391496420127e-06,
+        "slow_input_weight": 0.9999975001608514,
+        "slow_null_amplitude": 1.9449469373627776e-06,
+        "sphere_radius": 0.9999975001589602,
+        "initial_b": [
+          -0.0,
+          0.0,
+          -0.9999975001589602
+        ],
+        "d_out": -0.2384450746875927,
+        "F_out": 0.3834359613278174,
+        "d_vs_slow_model_error": 3.885780586188048e-16,
+        "F_vs_slow_model_error": 3.65770452925851e-07,
+        "F_input_null_error_bound": 4.862376799731556e-07,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 1.1449174941446927e-16
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 0.0
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 5.551115123125783e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "high_fidelity",
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.023,
+      "segment": 5,
+      "d_reference": -0.886132241904518,
+      "F_reference": 0.8893735894738038,
+      "models": {
+        "exact_frame": {
+          "d_out": -0.8861322419045168,
+          "F_out": 0.8893735894738024,
+          "d_endpoint_error": 1.2212453270876722e-15,
+          "F_endpoint_error": 1.4432899320127035e-15,
+          "d_max_path_error": 2.5240920464852934e-13,
+          "F_max_path_error": 2.183808689437683e-13,
+          "wave_max_error": 6.539634741776392e-13,
+          "wave_norm_error": 1.5543122344752192e-15,
+          "wave_null_error": 1.3248018562487327e-15
+        },
+        "slow_geometry": {
+          "d_out": -0.8857527732841689,
+          "F_out": 0.8890156570700084,
+          "d_endpoint_error": 0.00037946862034909934,
+          "F_endpoint_error": 0.0003579324037954468,
+          "d_max_path_error": 0.005037258583264925,
+          "F_max_path_error": 0.00413867233439702,
+          "wave_max_error": 0.04933859743266684,
+          "wave_norm_error": 1.9984014443252818e-15,
+          "wave_null_error": 1.171137501302696e-15
+        },
+        "phases_only": {
+          "d_out": 0.23767725278111956,
+          "F_out": 0.145283003899377,
+          "d_endpoint_error": 1.1238094946856376,
+          "F_endpoint_error": 0.7440905855744269,
+          "d_max_path_error": 1.1238094946856376,
+          "F_max_path_error": 0.7440905855744269,
+          "wave_max_error": 0.7037449386063243,
+          "wave_norm_error": 2.6645352591003757e-15,
+          "wave_null_error": 2.878595766294059e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 2.337239586991337e-06,
+        "slow_input_weight": 0.999997662760414,
+        "slow_null_amplitude": 1.8563051429832123e-06,
+        "sphere_radius": 0.999997662758691,
+        "initial_b": [
+          -0.7227489194311935,
+          -0.6489521157175673,
+          0.2376772527811193
+        ],
+        "d_out": -0.8857527732841671,
+        "F_out": 0.8890157546048352,
+        "d_vs_slow_model_error": 1.7763568394002505e-15,
+        "F_vs_slow_model_error": 9.753482677066216e-08,
+        "F_input_null_error_bound": 4.640771472788702e-07,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 9.71445146547012e-17
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 8.881784197001252e-16
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 4.163336342344337e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "E_changed",
+      "tau": 100.0,
+      "E1": 0.02,
+      "eta": 0.023,
+      "segment": 2,
+      "d_reference": -0.4250671902144669,
+      "F_reference": 0.5077028598710864,
+      "models": {
+        "exact_frame": {
+          "d_out": -0.4250671902144682,
+          "F_out": 0.5077028598710879,
+          "d_endpoint_error": 1.3322676295501878e-15,
+          "F_endpoint_error": 1.4432899320127035e-15,
+          "d_max_path_error": 9.381384558082573e-14,
+          "F_max_path_error": 1.3455903058456897e-13,
+          "wave_max_error": 9.462369381985016e-13,
+          "wave_norm_error": 2.6645352591003757e-15,
+          "wave_null_error": 2.2232198742534223e-15
+        },
+        "slow_geometry": {
+          "d_out": -0.4260119657556223,
+          "F_out": 0.5083768117442401,
+          "d_endpoint_error": 0.0009447755411554071,
+          "F_endpoint_error": 0.0006739518731536664,
+          "d_max_path_error": 0.0009553412709604192,
+          "F_max_path_error": 0.0006803047273630236,
+          "wave_max_error": 0.030944089496499926,
+          "wave_norm_error": 9.992007221626409e-16,
+          "wave_null_error": 3.055131238175915e-15
+        },
+        "phases_only": {
+          "d_out": -0.9999973122468069,
+          "F_out": 0.9999973122483813,
+          "d_endpoint_error": 0.57493012203234,
+          "F_endpoint_error": 0.49229445237729486,
+          "d_max_path_error": 0.6122808846478698,
+          "F_max_path_error": 0.5105564009163989,
+          "wave_max_error": 0.6405168396310834,
+          "wave_norm_error": 1.3322676295501878e-15,
+          "wave_null_error": 2.1210781103223385e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 2.687750044531068e-06,
+        "slow_input_weight": 0.9999973122499554,
+        "slow_null_amplitude": 2.5094895135297126e-06,
+        "sphere_radius": 0.9999973122468063,
+        "initial_b": [
+          0.0,
+          -0.0,
+          -0.9999973122468063
+        ],
+        "d_out": -0.42601196575562195,
+        "F_out": 0.5083769816307087,
+        "d_vs_slow_model_error": 3.3306690738754696e-16,
+        "F_vs_slow_model_error": 1.698864685595325e-07,
+        "F_input_null_error_bound": 6.273739529007217e-07,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 1.5265566588595902e-16
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 1.1102230246251565e-15
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 3.7470027081099033e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "E_changed",
+      "tau": 100.0,
+      "E1": 0.02,
+      "eta": 0.023,
+      "segment": 5,
+      "d_reference": 0.3684469078890514,
+      "F_reference": 0.0997144596530056,
+      "models": {
+        "exact_frame": {
+          "d_out": 0.3684469078890511,
+          "F_out": 0.09971445965300507,
+          "d_endpoint_error": 2.7755575615628914e-16,
+          "F_endpoint_error": 5.273559366969494e-16,
+          "d_max_path_error": 2.0770885011955897e-13,
+          "F_max_path_error": 2.1087298573974067e-13,
+          "wave_max_error": 4.2555616299364574e-13,
+          "wave_norm_error": 3.552713678800501e-15,
+          "wave_null_error": 3.898857293954082e-15
+        },
+        "slow_geometry": {
+          "d_out": 0.3676537193271255,
+          "F_out": 0.09996541122356374,
+          "d_endpoint_error": 0.0007931885619258949,
+          "F_endpoint_error": 0.00025095157055814166,
+          "d_max_path_error": 0.003032485746079283,
+          "F_max_path_error": 0.0018042016246653247,
+          "wave_max_error": 0.05313463378978079,
+          "wave_norm_error": 2.4424906541753444e-15,
+          "wave_null_error": 5.124193447733782e-15
+        },
+        "phases_only": {
+          "d_out": 0.42506744726072704,
+          "F_out": 0.08263486542640662,
+          "d_endpoint_error": 0.05662053937167566,
+          "F_endpoint_error": 0.01707959422659898,
+          "d_max_path_error": 0.30397144068554394,
+          "F_max_path_error": 0.09151752507308811,
+          "wave_max_error": 0.7919459379877125,
+          "wave_norm_error": 2.55351295663786e-15,
+          "wave_null_error": 4.288393621505008e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 5.742114912790077e-06,
+        "slow_input_weight": 0.9999942578850851,
+        "slow_null_amplitude": 5.58164312088955e-06,
+        "sphere_radius": 0.999994257869508,
+        "initial_b": [
+          -0.2989993575237603,
+          0.8543451089879402,
+          0.42506744726072726
+        ],
+        "d_out": 0.3676537193271238,
+        "F_out": 0.09996421318013186,
+        "d_vs_slow_model_error": 1.6653345369377348e-15,
+        "F_vs_slow_model_error": 1.1980434318770161e-06,
+        "F_input_null_error_bound": 1.3954185687699722e-06,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 2.220446049250313e-16
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 4.218847493575595e-15
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 1.1102230246251565e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "long_protocol",
+      "tau": 500.0,
+      "E1": 0.01,
+      "eta": 0.02344645627,
+      "segment": 2,
+      "d_reference": -0.9894432732402205,
+      "F_reference": 0.9894711343422793,
+      "models": {
+        "exact_frame": {
+          "d_out": -0.9894432732402237,
+          "F_out": 0.9894711343422825,
+          "d_endpoint_error": 3.219646771412954e-15,
+          "F_endpoint_error": 3.219646771412954e-15,
+          "d_max_path_error": 1.6036477701319996e-13,
+          "F_max_path_error": 8.182343691487404e-14,
+          "wave_max_error": 5.864827581730768e-13,
+          "wave_norm_error": 1.3322676295501878e-15,
+          "wave_null_error": 3.951107577814437e-15
+        },
+        "slow_geometry": {
+          "d_out": -0.9894748807354271,
+          "F_out": 0.9895025752574012,
+          "d_endpoint_error": 3.160749520658701e-05,
+          "F_endpoint_error": 3.144091512186087e-05,
+          "d_max_path_error": 0.00014999986915598118,
+          "F_max_path_error": 0.000140881472750487,
+          "wave_max_error": 0.006466367696502124,
+          "wave_norm_error": 5.906386491005833e-14,
+          "wave_null_error": 3.274011155111177e-15
+        },
+        "phases_only": {
+          "d_out": -0.9999999980786615,
+          "F_out": 0.9999999980786611,
+          "d_endpoint_error": 0.010556724838440945,
+          "F_endpoint_error": 0.010528863736381844,
+          "d_max_path_error": 0.05529222643023557,
+          "F_max_path_error": 0.04661532969402293,
+          "wave_max_error": 0.1564405830823846,
+          "wave_norm_error": 5.6621374255882984e-14,
+          "wave_null_error": 4.3099590464969406e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 1.921339955692442e-09,
+        "slow_input_weight": 0.9999999980786591,
+        "slow_null_amplitude": 1.4298584978831724e-09,
+        "sphere_radius": 0.9999999980786591,
+        "initial_b": [
+          0.0,
+          0.0,
+          -0.9999999980786591
+        ],
+        "d_out": -0.9894748807354252,
+        "F_out": 0.9895025752592507,
+        "d_vs_slow_model_error": 1.887379141862766e-15,
+        "F_vs_slow_model_error": 1.8495205367230483e-12,
+        "F_input_null_error_bound": 3.574646244707931e-10,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 2.862293735361732e-17
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 2.4980018054066022e-15
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 3.0531133177191805e-16
+          }
+        ]
+      }
+    },
+    {
+      "name": "long_protocol",
+      "tau": 500.0,
+      "E1": 0.01,
+      "eta": 0.02344645627,
+      "segment": 5,
+      "d_reference": 0.997813654267007,
+      "F_reference": 1.195023511830484e-06,
+      "models": {
+        "exact_frame": {
+          "d_out": 0.9978136542670072,
+          "F_out": 1.1950235118301595e-06,
+          "d_endpoint_error": 2.220446049250313e-16,
+          "F_endpoint_error": 3.246253770352106e-19,
+          "d_max_path_error": 2.438049762076844e-13,
+          "F_max_path_error": 1.1945999744966684e-13,
+          "wave_max_error": 5.087990889946632e-13,
+          "wave_norm_error": 3.774758283725532e-15,
+          "wave_null_error": 9.415950072975059e-15
+        },
+        "slow_geometry": {
+          "d_out": 0.9978011361898519,
+          "F_out": 1.2087458329433639e-06,
+          "d_endpoint_error": 1.2518077155077023e-05,
+          "F_endpoint_error": 1.3722321112879788e-08,
+          "d_max_path_error": 0.0001413380670243214,
+          "F_max_path_error": 4.8534822933432586e-05,
+          "wave_max_error": 0.0071506964671847655,
+          "wave_norm_error": 9.592326932761353e-14,
+          "wave_null_error": 1.030206807545632e-14
+        },
+        "phases_only": {
+          "d_out": 0.9894432705111121,
+          "F_out": 2.7861096689760626e-05,
+          "d_endpoint_error": 0.008370383755894828,
+          "F_endpoint_error": 2.666607317793014e-05,
+          "d_max_path_error": 0.06772240835983573,
+          "F_max_path_error": 0.01196841771700241,
+          "wave_max_error": 0.15710412742191837,
+          "wave_norm_error": 6.017408793468348e-14,
+          "wave_null_error": 9.692062601919201e-15
+        }
+      },
+      "slow_sphere": {
+        "fast_input_weight": 4.933518189494238e-09,
+        "slow_input_weight": 0.999999995066479,
+        "slow_null_amplitude": 3.735507288001968e-09,
+        "sphere_radius": 0.9999999950664791,
+        "initial_b": [
+          -0.08398129537753654,
+          -0.11810650532442996,
+          0.9894432705111089
+        ],
+        "d_out": 0.9978011361898487,
+        "F_out": 1.208745095797433e-06,
+        "d_vs_slow_model_error": 3.219646771412954e-15,
+        "F_vs_slow_model_error": 7.371459308860444e-13,
+        "F_input_null_error_bound": 9.33876822000492e-10,
+        "memory_checks": [
+          {
+            "v": 0.2,
+            "derivative_error": 2.1510571102112408e-15
+          },
+          {
+            "v": 0.6,
+            "derivative_error": 3.3306690738754696e-16
+          },
+          {
+            "v": 0.95,
+            "derivative_error": 2.671474153004283e-16
+          }
+        ]
+      }
+    }
+  ]
+}

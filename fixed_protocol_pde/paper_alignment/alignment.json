@@ -1,0 +1,335 @@
+{
+  "source": {
+    "pdf": "arts/prb111.pdf",
+    "sha256": "5c173acca81f9b61aeef541063b2d7bbd4a24afd490d1dcaccd5945e839e31d3",
+    "page": 2,
+    "contour_bounds_pdf_points": [
+      165.230469,
+      258.546875,
+      135.167969,
+      213.757812
+    ],
+    "color_count": 10
+  },
+  "digitization": {
+    "axes": "tau/(100/meV), log10(abs(t1)/E1)",
+    "range": [
+      [
+        0,
+        1200
+      ],
+      [
+        -1,
+        1
+      ]
+    ],
+    "assumed_equal_color_intervals": 10,
+    "color_half_width": 0.05,
+    "scope": "Color intervals from the vector contour image, not the authors raw data.",
+    "antialias_exclusion_max_RGB_distance": 10,
+    "grid": [
+      17,
+      25
+    ]
+  },
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "max_local_step": 0.025
+  },
+  "candidates": [
+    {
+      "name": "caption_global_half",
+      "label_E1": 0.01,
+      "generator_factor": 1.0,
+      "E_coefficient_multiplier": 1.0,
+      "eta_coefficient_multiplier": 1.0,
+      "midpoint_RMSE": 0.23349599124474707,
+      "outside_band_RMSE": 0.19861668488566744,
+      "inside_band_fraction": 0.30563002680965146,
+      "valid_point_count": 373
+    },
+    {
+      "name": "caption_weak_half",
+      "label_E1": 0.01,
+      "generator_factor": 2.0,
+      "E_coefficient_multiplier": 0.5,
+      "eta_coefficient_multiplier": 0.5,
+      "midpoint_RMSE": 0.2416256248928532,
+      "outside_band_RMSE": 0.2058014863968582,
+      "inside_band_fraction": 0.3109919571045576,
+      "valid_point_count": 373
+    },
+    {
+      "name": "caption_E_only_half",
+      "label_E1": 0.01,
+      "generator_factor": 2.0,
+      "E_coefficient_multiplier": 0.5,
+      "eta_coefficient_multiplier": 1.0,
+      "midpoint_RMSE": 0.2759389261085923,
+      "outside_band_RMSE": 0.24172726144068005,
+      "inside_band_fraction": 0.28418230563002683,
+      "valid_point_count": 373
+    },
+    {
+      "name": "caption_original",
+      "label_E1": 0.01,
+      "generator_factor": 2.0,
+      "E_coefficient_multiplier": 1.0,
+      "eta_coefficient_multiplier": 1.0,
+      "midpoint_RMSE": 0.35447646966467855,
+      "outside_band_RMSE": 0.32018227569354946,
+      "inside_band_fraction": 0.3002680965147453,
+      "valid_point_count": 373
+    },
+    {
+      "name": "caption_eta_only_half",
+      "label_E1": 0.01,
+      "generator_factor": 2.0,
+      "E_coefficient_multiplier": 1.0,
+      "eta_coefficient_multiplier": 0.5,
+      "midpoint_RMSE": 0.3705717650196265,
+      "outside_band_RMSE": 0.3355386227186106,
+      "inside_band_fraction": 0.2707774798927614,
+      "valid_point_count": 373
+    }
+  ],
+  "diagnostic_calibration": {
+    "generator_factor": 1.0,
+    "E_matrix_coefficient_meV": 0.009382635535192151,
+    "eta_matrix_coefficient_per_labeled_ratio_meV": 0.010508475302180176,
+    "controlled_tc": 0.3,
+    "controlled_E0": 0.3,
+    "training": {
+      "midpoint_RMSE": 0.08093476791382398,
+      "outside_band_RMSE": 0.05744951266353938,
+      "inside_band_fraction": 0.7062146892655368,
+      "valid_point_count": 177
+    },
+    "validation": {
+      "midpoint_RMSE": 0.08764713846820306,
+      "outside_band_RMSE": 0.06390484699574357,
+      "inside_band_fraction": 0.6850828729281768,
+      "valid_point_count": 181
+    },
+    "optimizer_success": true,
+    "scope": "Fitted numerical correspondence only; not adopted as the model or proved to be the authors convention.",
+    "label_E1_meV": 0.01,
+    "E_coefficient_multiplier": 0.9382635535192151,
+    "eta_coefficient_multiplier": 1.0508475302180176
+  },
+  "low_ratio": {
+    "log10_ratio": -0.98,
+    "published_high_color_intervals": [
+      {
+        "tau_bright_interval": [
+          287.5,
+          350.0
+        ],
+        "f_color_interval": [
+          0.9,
+          1.0
+        ]
+      },
+      {
+        "tau_bright_interval": [
+          615.0,
+          675.0
+        ],
+        "f_color_interval": [
+          0.9,
+          1.0
+        ]
+      },
+      {
+        "tau_bright_interval": [
+          942.5,
+          997.5
+        ],
+        "f_color_interval": [
+          0.9,
+          1.0
+        ]
+      }
+    ],
+    "grid_selected_model_peaks": {
+      "caption_original": [
+        {
+          "tau_grid_estimate": 150.0,
+          "f": 0.9990757679316575
+        },
+        {
+          "tau_grid_estimate": 300.0,
+          "f": 0.9931980204270421
+        },
+        {
+          "tau_grid_estimate": 450.0,
+          "f": 0.9829983437222811
+        },
+        {
+          "tau_grid_estimate": 597.5,
+          "f": 0.973976851619921
+        },
+        {
+          "tau_grid_estimate": 747.5,
+          "f": 0.9638111214166722
+        },
+        {
+          "tau_grid_estimate": 895.0,
+          "f": 0.9493260549720044
+        },
+        {
+          "tau_grid_estimate": 1045.0,
+          "f": 0.9331534555866401
+        }
+      ],
+      "caption_global_half": [
+        {
+          "tau_grid_estimate": 302.5,
+          "f": 0.9991951840662727
+        },
+        {
+          "tau_grid_estimate": 600.0,
+          "f": 0.9931980204270405
+        },
+        {
+          "tau_grid_estimate": 897.5,
+          "f": 0.9830179400533784
+        }
+      ]
+    }
+  },
+  "independent_wave_checks": {
+    "caption_original": {
+      "b": 5.545212238607794e-12,
+      "F": 1.3183898417423734e-15,
+      "F_tau": 6.088879400678593e-16,
+      "F_tautau": 1.1222034586311214e-15
+    },
+    "caption_global_half": {
+      "b": 9.69868125698034e-12,
+      "F": 4.244868345715247e-15,
+      "F_tau": 1.1155356152703355e-15,
+      "F_tautau": 9.97432117368774e-16
+    },
+    "diagnostic_fit": {
+      "b": 9.281085123526156e-12,
+      "F": 3.537001852903644e-15,
+      "F_tau": 7.968403158988523e-16,
+      "F_tautau": 4.344631039209911e-16
+    }
+  },
+  "conclusion": "The stated-parameter candidates do not fully reproduce the published contour map; calibration is diagnostic and leaves residual differences. The current model convention is unchanged.",
+  "parameter_resolution": {
+    "E1_meV": 0.01,
+    "basis": "Figure caption; user confirmed that the body value .001 is a typo."
+  },
+  "source_grid_interpolation_check": {
+    "hypothesized_node_count": [
+      101,
+      100
+    ],
+    "scope": "Repeated SVG coordinates suggest this regular mesh; tested as a hypothesis, not identified raw source data.",
+    "cut_scores_tau_at_least_100": {
+      "caption_original": {
+        "continuous": {
+          "midpoint_RMSE": 0.3813251096231875,
+          "outside_band_RMSE": 0.3449471492685063,
+          "inside_band_fraction": 0.2050587172538392,
+          "valid_point_count": 1107
+        },
+        "linear_interpolation": {
+          "midpoint_RMSE": 0.37601029856536167,
+          "outside_band_RMSE": 0.33963395908881117,
+          "inside_band_fraction": 0.1987353206865402,
+          "valid_point_count": 1107
+        },
+        "per_cut": [
+          {
+            "log10_ratio": -0.98,
+            "interpolation_bias_RMSE": 0.008010220934782616,
+            "interpolation_bias_max": 0.015802386729953932
+          },
+          {
+            "log10_ratio": 0.0,
+            "interpolation_bias_RMSE": 0.0013857480456938179,
+            "interpolation_bias_max": 0.005685063304477682
+          },
+          {
+            "log10_ratio": 0.98,
+            "interpolation_bias_RMSE": 0.03456342510468191,
+            "interpolation_bias_max": 0.13984779361205005
+          }
+        ]
+      },
+      "caption_global_half": {
+        "continuous": {
+          "midpoint_RMSE": 0.2626154304447812,
+          "outside_band_RMSE": 0.22806402915231205,
+          "inside_band_fraction": 0.26738934056007224,
+          "valid_point_count": 1107
+        },
+        "linear_interpolation": {
+          "midpoint_RMSE": 0.25974534825788737,
+          "outside_band_RMSE": 0.22531472894200497,
+          "inside_band_fraction": 0.27461607949412825,
+          "valid_point_count": 1107
+        },
+        "per_cut": [
+          {
+            "log10_ratio": -0.98,
+            "interpolation_bias_RMSE": 0.002071686214371729,
+            "interpolation_bias_max": 0.0040354149625969615
+          },
+          {
+            "log10_ratio": 0.0,
+            "interpolation_bias_RMSE": 0.0005049688253950079,
+            "interpolation_bias_max": 0.001398389040991749
+          },
+          {
+            "log10_ratio": 0.98,
+            "interpolation_bias_RMSE": 0.013222334324182551,
+            "interpolation_bias_max": 0.04098145170508157
+          }
+        ]
+      },
+      "diagnostic_fit": {
+        "continuous": {
+          "midpoint_RMSE": 0.07493165570386906,
+          "outside_band_RMSE": 0.04509806709430462,
+          "inside_band_fraction": 0.5980126467931346,
+          "valid_point_count": 1107
+        },
+        "linear_interpolation": {
+          "midpoint_RMSE": 0.07041969775962283,
+          "outside_band_RMSE": 0.04054993530486114,
+          "inside_band_fraction": 0.6052393857271906,
+          "valid_point_count": 1107
+        },
+        "per_cut": [
+          {
+            "log10_ratio": -0.98,
+            "interpolation_bias_RMSE": 0.0018654874115110155,
+            "interpolation_bias_max": 0.0034109682219281012
+          },
+          {
+            "log10_ratio": 0.0,
+            "interpolation_bias_RMSE": 0.0003630594076109225,
+            "interpolation_bias_max": 0.0010340033865525002
+          },
+          {
+            "log10_ratio": 0.98,
+            "interpolation_bias_RMSE": 0.0174720594420956,
+            "interpolation_bias_max": 0.04438434216437914
+          }
+        ]
+      }
+    }
+  },
+  "literal_Hamiltonian_audit": {
+    "generator_factor": 2.0,
+    "reference": "../effective_hamiltonian_verification.json",
+    "scope": "Clifford and Fock/BdG constructions fix K=2A for the written Hamiltonian. Other scales are diagnostic, not equivalent conventions with the same coefficients."
+  }
+}

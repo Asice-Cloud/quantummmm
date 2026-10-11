@@ -1,0 +1,144 @@
+{
+  "tau": 100.0,
+  "tc": 0.3,
+  "E0": 0.3,
+  "hbar": 1.0,
+  "end_time": 600.0,
+  "local_max_step": 0.025,
+  "method": "DOP853",
+  "note": "Sample verification of exact PDE identities; not a parameter-space error bound.",
+  "samples": [
+    {
+      "E1": 0.0,
+      "eta": 0.0,
+      "errors_over_full_six_segments": {
+        "B_wave": 2.990743124074019e-12,
+        "parameter_PDE_absolute": 7.767186893659073e-11,
+        "parameter_PDE_relative": 3.8259684221273396e-11,
+        "first_derivatives_wave_relative": 1.251402516248676e-09,
+        "second_derivatives_wave_relative": 4.1620050127170503e-08,
+        "connection_curvature_absolute": 7.828020898159593e-09,
+        "connection_curvature_relative": 2.270219345642579e-10,
+        "mixed_parameter_PDE_relative": 5.7367641462549e-10,
+        "F_wave": 1.1517453657461374e-12,
+        "F_gradient_wave_relative": 0.0,
+        "F_hessian_wave_relative": 4.2807617646746445e-09,
+        "metric_wave_relative": 1.9447692776483485e-09,
+        "state_constraint": 3.3306690738754696e-14,
+        "wave_normalization": 6.283862319378386e-14,
+        "metric_PSD_violation": 0.0,
+        "interface_K": 0.0
+      },
+      "endpoint": {
+        "F": 0.9999844193370332,
+        "F_gradient": [
+          0.0,
+          0.0
+        ],
+        "F_hessian_EE_Eeta_etaeta": [
+          -189606.96538302238,
+          80956.07017317673,
+          -34565.52034442533
+        ],
+        "state_parameter_metric": [
+          [
+            94806.02838605676,
+            -40478.330770513756
+          ],
+          [
+            -40478.330770513756,
+            17283.02941628672
+          ]
+        ]
+      }
+    },
+    {
+      "E1": 0.01,
+      "eta": 0.023,
+      "errors_over_full_six_segments": {
+        "B_wave": 1.5645817974530019e-12,
+        "parameter_PDE_absolute": 4.755489335650509e-10,
+        "parameter_PDE_relative": 1.0237789553574328e-10,
+        "first_derivatives_wave_relative": 1.0320656495689884e-10,
+        "second_derivatives_wave_relative": 1.829160450440962e-08,
+        "connection_curvature_absolute": 7.117128575373499e-08,
+        "connection_curvature_relative": 3.571816040414677e-10,
+        "mixed_parameter_PDE_relative": 4.788117880214732e-09,
+        "F_wave": 6.054601264793291e-13,
+        "F_gradient_wave_relative": 8.059860387702161e-12,
+        "F_hessian_wave_relative": 5.548637153524344e-10,
+        "metric_wave_relative": 3.1257587112942886e-11,
+        "state_constraint": 1.1748380046583407e-12,
+        "wave_normalization": 1.4432899320127035e-14,
+        "metric_PSD_violation": 0.0,
+        "interface_K": 0.0
+      },
+      "endpoint": {
+        "F": 0.8893735894738016,
+        "F_gradient": [
+          -36.52301185164551,
+          0.01670052101012524
+        ],
+        "F_hessian_EE_Eeta_etaeta": [
+          -170367.47417489503,
+          73059.5199592096,
+          -32638.80536192299
+        ],
+        "state_parameter_metric": [
+          [
+            41292.96554815693,
+            -25251.746878309856
+          ],
+          [
+            -25251.746878309856,
+            16866.51506302951
+          ]
+        ]
+      }
+    },
+    {
+      "E1": 0.027,
+      "eta": 0.001,
+      "errors_over_full_six_segments": {
+        "B_wave": 1.700840857044028e-12,
+        "parameter_PDE_absolute": 1.0802964633960244e-09,
+        "parameter_PDE_relative": 8.651753146648474e-10,
+        "first_derivatives_wave_relative": 5.191708750995975e-10,
+        "second_derivatives_wave_relative": 6.092462562176185e-08,
+        "connection_curvature_absolute": 1.539747813694703e-07,
+        "connection_curvature_relative": 1.9856772724345457e-09,
+        "mixed_parameter_PDE_relative": 2.42578115557977e-08,
+        "F_wave": 5.540568004391844e-13,
+        "F_gradient_wave_relative": 5.708680999970733e-12,
+        "F_hessian_wave_relative": 7.498557212296858e-10,
+        "metric_wave_relative": 4.3164144040683635e-11,
+        "state_constraint": 9.827087060765294e-13,
+        "wave_normalization": 3.3306690738754696e-14,
+        "metric_PSD_violation": 0.0,
+        "interface_K": 0.0
+      },
+      "endpoint": {
+        "F": 0.5980762189730326,
+        "F_gradient": [
+          281.38075951862936,
+          -112.3884979724008
+        ],
+        "F_hessian_EE_Eeta_etaeta": [
+          -14020.170348608764,
+          5338.471132851602,
+          -3316.7266791509337
+        ],
+        "state_parameter_metric": [
+          [
+            124460.40918116983,
+            -41440.09328605656
+          ],
+          [
+            -41440.09328605656,
+            15524.930586665863
+          ]
+        ]
+      }
+    }
+  ]
+}

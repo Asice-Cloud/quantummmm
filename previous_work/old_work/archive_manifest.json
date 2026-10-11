@@ -1,0 +1,98 @@
+{
+  "archived_on": "2026-10-11",
+  "description": "此前的 SO(5) 保真度、参数响应与标量 PDE 工作；文件内容原样保存。",
+  "files": [
+    {
+      "name": "213.md",
+      "sha256": "630279c64210fef0459a8e82976e6ab2ed8484cdee8488e75db5823a5fbc6e9d"
+    },
+    {
+      "name": "so5_fidelity_analysis.md",
+      "sha256": "11b3ffc1f0932c02efd178e05542c81d64e3526d84036c0f552982943e1da955"
+    },
+    {
+      "name": "verify_so5_fidelity.py",
+      "sha256": "f359a459fbca4658672d01d081746cf0692ee2ce8a4a73e578aec1cb4a8fdefc"
+    },
+    {
+      "name": "so5_fidelity_validation.json",
+      "sha256": "63d4e89b5fc268e236e51fea996954ea3a71fa0379d21ffa70be85e185e1b993"
+    },
+    {
+      "name": "plot_so5_fidelity_formula.py",
+      "sha256": "084fc2e65b669eb5d4ee09616db9dae3fbbeb4c93ab869f0d6440536d3974938"
+    },
+    {
+      "name": "so5_fidelity_formula_fig1d.png",
+      "sha256": "598a184083acc5310bba2078d1802faf2a5f3a5bf1e2600d89ffb864b9641f17"
+    },
+    {
+      "name": "so5_fidelity_formula_fig1d.pdf",
+      "sha256": "153fd5b9d5d8a61686024fe2314beddf6d5ea8867d78ebaef4e69bef5e1599b3"
+    },
+    {
+      "name": "so5_fidelity_formula_fig1d.npz",
+      "sha256": "9669a228667c97ba5a84c8b17915429078c0d6af0ffe4c512133c305fc7e8a31"
+    },
+    {
+      "name": "so5_full_fidelity_analysis.md",
+      "sha256": "acc29a3d6ace53cd0d237b87eb18ac5c0724b46c3e3a66eaaae7998a2fc7746d"
+    },
+    {
+      "name": "so5_full_fidelity.py",
+      "sha256": "3391ed5d943c718f257d579776e87845d92a8d6413ef6197e0f69a8eeab65c80"
+    },
+    {
+      "name": "so5_full_fidelity_fig1d.png",
+      "sha256": "33db58ececf9a197678f429c634e420af9655dfefde3e39348ec058ce0b5cd24"
+    },
+    {
+      "name": "so5_full_fidelity_fig1d.pdf",
+      "sha256": "1db87bc76c2328919a10946fcf0a62b0115031de5c2782139068175b9cf90234"
+    },
+    {
+      "name": "so5_full_fidelity_fig1d.npz",
+      "sha256": "b046e0ec740e83e5fb8994f88c64d916e128af1c0e8ecb53f65fbe38f4e16dd4"
+    },
+    {
+      "name": "so5_full_fidelity_slices.png",
+      "sha256": "73db4098c27701db5e32f1ee06ed1da58dd1187efda4a5e57d720afda74f619c"
+    },
+    {
+      "name": "so5_full_fidelity_slices.pdf",
+      "sha256": "a89911e67986ce309c37fa3e71a1d27cf0e56575fc81cbe9af0ce4ba6c18c2c6"
+    },
+    {
+      "name": "so5_full_validation.json",
+      "sha256": "1046a38a2833de18ce95ad85c76ae681c9bbbfe9342e55911e2fa3765cc494a8"
+    },
+    {
+      "name": "so5_full_parameter_analysis.json",
+      "sha256": "09ff2824f0e5305c5f7c8e356d97806b198050d5fc423f99375b173c6814ed11"
+    },
+    {
+      "name": "so5_parameter_pde.md",
+      "sha256": "8d9e866bb8c87b466218a2ef7978c65bcf137fcd66c2ac378b72f2e7bbbdec22"
+    },
+    {
+      "name": "so5_parameter_response.py",
+      "sha256": "c1621d2535a2ab6988c0d1b729443b4e1f2f5859b3500ec69775b1d19aeee67b"
+    },
+    {
+      "name": "so5_parameter_response.json",
+      "sha256": "31ce3791984fa3848eaf5e44e8ee2169fd9f04aaf9136e6feb2e8ee62737916c"
+    },
+    {
+      "name": "so5_global_scalar_pde.md",
+      "sha256": "57596e445b5e71e894a83a3ae8636acd9c8315c48984320ee89fbf194198e9b6"
+    },
+    {
+      "name": "verify_scalar_observability.py",
+      "sha256": "08ceb5b0d480271f88cffbef260476b417b395daa1332dde1646e06a88d008db"
+    },
+    {
+      "name": "so5_scalar_observability.json",
+      "sha256": "742d11c32b84cfacfdbd2ed6512a93b32239e727fb63fb431d7c831d8d28baf6"
+    }
+  ]
+}

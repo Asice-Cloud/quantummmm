@@ -1,0 +1,66 @@
+{
+  "generator": "K=A",
+  "generator_factor": 1.0,
+  "matrix_parameters_meV": {
+    "E1": 0.01,
+    "eta_range": [
+      0.001,
+      0.1
+    ],
+    "tc": 0.3,
+    "E0": 0.3
+  },
+  "tau_range": [
+    0.0,
+    1200.0
+  ],
+  "end_time": "6*tau",
+  "grid": [
+    101,
+    241
+  ],
+  "output_tau_spacing": 5.0,
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "max_local_step": 0.025
+  },
+  "source_sha256": "a2dfe57c87b8e47deafa1ac5f0249c05cfd86128326b132e702d9880378d8a5f",
+  "scope": "Normalization trial with original amplitudes; does not change the K=2A derivation from literal H.",
+  "checks": {
+    "invariants": {
+      "max_abs_B_cubed_plus_B": 5.782928790779712e-11,
+      "max_abs_component_norm_squared_minus_one": 2.658762099372325e-12,
+      "F_min": -1.5114484987858628e-14,
+      "F_max": 0.9985920808375388
+    },
+    "independent_wave_checks": [
+      {
+        "tau": 105.0,
+        "eta_over_E1": 0.1,
+        "map_node_source": "integrated",
+        "B_max_error": 3.6201198289065317e-12,
+        "F_error": 1.3232470674751085e-14,
+        "sqrt_F_error": 3.091971123581061e-14
+      },
+      {
+        "tau": 300.0,
+        "eta_over_E1": 1.0,
+        "map_node_source": "exact_scaling",
+        "B_max_error": 2.8473929621465957e-11,
+        "F_error": 2.5153490401663703e-16,
+        "sqrt_F_error": 1.3877787807814457e-15
+      },
+      {
+        "tau": 995.0,
+        "eta_over_E1": 10.0,
+        "map_node_source": "integrated",
+        "B_max_error": 6.218466625689586e-11,
+        "F_error": 2.9928837186332657e-13,
+        "sqrt_F_error": 4.4680925626039425e-13
+      }
+    ],
+    "reuse_identity": "b_A(zeta;tau)=b_2A(zeta;tau/2), at fixed E,eta,tc,E0"
+  }
+}

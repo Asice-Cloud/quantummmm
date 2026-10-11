@@ -1,0 +1,15 @@
+{
+  "tau_inverse_meV": 314.1592653589793,
+  "E1_meV": 0.01,
+  "t1_meV": 0.03,
+  "tc_meV": 0.3,
+  "E0_meV": 0.3,
+  "local_phase": "pi/2",
+  "prime": 10007,
+  "stage_output_ranks_mod_prime": [
+    16,
+    25,
+    1
+  ],
+  "interpretation": "Stage 2 full rank certifies a nonzero rational determinant; stage 1 and 3 upper bounds follow from invariant blocks."
+}

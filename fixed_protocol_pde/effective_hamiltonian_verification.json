@@ -1,0 +1,380 @@
+{
+  "checks_exact": {
+    "quaternion_and_clifford_relations": true,
+    "five_printed_Sigma_matrices": true,
+    "literal_H_equals_2i_times_signed_Sigma": true,
+    "spinor_commutator_gives_K_equals_2A": true,
+    "fermion_anticommutation_relations": true,
+    "paper_Eq1_equals_Eq2_plus_Ed_identity": true,
+    "Nambu_commutator_closes_exactly": true,
+    "BdG_to_Majorana_gives_2iA": true,
+    "sixth_Majorana_decouples": true
+  },
+  "PDE_basis_coefficient_errors": {
+    "E": 0.0,
+    "q": 0.0,
+    "p": 0.0,
+    "r": 0.0,
+    "ed": 0.0
+  },
+  "K": [
+    [
+      "0",
+      "2*E",
+      "0",
+      "0",
+      "2*q"
+    ],
+    [
+      "-2*E",
+      "0",
+      "0",
+      "-2*p",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "2*r",
+      "0"
+    ],
+    [
+      "0",
+      "2*p",
+      "-2*r",
+      "0",
+      "2*ed"
+    ],
+    [
+      "-2*q",
+      "0",
+      "0",
+      "-2*ed",
+      "0"
+    ]
+  ],
+  "Nambu_H": [
+    [
+      "2*E",
+      "0",
+      "p + q",
+      "0",
+      "0",
+      "p - q"
+    ],
+    [
+      "0",
+      "0",
+      "I*r",
+      "0",
+      "0",
+      "I*r"
+    ],
+    [
+      "p + q",
+      "-I*r",
+      "2*ed",
+      "-p + q",
+      "-I*r",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "-p + q",
+      "-2*E",
+      "0",
+      "-p - q"
+    ],
+    [
+      "0",
+      "0",
+      "I*r",
+      "0",
+      "0",
+      "I*r"
+    ],
+    [
+      "p - q",
+      "-I*r",
+      "0",
+      "-p - q",
+      "-I*r",
+      "-2*ed"
+    ]
+  ],
+  "canonical_H": "E X12 + q X15 - p X24 + r X34 + ed X45; Xij=i Gamma_i Gamma_j",
+  "documentation_corrections": [
+    "Sigma24 coupling label: -p",
+    "Sigma15 coupling label: +q",
+    "Sigma34 coupling label: +r"
+  ],
+  "physical_generator_factor": 2,
+  "numerical_samples": [
+    {
+      "tau": 100.0,
+      "E1": 0.0,
+      "eta": 0.0,
+      "checkpoints": 121,
+      "errors_over_entire_protocol": {
+        "B_vs_spinor": 1.4311518636844767e-10,
+        "B_vs_BdG": 1.0927914150839213e-10,
+        "F_vs_spinor": 1.3093404138686537e-10,
+        "F_vs_BdG": 5.457923002438747e-11,
+        "parameter_response_vs_spinor_normalized": 1.2842100348746073e-08,
+        "parameter_response_vs_BdG_normalized": 3.6672519650088644e-08,
+        "F_parameter_gradient_vs_spinor_normalized": 8.726360112335506e-13,
+        "F_parameter_gradient_vs_BdG_normalized": 2.610263327273059e-13,
+        "spinor_unitarity": 7.155642745004798e-11,
+        "rotation_orthogonality": 1.4311296592239842e-10,
+        "state_constraint": 1.089017764854816e-12,
+        "spectator_amplitude": 2.5656309503541916e-14
+      },
+      "interfaces_and_endpoints": [
+        {
+          "t_over_tau": 0.0,
+          "F_PDE": 0.0,
+          "F_spinor_adjoint": 0.0,
+          "F_BdG_overlap": 0.0
+        },
+        {
+          "t_over_tau": 1.0,
+          "F_PDE": 0.25076593495990407,
+          "F_spinor_adjoint": 0.2507659349547296,
+          "F_BdG_overlap": 0.25076593496338445
+        },
+        {
+          "t_over_tau": 2.0,
+          "F_PDE": 0.249999600720352,
+          "F_spinor_adjoint": 0.24999960071563404,
+          "F_BdG_overlap": 0.24999960072034283
+        },
+        {
+          "t_over_tau": 3.0,
+          "F_PDE": 0.24999960072035154,
+          "F_spinor_adjoint": 0.24999960071385094,
+          "F_BdG_overlap": 0.24999960072034266
+        },
+        {
+          "t_over_tau": 4.0,
+          "F_PDE": 0.25051156077038245,
+          "F_spinor_adjoint": 0.2505115607525759,
+          "F_BdG_overlap": 0.25051156073693875
+        },
+        {
+          "t_over_tau": 5.0,
+          "F_PDE": 0.9999844193370311,
+          "F_spinor_adjoint": 0.9999844193030702,
+          "F_BdG_overlap": 0.9999844193370279
+        },
+        {
+          "t_over_tau": 6.0,
+          "F_PDE": 0.9999844193370307,
+          "F_spinor_adjoint": 0.9999844193005895,
+          "F_BdG_overlap": 0.9999844193370241
+        }
+      ]
+    },
+    {
+      "tau": 100.0,
+      "E1": 0.01,
+      "eta": 0.001,
+      "checkpoints": 121,
+      "errors_over_entire_protocol": {
+        "B_vs_spinor": 1.5968393274334858e-10,
+        "B_vs_BdG": 2.0264554867043677e-10,
+        "F_vs_spinor": 5.174505268712437e-11,
+        "F_vs_BdG": 3.1207349204809276e-11,
+        "parameter_response_vs_spinor_normalized": 5.286156059878284e-08,
+        "parameter_response_vs_BdG_normalized": 5.55470889025425e-08,
+        "F_parameter_gradient_vs_spinor_normalized": 7.294208183939036e-10,
+        "F_parameter_gradient_vs_BdG_normalized": 2.6510443177237716e-09,
+        "spinor_unitarity": 6.412859132609583e-11,
+        "rotation_orthogonality": 1.2825074335864883e-10,
+        "state_constraint": 1.3377077223708511e-12,
+        "spectator_amplitude": 3.3009917485384826e-14
+      },
+      "interfaces_and_endpoints": [
+        {
+          "t_over_tau": 0.0,
+          "F_PDE": 0.0,
+          "F_spinor_adjoint": 0.0,
+          "F_BdG_overlap": 0.0
+        },
+        {
+          "t_over_tau": 1.0,
+          "F_PDE": 0.2503919151629915,
+          "F_spinor_adjoint": 0.25039191515589454,
+          "F_BdG_overlap": 0.25039191516502857
+        },
+        {
+          "t_over_tau": 2.0,
+          "F_PDE": 0.25577373291700395,
+          "F_spinor_adjoint": 0.2557737329056372,
+          "F_BdG_overlap": 0.25577373291697886
+        },
+        {
+          "t_over_tau": 3.0,
+          "F_PDE": 0.2557737329170041,
+          "F_spinor_adjoint": 0.2557737329023835,
+          "F_BdG_overlap": 0.2557737329169736
+        },
+        {
+          "t_over_tau": 4.0,
+          "F_PDE": 0.04607331645546622,
+          "F_spinor_adjoint": 0.046073316456497454,
+          "F_BdG_overlap": 0.0460733164743669
+        },
+        {
+          "t_over_tau": 5.0,
+          "F_PDE": 0.05855233288657738,
+          "F_spinor_adjoint": 0.05855233286106637,
+          "F_BdG_overlap": 0.05855233288556167
+        },
+        {
+          "t_over_tau": 6.0,
+          "F_PDE": 0.05855233288657724,
+          "F_spinor_adjoint": 0.058552332858967215,
+          "F_BdG_overlap": 0.05855233288556163
+        }
+      ]
+    },
+    {
+      "tau": 300.0,
+      "E1": 0.01,
+      "eta": 0.01,
+      "checkpoints": 121,
+      "errors_over_entire_protocol": {
+        "B_vs_spinor": 7.750584169756891e-10,
+        "B_vs_BdG": 7.894176365521406e-10,
+        "F_vs_spinor": 3.7218525483773135e-10,
+        "F_vs_BdG": 3.32251864909594e-10,
+        "parameter_response_vs_spinor_normalized": 2.798915096464447e-07,
+        "parameter_response_vs_BdG_normalized": 2.749267841458479e-07,
+        "F_parameter_gradient_vs_spinor_normalized": 7.189855786609706e-08,
+        "F_parameter_gradient_vs_BdG_normalized": 5.663365113353611e-08,
+        "spinor_unitarity": 1.5844059397807086e-10,
+        "rotation_orthogonality": 3.168163509315036e-10,
+        "state_constraint": 6.583622536027178e-14,
+        "spectator_amplitude": 5.465696999750848e-14
+      },
+      "interfaces_and_endpoints": [
+        {
+          "t_over_tau": 0.0,
+          "F_PDE": 0.0,
+          "F_spinor_adjoint": 0.0,
+          "F_BdG_overlap": 0.0
+        },
+        {
+          "t_over_tau": 1.0,
+          "F_PDE": 0.24921298358051983,
+          "F_spinor_adjoint": 0.2492129835619041,
+          "F_BdG_overlap": 0.24921298357950522
+        },
+        {
+          "t_over_tau": 2.0,
+          "F_PDE": 0.688629846863089,
+          "F_spinor_adjoint": 0.688629846774352,
+          "F_BdG_overlap": 0.6886298468631089
+        },
+        {
+          "t_over_tau": 3.0,
+          "F_PDE": 0.6886298468630888,
+          "F_spinor_adjoint": 0.6886298467360444,
+          "F_BdG_overlap": 0.6886298468630941
+        },
+        {
+          "t_over_tau": 4.0,
+          "F_PDE": 0.16317703943934325,
+          "F_spinor_adjoint": 0.16317703938864642,
+          "F_BdG_overlap": 0.163177039429558
+        },
+        {
+          "t_over_tau": 5.0,
+          "F_PDE": 0.10251804867369908,
+          "F_spinor_adjoint": 0.10251804862342553,
+          "F_BdG_overlap": 0.10251804867840347
+        },
+        {
+          "t_over_tau": 6.0,
+          "F_PDE": 0.10251804867369933,
+          "F_spinor_adjoint": 0.102518048610935,
+          "F_BdG_overlap": 0.10251804867861566
+        }
+      ]
+    },
+    {
+      "tau": 1000.0,
+      "E1": 0.01,
+      "eta": 0.1,
+      "checkpoints": 121,
+      "errors_over_entire_protocol": {
+        "B_vs_spinor": 8.112233107482325e-10,
+        "B_vs_BdG": 9.424440936857403e-11,
+        "F_vs_spinor": 7.666065560130164e-10,
+        "F_vs_BdG": 4.3777592662053166e-11,
+        "parameter_response_vs_spinor_normalized": 3.2367921284409734e-07,
+        "parameter_response_vs_BdG_normalized": 3.3272406967759864e-07,
+        "F_parameter_gradient_vs_spinor_normalized": 1.3517374969816249e-08,
+        "F_parameter_gradient_vs_BdG_normalized": 3.5747511409850034e-09,
+        "spinor_unitarity": 4.077446158490261e-10,
+        "rotation_orthogonality": 8.153108188579949e-10,
+        "state_constraint": 9.552358903874847e-13,
+        "spectator_amplitude": 1.3516642596934031e-13
+      },
+      "interfaces_and_endpoints": [
+        {
+          "t_over_tau": 0.0,
+          "F_PDE": 0.0,
+          "F_spinor_adjoint": 0.0,
+          "F_BdG_overlap": 0.0
+        },
+        {
+          "t_over_tau": 1.0,
+          "F_PDE": 0.24346450503705958,
+          "F_spinor_adjoint": 0.243464504970334,
+          "F_BdG_overlap": 0.24346450503726422
+        },
+        {
+          "t_over_tau": 2.0,
+          "F_PDE": 0.9666802529912435,
+          "F_spinor_adjoint": 0.9666802525796363,
+          "F_BdG_overlap": 0.9666802529911341
+        },
+        {
+          "t_over_tau": 3.0,
+          "F_PDE": 0.9666802529912434,
+          "F_spinor_adjoint": 0.9666802524012422,
+          "F_BdG_overlap": 0.9666802529911324
+        },
+        {
+          "t_over_tau": 4.0,
+          "F_PDE": 0.24934396201667405,
+          "F_spinor_adjoint": 0.24934396174685075,
+          "F_BdG_overlap": 0.24934396201367148
+        },
+        {
+          "t_over_tau": 5.0,
+          "F_PDE": 0.0009213890962465991,
+          "F_spinor_adjoint": 0.0009213887756337157,
+          "F_BdG_overlap": 0.0009213890962220877
+        },
+        {
+          "t_over_tau": 6.0,
+          "F_PDE": 0.0009213890962465922,
+          "F_spinor_adjoint": 0.0009213887137518376,
+          "F_BdG_overlap": 0.0009213890962328008
+        }
+      ]
+    }
+  ],
+  "solver": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "max_normalized_step": 0.025
+  },
+  "scope": "Exact coefficient identities for the stated effective Hamiltonian; numerical trajectory checks at selected parameters. Does not establish reproduction of the published figure.",
+  "conclusion": "K=2A is fixed by the Hamiltonian and Clifford normalization; the PDE signs agree. Three coupling labels in model.md required correction, but the PDE implementation did not."
+}
