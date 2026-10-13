@@ -55,13 +55,13 @@ H=i e_d\gamma_a\gamma_b+iE\gamma_1\gamma_2
 +ip\gamma_a\gamma_2-iq\gamma_b\gamma_1-ir\gamma_a\gamma_3.
 $$
 
- $e_i$ 只标记第 $i$ 个模式的坐标位置。外积 $e_ie_j^T$ 是仅在第 $i$ 行第 $j$ 列为 1 的矩阵，因此
+ $e_i$ 只标记第 $i$ 个模式的坐标位置($J=(\phi_1,\phi_2,\phi_3,\phi_a,\phi_b).$, $Je_i=\phi_i.$)。外积 $e_ie_j^T$ 是仅在第 $i$ 行第 $j$ 列为 1 的矩阵，因此
 
 $$
 L_{ij}=e_ie_j^T-e_je_i^T
 $$
 
-恰好记录一对模式间符号相反的混合。用 $e$ 写出的矩阵能够表示 $\gamma$ 产生的演化。
+恰好记录一对模式间符号相反的混合。用 $e$ 写出的矩阵能够表示 $\gamma$ 产生的演化,例如majorana $\gamma_2$对应的$v(t)=R(t)e_2$,对应的实际波函数为$\Phi_2(t)=J R(t)e_2 =\sum_i R_{i2}(t)\phi_i.$。
 
 ---
 class: dense
@@ -115,7 +115,7 @@ $$
 
 初始值是单位矩阵，因此 $R^TR=I$；连续演化还保持 $\det R=1$，即 $R\in SO(5)$。
 
-### 2.2 从波函数构造完整几何状态
+### 2.2 构造完整几何状态
 
 初态与目标态为
 
@@ -128,14 +128,14 @@ $$
 class: dense
 ---
 
-由于 $K$ 为实反对称矩阵，演化后的态始终可以写为
+由于 $K$ 为实反对称矩阵,$\int K$变换是连续的过程，于是替换为变量$u,v$:
 
 $$
 \psi=\frac{u-iv}{\sqrt2},\qquad
 u^Tu=v^Tv=1,\quad u^Tv=0.
 $$
 
-定义
+定义一个有向平面来描述演化过程的信息：
 
 $$
 \boxed{\mathcal B=uv^T-vu^T,\qquad
