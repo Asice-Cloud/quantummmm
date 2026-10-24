@@ -1,0 +1,93 @@
+/* ------------------------------------------------------------------
+   pde_model_report 幻灯片专用样式
+   只作用于本目录（pde/）下的 slides.md，不影响 md2pdf/slides.md
+   ------------------------------------------------------------------ */
+
+.slidev-layout {
+  font-family: 'Source Han Sans SC', 'Source Han Sans', 'Noto Sans CJK SC',
+    'Microsoft YaHei', sans-serif;
+  font-size: 0.88rem !important;
+}
+
+/* 内容较密的两档字号 */
+.slidev-layout.dense { font-size: 0.79rem !important; }
+.slidev-layout.tiny { font-size: 0.69rem !important; }
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Source Han Sans SC', 'Source Han Sans', 'Noto Sans CJK SC',
+    'Microsoft YaHei', sans-serif;
+}
+
+.slidev-layout code,
+.slidev-layout pre,
+.slidev-layout kbd {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Source Han Sans SC', monospace;
+}
+
+.slidev-layout h1 {
+  font-size: 1.5rem !important;
+  line-height: 1.35 !important;
+  padding-bottom: 0.35rem !important;
+  margin-bottom: 0.55rem !important;
+}
+
+.slidev-layout h2 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  opacity: 0.9;
+  margin-bottom: 0.4rem !important;
+}
+
+.slidev-layout h3 {
+  font-size: 0.98rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+/* 封面 / 章节页标题保留大字号 */
+.slidev-layout.text-center h1 {
+  font-size: 2.4rem !important;
+  border-bottom: none !important;
+}
+
+.slidev-layout p {
+  margin: 0.38rem 0;
+  line-height: 1.5;
+}
+
+/* 表格收紧，保证多行表格不被截断 */
+.slidev-layout table {
+  font-size: 0.95em;
+  line-height: 1.35;
+}
+
+.slidev-layout table th,
+.slidev-layout table td {
+  padding: 0.18rem 0.45rem !important;
+}
+
+/* 公式块 */
+.slidev-layout .katex-display {
+  margin: 0.4rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.slidev-layout .katex,
+.slidev-layout .katex * {
+  font-family: KaTeX_Main, KaTeX_Math, 'Source Han Sans SC', serif;
+}
+
+/* 图片统一限高，避免图注和正文被挤出页面 */
+.slidev-layout img {
+  display: block;
+  margin: 0.35rem auto;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 250px;
+}
+
+.slidev-layout.dense img { max-height: 195px; }
+.slidev-layout.tiny img { max-height: 145px; }
