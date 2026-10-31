@@ -1,0 +1,125 @@
+{
+  "image_source": "solution.png",
+  "fit_parameters": 0,
+  "formula": "Scalar continuation formula, uniform ordered integrals through I9",
+  "parameters": {
+    "E1_meV": 0.01,
+    "tc_meV": 0.3,
+    "E0_meV": 0.3,
+    "K": "2A",
+    "cycles": 2
+  },
+  "image_values_are_digitized": true,
+  "curves": [
+    {
+      "ratio": 0.1,
+      "action_S1": 0.6080447620058871,
+      "phase_coefficient_D": 2.1552227315088235,
+      "image_comparison": {
+        "black": {
+          "n": 290,
+          "rmse": 0.01422694191666244,
+          "max_abs": 0.06270088702797416,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "orange": {
+          "n": 126,
+          "rmse": 0.01768494624541563,
+          "max_abs": 0.06681172206370589,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "peak_markers": {
+          "n": 7,
+          "rmse": 0.001385468861894822,
+          "max_abs": 0.0032648321855188733,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        }
+      },
+      "scalar_vs_full_SO5_x_ge_0p5": {
+        "max_abs": 0.005808592218656761,
+        "rmse": 0.0016062940131964163
+      }
+    },
+    {
+      "ratio": 1.0,
+      "action_S1": 0.9327189246392551,
+      "phase_coefficient_D": 2.0929659240961844,
+      "image_comparison": {
+        "black": {
+          "n": 345,
+          "rmse": 0.007944028963965075,
+          "max_abs": 0.026011292195491365,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "orange": {
+          "n": 504,
+          "rmse": 0.0033409118229426236,
+          "max_abs": 0.01462140191844602,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "peak_markers": {
+          "n": 2,
+          "rmse": 0.0007724390058527279,
+          "max_abs": 0.0009922656656562445,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        }
+      },
+      "scalar_vs_full_SO5_x_ge_0p5": {
+        "max_abs": 0.00547252382764174,
+        "rmse": 0.0008712320935806403
+      }
+    },
+    {
+      "ratio": 2.3446,
+      "action_S1": 1.5236057110401824,
+      "phase_coefficient_D": 2.105777841248377,
+      "image_comparison": {
+        "black": {
+          "n": 291,
+          "rmse": 0.0038755778247820134,
+          "max_abs": 0.013994696220902492,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "orange": {
+          "n": 609,
+          "rmse": 0.003286925653236779,
+          "max_abs": 0.01404038837005972,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        }
+      },
+      "scalar_vs_full_SO5_x_ge_0p5": {
+        "max_abs": 0.001854902766591393,
+        "rmse": 0.0007778203560852959
+      }
+    },
+    {
+      "ratio": 10.0,
+      "action_S1": 5.2106586793229015,
+      "phase_coefficient_D": 2.501595978319761,
+      "image_comparison": {
+        "black": {
+          "n": 342,
+          "rmse": 0.01665278960452139,
+          "max_abs": 0.05469395453315162,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "orange": {
+          "n": 307,
+          "rmse": 0.008901076000151116,
+          "max_abs": 0.033012123345837904,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        },
+        "peak_markers": {
+          "n": 17,
+          "rmse": 0.003210250342652709,
+          "max_abs": 0.006700817841274298,
+          "caution": "Contains rasterization, finite line width, and interpolation errors."
+        }
+      },
+      "scalar_vs_full_SO5_x_ge_0p5": {
+        "max_abs": 0.049243655266715924,
+        "rmse": 0.024883559640215266
+      }
+    }
+  ]
+}

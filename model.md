@@ -99,22 +99,3 @@ $$\Sigma_{12} = \frac14[\Gamma_1,\Gamma_2] = \begin{pmatrix}\mathbf i/2&0\\0&-\m
 | $\Sigma_{12}(E_1)$ | $\Sigma_{24}(-|t_2|)$ | $\Sigma_{15}(+|t_1|)$ | $\Sigma_{34}(+|t_3|)$ | $\Sigma_{45}(E_d)$ |
 |---|---|---|---|---|---|
 | $\begin{pmatrix}\mathbf i/2&0\\0&-\mathbf i/2\end{pmatrix}$ | $\begin{pmatrix}\mathbf j/2&0\\0&\mathbf j/2\end{pmatrix}$ | $\begin{pmatrix}0&-1/2\\1/2&0\end{pmatrix}$ | $\begin{pmatrix}-\mathbf i/2&0\\0&-\mathbf i/2\end{pmatrix}$ | $\begin{pmatrix}0&\mathbf k/2\\\mathbf k/2&0\end{pmatrix}$ |
-
-### 旋量矩阵与五维演化生成元的对应
-
-将四元数表示成 $2\times2$ 复矩阵后，上述 $\Gamma_i$、$\Sigma_{ij}$ 是 $4\times4$ 复旋量矩阵。标量虚数 $i$ 与四元数单位 $\mathbf i,\mathbf j,\mathbf k$ 要区分。因为 $\Gamma_i\Gamma_j=2\Sigma_{ij}$，哈密顿量的旋量表示为
-
-$$
-H_{\rm spin}=2i\left(E_1\Sigma_{12}-|t_2|\Sigma_{24}
-+|t_1|\Sigma_{15}+|t_3|\Sigma_{34}+E_d\Sigma_{45}\right).
-$$
-
-对应的五维实生成元是
-
-$$
-K=2\left(E_1L_{12}-|t_2|L_{24}+|t_1|L_{15}
-+|t_3|L_{34}+E_dL_{45}\right),\qquad
-L_{ij}=e_i e_j^T-e_j e_i^T.
-$$
-
-这正是当前 $\partial_t\mathcal B=[K,\mathcal B]$ 使用的生成元。原矩阵表的三个耦合标签已按升序指标修正；矩阵本身及现有 PDE 程序的符号通过了独立核对。完整推导和检验见 [有效哈密顿量核对](fixed_protocol_pde/effective_hamiltonian_audit.md)。

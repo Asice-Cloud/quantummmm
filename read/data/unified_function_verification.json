@@ -1,0 +1,519 @@
+{
+  "physical_protocol": "original cosine gates; K=2A; six continuous stages",
+  "jet_variables": [
+    "tau",
+    "E1",
+    "eta=abs(t1)"
+  ],
+  "jet_order": 2,
+  "base_evolution_truncated_in_parameters": false,
+  "universal_function_identities": {
+    "Q_zero_exponential": 2.5535129575057865e-15,
+    "P_zero_endpoint_identity": 5.551115123143792e-16,
+    "reverse_P_inverse": 1.332273059934959e-15,
+    "reverse_P_transpose": 1.2212558751315777e-15,
+    "constant_basis_covariance": 8.883442789985501e-16,
+    "adjoint_representation_same_function": 2.109424222271011e-15
+  },
+  "parameter_response_checks": [
+    {
+      "parameters": {
+        "tau": 0.0,
+        "eta": 0.01
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        },
+        "tau": {
+          "max_abs": 1.842970687311556e-14,
+          "scaled_error": 1.5358089060929455e-14
+        },
+        "E": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        },
+        "eta": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        },
+        "tau_tau": {
+          "max_abs": 2.6201263518970214e-13,
+          "scaled_error": 6.065107296057999e-14
+        },
+        "tau_E": {
+          "max_abs": 7.105447248664667e-15,
+          "scaled_error": 5.921206040553885e-16
+        },
+        "tau_eta": {
+          "max_abs": 1.6431549712049813e-14,
+          "scaled_error": 4.107887428012437e-15
+        },
+        "E_E": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        },
+        "E_eta": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        },
+        "eta_eta": {
+          "max_abs": 0.0,
+          "scaled_error": 0.0
+        }
+      },
+      "imaginary_scaled_R": 9.382729877888155e-17,
+      "panels": [
+        18,
+        18,
+        18
+      ],
+      "F_and_derivatives_through_B_scaled_error": 0.0
+    },
+    {
+      "parameters": {
+        "tau": 8.0,
+        "eta": 0.1
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 3.5715874758388343e-13,
+          "scaled_error": 3.5715874758388343e-13
+        },
+        "tau": {
+          "max_abs": 5.067057885137017e-13,
+          "scaled_error": 5.067057885137017e-13
+        },
+        "E": {
+          "max_abs": 7.904787955795758e-12,
+          "scaled_error": 3.6433531886642225e-13
+        },
+        "eta": {
+          "max_abs": 4.686917520805187e-12,
+          "scaled_error": 4.0495053285439627e-13
+        },
+        "tau_tau": {
+          "max_abs": 9.230394344817607e-13,
+          "scaled_error": 6.082694980836556e-13
+        },
+        "tau_E": {
+          "max_abs": 9.887202174456693e-12,
+          "scaled_error": 4.755740277842401e-13
+        },
+        "tau_eta": {
+          "max_abs": 8.437694996019584e-12,
+          "scaled_error": 4.480790370042e-13
+        },
+        "E_E": {
+          "max_abs": 2.02021512467356e-10,
+          "scaled_error": 2.2638629048039078e-13
+        },
+        "E_eta": {
+          "max_abs": 1.1829115464949851e-10,
+          "scaled_error": 2.0395832546974566e-13
+        },
+        "eta_eta": {
+          "max_abs": 7.32143239863877e-11,
+          "scaled_error": 2.4288187650841877e-13
+        }
+      },
+      "imaginary_scaled_R": 9.435865441663364e-16,
+      "panels": [
+        18,
+        18,
+        18
+      ],
+      "F_and_derivatives_through_B_scaled_error": 9.071713128086345e-15,
+      "refinement_max_scaled_derivative_error": 3.05302232429565e-20,
+      "channel_amplitude_error": 5.266250202865052e-16,
+      "channel_F_error": 4.440892098500626e-16,
+      "projector_idempotency_error": 2.55351295663786e-15
+    },
+    {
+      "parameters": {
+        "tau": 236.0,
+        "eta": 0.01
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 2.8966395948515774e-10,
+          "scaled_error": 2.8966395948515774e-10
+        },
+        "tau": {
+          "max_abs": 9.009020196519368e-10,
+          "scaled_error": 3.2162193693022907e-10
+        },
+        "E": {
+          "max_abs": 1.2053906317544208e-08,
+          "scaled_error": 1.978529956837282e-11
+        },
+        "eta": {
+          "max_abs": 1.7413661623789696e-09,
+          "scaled_error": 4.3097087353109056e-12
+        },
+        "tau_tau": {
+          "max_abs": 2.801454179747059e-09,
+          "scaled_error": 3.230320096115928e-10
+        },
+        "tau_E": {
+          "max_abs": 3.750245269886076e-08,
+          "scaled_error": 3.229015667716703e-10
+        },
+        "tau_eta": {
+          "max_abs": 5.417749804337916e-09,
+          "scaled_error": 3.229272595901851e-10
+        },
+        "E_E": {
+          "max_abs": 9.0590947366239e-07,
+          "scaled_error": 1.0612585564811667e-12
+        },
+        "E_eta": {
+          "max_abs": 1.1765206409261328e-07,
+          "scaled_error": 3.4730502265590673e-13
+        },
+        "eta_eta": {
+          "max_abs": 4.7622862098269095e-08,
+          "scaled_error": 2.095250786138807e-13
+        }
+      },
+      "imaginary_scaled_R": 1.4441613279810373e-14,
+      "panels": [
+        101,
+        101,
+        101
+      ],
+      "F_and_derivatives_through_B_scaled_error": 6.3930778070577434e-15,
+      "refinement_max_scaled_derivative_error": 4.6707393209234986e-14,
+      "channel_amplitude_error": 2.110154030260182e-15,
+      "channel_F_error": 2.886579864025407e-15,
+      "projector_idempotency_error": 2.4611944002887394e-14
+    },
+    {
+      "parameters": {
+        "tau": 600.0,
+        "eta": 0.023446
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 7.899027265614809e-10,
+          "scaled_error": 7.899027265614809e-10
+        },
+        "tau": {
+          "max_abs": 2.4439447687833092e-09,
+          "scaled_error": 7.929514178174926e-10
+        },
+        "E": {
+          "max_abs": 9.473886386505e-08,
+          "scaled_error": 5.876369150875502e-10
+        },
+        "eta": {
+          "max_abs": 1.6790694168398845e-08,
+          "scaled_error": 1.397012683474678e-10
+        },
+        "tau_tau": {
+          "max_abs": 7.561490211752299e-09,
+          "scaled_error": 7.922276048411886e-10
+        },
+        "tau_E": {
+          "max_abs": 2.930853071348778e-07,
+          "scaled_error": 7.922062229889048e-10
+        },
+        "tau_eta": {
+          "max_abs": 5.194405705567992e-08,
+          "scaled_error": 7.921447111634659e-10
+        },
+        "E_E": {
+          "max_abs": 9.9883400253174e-06,
+          "scaled_error": 7.694786793332843e-11
+        },
+        "E_eta": {
+          "max_abs": 1.8524110601007255e-06,
+          "scaled_error": 3.915147263565093e-11
+        },
+        "eta_eta": {
+          "max_abs": 4.2541370249432634e-07,
+          "scaled_error": 3.674454259282771e-12
+        }
+      },
+      "imaginary_scaled_R": 3.6670451859107944e-14,
+      "panels": [
+        256,
+        256,
+        256
+      ],
+      "F_and_derivatives_through_B_scaled_error": 1.0608732367864677e-11,
+      "refinement_max_scaled_derivative_error": 7.839203995627172e-13,
+      "channel_amplitude_error": 2.97250638153029e-15,
+      "channel_F_error": 5.788284348356987e-17,
+      "projector_idempotency_error": 8.829864292461528e-14
+    },
+    {
+      "parameters": {
+        "tau": 160.0,
+        "eta": 0.02,
+        "E": 0.013,
+        "tc": 0.27,
+        "E0": 0.41
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 1.7588508427479638e-10,
+          "scaled_error": 1.7588508427479638e-10
+        },
+        "tau": {
+          "max_abs": 5.832960781052525e-10,
+          "scaled_error": 2.219597398001937e-10
+        },
+        "E": {
+          "max_abs": 6.956614839739847e-09,
+          "scaled_error": 1.1923548955661275e-11
+        },
+        "eta": {
+          "max_abs": 1.2699157281313462e-09,
+          "scaled_error": 5.033445986270246e-12
+        },
+        "tau_tau": {
+          "max_abs": 1.9337669243712574e-09,
+          "scaled_error": 2.2425992345189825e-10
+        },
+        "tau_E": {
+          "max_abs": 2.3089938849858603e-08,
+          "scaled_error": 2.241182051022734e-10
+        },
+        "tau_eta": {
+          "max_abs": 4.214719240288411e-09,
+          "scaled_error": 2.242925742674272e-10
+        },
+        "E_E": {
+          "max_abs": 5.520912509414802e-07,
+          "scaled_error": 1.3110206608525916e-12
+        },
+        "E_eta": {
+          "max_abs": 8.412777674517592e-08,
+          "scaled_error": 4.4598434900192144e-13
+        },
+        "eta_eta": {
+          "max_abs": 2.691794520660141e-08,
+          "scaled_error": 2.7221723406966973e-13
+        }
+      },
+      "imaginary_scaled_R": 1.6036122553795386e-14,
+      "panels": [
+        80,
+        62,
+        80
+      ],
+      "F_and_derivatives_through_B_scaled_error": 7.51150350655135e-13,
+      "refinement_max_scaled_derivative_error": 3.661208959670805e-14,
+      "channel_amplitude_error": 4.500779109589091e-15,
+      "channel_F_error": 1.4051260155412137e-16,
+      "projector_idempotency_error": 1.693472341464768e-14
+    },
+    {
+      "parameters": {
+        "tau": 80.0,
+        "eta": 0.0
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 8.954878508996588e-11,
+          "scaled_error": 8.954878508996588e-11
+        },
+        "tau": {
+          "max_abs": 2.739832805954084e-10,
+          "scaled_error": 9.032291196816513e-11
+        },
+        "E": {
+          "max_abs": 1.1290306473215858e-09,
+          "scaled_error": 3.159949883084704e-12
+        },
+        "eta": {
+          "max_abs": 1.2457285207568528e-10,
+          "scaled_error": 8.095056421881122e-13
+        },
+        "tau_tau": {
+          "max_abs": 8.371692232389449e-10,
+          "scaled_error": 8.9243600790338e-11
+        },
+        "tau_E": {
+          "max_abs": 3.4455647241811074e-09,
+          "scaled_error": 8.925152034235782e-11
+        },
+        "tau_eta": {
+          "max_abs": 3.801496896366689e-10,
+          "scaled_error": 3.9257126887296407e-11
+        },
+        "E_E": {
+          "max_abs": 1.18035558258358e-07,
+          "scaled_error": 6.849493605396838e-13
+        },
+        "E_eta": {
+          "max_abs": 1.3004251904992493e-08,
+          "scaled_error": 1.8683360781269893e-13
+        },
+        "eta_eta": {
+          "max_abs": 5.449873444015021e-09,
+          "scaled_error": 1.2857392951024681e-13
+        }
+      },
+      "imaginary_scaled_R": 2.6047638140845507e-14,
+      "panels": [
+        35,
+        35,
+        35
+      ],
+      "F_and_derivatives_through_B_scaled_error": 5.530867912438831e-14,
+      "refinement_max_scaled_derivative_error": 1.68537750625363e-14,
+      "channel_amplitude_error": 4.791513450725591e-15,
+      "channel_F_error": 2.710505431213761e-16,
+      "projector_idempotency_error": 6.0189420078061735e-15
+    },
+    {
+      "parameters": {
+        "tau": 80.0,
+        "eta": 0.01,
+        "E": 0.0
+      },
+      "R_derivatives_against_six_stage_ODE": {
+        "value": {
+          "max_abs": 9.791500945801474e-11,
+          "scaled_error": 9.791500945801474e-11
+        },
+        "tau": {
+          "max_abs": 2.98746583087769e-10,
+          "scaled_error": 9.989605658214408e-11
+        },
+        "E": {
+          "max_abs": 1.3609319229956597e-10,
+          "scaled_error": 3.7320180228267775e-13
+        },
+        "eta": {
+          "max_abs": 5.803157956107947e-11,
+          "scaled_error": 3.916403507859591e-13
+        },
+        "tau_tau": {
+          "max_abs": 9.101528422800805e-10,
+          "scaled_error": 9.84358783720415e-11
+        },
+        "tau_E": {
+          "max_abs": 4.1402170589431193e-10,
+          "scaled_error": 3.7780283111338226e-11
+        },
+        "tau_eta": {
+          "max_abs": 1.76471448626331e-10,
+          "scaled_error": 3.426873604212613e-11
+        },
+        "E_E": {
+          "max_abs": 1.2331105383801355e-07,
+          "scaled_error": 6.852465603029996e-13
+        },
+        "E_eta": {
+          "max_abs": 1.3658166158105792e-08,
+          "scaled_error": 2.0454694589217956e-13
+        },
+        "eta_eta": {
+          "max_abs": 5.821934935349027e-09,
+          "scaled_error": 1.3352183082965593e-13
+        }
+      },
+      "imaginary_scaled_R": 2.3296619750223933e-14,
+      "panels": [
+        35,
+        35,
+        35
+      ],
+      "F_and_derivatives_through_B_scaled_error": 1.0219445418316105e-14,
+      "refinement_max_scaled_derivative_error": 7.200346447134082e-14,
+      "channel_amplitude_error": 4.613190423717512e-16,
+      "channel_F_error": 2.7755575615628914e-16,
+      "projector_idempotency_error": 1.6397344907662786e-14
+    }
+  ],
+  "physical_finite_difference_checks": {
+    "tau": 6.391326525068794e-08,
+    "E": 2.10612532212616e-09,
+    "eta": 5.667366390308059e-10
+  },
+  "angle_response_finite_difference_checks": {
+    "tau": 6.89870941080882e-10,
+    "E": 4.590831804937942e-09,
+    "eta": 7.131034606462329e-10
+  },
+  "local_peak_prediction": {
+    "base": {
+      "tau": 236.1190869306962,
+      "E": 0.01,
+      "eta": 0.01,
+      "F": 0.5560984223842972,
+      "F_tau": -2.42861286636753e-17,
+      "F_tau_tau": -0.00042571538921189114,
+      "tau_E": -37000.41134117841,
+      "tau_eta": 13412.052389600049,
+      "height_E": 126.32163124962408,
+      "height_eta": -126.028676397004
+    },
+    "independent_recomputed_peaks": [
+      {
+        "parameter": "E",
+        "delta": 1e-05,
+        "predicted_tau": 235.7490828172844,
+        "actual_tau": 235.74960416694748,
+        "tau_residual": 0.0005213496630744885,
+        "predicted_F_height": 0.5573616386967934,
+        "actual_F_height": 0.5573596288152091,
+        "F_height_residual": -2.0098815843860862e-06
+      },
+      {
+        "parameter": "E",
+        "delta": 5e-06,
+        "predicted_tau": 235.93408487399032,
+        "actual_tau": 235.93421878577456,
+        "tau_residual": 0.0001339117842462656,
+        "predicted_F_height": 0.5567300305405453,
+        "actual_F_height": 0.5567295276402741,
+        "F_height_residual": -5.029002712042541e-07
+      },
+      {
+        "parameter": "eta",
+        "delta": 1e-05,
+        "predicted_tau": 236.2532074545922,
+        "actual_tau": 236.2532586907443,
+        "tau_residual": 5.123615210322896e-05,
+        "predicted_F_height": 0.5548381356203271,
+        "actual_F_height": 0.5548373971079379,
+        "F_height_residual": -7.38512389242274e-07
+      },
+      {
+        "parameter": "eta",
+        "delta": 5e-06,
+        "predicted_tau": 236.1861471926442,
+        "actual_tau": 236.1861607516514,
+        "tau_residual": 1.355900721478065e-05,
+        "predicted_F_height": 0.5554682790023122,
+        "actual_F_height": 0.5554680941868476,
+        "F_height_residual": -1.8481546459891973e-07
+      }
+    ],
+    "prediction_type": "local first-order implicit-function formula; no global ridge claim"
+  },
+  "channel_figure": [
+    {
+      "ratio": 1.0,
+      "regular_chart_points": 281,
+      "total_points": 281,
+      "channel_amplitude_error_max": 2.7622920022601226e-14,
+      "triangle_bound_minus_f_max": 0.01142156210171874,
+      "bound_is": "pointwise triangle bound; not an established slow envelope"
+    },
+    {
+      "ratio": 10.0,
+      "regular_chart_points": 281,
+      "total_points": 281,
+      "channel_amplitude_error_max": 2.547157468020676e-14,
+      "triangle_bound_minus_f_max": 0.005844746830703129,
+      "bound_is": "pointwise triangle bound; not an established slow envelope"
+    }
+  ],
+  "elapsed_seconds": 43.301435946999845
+}

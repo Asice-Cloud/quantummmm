@@ -1,0 +1,254 @@
+{
+  "parameters": {
+    "E1": 0.01,
+    "tc": 0.3,
+    "E0": 0.3,
+    "K": "2A",
+    "cycles": 2
+  },
+  "function": "Normalized matrix cosine function, rational-variable Taylor recurrence",
+  "fit_parameters": 0,
+  "curves": [
+    {
+      "ratio": 0.1,
+      "series_order": 28,
+      "local_phase": 2.0,
+      "continuation_panels": [
+        510,
+        510,
+        510
+      ],
+      "orthogonality_max_abs": 4.568567797932148e-13,
+      "imaginary_max_abs": 1.6375390524154607e-14,
+      "image_comparison": {
+        "black": {
+          "image_samples_tau_ge_50": 290,
+          "rmse_against_pixels": 0.014818648996975079,
+          "max_abs_against_pixels": 0.06434748925224387
+        },
+        "orange": {
+          "image_samples_tau_ge_50": 126,
+          "rmse_against_pixels": 0.01796612057868314,
+          "max_abs_against_pixels": 0.06855677217083611
+        },
+        "peak_markers": {
+          "image_samples_tau_ge_50": 7,
+          "rmse_against_pixels": 0.0014009447194570496,
+          "max_abs_against_pixels": 0.0032320443848021796
+        }
+      },
+      "max_difference_legacy_linear_vs_overlap": 0.09063090489996961,
+      "max_difference_legacy_linear_vs_overlap_tau_ge_50": 0.0006429495817161235
+    },
+    {
+      "ratio": 1.0,
+      "series_order": 28,
+      "local_phase": 2.0,
+      "continuation_panels": [
+        510,
+        510,
+        510
+      ],
+      "orthogonality_max_abs": 5.742073501586507e-13,
+      "imaginary_max_abs": 1.498004964518907e-14,
+      "image_comparison": {
+        "black": {
+          "image_samples_tau_ge_50": 345,
+          "rmse_against_pixels": 0.00827590130796544,
+          "max_abs_against_pixels": 0.026768463809568807
+        },
+        "orange": {
+          "image_samples_tau_ge_50": 504,
+          "rmse_against_pixels": 0.003325561848654479,
+          "max_abs_against_pixels": 0.01503173576705158
+        },
+        "peak_markers": {
+          "image_samples_tau_ge_50": 2,
+          "rmse_against_pixels": 0.00022078003107504508,
+          "max_abs_against_pixels": 0.0003115511729845366
+        }
+      },
+      "max_difference_legacy_linear_vs_overlap": 0.042779376379001754,
+      "max_difference_legacy_linear_vs_overlap_tau_ge_50": 0.00024134300799860675
+    },
+    {
+      "ratio": 2.3446,
+      "series_order": 28,
+      "local_phase": 2.0,
+      "continuation_panels": [
+        510,
+        510,
+        510
+      ],
+      "orthogonality_max_abs": 5.805356201391374e-13,
+      "imaginary_max_abs": 1.5055840074469172e-14,
+      "image_comparison": {
+        "black": {
+          "image_samples_tau_ge_50": 291,
+          "rmse_against_pixels": 0.004427105905640021,
+          "max_abs_against_pixels": 0.01578219275310533
+        },
+        "orange": {
+          "image_samples_tau_ge_50": 609,
+          "rmse_against_pixels": 0.003994864270407221,
+          "max_abs_against_pixels": 0.01587369540313155
+        }
+      },
+      "max_difference_legacy_linear_vs_overlap": 0.03968912680504766,
+      "max_difference_legacy_linear_vs_overlap_tau_ge_50": 7.436575787389543e-07
+    },
+    {
+      "ratio": 10.0,
+      "series_order": 28,
+      "local_phase": 2.0,
+      "continuation_panels": [
+        518,
+        510,
+        510
+      ],
+      "orthogonality_max_abs": 5.413447587369071e-13,
+      "imaginary_max_abs": 1.470903262888895e-14,
+      "image_comparison": {
+        "black": {
+          "image_samples_tau_ge_50": 342,
+          "rmse_against_pixels": 0.009957303703801958,
+          "max_abs_against_pixels": 0.05863428630748013
+        },
+        "orange": {
+          "image_samples_tau_ge_50": 307,
+          "rmse_against_pixels": 0.016680315663302154,
+          "max_abs_against_pixels": 0.03871356415060473
+        },
+        "peak_markers": {
+          "image_samples_tau_ge_50": 17,
+          "rmse_against_pixels": 0.002217661217893001,
+          "max_abs_against_pixels": 0.005581823780954176
+        }
+      },
+      "max_difference_legacy_linear_vs_overlap": 0.3163327637167053,
+      "max_difference_legacy_linear_vs_overlap_tau_ge_50": 0.000588539825187584
+    }
+  ],
+  "independent_checks": [
+    {
+      "ratio": 0.1,
+      "tau": 8.0,
+      "recurrence_refinement_max_abs": 9.57012247416004e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.0396128408065976e-12,
+      "f_vs_adaptive_ODE_abs": 3.5110109264380185e-13
+    },
+    {
+      "ratio": 0.1,
+      "tau": 150.0,
+      "recurrence_refinement_max_abs": 8.426592757718543e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.9678625396462463e-10,
+      "f_vs_adaptive_ODE_abs": 1.4988010832439613e-14
+    },
+    {
+      "ratio": 0.1,
+      "tau": 600.0,
+      "recurrence_refinement_max_abs": 6.605838958065094e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 7.296837578819308e-10,
+      "f_vs_adaptive_ODE_abs": 1.1324274851176597e-14
+    },
+    {
+      "ratio": 0.1,
+      "tau": 1200.0,
+      "recurrence_refinement_max_abs": 1.426645424374793e-13,
+      "matrix_vs_adaptive_ODE_max_abs": 1.4865733089429635e-09,
+      "f_vs_adaptive_ODE_abs": 1.0824674490095276e-13
+    },
+    {
+      "ratio": 1.0,
+      "tau": 8.0,
+      "recurrence_refinement_max_abs": 4.418687638707013e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.0257905638745873e-12,
+      "f_vs_adaptive_ODE_abs": 1.5236423234199492e-13
+    },
+    {
+      "ratio": 1.0,
+      "tau": 150.0,
+      "recurrence_refinement_max_abs": 3.941291755421672e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.9858686917287015e-10,
+      "f_vs_adaptive_ODE_abs": 3.400058012914542e-15
+    },
+    {
+      "ratio": 1.0,
+      "tau": 600.0,
+      "recurrence_refinement_max_abs": 5.428990742131094e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 7.746840946568896e-10,
+      "f_vs_adaptive_ODE_abs": 9.2148511043888e-15
+    },
+    {
+      "ratio": 1.0,
+      "tau": 1200.0,
+      "recurrence_refinement_max_abs": 1.776357081184743e-13,
+      "matrix_vs_adaptive_ODE_max_abs": 1.2459864251638732e-09,
+      "f_vs_adaptive_ODE_abs": 3.1732429184305744e-15
+    },
+    {
+      "ratio": 2.3446,
+      "tau": 8.0,
+      "recurrence_refinement_max_abs": 4.773959009644783e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.0593748103537857e-12,
+      "f_vs_adaptive_ODE_abs": 1.2735645871231327e-13
+    },
+    {
+      "ratio": 2.3446,
+      "tau": 150.0,
+      "recurrence_refinement_max_abs": 4.38538100539135e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 2.0295443104063867e-10,
+      "f_vs_adaptive_ODE_abs": 2.4424906541753444e-15
+    },
+    {
+      "ratio": 2.3446,
+      "tau": 600.0,
+      "recurrence_refinement_max_abs": 7.438494757639188e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 8.338557344678572e-10,
+      "f_vs_adaptive_ODE_abs": 9.140257994921797e-15
+    },
+    {
+      "ratio": 2.3446,
+      "tau": 1200.0,
+      "recurrence_refinement_max_abs": 1.8107739633764737e-13,
+      "matrix_vs_adaptive_ODE_max_abs": 1.5976367173774356e-09,
+      "f_vs_adaptive_ODE_abs": 2.6801138890662768e-15
+    },
+    {
+      "ratio": 10.0,
+      "tau": 8.0,
+      "recurrence_refinement_max_abs": 2.653433162238679e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 9.933165401368196e-13,
+      "f_vs_adaptive_ODE_abs": 4.767297667740422e-13
+    },
+    {
+      "ratio": 10.0,
+      "tau": 150.0,
+      "recurrence_refinement_max_abs": 6.028513110728429e-14,
+      "matrix_vs_adaptive_ODE_max_abs": 1.9584822652750995e-10,
+      "f_vs_adaptive_ODE_abs": 9.610368056911511e-15
+    },
+    {
+      "ratio": 10.0,
+      "tau": 600.0,
+      "recurrence_refinement_max_abs": 1.2856383583785642e-13,
+      "matrix_vs_adaptive_ODE_max_abs": 8.00387228726807e-10,
+      "f_vs_adaptive_ODE_abs": 9.13331910101789e-15
+    },
+    {
+      "ratio": 10.0,
+      "tau": 1200.0,
+      "recurrence_refinement_max_abs": 1.8607338000841073e-13,
+      "matrix_vs_adaptive_ODE_max_abs": 1.4201139708795787e-09,
+      "f_vs_adaptive_ODE_abs": 3.139849491518021e-15
+    }
+  ],
+  "elapsed_seconds": 0.9180807730001561,
+  "cached_curve_ratios_reused": [
+    0.1,
+    1.0,
+    2.3446,
+    10.0
+  ],
+  "limitations": "This validates an exact matrix-function representation and a numerical evaluation, not an analytic asymptotic law for envelope decay. Pixel comparisons include digitization and interpolation errors. No scalar Heun or hypergeometric reduction has been proved. Orthogonality alone is not an accuracy certificate."
+}
