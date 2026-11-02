@@ -1,0 +1,809 @@
+{
+  "method": "Exact fast-direction rotation and Sylvester integration by parts",
+  "normalization": "Original K=2A, no rescaling",
+  "structural_checks": {
+    "frame_identity": 8.535187650472371e-14,
+    "orthogonality": 3.330883241845462e-16,
+    "sylvester": 8.95090418262362e-16,
+    "S_derivative": 3.1611047113244695e-11,
+    "endpoint_matching": 6.412235645739299e-18
+  },
+  "parameters": {
+    "E1": 0.01,
+    "C": 0.3,
+    "hbar": 1.0,
+    "cycles": 2
+  },
+  "uniform_domain": {
+    "epsilon_max": 0.334995854037363,
+    "L_min": 15.0,
+    "gap_over_L_lower_bound": 0.691344649346865
+  },
+  "points": [
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.0033333333333333335,
+      "L": 15.0,
+      "epsilon": 0.0334995854037363,
+      "uniform_gap_lower_bound": 20.11487340033018,
+      "two_cycle_components": {
+        "diagonal": 0.02474872512359673,
+        "S_derivative": 0.4503637956655283,
+        "V_S": 0.02690480549473938,
+        "endpoints": 0.06557781569742588
+      },
+      "state_error_bound_integral_value": 0.5675951419812904,
+      "f_error_bound": 0.5675951419812904,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 7.116151090070578e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.006115072205924216,
+          "S_derivative_integral": 0.07744179016664751,
+          "V_S_integral": 0.004663610054160213,
+          "endpoint_norms": 0.010855315656385707
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.0062592903558741485,
+          "S_derivative_integral": 0.07740761969298454,
+          "V_S_integral": 0.004700534003298758,
+          "endpoint_norms": 0.010967365080005724
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.07033248797313212,
+          "V_S_integral": 0.004088258689910717,
+          "endpoint_norms": 0.010966227112321508
+        }
+      ],
+      "ratio": 0.1,
+      "tau": 50.0,
+      "lambda_value": 0.5,
+      "existing_array_comparison": {
+        "f_scalar": 0.2529321812967358,
+        "f_full": 0.25874077351539254,
+        "absolute_difference": 0.005808592218656761,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.0033333333333333335,
+      "L": 30.0,
+      "epsilon": 0.0334995854037363,
+      "uniform_gap_lower_bound": 40.38771599460751,
+      "two_cycle_components": {
+        "diagonal": 0.013187548610592329,
+        "S_derivative": 0.12971631676064682,
+        "V_S": 0.0043680572915268815,
+        "endpoints": 0.016236388677331563
+      },
+      "state_error_bound_integral_value": 0.1635083113400976,
+      "f_error_bound": 0.1635083113400976,
+      "F_error_bound": 0.3270166226801952,
+      "quadrature_error_estimate": 3.063247111291509e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.0032470198763788474,
+          "S_derivative_integral": 0.02352640703847412,
+          "V_S_integral": 0.0008228376862232165,
+          "endpoint_norms": 0.0026305865131128073
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.003346754428917317,
+          "S_derivative_integral": 0.023481075649298785,
+          "V_S_integral": 0.0008419392205463045,
+          "endpoint_norms": 0.002746051047472598
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.017850675692550506,
+          "V_S_integral": 0.0005192517389939196,
+          "endpoint_norms": 0.002741556778080377
+        }
+      ],
+      "ratio": 0.1,
+      "tau": 100.0,
+      "lambda_value": 1.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.24484459070488965,
+        "f_full": 0.24197589319305865,
+        "absolute_difference": 0.0028686975118309976,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.0033333333333333335,
+      "L": 120.0,
+      "epsilon": 0.0334995854037363,
+      "uniform_gap_lower_bound": 161.6573018946399,
+      "two_cycle_components": {
+        "diagonal": 0.007043785498060709,
+        "S_derivative": 0.01962146341156697,
+        "V_S": 0.0005615976678822541,
+        "endpoints": 0.0010168910574725539
+      },
+      "state_error_bound_integral_value": 0.028243737634982488,
+      "f_error_bound": 0.028243737634982488,
+      "F_error_bound": 0.056487475269964976,
+      "quadrature_error_estimate": 2.2111559553786276e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.001667350562339516,
+          "S_derivative_integral": 0.0043801058309012875,
+          "V_S_integral": 0.0001321794577909117,
+          "endpoint_norms": 0.00011117845940824392
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.0018545421866908384,
+          "S_derivative_integral": 0.0043096202600424,
+          "V_S_integral": 0.00014046505650667363,
+          "endpoint_norms": 0.00022591977069800947
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.0011210056148397967,
+          "V_S_integral": 8.154319643541751e-06,
+          "endpoint_norms": 0.00017134729863002357
+        }
+      ],
+      "ratio": 0.1,
+      "tau": 400.0,
+      "lambda_value": 4.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.26454906740372125,
+        "f_full": 0.2630709856017499,
+        "absolute_difference": 0.0014780818019713426,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.0033333333333333335,
+      "L": 360.0,
+      "epsilon": 0.0334995854037363,
+      "uniform_gap_lower_bound": 484.98997664505936,
+      "two_cycle_components": {
+        "diagonal": 0.013704957677067024,
+        "S_derivative": 0.010662049019595582,
+        "V_S": 0.0007345357937741149,
+        "endpoints": 0.0005019482775139255
+      },
+      "state_error_bound_integral_value": 0.025603490767950647,
+      "f_error_bound": 0.025603490767950647,
+      "F_error_bound": 0.051206981535901294,
+      "quadrature_error_estimate": 1.8093676055022343e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.0032490850507032117,
+          "S_derivative_integral": 0.002650105058205909,
+          "V_S_integral": 0.00017710159978649752,
+          "endpoint_norms": 0.00011101007051974779
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.0036033937878303004,
+          "S_derivative_integral": 0.002556327931061757,
+          "V_S_integral": 0.0001898641947545914,
+          "endpoint_norms": 0.00012092547950054563
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.00012459152053012477,
+          "V_S_integral": 3.0210234596852095e-07,
+          "endpoint_norms": 1.9038588736669286e-05
+        }
+      ],
+      "ratio": 0.1,
+      "tau": 1200.0,
+      "lambda_value": 12.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.8903378098037623,
+        "f_full": 0.8914749963404335,
+        "absolute_difference": 0.0011371865366711642,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.03333333333333333,
+      "L": 15.0,
+      "epsilon": 0.04714045207910317,
+      "uniform_gap_lower_bound": 19.698598770766893,
+      "two_cycle_components": {
+        "diagonal": 0.02209793828805072,
+        "S_derivative": 0.4530741009195569,
+        "V_S": 0.02653305320134547,
+        "endpoints": 0.06381053027737174
+      },
+      "state_error_bound_integral_value": 0.5655156226863248,
+      "f_error_bound": 0.5655156226863248,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 9.494988162848664e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.004746089958097873,
+          "S_derivative_integral": 0.07877287943998376,
+          "V_S_integral": 0.004459587614993789,
+          "endpoint_norms": 0.009861236370235942
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.006302879185927488,
+          "S_derivative_integral": 0.07743168304666256,
+          "V_S_integral": 0.0047186802957682305,
+          "endpoint_norms": 0.011077801656128422
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.07033248797313212,
+          "V_S_integral": 0.004088258689910717,
+          "endpoint_norms": 0.010966227112321508
+        }
+      ],
+      "ratio": 1.0,
+      "tau": 50.0,
+      "lambda_value": 0.5,
+      "existing_array_comparison": {
+        "f_scalar": 0.6564853950945843,
+        "f_full": 0.661957918922226,
+        "absolute_difference": 0.00547252382764174,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.03333333333333333,
+      "L": 30.0,
+      "epsilon": 0.04714045207910317,
+      "uniform_gap_lower_bound": 39.562273850476316,
+      "two_cycle_components": {
+        "diagonal": 0.011438716312131579,
+        "S_derivative": 0.13221738860107263,
+        "V_S": 0.004272171028467216,
+        "endpoints": 0.015018373261407552
+      },
+      "state_error_bound_integral_value": 0.162946649203079,
+      "f_error_bound": 0.162946649203079,
+      "F_error_bound": 0.325893298406158,
+      "quadrature_error_estimate": 3.331948570677533e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.0022134607103576707,
+          "S_derivative_integral": 0.024716939498050917,
+          "V_S_integral": 0.0007387839070509261,
+          "endpoint_norms": 0.0016319705231311414
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.003505897445708119,
+          "S_derivative_integral": 0.023541079109934884,
+          "V_S_integral": 0.0008780498681887624,
+          "endpoint_norms": 0.003135659329492257
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.017850675692550506,
+          "V_S_integral": 0.0005192517389939196,
+          "endpoint_norms": 0.002741556778080377
+        }
+      ],
+      "ratio": 1.0,
+      "tau": 100.0,
+      "lambda_value": 1.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.09590162297502951,
+        "f_full": 0.09740128990444033,
+        "absolute_difference": 0.0014996669294108228,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.03333333333333333,
+      "L": 120.0,
+      "epsilon": 0.04714045207910317,
+      "uniform_gap_lower_bound": 158.37657993760124,
+      "two_cycle_components": {
+        "diagonal": 0.012239329311682513,
+        "S_derivative": 0.022535724344912595,
+        "V_S": 0.0009764171933064361,
+        "endpoints": 0.004965444027829928
+      },
+      "state_error_bound_integral_value": 0.04071691487773147,
+      "f_error_bound": 0.04071691487773147,
+      "F_error_bound": 0.08143382975546294,
+      "quadrature_error_estimate": 2.6986686583363306e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.0027573494189390814,
+          "S_derivative_integral": 0.005517043858666837,
+          "V_S_integral": 0.00019539352032152467,
+          "endpoint_norms": 0.0011112052428577002
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.003362315236902175,
+          "S_derivative_integral": 0.0046298126989496625,
+          "V_S_integral": 0.00028466075668815165,
+          "endpoint_norms": 0.00120016947242724
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.0011210056148397967,
+          "V_S_integral": 8.154319643541751e-06,
+          "endpoint_norms": 0.00017134729863002357
+        }
+      ],
+      "ratio": 1.0,
+      "tau": 400.0,
+      "lambda_value": 4.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.08732631439010438,
+        "f_full": 0.08768429269195938,
+        "absolute_difference": 0.00035797830185499424,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.03333333333333333,
+      "L": 360.0,
+      "epsilon": 0.04714045207910317,
+      "uniform_gap_lower_bound": 475.1616410964933,
+      "two_cycle_components": {
+        "diagonal": 0.03288910593701991,
+        "S_derivative": 0.014162852892418623,
+        "V_S": 0.0021203823778336186,
+        "endpoints": 0.004501678504313967
+      },
+      "state_error_bound_integral_value": 0.05367401971158611,
+      "f_error_bound": 0.05367401971158611,
+      "F_error_bound": 0.10734803942317223,
+      "quadrature_error_estimate": 1.2519678271811808e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.007907557106029516,
+          "S_derivative_integral": 0.003861892073314019,
+          "V_S_integral": 0.0004374825602811918,
+          "endpoint_norms": 0.0011111203530267083
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.008536995862480436,
+          "S_derivative_integral": 0.0030949428523651683,
+          "V_S_integral": 0.0006224065262896491,
+          "endpoint_norms": 0.001120680310393606
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.00012459152053012477,
+          "V_S_integral": 3.0210234596852095e-07,
+          "endpoint_norms": 1.9038588736669286e-05
+        }
+      ],
+      "ratio": 1.0,
+      "tau": 1200.0,
+      "lambda_value": 12.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.002562382721775488,
+        "f_full": 0.0025680369602407013,
+        "absolute_difference": 5.65423846521319e-06,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.07815333333333332,
+      "L": 15.0,
+      "epsilon": 0.08496501999188973,
+      "uniform_gap_lower_bound": 18.532024931636972,
+      "two_cycle_components": {
+        "diagonal": 0.017877292338028816,
+        "S_derivative": 0.46329129890053244,
+        "V_S": 0.02701273088179392,
+        "endpoints": 0.06181547395879956
+      },
+      "state_error_bound_integral_value": 0.5699967960791548,
+      "f_error_bound": 0.5699967960791548,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 7.981902902290785e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.0024440209079920976,
+          "S_derivative_integral": 0.08377143717337115,
+          "V_S_integral": 0.004616542729015681,
+          "endpoint_norms": 0.008381690025907669
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.00649462526102231,
+          "S_derivative_integral": 0.07754172430376297,
+          "V_S_integral": 0.004801564021970564,
+          "endpoint_norms": 0.011559819841170604
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.07033248797313212,
+          "V_S_integral": 0.004088258689910717,
+          "endpoint_norms": 0.010966227112321508
+        }
+      ],
+      "ratio": 2.3446,
+      "tau": 50.0,
+      "lambda_value": 0.5,
+      "existing_array_comparison": {
+        "f_scalar": 0.9953415877653335,
+        "f_full": 0.9955882954458927,
+        "absolute_difference": 0.00024670768055912173,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.07815333333333332,
+      "L": 30.0,
+      "epsilon": 0.08496501999188973,
+      "uniform_gap_lower_bound": 37.26125084410484,
+      "two_cycle_components": {
+        "diagonal": 0.012877833706417981,
+        "S_derivative": 0.1411381675037801,
+        "V_S": 0.005075570050550666,
+        "endpoints": 0.019362588990222657
+      },
+      "state_error_bound_integral_value": 0.17845416025097144,
+      "f_error_bound": 0.17845416025097144,
+      "F_error_bound": 0.3569083205019429,
+      "quadrature_error_estimate": 1.0502757118239959e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.002356512379682417,
+          "S_derivative_integral": 0.02890534916530647,
+          "V_S_integral": 0.0009755455142473787,
+          "endpoint_norms": 0.002612830614977516
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.004082404473526574,
+          "S_derivative_integral": 0.02381305889403308,
+          "V_S_integral": 0.0010429877720340348,
+          "endpoint_norms": 0.004326907102053436
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.017850675692550506,
+          "V_S_integral": 0.0005192517389939196,
+          "endpoint_norms": 0.002741556778080377
+        }
+      ],
+      "ratio": 2.3446,
+      "tau": 100.0,
+      "lambda_value": 1.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.94010714495288,
+        "f_full": 0.9413500017708158,
+        "absolute_difference": 0.0012428568179359,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.07815333333333332,
+      "L": 120.0,
+      "epsilon": 0.08496501999188973,
+      "uniform_gap_lower_bound": 149.26728560713528,
+      "two_cycle_components": {
+        "diagonal": 0.02962892612576286,
+        "S_derivative": 0.032269045012692975,
+        "V_S": 0.0039602866874214335,
+        "endpoints": 0.010989065164384013
+      },
+      "state_error_bound_integral_value": 0.07684732299026129,
+      "f_error_bound": 0.07684732299026129,
+      "F_error_bound": 0.15369464598052257,
+      "quadrature_error_estimate": 5.482707792353057e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.008496852871692493,
+          "S_derivative_integral": 0.009249558933562513,
+          "V_S_integral": 0.0010287038282315022,
+          "endpoint_norms": 0.0026178421546271835
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.006317610191188936,
+          "S_derivative_integral": 0.005763957957944177,
+          "V_S_integral": 0.0009432851958356729,
+          "endpoint_norms": 0.0027053431289347997
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.0011210056148397967,
+          "V_S_integral": 8.154319643541751e-06,
+          "endpoint_norms": 0.00017134729863002357
+        }
+      ],
+      "ratio": 2.3446,
+      "tau": 400.0,
+      "lambda_value": 4.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.020978996827169295,
+        "f_full": 0.02149630296954413,
+        "absolute_difference": 0.0005173061423748362,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.07815333333333332,
+      "L": 360.0,
+      "epsilon": 0.08496501999188973,
+      "uniform_gap_lower_bound": 447.8965561477105,
+      "two_cycle_components": {
+        "diagonal": 0.08584845553902569,
+        "S_derivative": 0.024511633913155684,
+        "V_S": 0.0110295119387411,
+        "endpoints": 0.010529801099299067
+      },
+      "state_error_bound_integral_value": 0.13191940249022155,
+      "f_error_bound": 0.13191940249022155,
+      "F_error_bound": 0.2638388049804431,
+      "quadrature_error_estimate": 1.819136098018076e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.025456974327389116,
+          "S_derivative_integral": 0.00758637328150447,
+          "V_S_integral": 0.0029163773620981565,
+          "endpoint_norms": 0.0026181388623903587
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.01746725344212373,
+          "S_derivative_integral": 0.004544852154543248,
+          "V_S_integral": 0.002598076504926425,
+          "endpoint_norms": 0.0026277230985225055
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.00012459152053012477,
+          "V_S_integral": 3.0210234596852095e-07,
+          "endpoint_norms": 1.9038588736669286e-05
+        }
+      ],
+      "ratio": 2.3446,
+      "tau": 1200.0,
+      "lambda_value": 12.0,
+      "existing_array_comparison": {
+        "f_scalar": 2.4230822086795932e-05,
+        "f_full": 2.1359665910721377e-05,
+        "absolute_difference": 2.871156176074555e-06,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.3333333333333333,
+      "L": 15.0,
+      "epsilon": 0.334995854037363,
+      "uniform_gap_lower_bound": 10.370169740202975,
+      "two_cycle_components": {
+        "diagonal": 0.08242945306604284,
+        "S_derivative": 0.6563136034526603,
+        "V_S": 0.0713739358566619,
+        "endpoints": 0.08379773266296335
+      },
+      "state_error_bound_integral_value": 0.8939147250383284,
+      "f_error_bound": 0.8939147250383284,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 1.187308777896041e-10,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.031791102391383406,
+          "S_derivative_integral": 0.17764084944798691,
+          "V_S_integral": 0.02486030504543735,
+          "endpoint_norms": 0.011812361594043207
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.009423624141638012,
+          "S_derivative_integral": 0.08018346430521109,
+          "V_S_integral": 0.00673840419298288,
+          "endpoint_norms": 0.01912027762511696
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.07033248797313212,
+          "V_S_integral": 0.004088258689910717,
+          "endpoint_norms": 0.010966227112321508
+        }
+      ],
+      "ratio": 10.0,
+      "tau": 50.0,
+      "lambda_value": 0.5,
+      "existing_array_comparison": {
+        "f_scalar": 0.7519538205976316,
+        "f_full": 0.7686924297307224,
+        "absolute_difference": 0.016738609133090776,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.3333333333333333,
+      "L": 30.0,
+      "epsilon": 0.334995854037363,
+      "uniform_gap_lower_bound": 21.599488309905666,
+      "two_cycle_components": {
+        "diagonal": 0.12139198846863347,
+        "S_derivative": 0.31957918451033684,
+        "V_S": 0.06743525230232543,
+        "endpoints": 0.05797309009117257
+      },
+      "state_error_bound_integral_value": 0.5663795153724683,
+      "f_error_bound": 0.5663795153724683,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 7.45849403437869e-11,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.05114211023392001,
+          "S_derivative_integral": 0.11232094598727035,
+          "V_S_integral": 0.028307364793044125,
+          "endpoint_norms": 0.012315167995486216
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.009553884000396726,
+          "S_derivative_integral": 0.029617970575347572,
+          "V_S_integral": 0.004891009619124668,
+          "endpoint_norms": 0.01392982027201969
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.017850675692550506,
+          "V_S_integral": 0.0005192517389939196,
+          "endpoint_norms": 0.002741556778080377
+        }
+      ],
+      "ratio": 10.0,
+      "tau": 100.0,
+      "lambda_value": 1.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.17560102032552538,
+        "f_full": 0.197731899838357,
+        "absolute_difference": 0.02213087951283163,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.3333333333333333,
+      "L": 120.0,
+      "epsilon": 0.334995854037363,
+      "uniform_gap_lower_bound": 88.60013016038633,
+      "two_cycle_components": {
+        "diagonal": 0.4275487414176713,
+        "S_derivative": 0.20439364656813147,
+        "V_S": 0.21989348728173513,
+        "endpoints": 0.05042454455221496
+      },
+      "state_error_bound_integral_value": 0.9022604198197529,
+      "f_error_bound": 0.9022604198197529,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 1.910109008258665e-10,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.1890516093131182,
+          "S_derivative_integral": 0.08412906013766303,
+          "V_S_integral": 0.09363125893604014,
+          "endpoint_norms": 0.012472197875031276
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.024722761395717455,
+          "S_derivative_integral": 0.01694675753156292,
+          "V_S_integral": 0.016307330385183887,
+          "endpoint_norms": 0.012568727102446185
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.0011210056148397967,
+          "V_S_integral": 8.154319643541751e-06,
+          "endpoint_norms": 0.00017134729863002357
+        }
+      ],
+      "ratio": 10.0,
+      "tau": 400.0,
+      "lambda_value": 4.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.06996552679895542,
+        "f_full": 0.0379371922816098,
+        "absolute_difference": 0.032028334517345616,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    },
+    {
+      "e_over_C": 0.03333333333333333,
+      "eta_over_C": 0.3333333333333333,
+      "L": 360.0,
+      "epsilon": 0.334995854037363,
+      "uniform_gap_lower_bound": 267.2146012634652,
+      "two_cycle_components": {
+        "diagonal": 1.2712591756598852,
+        "S_derivative": 0.19520903504404227,
+        "V_S": 0.6528481888191615,
+        "endpoints": 0.049985477760487514
+      },
+      "state_error_bound_integral_value": 2.1693018772835764,
+      "f_error_bound": 1.0,
+      "F_error_bound": 1.0,
+      "quadrature_error_estimate": 4.832099704664458e-10,
+      "stages": [
+        {
+          "stage": 1,
+          "diagonal_integral": 0.5644063846527126,
+          "S_derivative_integral": 0.08116393833773769,
+          "V_S_integral": 0.27773780632091505,
+          "endpoint_norms": 0.012481501898155997
+        },
+        {
+          "stage": 2,
+          "diagonal_integral": 0.07122320317722994,
+          "S_derivative_integral": 0.016315987663753317,
+          "V_S_integral": 0.04868598598631975,
+          "endpoint_norms": 0.01249219839335109
+        },
+        {
+          "stage": 3,
+          "diagonal_integral": 0.0,
+          "S_derivative_integral": 0.00012459152053012477,
+          "V_S_integral": 3.0210234596852095e-07,
+          "endpoint_norms": 1.9038588736669286e-05
+        }
+      ],
+      "ratio": 10.0,
+      "tau": 1200.0,
+      "lambda_value": 12.0,
+      "existing_array_comparison": {
+        "f_scalar": 0.011397762289675756,
+        "f_full": 0.02152850583581905,
+        "absolute_difference": 0.010130743546143293,
+        "source": "data/solution_vs_scalar_formula.npz"
+      }
+    }
+  ],
+  "caveat": "Integral inequality is rigorous; decimal quadratures are not interval-certified."
+}

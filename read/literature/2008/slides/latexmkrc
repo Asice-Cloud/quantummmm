@@ -1,0 +1,4 @@
+# XeLaTeX is required for the Fandol OpenType Chinese fonts.
+# Also select XeLaTeX explicitly in the Overleaf project settings.
+$pdf_mode = 5;
+$xelatex = 'xelatex %O %S';

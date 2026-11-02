@@ -1,0 +1,404 @@
+{
+  "model": "First-order projected model; original K=2A convention; no factor-2 trial",
+  "comparison": "C,S moment expansion plus beta readout vs independent Pauli-product perturbation polynomial",
+  "symbolic": {
+    "identities": {
+      "phase_through_degree_three": "0",
+      "visibility_through_degree_four": "0",
+      "f_through_degree_four": "0",
+      "F_through_degree_four": "0"
+    },
+    "coefficients": [
+      {
+        "alpha_power": 2,
+        "nu_power": 0,
+        "coefficient": "-(2*k + 1)**2",
+        "symbolic_difference": "0",
+        "numeric_coefficient": -4.75388512771787
+      },
+      {
+        "alpha_power": 1,
+        "nu_power": 1,
+        "coefficient": "(2*j + 1)*(2*k + 1)",
+        "symbolic_difference": "0",
+        "numeric_coefficient": 4.055099050144963
+      },
+      {
+        "alpha_power": 0,
+        "nu_power": 2,
+        "coefficient": "-(2*j + 1)**2/4",
+        "symbolic_difference": "0",
+        "numeric_coefficient": -0.8647573439779633
+      },
+      {
+        "alpha_power": 4,
+        "nu_power": 0,
+        "coefficient": "(2*k + 1)**4/3",
+        "symbolic_difference": "0",
+        "numeric_coefficient": 7.533141269179051
+      },
+      {
+        "alpha_power": 3,
+        "nu_power": 1,
+        "coefficient": "-(2*k + 1)*(12*J_p*k + 12*U_p + 32*j*k**2 + 32*j*k + 8*j + 13*k**2 + 16*k + 4)/6",
+        "symbolic_difference": "0",
+        "numeric_coefficient": -12.90526900804335
+      },
+      {
+        "alpha_power": 2,
+        "nu_power": 2,
+        "coefficient": "(-16*J_p**2 + 8*J_p*j*k + 12*J_p*k + 4*J_p + 16*T_p*k + 8*T_p + 8*U_p*j + 4*U_p + 32*j**2*k**2 + 32*j**2*k + 8*j**2 + 30*j*k**2 + 32*j*k + 8*j + 5*k**2 + 7*k + 2)/4",
+        "symbolic_difference": "0",
+        "numeric_coefficient": 8.269348608611123
+      },
+      {
+        "alpha_power": 1,
+        "nu_power": 3,
+        "coefficient": "-(2*j + 1)*(12*J_p + 24*T_p + 32*j**2*k + 16*j**2 + 32*j*k + 16*j + 5*k + 4)/24",
+        "symbolic_difference": "0",
+        "numeric_coefficient": -2.3544963730205475
+      },
+      {
+        "alpha_power": 0,
+        "nu_power": 4,
+        "coefficient": "(2*j + 1)**4/48",
+        "symbolic_difference": "0",
+        "numeric_coefficient": 0.24926842132127383
+      }
+    ],
+    "odd_degrees_one_and_three_zero": true
+  },
+  "constants": {
+    "j": 0.4299233000511189,
+    "k": 0.5901702995080481,
+    "A": 0.9299233000511189,
+    "B": 2.1803405990160964,
+    "J_p": 0.060451950558107065,
+    "T_p": 0.052530954795615155,
+    "U_p": 0.06369430628128173,
+    "a4": -0.11950983564890391,
+    "b4": 0.04723003472135933,
+    "moment_identity_residuals": {
+      "m1_minus_reduction": 0.0,
+      "m2_minus_reduction": 2.7755575615628914e-17,
+      "D1_minus_reduction": 3.469446951953614e-18
+    }
+  },
+  "numerical_reference": "DOP853 integration of normalized C,S IVP, rtol=3e-14, atol=1e-15",
+  "numerical_samples": [
+    {
+      "ray": "alpha_axis",
+      "direction_alpha_nu": [
+        1.0,
+        0.0
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.4,
+          "nu": 0.0,
+          "f_reference": 0.41369631856506256,
+          "f_fourth_order": 0.43222679605612446,
+          "signed_remainder": -0.018530477491061903,
+          "remainder_divided_by_h6": -4.524042356216283,
+          "conservative_analytic_remainder_bound": 81.95760799842662
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.2,
+          "nu": 0.0,
+          "f_reference": 0.8215961436977524,
+          "f_fourth_order": 0.8218976209219716,
+          "signed_remainder": -0.0003014772242192487,
+          "remainder_divided_by_h6": -4.71058162842576,
+          "conservative_analytic_remainder_bound": 0.22381097955917822,
+          "observed_order_on_halving": 5.941707232234213
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.1,
+          "nu": 0.0,
+          "f_reference": 0.9532097041375417,
+          "f_fourth_order": 0.9532144628497392,
+          "signed_remainder": -4.758712197516779e-06,
+          "remainder_divided_by_h6": -4.758712197516777,
+          "conservative_analytic_remainder_bound": 0.0014619666230280546,
+          "observed_order_on_halving": 5.985334000063629
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.05,
+          "nu": 0.0,
+          "f_reference": 0.9881622947692559,
+          "f_fourth_order": 0.9881623693136377,
+          "signed_remainder": -7.454438177845191e-08,
+          "remainder_divided_by_h6": -4.77084043382092,
+          "conservative_analytic_remainder_bound": 1.4769830303670742e-05,
+          "observed_order_on_halving": 5.996327769729642
+        }
+      ]
+    },
+    {
+      "ray": "nu_axis",
+      "direction_alpha_nu": [
+        0.0,
+        1.0
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.0,
+          "nu": 0.4,
+          "f_reference": 0.867903530173284,
+          "f_fourth_order": 0.8680200965493504,
+          "signed_remainder": -0.00011656637606638487,
+          "remainder_divided_by_h6": -0.02845858790683223,
+          "conservative_analytic_remainder_bound": 0.0667186221583114
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.0,
+          "nu": 0.2,
+          "f_reference": 0.9658067008355731,
+          "f_fourth_order": 0.9658085357149956,
+          "signed_remainder": -1.834879422513147e-06,
+          "remainder_divided_by_h6": -0.028669990976767912,
+          "conservative_analytic_remainder_bound": 0.0004954258334349076,
+          "observed_order_on_halving": 5.989322627703047
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.0,
+          "nu": 0.1,
+          "f_reference": 0.9913773246792056,
+          "f_fourth_order": 0.9913773534023526,
+          "signed_remainder": -2.8723146971998403e-08,
+          "remainder_divided_by_h6": -0.028723146971998393,
+          "conservative_analytic_remainder_bound": 5.3364746600227865e-06,
+          "observed_order_on_halving": 5.997327627818206
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.0,
+          "nu": 0.05,
+          "f_reference": 0.997839664118681,
+          "f_fourth_order": 0.9978396645676884,
+          "signed_remainder": -4.490073868268496e-10,
+          "remainder_divided_by_h6": -0.028736472756918364,
+          "conservative_analytic_remainder_bound": 6.923128075691698e-08,
+          "observed_order_on_halving": 5.999330832878624
+        }
+      ]
+    },
+    {
+      "ray": "r=0.1",
+      "direction_alpha_nu": [
+        1.0,
+        0.1
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.4,
+          "nu": 0.04000000000000001,
+          "f_reference": 0.45046591368856753,
+          "f_fourth_order": 0.4647445967113018,
+          "signed_remainder": -0.014278683022734273,
+          "remainder_divided_by_h6": -3.486006597347233,
+          "conservative_analytic_remainder_bound": 122.19098627203125
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.2,
+          "nu": 0.020000000000000004,
+          "f_reference": 0.835604389329952,
+          "f_fourth_order": 0.8358358534101618,
+          "signed_remainder": -0.0002314640802097978,
+          "remainder_divided_by_h6": -3.6166262532780893,
+          "conservative_analytic_remainder_bound": 0.309757933981894,
+          "observed_order_on_halving": 5.946930784029315
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.1,
+          "nu": 0.010000000000000002,
+          "f_reference": 0.9570584196412536,
+          "f_fourth_order": 0.9570620698670614,
+          "signed_remainder": -3.6502258078385807e-06,
+          "remainder_divided_by_h6": -3.6502258078385794,
+          "conservative_analytic_remainder_bound": 0.0019495038013709828,
+          "observed_order_on_halving": 5.986658801976933
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.05,
+          "nu": 0.005000000000000001,
+          "f_reference": 0.9891469044569552,
+          "f_fourth_order": 0.9891469616239229,
+          "signed_remainder": -5.716696771518315e-08,
+          "remainder_divided_by_h6": -3.65868593377172,
+          "conservative_analytic_remainder_bound": 1.9332362192182527e-05,
+          "observed_order_on_halving": 5.996660135568313
+        }
+      ]
+    },
+    {
+      "ray": "r=1",
+      "direction_alpha_nu": [
+        1.0,
+        1.0
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.4,
+          "nu": 0.4,
+          "f_reference": 0.7695490362671429,
+          "f_fourth_order": 0.770108071253878,
+          "signed_remainder": -0.0005590349867351518,
+          "remainder_divided_by_h6": -0.13648315105838663,
+          "conservative_analytic_remainder_bound": 3057.7611216213145
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.2,
+          "nu": 0.2,
+          "f_reference": 0.9387166980756314,
+          "f_fourth_order": 0.9387254518068414,
+          "signed_remainder": -8.753731210009441e-06,
+          "remainder_divided_by_h6": -0.13677705015639746,
+          "conservative_analytic_remainder_bound": 3.9683248953476435,
+          "observed_order_on_halving": 5.996896679920247
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.1,
+          "nu": 0.1,
+          "f_reference": 0.9844436282385294,
+          "f_fourth_order": 0.984443765076296,
+          "signed_remainder": -1.3683776667328118e-07,
+          "remainder_divided_by_h6": -0.13683776667328112,
+          "conservative_analytic_remainder_bound": 0.017869774334826664,
+          "observed_order_on_halving": 5.999359717282413
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.05,
+          "nu": 0.05,
+          "f_reference": 0.9960960892635463,
+          "f_fourth_order": 0.9960960914018606,
+          "signed_remainder": -2.1383143034015006e-09,
+          "remainder_divided_by_h6": -0.13685211541769599,
+          "conservative_analytic_remainder_bound": 0.0001498942606839074,
+          "observed_order_on_halving": 5.999848727601685
+        }
+      ]
+    },
+    {
+      "ray": "r=r_star",
+      "direction_alpha_nu": [
+        0.4265036850071761,
+        1.0
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.17060147400287046,
+          "nu": 0.4,
+          "f_reference": 0.9999325255456292,
+          "f_fourth_order": 0.9999319283669891,
+          "signed_remainder": 5.971786400937873e-07,
+          "remainder_divided_by_h6": 0.00014579556642914723,
+          "conservative_analytic_remainder_bound": 18.906186398744996
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.08530073700143523,
+          "nu": 0.2,
+          "f_reference": 0.9999957548908903,
+          "f_fourth_order": 0.9999957455229368,
+          "signed_remainder": 9.367953524019867e-09,
+          "remainder_divided_by_h6": 0.00014637427381281038,
+          "conservative_analytic_remainder_bound": 0.0667186221583114,
+          "observed_order_on_halving": 5.994284835397868
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.042650368500717614,
+          "nu": 0.1,
+          "f_reference": 0.9999997342417034,
+          "f_fourth_order": 0.9999997340951835,
+          "signed_remainder": 1.4651990731806563e-10,
+          "remainder_divided_by_h6": 0.00014651990731806558,
+          "conservative_analytic_remainder_bound": 0.0004954258334349076,
+          "observed_order_on_halving": 5.998565319718388
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.021325184250358807,
+          "nu": 0.05,
+          "f_reference": 0.9999999833832385,
+          "f_fourth_order": 0.999999983380949,
+          "signed_remainder": 2.289501921381998e-12,
+          "remainder_divided_by_h6": 0.0001465281229684478,
+          "conservative_analytic_remainder_bound": 5.3364746600227865e-06,
+          "observed_order_on_halving": 5.999919107608021
+        }
+      ]
+    },
+    {
+      "ray": "r=10",
+      "direction_alpha_nu": [
+        0.1,
+        1.0
+      ],
+      "samples": [
+        {
+          "h": 0.4,
+          "alpha": 0.04000000000000001,
+          "nu": 0.4,
+          "f_reference": 0.9210521319125681,
+          "f_fourth_order": 0.9210738176312364,
+          "signed_remainder": -2.168571866834057e-05,
+          "remainder_divided_by_h6": -0.005294364909262833,
+          "conservative_analytic_remainder_bound": 0.33467588105126816
+        },
+        {
+          "h": 0.2,
+          "alpha": 0.020000000000000004,
+          "nu": 0.2,
+          "f_reference": 0.9798631848899623,
+          "f_fourth_order": 0.9798635248947329,
+          "signed_remainder": -3.4000477067142043e-07,
+          "remainder_divided_by_h6": -0.0053125745417409425,
+          "conservative_analytic_remainder_bound": 0.0020873881028988287,
+          "observed_order_on_halving": 5.995046455690012
+        },
+        {
+          "h": 0.1,
+          "alpha": 0.010000000000000002,
+          "nu": 0.1,
+          "f_reference": 0.9949405678119839,
+          "f_fourth_order": 0.9949405731291159,
+          "signed_remainder": -5.31713195695005e-09,
+          "remainder_divided_by_h6": -0.005317131956950048,
+          "conservative_analytic_remainder_bound": 2.060642302538798e-05,
+          "observed_order_on_halving": 5.998762908322044
+        },
+        {
+          "h": 0.05,
+          "alpha": 0.005000000000000001,
+          "nu": 0.05,
+          "f_reference": 0.9987335614432703,
+          "f_fourth_order": 0.9987335615263685,
+          "signed_remainder": -8.309819499174864e-11,
+          "remainder_divided_by_h6": -0.005318284479471911,
+          "conservative_analytic_remainder_bound": 2.5592477360164335e-07,
+          "observed_order_on_halving": 5.999687320464929
+        }
+      ]
+    }
+  ],
+  "max_simultaneous_sign_reversal_error": 0.0,
+  "scope": "Algebraic consistency and local Taylor remainder only; no claim of full-model projection error certification"
+}

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="610" viewBox="0 0 1120 610">
+  <title>双隧穿方案：两条通道与充电能</title>
+  <desc>示意图。两条跨岛通道分别连接 A 的 gamma2 与 B 的 gamma0、A 的 gamma1 与 B 的 gamma1。一次隧穿翻转两岛宇称；另一条通道参与的二阶虚过程恢复偶偶扇区，并留下四 Majorana 算符。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#52647b"/></marker>
+  </defs>
+  <rect width="1120" height="610" rx="16" fill="#fff"/>
+  <g font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+    <text x="36" y="43" font-size="27" fill="#17283c" font-weight="700">两条可调通道 ＋ 改变宇称的能量代价</text>
+    <rect x="36" y="70" width="290" height="267" rx="16" fill="#f1f6fb" stroke="#b4c5d9" stroke-width="2"/>
+    <rect x="660" y="70" width="424" height="267" rx="16" fill="#f1f6fb" stroke="#b4c5d9" stroke-width="2"/>
+    <text x="62" y="108" font-size="23" fill="#17283c">量子比特 A · 浮置岛</text>
+    <text x="686" y="108" font-size="23" fill="#17283c">量子比特 B · 浮置岛</text>
+    <g stroke="#dc8528" stroke-width="7" stroke-linecap="round">
+      <path d="M260 165 H710"/>
+      <path d="M260 275 H710"/>
+    </g>
+    <text x="381" y="151" font-size="22" fill="#a7540b">通道 1：I₂₀</text>
+    <text x="381" y="260" font-size="22" fill="#a7540b">通道 2：I₁₁</text>
+    <text x="348" y="210" font-size="18" fill="#52647b">两条通道有共同开启的区间</text>
+    <path d="M710 165 H992" stroke="#b64059" stroke-width="6"/>
+    <path d="M710 165 L992 275" stroke="#2c8297" stroke-width="6"/>
+    <text x="841" y="146" font-size="18" fill="#a12d48">z：辅助耦合</text>
+    <text x="811" y="306" font-size="18" fill="#216b7c">x：内部耦合</text>
+    <g fill="#fff" stroke="#17283c" stroke-width="2.5">
+      <circle cx="260" cy="165" r="13"/><circle cx="260" cy="275" r="13"/>
+      <circle cx="710" cy="165" r="13"/><circle cx="710" cy="275" r="13"/>
+      <circle cx="992" cy="165" r="13"/><circle cx="992" cy="275" r="13"/>
+    </g>
+    <g font-size="23" fill="#17283c">
+      <text x="196" y="173">γ₂ᴬ</text><text x="196" y="283">γ₁ᴬ</text>
+      <text x="687" y="143">γ₀ᴮ</text><text x="687" y="311">γ₁ᴮ</text>
+      <text x="1013" y="173">γ₅ᴮ</text><text x="1013" y="283">γ₂ᴮ</text>
+    </g>
+    <text x="38" y="351" font-size="16" fill="#52647b">每个比特共六模，图中省略其余模式</text>
+    <path d="M36 362 H1084" stroke="#dce4ed" stroke-width="2"/>
+    <text x="38" y="398" font-size="23" fill="#17283c" font-weight="700">大充电能下的二阶虚过程</text>
+    <rect x="38" y="434" width="202" height="80" rx="12" fill="#e9f5ef"/>
+    <rect x="450" y="434" width="220" height="80" rx="12" fill="#fff1e2"/>
+    <rect x="880" y="434" width="202" height="80" rx="12" fill="#e9f5ef"/>
+    <g text-anchor="middle" font-size="22" fill="#17283c">
+      <text x="139" y="467">偶—偶</text><text x="139" y="495" font-size="17">低能扇区</text>
+      <text x="560" y="467">奇—奇</text><text x="560" y="495" font-size="17">充电项多付出 4E</text>
+      <text x="981" y="467">偶—偶</text><text x="981" y="495" font-size="17">宇称恢复，态可改变</text>
+    </g>
+    <path d="M252 473 H435" stroke="#52647b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <path d="M683 473 H865" stroke="#52647b" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="345" y="451" text-anchor="middle" font-size="18" fill="#52647b">通道 1 参与</text>
+    <text x="775" y="451" text-anchor="middle" font-size="18" fill="#52647b">通道 2 参与</text>
+    <text x="560" y="555" text-anchor="middle" font-size="22" fill="#17283c">两种先后次序都贡献：留下 I₂₀I₁₁ = P₁₂ᴬP₀₁ᴮ</text>
+    <text x="560" y="589" text-anchor="middle" font-size="17" fill="#52647b">箭头表示微扰中的虚过程，不表示依次执行两个真实隧穿脉冲。</text>
+  </g>
+</svg>

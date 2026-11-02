@@ -1,0 +1,89 @@
+{
+  "trial": "Divide both alpha and nu by 2; do not scale fidelity amplitude",
+  "formula": "f_trial(r, x) = f_original(r, x/2)",
+  "source": "read/data/formula_grid.npz",
+  "source_parameters": {
+    "E1_meV": 0.01,
+    "tc_meV": 0.3,
+    "E0_meV": 0.3
+  },
+  "ratio_unchanged": true,
+  "interpolation": false,
+  "original_x_step": 0.02,
+  "trial_x_step": 0.04,
+  "new_dynamics_computed": false,
+  "peak_prominence": 0.1,
+  "peaks": [
+    {
+      "ratio": 0.1,
+      "original_peak_x": [
+        1.5,
+        3.0,
+        4.48,
+        5.98,
+        7.46,
+        8.94,
+        10.42
+      ],
+      "half_rate_peak_x": [
+        3.0,
+        6.0,
+        8.96
+      ]
+    },
+    {
+      "ratio": 1.0,
+      "original_peak_x": [
+        2.36,
+        4.5
+      ],
+      "half_rate_peak_x": [
+        4.72,
+        9.0
+      ]
+    },
+    {
+      "ratio": 10.0,
+      "original_peak_x": [
+        0.44,
+        0.86,
+        1.26,
+        1.68,
+        2.1,
+        2.5,
+        2.92,
+        3.3200000000000003,
+        3.74,
+        4.14,
+        4.5600000000000005,
+        4.96,
+        5.38,
+        5.78,
+        6.2,
+        6.6000000000000005,
+        7.0,
+        7.42,
+        7.82,
+        8.24,
+        8.64
+      ],
+      "half_rate_peak_x": [
+        0.88,
+        1.72,
+        2.52,
+        3.36,
+        4.2,
+        5.0,
+        5.84,
+        6.640000000000001,
+        7.48,
+        8.28,
+        9.120000000000001,
+        9.92,
+        10.76,
+        11.56
+      ]
+    }
+  ],
+  "status": "Exploratory visual comparison; not an established correction of paper conventions"
+}

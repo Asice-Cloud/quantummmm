@@ -5,6 +5,7 @@ by solving the original Schrödinger equation. Independent ODE samples only
 check the formula implementation. No parameters or time scales are fitted.
 """
 
+import argparse
 import json
 import math
 import os
@@ -108,7 +109,7 @@ def slow_ode(ratio, lam):
     return float(f), beta
 
 
-def paper_image():
+def paper_image(save_panel=True):
     """Render the actual PDF page and crop the panel, without rescaling axes.
 
     Crop positions are measured on the 200-dpi page; larger rendering changes
@@ -124,12 +125,82 @@ def paper_image():
     def crop(box):
         return np.array(page.crop(tuple(round(v*scale) for v in box)))
     panel = crop((439, 365, 821, 665))
-    Image.fromarray(panel).save(OUT/"paper_fig1d.png")
+    if save_panel:
+        Image.fromarray(panel).save(OUT/"paper_fig1d.png")
     heatmap = crop((482, 392, 753, 620))
     colorbar = crop((756, 393, 761, 619))
     palette = np.median(colorbar, axis=1)
     cmap = ListedColormap(palette[::-1]/255.)
     return heatmap, cmap
+
+
+def normalization_trial():
+    """Compare f(alpha, nu) with f(alpha/2, nu/2) using the existing grid.
+
+    Relabeling cached lambda <= 6 by x = 2*lambda evaluates the half-rate
+    formula on 0 <= x <= 12 without interpolation or new dynamics. The
+    plotted horizontal spacing is consequently twice the original spacing.
+    """
+    with np.load(DATA/"formula_grid.npz") as saved:
+        lam = saved["lam"].copy()
+        logratios = saved["logratios"].copy()
+        original = saved["f"].copy()
+    keep = lam <= lam[-1]/2
+    half_x = 2*lam[keep]
+    half_rate = original[:, keep]
+    OUT.mkdir(parents=True, exist_ok=True)
+    paper, cmap = paper_image(save_panel=False)
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
+    fig, axes = plt.subplots(1, 3, figsize=(17.5, 5.5), layout="constrained")
+    axes[0].imshow(paper, extent=(0, 12, -1, 1), aspect="auto",
+                   interpolation="nearest")
+    axes[0].set_title("Paper Fig. 1(d)")
+    axes[1].pcolormesh(lam, logratios, original, shading="nearest",
+                       vmin=0, vmax=1, cmap=cmap)
+    axes[1].set_title(r"Original formula: $f(\lambda,r\lambda)$")
+    im = axes[2].pcolormesh(half_x, logratios, half_rate, shading="nearest",
+                           vmin=0, vmax=1, cmap=cmap)
+    axes[2].set_title(r"Factor-2 trial: $f(\lambda/2,r\lambda/2)$")
+    for ax in axes:
+        ax.set(xlabel=r"$\tau\ (100/\mathrm{meV})$",
+               ylabel=r"$\log_{10}(|t_1|_{\max}/E_1)$",
+               xlim=(0, 12), ylim=(-1, 1),
+               xticks=np.arange(0, 13, 2), yticks=np.linspace(-1, 1, 5))
+    fig.colorbar(im, ax=axes, label=r"Overlap magnitude $f$", shrink=.88)
+    fig.suptitle("Normalization trial: divide dynamical rate by 2; ratio and displayed axes fixed",
+                 fontsize=14)
+    stem = OUT/"paper_vs_formula_factor2_trial"
+    fig.savefig(stem.with_suffix(".png"), dpi=190)
+    fig.savefig(stem.with_suffix(".pdf"))
+    plt.close(fig)
+
+    peak_rows = []
+    for ratio in (.1, 1., 10.):
+        i = int(np.argmin(abs(logratios-np.log10(ratio))))
+        assert np.isclose(10**logratios[i], ratio)
+        peaks_original, _ = find_peaks(original[i], prominence=.1)
+        peaks_half, _ = find_peaks(half_rate[i], prominence=.1)
+        peak_rows.append({"ratio": ratio,
+                          "original_peak_x": lam[peaks_original].tolist(),
+                          "half_rate_peak_x": half_x[peaks_half].tolist()})
+    report = {
+        "trial": "Divide both alpha and nu by 2; do not scale fidelity amplitude",
+        "formula": "f_trial(r, x) = f_original(r, x/2)",
+        "source": "read/data/formula_grid.npz",
+        "source_parameters": {"E1_meV": .01, "tc_meV": .3, "E0_meV": .3},
+        "ratio_unchanged": True,
+        "interpolation": False,
+        "original_x_step": float(lam[1]-lam[0]),
+        "trial_x_step": float(half_x[1]-half_x[0]),
+        "new_dynamics_computed": False,
+        "peak_prominence": .1,
+        "peaks": peak_rows,
+        "status": "Exploratory visual comparison; not an established correction of paper conventions",
+    }
+    (DATA/"normalization_factor2_trial.json").write_text(
+        json.dumps(report, indent=2)+"\n")
+    print(json.dumps({"figure": str(stem.with_suffix(".pdf")),
+                      "formula": report["formula"], "peaks": peak_rows}, indent=2))
 
 
 def main():
@@ -253,4 +324,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--normalization-trial", action="store_true",
+                        help="Plot the paper, original formula, and half-rate trial from the saved grid")
+    args = parser.parse_args()
+    if args.normalization_trial:
+        normalization_trial()
+    else:
+        main()
