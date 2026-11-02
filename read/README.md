@@ -5,6 +5,7 @@
 | 文档 | 内容 |
 |---|---|
 | [解析式结果：简要汇报](analytic_continuation_brief.md) | 约 10–15 分钟；完整保真度公式及函数定义、三步推导、图像机制、已有验证和近似范围 |
+| [解析式结果：Overleaf 幻灯片](slides/analytic_continuation/README.md) | 24 页，按 brief 的六部分顺序分页，无附录；[上传包](slides/prb111_fidelity_overleaf.zip)、[主 TeX](slides/analytic_continuation/main.tex)，用 XeLaTeX 编译 |
 | [解析延拓保真度工作：完整组会汇报](analytic_continuation_report.md) | 动机、模型、完整公式构造、图像讲解、独立检验与误差控制；含 18 页幻灯片安排、讨论问答和技术附录 |
 | [微扰、几何结构与对称性抵消](perturbation.md) | 精确能谱、快模消去、holonomy、二阶与四阶保真度、群平均与九圈校正门；第 10 节讨论新增耦合恢复简并与原控制集内的动态抵消 |
 | [解析延拓、具体公式与验证](analytic_continuation.md) | 完整标量函数构造、局部递推与延拓、读出公式、峰位峰高与长时机制、完整 SO(5) 矩阵函数、图像核对、假设和误差预算 |
@@ -39,6 +40,8 @@ read/
   data/                       # 数值数组、参数与验证记录
   figures/fidelity_formula/   # 两张主结果图、通道诊断图与原文面板
   figures/parallel_transport/ # 平行输运标架、弱耦合分解图及说明
+  slides/analytic_continuation/ # 解析式结果的 Overleaf 源码与配图
+  slides/prb111_fidelity_overleaf.zip # 可直接上传的完整项目
   literature/
     2008.md                   # 2020 年 holonomic CNOT 论文汇报
     2008/                     # 文献图与原核对代码

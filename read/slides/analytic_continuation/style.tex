@@ -1,0 +1,46 @@
+% Portable Chinese Beamer setup: XeLaTeX + TeX Live's bundled Fandol fonts.
+\usepackage[UTF8,scheme=plain,fontset=fandol]{ctex}
+\usepackage{amsmath,amssymb,bm,booktabs,graphicx}
+\usefonttheme{professionalfonts}
+\graphicspath{{figures/}}
+\definecolor{Navy}{HTML}{19334A}
+\definecolor{Teal}{HTML}{078777}
+\definecolor{Muted}{HTML}{607487}
+\definecolor{Pale}{HTML}{EDF6F4}
+\definecolor{Amber}{HTML}{B57816}
+\setbeamercolor{normal text}{fg=Navy,bg=white}
+\setbeamercolor{structure}{fg=Teal}
+\setbeamercolor{frametitle}{fg=Navy,bg=white}
+\setbeamercolor{block title}{fg=Teal,bg=Pale}
+\setbeamercolor{block body}{fg=Navy,bg=Pale}
+\setbeamercolor{takeaway}{fg=Navy,bg=Pale}
+\setbeamercolor{alerted text}{fg=Amber}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\small\textbullet}
+\setbeamersize{text margin left=.75cm,text margin right=.75cm}
+\setbeamertemplate{frametitle}{%
+  \vspace{.08cm}\insertframetitle\par\vspace{.07cm}%
+  {\color{Teal}\rule{\linewidth}{.7pt}}\vspace{-.08cm}}
+\setbeamertemplate{footline}{%
+  \leavevmode\hbox{%
+  \begin{beamercolorbox}[wd=.87\paperwidth,ht=.30cm,dp=.15cm,leftskip=.75cm]{normal text}
+    \color{Muted}\fontsize{7}{9}\selectfont
+    PRB 111 保真度解析式\enspace|\enspace\insertsectionhead
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.13\paperwidth,ht=.30cm,dp=.15cm,rightskip=.75cm plus1fil]{normal text}
+    \hfill\color{Muted}\footnotesize\insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}}}
+\newcommand{\takeaway}[1]{%
+  \begin{beamercolorbox}[wd=\linewidth,sep=.55em]{takeaway}\small #1\end{beamercolorbox}}
+\newcommand{\source}[1]{{\par\vspace{.08cm}\fontsize{7.5}{10}\selectfont\color{Muted}#1\par}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\iu}{\mathrm{i}}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\ff}{\mathfrak f}
+\DeclareMathOperator{\tr}{tr}
+\hypersetup{colorlinks=true,urlcolor=Teal,
+  pdftitle={非理想 Majorana 编织的保真度解析式},
+  pdfsubject={PRB 111 模型：低能投影、解析延拓、验证与误差}}
