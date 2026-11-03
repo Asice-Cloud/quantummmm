@@ -92,9 +92,65 @@
   \takeaway{以下结果使用这套原三段门控；$u_1$ 与 $u_2$ 联动。弱耦合改变低能内部动力学，强控制决定参考低能空间。}
 \end{frame}
 
+% 05 — brief §1: feasibility of the parallel-transport frame, before the result
+\begin{frame}[t]{1. 为什么可以选择平行输运标架？}
+  \small
+  \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
+  \textbf{投影确定低能空间；我们再选择基底随空间移动，同时不在空间内部额外转动。}
+  当前强耦合参考模型的辅助能隙不闭合：
+  \[
+    R=\sqrt{d^2+u_2^2+u_3^2}=Cq\ge C/\sqrt2>0.
+  \]
+  因此参考投影光滑、维数不变；给定起点基底后，可沿路径连续构造
+  \[
+    \Q=(\ket{q_0},\ket{q_1}),\qquad
+    \boxed{\langle q_i|\dot q_j\rangle=0\ \Longleftrightarrow\ \Q^\dagger\dot\Q=0.}
+  \]
+  条件只要求基底的变化在当前低能空间内部没有分量；基底本身仍随空间移动。
+  闭环后，局部平行允许留下净几何变换：
+  \[
+    \Q(T)=\Q(0)B.
+  \]
+  下一页直接检验原三段协议的模式标架，包含第二、第三段及段间衔接。
+  \vspace{.15cm}
+  \takeaway{平行是基底的选择，不增加物理近似。弱耦合与辅助绝热条件控制低能约化的准确性；实际态仍受 $h_K$ 驱动。}
+\end{frame}
+
+% 06 — brief §1: explicit checks for all three segments and both joins
+\begin{frame}[t]{1. 三段标架的平行性与连续性}
+  \small
+  \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
+  每段令 $c_\theta=\cos\theta=b/q$、$s_\theta=\sin\theta=a/q$，局部角从 $0$ 到 $\pi/2$。
+  向量均写在固定坐标 $(\gamma_b,\gamma_2,\gamma_3)$ 中，点号表示物理时间导数：
+  \begin{center}
+    \scriptsize\renewcommand{\arraystretch}{1.4}
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{cccccc}
+      \toprule 段 & $\bm n$ & $\bm f_1$ & $\bm f_2$ & $\dot{\bm f}_1$ & $\dot{\bm f}_2$\\\midrule
+      I & $(c_\theta,s_\theta,0)$ & $(-s_\theta,c_\theta,0)$ & $(0,0,1)$ & $-\dot\theta\bm n$ & $0$\\
+      II & $(0,c_\theta,-s_\theta)$ & $(-1,0,0)$ & $(0,s_\theta,c_\theta)$ & $0$ & $\dot\theta\bm n$\\
+      III & $(s_\theta,0,-c_\theta)$ & $(-c_\theta,0,-s_\theta)$ & $(0,1,0)$ & $\dot\theta\bm n$ & $0$\\\bottomrule
+    \end{tabular}
+  \end{center}
+  导数均为零或沿法向，而 $\bm f_i\cdot\bm n=0$，故每段均满足
+  \[
+    \boxed{\bm f_i\cdot\dot{\bm f}_j=0,\qquad i,j=1,2.}
+  \]
+  前段终点 $\theta=\pi/2$ 与后段起点 $\theta=0$ 给出相同标架：
+  \begin{center}
+    \scriptsize\renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{cccc}
+      \toprule 接点 & 共同的 $\bm n$ & 共同的 $\bm f_1$ & 共同的 $\bm f_2$\\\midrule
+      I 终点 = II 起点 & $(0,1,0)$ & $(-1,0,0)$ & $(0,0,1)$\\
+      II 终点 = III 起点 & $(0,0,-1)$ & $(-1,0,0)$ & $(0,1,0)$\\\bottomrule
+    \end{tabular}
+  \end{center}
+  \takeaway{三段逐段平行且连续；局部角从零开始不重置标架。相应多体基底取连续的平行输运约定，满足 $\Q^\dagger\dot\Q=0$。}
+\end{frame}
+
 \section{2. 完整结果公式}
 
-% 05 — brief §2: the complete result, before derivation
+% 07 — brief §2: the complete result, before derivation
 \begin{frame}[t]{2. 完整结果公式：先给出最终读出}
   \small
   \[
@@ -120,7 +176,7 @@
   \takeaway{$\mathsf C,\mathsf S$ 的定义见下一页。若使用重叠模的平方，则 $F_0=f_0^2$；后面的图比较 $f$。}
 \end{frame}
 
-% 06 — brief §2: definitions and convergence
+% 08 — brief §2: definitions and convergence
 \begin{frame}[t]{2. 完整结果公式：特殊函数的定义}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
@@ -152,7 +208,7 @@
 
 \section{3. 推导主线}
 
-% 07 — brief §3, step 1
+% 09 — brief §3, step 1
 \begin{frame}[t]{3.1 拆分强、弱耦合：确定辅助模式}
   \[
     H=H_0+V,\qquad
@@ -174,7 +230,7 @@
   \takeaway{拆分和换元本身是精确的；近似发生在忽略辅助模式的激发及相关修正时。}
 \end{frame}
 
-% 08 — brief §3, step 1: weak projection
+% 10 — brief §3, step 1: weak projection
 \begin{frame}[t]{3.1 低能投影：保留弱耦合的内部作用}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
@@ -202,7 +258,7 @@
   $Z$ 产生相对相位，$Y$ 混合逻辑态。
 \end{frame}
 
-% 09 — brief §3, step 1: geometry figure
+% 11 — brief §3, step 1: geometry figure
 \begin{frame}[t]{3.1 平行输运标架的几何图}
   \begin{center}
     \includegraphics[width=\linewidth,height=4.25cm,keepaspectratio]{frame_panels.png}
@@ -215,7 +271,7 @@
   \takeaway{两根箭头用于构造逻辑基底 $\Q(t)$，不直接代表两列多体态；几何图描述强耦合参考空间。}
 \end{frame}
 
-% 10 — brief §3, step 2: effective Hamiltonians
+% 12 — brief §3, step 2: effective Hamiltonians
 \begin{frame}[t]{3.2 求解三段动态传播}
   将原脉冲和连续标架代入，三段有效 Hamiltonian 为
   \[
@@ -236,7 +292,7 @@
   \takeaway{先得到低能有效模型，再构造其第二段传播。以下参数延拓不改变这一步物理近似。}
 \end{frame}
 
-% 11 — brief §3, step 2: continuation
+% 13 — brief §3, step 2: continuation
 \begin{frame}[t]{3.2 从 $E_1=0$ 延拓到目标参数}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
@@ -263,7 +319,7 @@
   \source{$D_1,D_3$ 也要同步替换 $\alpha\to x\alpha$。这是全阶 Taylor/Dyson 构造；模型方程决定全部系数，仅凭 $x=0$ 的解值不足以确定结果。}
 \end{frame}
 
-% 12 — brief §3, step 3: why two states
+% 14 — brief §3, step 3: why two states
 \begin{frame}[t]{3.3 组合动态传播：为什么只有两个低能态？}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
@@ -292,51 +348,63 @@
   \source{奇宇称扇区也保留两个态；若不固定总宇称，辅助未激发的空间是四维。加入 $V$ 可劈裂保留的两态，不要求完整 $H$ 保持二重简并。}
 \end{frame}
 
-% 13 — brief §3, step 3: Q
-\begin{frame}[t]{3.3 移动基底 $\mathcal Q$ 与系数演化}
+% 15 — brief §3, step 3: Q and the explicit removal of the common phase
+\begin{frame}[t]{3.3 移动基底与共同相位的提取}
   \small
-  \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
-  在上页保留的二维空间中，选连续输运的基底 $\ket{q_0(t)},\ket{q_1(t)}$：
+  \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
+  上页二维空间取平行输运基底，$\Q$ 为 $4\times2$ 矩阵。原始系数记为 $c_{\rm raw}$：
   \[
     \Q(t)=\begin{pmatrix}\ket{q_0(t)}&\ket{q_1(t)}\end{pmatrix},\qquad
-    \ket{\psi(t)}\simeq\Q(t)c(t).
+    \ket{\psi(t)}\simeq\Q(t)c_{\rm raw}(t).
   \]
-  原宇称扇区有四个态，保留空间有两个态，所以 $\Q$ 为 $4\times2$ 矩阵，满足
+  $\Q^\dagger\Q=I_2$，$\Q\Q^\dagger=P_0$，$\Q^\dagger\dot\Q=0$；两列均满足
+  $H_0\ket{q_j}=-R\ket{q_j}$。代入薛定谔方程并投影：
   \[
-    \Q^\dagger\Q=I_2,\qquad \Q\Q^\dagger=P_0.
+    \iu\hbar\dot c_{\rm raw}=(-RI_2+h_K)c_{\rm raw},\qquad h_K=\Q^\dagger V\Q.
   \]
-  $\Q$ 描述基底怎样移动，$c$ 描述态在该基底中的系数怎样变化。代入方程并投影：
+  显式提取共同能量 $-R(t)$ 产生的整体相位：
   \[
-    \iu\hbar\dot c=[\Q^\dagger H\Q-\iu\hbar\Q^\dagger\dot\Q]c.
+    c_{\rm raw}(t)=e^{\iu\Phi(t)}c(t),\qquad
+    \Phi(t)=\frac1\hbar\int_0^tR(u)\,du,\qquad c_{\rm raw}(0)=c(0).
   \]
-  选择平行输运基底 $\Q^\dagger\dot\Q=0$，去掉 $\Q^\dagger H_0\Q=-RI_2$ 产生的共同相位：
+  两边代入后，$-Rc$ 抵消：
   \[
-    \boxed{\iu\hbar\dot c=h_Kc,\qquad h_K=\Q^\dagger V\Q.}
+    e^{\iu\Phi}(-Rc+\iu\hbar\dot c)=e^{\iu\Phi}(-Rc+h_Kc)
+    \quad\Longrightarrow\quad \boxed{\iu\hbar\dot c=h_Kc.}
   \]
+  \source{后续 $D_j$ 求解的是 $c$。提取共同相位在投影模型内严格成立；$h_K$ 中的相对相位与态混合仍全部保留。}
 \end{frame}
 
-% 14 — brief §3, step 3: BD product
+% 16 — brief §3, step 3: BD product with the common phase restored
 \begin{frame}[t]{3.3 换回起点基底：得到 $BD_3D_2D_1$}
-  移动坐标中的系数，以及终点的基底，分别满足
+  \small
+  \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
+  提取共同相位后的系数，以及终点的基底，分别满足
   \[
     c(T)=D_3D_2D_1c(0),\qquad
     \Q(T)=\Q(0)B,\qquad B=e^{\iu\pi X/4},\quad T=3\tau.
   \]
-  这里 $X=-\iu\gamma_2\gamma_3$。直接代入终态：
+  这里 $X=-\iu\gamma_2\gamma_3$。把共同相位一起代入物理终态：
   \[
   \begin{aligned}
-    \ket{\psi(T)}&\simeq\Q(T)c(T)\\
-                &=\Q(T)D_3D_2D_1c(0)\\
-                &=\Q(0)BD_3D_2D_1c(0).
+    \ket{\psi(T)}&\simeq\Q(T)c_{\rm raw}(T)\\
+                &=e^{\iu\Phi(T)}\Q(T)D_3D_2D_1c(0)\\
+                &=e^{\iu\Phi(T)}\Q(0)BD_3D_2D_1c(0).
   \end{aligned}
   \]
   \[
-    \boxed{U_{\rm cyc}=BD_3D_2D_1,\qquad U_{\rm two}=U_{\rm cyc}^2.}
+    U_{\rm low}(T)=e^{\iu\Phi(T)}U_{\rm cyc},\qquad
+    \boxed{U_{\rm cyc}=BD_3D_2D_1,\quad U_{\rm two}=U_{\rm cyc}^2.}
+  \]
+  任意低能初态 $\ket{i}$ 与目标态 $\ket{f}$ 的跃迁模满足
+  \[
+    |\bra{f}U_{\rm low}\ket{i}|=|e^{\iu\Phi(T)}\bra{f}U_{\rm cyc}\ket{i}|
+    =|\bra{f}U_{\rm cyc}\ket{i}|.
   \]
   \takeaway{这里只做代入，没有交换矩阵，因此不要求 $H_0,V$ 对易。$B$ 换坐标，$D_j$ 求内部动态；一般不能把两圈写成 $B^2(D_3D_2D_1)^2$。}
 \end{frame}
 
-% 15 — brief §3, step 3: readout
+% 17 — brief §3, step 3: readout
 \begin{frame}[t]{3.3 用哈密顿--凯莱恒等式得到保真度}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}
@@ -366,7 +434,7 @@
 
 \section{4. 结果分析}
 
-% 16 — brief §4.1: first limit
+% 18 — brief §4.1: first limit
 \begin{frame}[t]{4.1 极限一：$E_1=t_1=0$}
   固定强控制 $C$、段时长 $\tau$ 和三段路径，令 $\alpha=\nu=0$。
   \[
@@ -385,7 +453,7 @@
   \takeaway{恢复理想编织，将指定初态翻转到目标态。这里 $t_1=0$ 指额外门控为零，编织所需的强控制仍照常变化。}
 \end{frame}
 
-% 17 — brief §4.1: second limit
+% 19 — brief §4.1: second limit
 \begin{frame}[t]{4.1 极限二：仅 $E_1=0$}
   \small
   此时 $\alpha=0$，$\nu=\eta\tau/\hbar$ 可为任意有限值。定义
@@ -410,7 +478,7 @@
   \source{两种极限都在低能有效模型内成立，完整五模仍可能有有限速度偏差。另一参数轴 $\eta=0$ 有 $f_0=\cos^2[(1+2k)\alpha]$。}
 \end{frame}
 
-% 18 — brief §4.2
+% 20 — brief §4.2
 \begin{frame}[t]{4.2 峰位与峰高来自两个不同因素}
   令 $p=|\beta|^2$、$\chi=\arg\beta-\delta$，同一结果可写为
   \[
@@ -426,7 +494,7 @@
   \source{$\beta=0$ 时直接使用主公式，不取无定义的相位。实际峰位还受随参数变化的包络影响。}
 \end{frame}
 
-% 19 — brief §4.3
+% 21 — brief §4.3
 \begin{frame}[t]{4.3 中间高保真度区域：二阶抵消}
   \small
   令 $\mathcal A=\tfrac12+j$、$\mathcal B=1+2k$，小累计角下
@@ -451,7 +519,7 @@
 
 \section{5. 图像与验证结果}
 
-% 20 — brief §5: first image
+% 22 — brief §5: first image
 \begin{frame}[t]{5. 图像与验证：论文与解析公式热图}
   \begin{center}
     \includegraphics[width=\linewidth,height=4.65cm,keepaspectratio]{paper_vs_formula.pdf}
@@ -462,7 +530,7 @@
   \takeaway{公式解释单参数主导区的振荡、中间区域的变化，以及峰位、峰高的共同演化。与论文图比较的是趋势。}
 \end{frame}
 
-% 21 — brief §5: factor-2 image stays here
+% 23 — brief §5: factor-2 image stays here
 \begin{frame}[t]{5. 图像与验证：因子 2 的试画}
   \begin{center}
     \includegraphics[width=\linewidth,height=4.2cm,keepaspectratio]{paper_vs_formula_factor2_trial.pdf}
@@ -473,7 +541,7 @@
   \takeaway{保持比例 $r$ 和保真度幅值不变，仅观察动态速率变化后的峰数、峰宽；这项尝试尚未确定论文的归一化约定。}
 \end{frame}
 
-% 22 — brief §5: section cuts
+% 24 — brief §5: section cuts
 \begin{frame}[t]{5. 图像与验证：固定比例截面对照}
   \begin{columns}[T,onlytextwidth]
     \begin{column}{.76\textwidth}
@@ -493,7 +561,7 @@
   \end{columns}
 \end{frame}
 
-% 23 — brief §5: quantitative verification
+% 25 — brief §5: quantitative verification
 \begin{frame}[t]{5. 图像与验证：完整模型数组的直接比较}
   $0.5\le\lambda\le12$，步长 $0.02$，比较已有完整模型数组与解析公式：
   \begin{center}
@@ -518,7 +586,7 @@
 
 \section{6. 近似条件与最终结论}
 
-% 24 — brief §6
+% 26 — brief §6
 \begin{frame}[t]{6. 近似条件与最终结论}
   \small
   \setlength{\abovedisplayskip}{5pt}\setlength{\belowdisplayskip}{5pt}

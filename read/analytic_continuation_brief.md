@@ -50,6 +50,103 @@ $$
 
 三段完成一次交换，连续两圈共 $6\tau$。
 
+**开始计算前：为什么可以选择平行输运标架？**
+
+投影确定了每个时刻保留的低能空间，但没有唯一确定这个空间内部的两个基底。在固定总宇称的二维参考空间中，我们选择基底随空间一起移动，同时不在当前空间内部额外旋转。把两列基底记为 $\mathcal Q(t)=(|q_0(t)\rangle,|q_1(t)\rangle)$，这个规则就是
+
+$$
+\boxed{
+\langle q_i(t)|\dot q_j(t)\rangle=0
+\quad\Longleftrightarrow\quad
+\mathcal Q^\dagger\dot{\mathcal Q}=0.
+}
+$$
+
+这是沿给定控制路径选择基底的规则，不是投影自动产生的性质，也不要求实际量子态本身只作几何演化。当前强耦合参考模型满足
+
+$$
+R(t)=\sqrt{d^2+u_2^2+u_3^2}=Cq(s)\ge\frac C{\sqrt2}>0.
+$$
+
+因此辅助能隙 $2R$ 始终不闭合，参考低能投影随控制光滑变化、维数保持不变。给定起点基底后，可以沿整个时间区间连续构造满足上述条件的标架；具体构造见 [技术文档第 1.1 节](analytic_continuation.md#为什么沿当前路径可以选择平行输运标架)。这一步不增加物理近似。用这个参考空间描述完整模型的准确性，仍取决于弱耦合与辅助绝热条件。
+
+**三段均可直接检验。** 每段使用各自的局部角 $\theta(s)$，统一定义
+
+$$
+\cos\theta=\frac bq,\qquad \sin\theta=\frac aq,\qquad
+0\le\theta\le\frac\pi2.
+$$
+
+这里 $\theta$ 在每一段从 $0$ 变到 $\pi/2$，点号表示对物理时间求导。三段的方向都写在同一组固定坐标 $(\gamma_b,\gamma_2,\gamma_3)$ 中，局部角重新从零开始不代表标架发生重置。
+
+**第一段：** 此时 $u_3=0$，$\cos\theta=d/R$、$\sin\theta=u_2/R$，强耦合方向及两个正交的剩余模式方向为
+
+$$
+\boldsymbol n=(\cos\theta,\sin\theta,0),\qquad
+\boldsymbol f_1=(-\sin\theta,\cos\theta,0),\qquad
+\boldsymbol f_2=(0,0,1).
+$$
+
+求导得到
+
+$$
+\dot{\boldsymbol f}_1=-\dot\theta\,\boldsymbol n,\qquad
+\dot{\boldsymbol f}_2=0
+\quad\Longrightarrow\quad
+\boldsymbol f_i\cdot\dot{\boldsymbol f}_j=0.
+$$
+
+**第二段：** 此时强耦合方向从 $\gamma_2$ 转向 $-\gamma_3$，取
+
+$$
+\boldsymbol n=(0,\cos\theta,-\sin\theta),\qquad
+\boldsymbol f_1=(-1,0,0),\qquad
+\boldsymbol f_2=(0,\sin\theta,\cos\theta).
+$$
+
+直接求导：
+
+$$
+\dot{\boldsymbol f}_1=0,\qquad
+\dot{\boldsymbol f}_2
+=\dot\theta(0,\cos\theta,-\sin\theta)
+=\dot\theta\,\boldsymbol n.
+$$
+
+**第三段：** 此时强耦合方向从 $-\gamma_3$ 转回 $\gamma_b$，取
+
+$$
+\boldsymbol n=(\sin\theta,0,-\cos\theta),\qquad
+\boldsymbol f_1=(-\cos\theta,0,-\sin\theta),\qquad
+\boldsymbol f_2=(0,1,0).
+$$
+
+直接求导：
+
+$$
+\dot{\boldsymbol f}_1
+=\dot\theta(\sin\theta,0,-\cos\theta)
+=\dot\theta\,\boldsymbol n,\qquad
+\dot{\boldsymbol f}_2=0.
+$$
+
+三段的 $\dot{\boldsymbol f}_j$ 均为零或沿当前法向 $\boldsymbol n$，而 $\boldsymbol f_i\cdot\boldsymbol n=0$。所以对每一段、任意 $i,j=1,2$，都有
+
+$$
+\boxed{\boldsymbol f_i\cdot\dot{\boldsymbol f}_j=0.}
+$$
+
+**段间也连续。** 将前一段的 $\theta=\pi/2$ 与后一段的 $\theta=0$ 代入，得到完全相同的标架：
+
+| 衔接位置 | 共同的 $\boldsymbol n$ | 共同的 $\boldsymbol f_1$ | 共同的 $\boldsymbol f_2$ |
+|---|---|---|---|
+| 第一段终点 = 第二段起点 | $(0,1,0)$ | $(-1,0,0)$ | $(0,0,1)$ |
+| 第二段终点 = 第三段起点 | $(0,0,-1)$ | $(-1,0,0)$ | $(0,1,0)$ |
+
+因此，这是一套沿三段路径连续的平行输运模式标架，接点没有额外的基底跳变。模式方向与多体态基底属于不同层次；相应多体基底按前述输运方程和连续相位约定构造，满足 $\mathcal Q^\dagger\dot{\mathcal Q}=0$。
+
+这样选择后，提取共同能量 $-R$ 的相位，系数满足 $i\hbar\dot c=h_Kc$。弱耦合引起的相对相位和态混合仍由 $h_K$ 描述。闭环后基底可以满足 $\mathcal Q(T)=\mathcal Q(0)B$，留下非平凡的几何变换。因此，“局部平行”不要求终点基底等于起点基底，也不会消除 holonomy。下文的 $BD_3D_2D_1$ 正是这套连续标架下的表示；几何路径同时影响 $B$ 和投影后的 $h_K$，两者不能据此独立调节。
+
 采用原文指定初末态的读出
 
 $$
@@ -330,29 +427,82 @@ $$
 
 $$
 \mathcal Q(t)=\begin{pmatrix}|q_0(t)\rangle&|q_1(t)\rangle\end{pmatrix},\qquad
-\mathcal Q(t)\begin{pmatrix}c_0(t)\\c_1(t)\end{pmatrix}
-=c_0(t)|q_0(t)\rangle+c_1(t)|q_1(t)\rangle.
+\mathcal Q(t)\begin{pmatrix}c_{{\rm raw},0}(t)\\c_{{\rm raw},1}(t)\end{pmatrix}
+=c_{{\rm raw},0}(t)|q_0(t)\rangle+c_{{\rm raw},1}(t)|q_1(t)\rangle.
 $$
 
-$|q_0\rangle,|q_1\rangle$ 是上述二维空间中按平行输运约定选取的一组基底。在固定总宇称的四维多体空间中，$\mathcal Q$ 是 $4\times2$ 矩阵，满足 $\mathcal Q^\dagger\mathcal Q=I_2$、$\mathcal Q\mathcal Q^\dagger=P_0$；后一个式子的 $P_0$ 也限制在同一宇称扇区中。它把两个坐标系数转换成原空间中的物理态。在低能近似下写
+$|q_0\rangle,|q_1\rangle$ 是上述二维空间中按平行输运约定选取的一组基底。在固定总宇称的四维多体空间中，$\mathcal Q$ 是 $4\times2$ 矩阵，满足 $\mathcal Q^\dagger\mathcal Q=I_2$、$\mathcal Q\mathcal Q^\dagger=P_0$；后一个式子的 $P_0$ 也限制在同一宇称扇区中。它把两个坐标系数转换成原空间中的物理态。为区分提取共同相位前后的系数，先把原始系数记为 $c_{\rm raw}$，在低能近似下写
 
 $$
-|\psi(t)\rangle\simeq\mathcal Q(t)c(t).
+|\psi(t)\rangle\simeq\mathcal Q(t)c_{\rm raw}(t).
 $$
 
-$\mathcal Q(t)$ 描述基底怎样移动，$c(t)$ 描述态在这个基底中的系数怎样变化。将它代入薛定谔方程并投影，得到
+$\mathcal Q(t)$ 描述基底怎样移动，$c_{\rm raw}(t)$ 描述态在这个基底中的原始系数怎样变化。将这个表达式代入薛定谔方程并左乘 $\mathcal Q^\dagger$，得到领先投影模型中的方程
 
 $$
-i\hbar\dot c=
+i\hbar\mathcal Q^\dagger\dot{\mathcal Q}\,c_{\rm raw}
++i\hbar\mathcal Q^\dagger\mathcal Q\dot c_{\rm raw}
+=\mathcal Q^\dagger(H_0+V)\mathcal Qc_{\rm raw}.
+$$
+
+利用 $\mathcal Q^\dagger\mathcal Q=I_2$，整理为
+
+$$
+i\hbar\dot c_{\rm raw}=
 \left[\mathcal Q^\dagger H\mathcal Q
--i\hbar\mathcal Q^\dagger\dot{\mathcal Q}\right]c.
+-i\hbar\mathcal Q^\dagger\dot{\mathcal Q}\right]c_{\rm raw}.
 $$
 
-我们采用平行输运基底，令 $\mathcal Q^\dagger\dot{\mathcal Q}=0$。又因 $\mathcal Q^\dagger H_0\mathcal Q=-RI_2$，去掉它产生的共同相位后，便得到第二步求解的方程
+**共同能量？** 两列基底都属于 $H_0$ 的能量 $-R(t)$ 分支，因此
+$$
+H_0|q_j(t)\rangle=-R(t)|q_j(t)\rangle,\qquad
+(\mathcal Q^\dagger H_0\mathcal Q)_{jk}
+=-R(t)\langle q_j(t)|q_k(t)\rangle=-R(t)\delta_{jk}.
+$$
+
+所以 $\mathcal Q^\dagger H_0\mathcal Q=-R(t)I_2$。在采用的平行输运基底中，$\mathcal Q^\dagger\dot{\mathcal Q}=0$，于是
+
+$$
+\boxed{
+i\hbar\dot c_{\rm raw}
+=\left[-R(t)I_2+h_K(t)\right]c_{\rm raw},\qquad
+h_K=\mathcal Q^\dagger V\mathcal Q
+=\mathcal Q^\dagger V_{\rm in}\mathcal Q.
+}
+$$
+
+最后一个等号使用 $\mathcal Q^\dagger V_{\rm off}\mathcal Q=0$。忽略 $V_{\rm off}$ 的间接作用及辅助激发，是此前低能约化的近似；下面提取共同相位的操作，在这个投影模型内是严格的。
+
+**怎样提取共同相位？** 定义
+
+$$
+\boxed{
+\Phi(t)=\frac1\hbar\int_0^tR(u)\,du,\qquad
+c_{\rm raw}(t)=e^{i\Phi(t)}c(t).
+}
+$$
+
+这里相位指数是正号，因为共同能量为 $-R$。由于 $\hbar\dot\Phi=R$，左边求导给出
+
+$$
+i\hbar\dot c_{\rm raw}
+=e^{i\Phi(t)}\left[-R(t)c(t)+i\hbar\dot c(t)\right],
+$$
+
+右边则为
+
+$$
+\left[-R(t)I_2+h_K(t)\right]c_{\rm raw}
+=e^{i\Phi(t)}\left[-R(t)c(t)+h_K(t)c(t)\right].
+$$
+
+消去共同的 $e^{i\Phi(t)}$，再抵消两边的 $-R(t)c(t)$，便得到第二步实际求解的方程
 
 $$
 \boxed{i\hbar\dot c=h_Kc,\qquad h_K=\mathcal Q^\dagger V\mathcal Q.}
 $$
+
+因为 $\Phi(0)=0$，初值满足 $c_{\rm raw}(0)=c(0)$。此后的 $c$ 和 $D_1,D_2,D_3$ 都指提取共同相位后的内部动力学；$h_K$ 产生的相对相位和态混合全部保留。即使 $[h_K(t),h_K(t')]\ne0$，上述提取仍成立，因为 $-R(t)I_2$ 在每个时刻都与所有二维矩阵对易。
 
 三段的时间顺序给出 $c(T)=D_3D_2D_1c(0)$，其中 $T=3\tau$。另一方面，强控制回到起点后，连续平行输运的基底满足
 
@@ -360,22 +510,36 @@ $$
 \mathcal Q(T)=\mathcal Q(0)B,\qquad B=e^{i\pi X/4}.
 $$
 
-将这两个结果直接代入终态：
+将这些结果连同共同相位一起代入终态：
 
 $$
 \begin{aligned}
 |\psi(T)\rangle
-&\simeq\mathcal Q(T)c(T)\\
-&=\mathcal Q(T)D_3D_2D_1c(0)\\
-&=\mathcal Q(0)\,BD_3D_2D_1c(0).
+&\simeq\mathcal Q(T)c_{\rm raw}(T)\\
+&=e^{i\Phi(T)}\mathcal Q(T)c(T)\\
+&=e^{i\Phi(T)}\mathcal Q(T)D_3D_2D_1c(0)\\
+&=e^{i\Phi(T)}\mathcal Q(0)\,BD_3D_2D_1c(0).
 \end{aligned}
 $$
 
-因此，去掉共同相位、相对于起点基底的低能传播为
+因此，相对于起点基底、保留共同相位的低能传播，以及后续使用的传播，分别为
 
 $$
-\boxed{U_{\rm cyc}=BD_3D_2D_1.}
+\boxed{
+U_{\rm low}(T)=e^{i\Phi(T)}U_{\rm cyc},\qquad
+U_{\rm cyc}=BD_3D_2D_1.
+}
 $$
+
+对于任意低能初态 $|i\rangle$ 与目标态 $|f\rangle$，
+
+$$
+\left|\langle f|U_{\rm low}(T)|i\rangle\right|
+=\left|e^{i\Phi(T)}\langle f|U_{\rm cyc}|i\rangle\right|
+=\left|\langle f|U_{\rm cyc}|i\rangle\right|.
+$$
+
+所以保真度不受这一个共同相位影响；省去它也不会省去弱耦合引起的相对动力学相位。
 
 **这里仅仅做了代入，没有交换任何矩阵，所以即使 $[H_0,V]\ne0$，也不妨碍得到这个乘积。** $B$ 是终点与起点基底之间的转换，不是完整模型中一个可以与 $V$ 的传播任意分开的因子。$B$ 与 $D$ 本身也通常不对易，不能将 $BD$ 随意改成 $DB$。
 
@@ -386,6 +550,8 @@ U_{\rm two}=U_{\rm cyc}^2=(BD)^2,
 $$
 
 一般不能改写成 $B^2D^2$。
+
+若保留共同相位，重复同一周期的两圈传播为 $U_{{\rm low},{\rm two}}=e^{2i\Phi(T)}U_{\rm cyc}^2$，其中每圈的 $R(t)$ 相同。它与 $U_{\rm two}$ 给出相同的跃迁模及保真度。
 
 **用哈密顿–凯莱恒等式直接得到两圈读出。** 记 $U=U_{\rm cyc}=BD_3D_2D_1$。去掉共同相位后，各因子都是 $SU(2)$ 矩阵，因此 $U$ 酉且 $\det U=1$。直接将四个已知因子相乘，记 $\mathsf C_\nu=\mathsf C_\nu(\alpha;1)$、$\mathsf S_\nu=\mathsf S_\nu(\alpha;1)$，其左上角元素为
 

@@ -19,6 +19,8 @@
 
 **2026-11-02 检验更新：**[解析延拓文档第 16–17 节](analytic_continuation.md) 已完成全部四阶系数的独立核对、明确的六阶截断余项界，以及相对完整五模模型的可计算物理误差上界。物理界只需脉冲积分，并有适用域证明；它较保守，不等于对整张图保证 0.01 精度。代码与数据同时记录理论上界和已有实际偏差。
 
+**2026-11-03 函数结构补充：**[解析延拓文档第 3.4–3.7、4.3 节](analytic_continuation.md) 推导 $J_m$ 的母函数、奇偶分解、系数卷积恒等式，以及与谱参数幂级数（SPPS）的精确对应；另给出可求和的比较模型，并检查标准 Heun 归约的奇点结构。一般参数下的有限标准函数归约尚未建立；本次为解析推导，没有新增动力学数值验证。
+
 **图像入口：**[论文与公式热图](figures/fidelity_formula/paper_vs_formula.pdf)；[用户 solution.png 与公式截面对照](figures/fidelity_formula/solution_vs_scalar_formula.pdf)。论文图用于趋势对照，定量参考是同一 $K=2A$ 约定下的完整模型。
 
 **几何示意：**[平行输运标架图 PDF](figures/parallel_transport/parallel_transport_frame.pdf)（[PNG](figures/parallel_transport/parallel_transport_frame.png)、[读图说明](figures/parallel_transport/README.md)）展示控制参数路径、球面上的随动低能方向及闭环后的标架旋转；已插入简要汇报第 3 节。

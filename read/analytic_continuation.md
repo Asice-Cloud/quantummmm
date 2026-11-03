@@ -109,6 +109,95 @@ $$
 
 因此两套公式可以用于相互核对：标量公式便于提取峰位和峰高机制，完整矩阵公式用于评估低能约化的偏差。第 12 节区分物理近似与函数求值误差，第 17 节给出可计算的物理误差上界及其适用条件。
 
+#### 为什么沿当前路径可以选择平行输运标架？
+
+这里的平行输运是对基底的选择：基底跟随参考低能空间移动，但没有该空间内部的额外旋转。投影本身只确定空间；还须指定基底的输运规则。当前脉冲满足 $R\ge C/\sqrt2>0$，故固定总宇称扇区中的 $P_0(t)$ 是光滑、秩保持为二的正交投影。
+
+给定起点基底 $\mathcal Q(0)$，满足 $P_0(0)\mathcal Q(0)=\mathcal Q(0)$ 与 $\mathcal Q^\dagger(0)\mathcal Q(0)=I_2$，可以直接用线性方程构造
+
+$$
+\boxed{
+\dot{\mathcal Q}(t)=[\dot P_0(t),P_0(t)]\mathcal Q(t).
+}
+$$
+
+由于 $P_0$ 与 $\dot P_0$ 均为 Hermitian，$[\dot P_0,P_0]$ 为反 Hermitian，所以该方程保持两列正交归一。又由 $P_0^2=P_0$ 求导可得
+
+$$
+P_0\dot P_0P_0=0.
+$$
+
+这个演化保持 $P_0\mathcal Q=\mathcal Q$。在该空间内，$[\dot P_0,P_0]\mathcal Q=\dot P_0\mathcal Q$，因此
+
+$$
+\mathcal Q^\dagger\dot{\mathcal Q}
+=\mathcal Q^\dagger\dot P_0\mathcal Q
+=\mathcal Q^\dagger P_0\dot P_0P_0\mathcal Q=0.
+$$
+
+这说明给定起点基底后，沿当前有限时间路径确实可以连续构造平行输运标架；这里没有对完整模型再作物理近似。
+
+**三段模式标架的显式检验。** 每段定义局部角 $\cos\theta=b/q$、$\sin\theta=a/q$，从 $0$ 变至 $\pi/2$，并简记 $c_\theta=\cos\theta$、$s_\theta=\sin\theta$。所有向量均相对于固定坐标 $(\gamma_b,\gamma_2,\gamma_3)$，点号为物理时间导数：
+
+| 段 | $\boldsymbol n$ | $\boldsymbol f_1$ | $\boldsymbol f_2$ | $\dot{\boldsymbol f}_1$ | $\dot{\boldsymbol f}_2$ |
+|---|---|---|---|---|---|
+| I | $(c_\theta,s_\theta,0)$ | $(-s_\theta,c_\theta,0)$ | $(0,0,1)$ | $-\dot\theta\boldsymbol n$ | $0$ |
+| II | $(0,c_\theta,-s_\theta)$ | $(-1,0,0)$ | $(0,s_\theta,c_\theta)$ | $0$ | $\dot\theta\boldsymbol n$ |
+| III | $(s_\theta,0,-c_\theta)$ | $(-c_\theta,0,-s_\theta)$ | $(0,1,0)$ | $\dot\theta\boldsymbol n$ | $0$ |
+
+其中第二段的非零导数为 $\dot{\boldsymbol f}_2=\dot\theta(0,c_\theta,-s_\theta)=\dot\theta\boldsymbol n$；第三段为 $\dot{\boldsymbol f}_1=\dot\theta(s_\theta,0,-c_\theta)=\dot\theta\boldsymbol n$。每段的导数均为零或沿法向，故 $\boldsymbol f_i\cdot\dot{\boldsymbol f}_j=0$ 对所有 $i,j=1,2$ 成立。
+
+段间的法向和两根轴也连续，具体为
+
+| 衔接位置 | 共同的 $\boldsymbol n$ | 共同的 $\boldsymbol f_1$ | 共同的 $\boldsymbol f_2$ |
+|---|---|---|---|
+| I 终点 = II 起点 | $(0,1,0)$ | $(-1,0,0)$ | $(0,0,1)$ |
+| II 终点 = III 起点 | $(0,0,-1)$ | $(-1,0,0)$ | $(0,1,0)$ |
+
+局部角在各段重新从零开始只是时间参数的定义，没有重置几何标架。模式标架与多体态基底是两个不同层次的表示，多体态按上述输运方程和连续相位约定选取，因此也满足 $\mathcal Q^\dagger\dot{\mathcal Q}=0$。
+
+该结论针对一条给定路径，不要求在整个多维参数空间中存在统一的平坦基底。即使 $P_0(T)=P_0(0)$，通常仍有 $\mathcal Q(T)=\mathcal Q(0)B$；局部平行与闭环 holonomy 可以同时成立。非零 $E_1,t_1$ 的作用保留在 $h_K$ 中，并不要求实际态的系数保持不变。弱耦合和辅助绝热条件控制的是低能约化的物理误差，而不是这种参考标架能否沿路径构造。
+
+#### 共同能量的提取：从投影方程到内部传播
+
+在固定总宇称扇区内，取 $P_0$ 所选二维空间的一组平行输运基底，写成 $\mathcal Q=(|q_0\rangle,|q_1\rangle)$，满足
+
+$$
+\mathcal Q^\dagger\mathcal Q=I_2,\qquad
+\mathcal Q\mathcal Q^\dagger=P_0,\qquad
+\mathcal Q^\dagger\dot{\mathcal Q}=0.
+$$
+
+用 $c_{\rm raw}$ 表示提取共同相位之前的系数。将 $|\psi\rangle\simeq\mathcal Qc_{\rm raw}$ 代入薛定谔方程并左乘 $\mathcal Q^\dagger$，得
+
+$$
+i\hbar\dot c_{\rm raw}
+=\left[\mathcal Q^\dagger H\mathcal Q
+-i\hbar\mathcal Q^\dagger\dot{\mathcal Q}\right]c_{\rm raw}
+=\left[-R(t)I_2+h_K(t)\right]c_{\rm raw},\qquad
+h_K=\mathcal Q^\dagger V\mathcal Q.
+$$
+
+其中 $H_0|q_j\rangle=-R(t)|q_j\rangle$，所以 $(\mathcal Q^\dagger H_0\mathcal Q)_{jk}=-R(t)\delta_{jk}$。这就是两个保留态的共同能量，弱耦合的内部劈裂与混合仍由 $h_K$ 描述。
+
+定义 $\Phi(t)=\hbar^{-1}\int_0^tR(u)\,du$，令 $c_{\rm raw}(t)=e^{i\Phi(t)}c(t)$。代入两边后，
+
+$$
+e^{i\Phi}\left[-Rc+i\hbar\dot c\right]
+=e^{i\Phi}\left[-Rc+h_Kc\right]
+\quad\Longrightarrow\quad
+\boxed{i\hbar\dot c=h_Kc.}
+$$
+
+因为 $\Phi(0)=0$，两种系数的初值相同。第 3–8 节中的 $D_1,D_2,D_3$ 均求解这个已经提取共同相位的内部方程。对单圈 $T=3\tau$，
+
+$$
+|\psi(T)\rangle\simeq e^{i\Phi(T)}\mathcal Q(T)D_3D_2D_1c(0)
+=e^{i\Phi(T)}\mathcal Q(0)BD_3D_2D_1c(0).
+$$
+
+因此相对于起点基底，$U_{\rm low}(T)=e^{i\Phi(T)}U_{\rm cyc}$，而本文记 $U_{\rm cyc}=BD_3D_2D_1$。共同相位在任意跃迁幅取模时消失；两次相同周期仅多出 $e^{2i\Phi(T)}$，不改变 $f_0,F_0$。这一步在投影模型内是严格的，即使不同时刻的 $h_K$ 不对易，也能提取乘单位矩阵的共同能量。低能约化中舍弃辅助激发、跨能区虚跃迁等间接作用的近似，仍按第 12、17 节估价。逐步展开的组会版本见 [brief 的“组合动态传播”部分](analytic_continuation_brief.md)。
+
 ### 1.2 实际适用范围：针对论文 Fig. 1(d) 的结论
 
 **对于论文 Fig. 1(d) 的参数，当前解析公式在已检查的辅助绝热时间窗口内具有较好的实用准确性，能够解释主要峰结构；较大 $t_1$ 时存在可见修正。** 这个判断来自标量公式与同一归一化完整五维模型的直接比较，也有公式本身的独立求值检查支持。
@@ -370,6 +459,274 @@ $$
 
 因此这不是只给原方程的解换名字：函数已有明确系数、独立归一化与收敛保证。
 
+### 3.4 从递推直接构造母函数
+
+以下是 2026-11-03 补充的解析推导。母函数可以严格构造；它统一已有的 $\mathsf C,\mathsf S$，并不自动把非对易问题压缩成有限个标准函数。这里 $\xi$ 是辅助生成变量，不是物理时间，也不是此前的参数路径 $E(x)=xE_1$。
+
+有序积分等价于递推
+
+$$
+J_0=1,\qquad
+J_m(s;\nu)=\int_0^s k_+(u)J_{m-1}(u;-\nu)du,
+\qquad k_\pm=g e^{\pm2i\nu P}.
+$$
+
+定义普通母函数
+
+$$
+\boxed{\Phi_\nu(\xi,s)=\sum_{m=0}^\infty \xi^mJ_m(s;\nu).}
+$$
+
+这里不再除以 $m!$，因为有序积分本身已经有阶乘界。对于实 $\nu$，
+
+$$
+|\Phi_\nu(\xi,s)|\le e^{|\xi|G(s)}.
+$$
+
+因此对任意有限 $\xi$ 收敛，可以在紧集上逐项求导和积分；复 $\nu$ 时使用第 3.1 节的统一附加因子即可。将递推乘以 $\xi^m$ 并求和，得到
+
+$$
+\begin{aligned}
+\Phi_\nu(\xi,s)&=1+\xi\int_0^s k_+(u)\Phi_{-\nu}(\xi,u)du,\\
+\Phi_{-\nu}(\xi,s)&=1+\xi\int_0^s k_-(u)\Phi_\nu(\xi,u)du.
+\end{aligned}
+$$
+
+也就是一个封闭的二分量初值问题：
+
+$$
+\boxed{
+\partial_s
+\begin{pmatrix}\Phi_\nu\\\Phi_{-\nu}\end{pmatrix}
+=\xi
+\begin{pmatrix}0&k_+\\k_-&0\end{pmatrix}
+\begin{pmatrix}\Phi_\nu\\\Phi_{-\nu}\end{pmatrix},
+\qquad
+\begin{pmatrix}\Phi_\nu(\xi,0)\\\Phi_{-\nu}(\xi,0)\end{pmatrix}
+=\begin{pmatrix}1\\1\end{pmatrix}.
+}
+$$
+
+$-\nu$ 不能省略：每插入一次非对角耦合，通道方向翻转，下一次的相位符号随之翻转。若直接将母函数猜成 $\exp[\xi J_1(s;\nu)]$，则其二阶系数为 $J_1^2/2$，一般不等于具有交替相位的 $J_2$。
+
+消去 $\Phi_{-\nu}$，在 $s>0$ 得
+
+$$
+\boxed{
+\partial_s^2\Phi_\nu
+-\left(\frac{g'}g+2i\nu b\right)\partial_s\Phi_\nu
+-\xi^2g^2\Phi_\nu=0.
+}
+$$
+
+端点归一化应写成
+
+$$
+\Phi_\nu(\xi,0)=1,\qquad
+\lim_{s\to0^+}\frac{\partial_s\Phi_\nu}{k_+}=\xi.
+$$
+
+由于 $g(0)=0$，仅给 $\Phi(0)=1,\Phi'(0)=0$ 不足以区分标量方程的解。上面的通量极限或二分量初值问题避免了这个问题。
+
+取生成变量 $\xi=\pm i\alpha$，按奇偶拆分就恢复原函数：
+
+$$
+\boxed{
+\begin{aligned}
+\mathsf C_\nu(\alpha;s)
+&=\frac{\Phi_\nu(i\alpha,s)+\Phi_\nu(-i\alpha,s)}2,\\
+\mathsf S_\nu(\alpha;s)
+&=\frac{\Phi_\nu(i\alpha,s)-\Phi_\nu(-i\alpha,s)}{2i}.
+\end{aligned}}
+$$
+
+反过来，$\Phi_\nu(\xi,s)=\mathsf C_\nu(-i\xi;s)+i\mathsf S_\nu(-i\xi;s)$。所以 $\mathsf C,\mathsf S$ 本来就是同一个母函数的偶、奇部分；母函数给出了统一描述，没有增加模型近似。
+
+将两个积分方程互相代入，还得到明确的 Volterra 预解算子表示：
+
+$$
+\boxed{
+\Phi_\nu=(I-\xi^2\mathcal K_\nu)^{-1}(1+\xi J_1)
+=\sum_{n=0}^\infty\xi^{2n}\mathcal K_\nu^n(1+\xi J_1).
+}
+$$
+
+其中 $\mathcal K_\nu$ 就是第 3.3 节的已知积分算子，并且
+
+$$
+J_{2n}=\mathcal K_\nu^n1,\qquad
+J_{2n+1}=\mathcal K_\nu^nJ_1.
+$$
+
+对实 $\nu$，$\|\mathcal K_\nu^n\|_\infty\le G(s)^{2n}/(2n)!$，故此逆算子的级数在所有有限 $\xi$ 都收敛，而不是只在 $|\xi|$ 很小时成立。“预解算子”是积分算子的逆，不能当作普通数值分母。
+
+### 3.5 母函数的恒等式与递推系数的约束
+
+令
+
+$$
+\mathcal E_\nu=\frac{\Phi_\nu(\xi)+\Phi_\nu(-\xi)}2,
+\qquad
+\mathcal O_\nu=\frac{\Phi_\nu(\xi)-\Phi_\nu(-\xi)}2,
+$$
+
+此处略去相同的时间变量。由第 3.4 节的方程，矩阵
+
+$$
+\mathcal T_\nu(\xi,s)=
+\begin{pmatrix}
+\mathcal E_\nu&\mathcal O_\nu\\
+\mathcal O_{-\nu}&\mathcal E_{-\nu}
+\end{pmatrix}
+$$
+
+满足 $\mathcal T'=\xi\begin{pmatrix}0&k_+\\k_-&0\end{pmatrix}\mathcal T$、$\mathcal T(0)=I$。生成元的迹为零，因此
+
+$$
+\mathcal E_\nu\mathcal E_{-\nu}-\mathcal O_\nu\mathcal O_{-\nu}=1,
+$$
+
+或等价地
+
+$$
+\boxed{
+\Phi_\nu(\xi,s)\Phi_{-\nu}(-\xi,s)
++\Phi_\nu(-\xi,s)\Phi_{-\nu}(\xi,s)=2.
+}
+$$
+
+比较 $\xi^{2n}$ 的系数，得到所有 $n\ge1$ 均成立的卷积约束
+
+$$
+\boxed{\sum_{m=0}^{2n}(-1)^m
+J_m(s;\nu)J_{2n-m}(s;-\nu)=0.}
+$$
+
+例如，实 $\nu$ 下
+
+$$
+2\operatorname{Re}J_2=|J_1|^2,
+\qquad
+2\operatorname{Re}J_4
+=2\operatorname{Re}(J_1J_3^*)-|J_2|^2.
+$$
+
+取 $\xi=i\alpha$ 后，恢复 $|\mathsf C|^2+|\mathsf S|^2=1$。这说明高阶系数并不是互不相关的拟合参数；它们受传播的行列式与幺正性约束。这些恒等式可用于检查解析展开或求积误差，但不能代替完整的模型误差分析。
+
+### 3.6 与已知 SPPS 构造的精确对应
+
+目前找到的具体文献联系是 **谱参数幂级数**（spectral parameter power series，SPPS），而非某个已经确认的单一 Heun 或贝塞尔函数。Kravchenko–Porter 对 Sturm–Liouville 方程建立了由交替积分生成系数的解法；以下给出本模型的直接对应，而不是仅凭形式相似作类比。[原论文](https://arxiv.org/abs/0811.4488)，[期刊版本](https://doi.org/10.1002/mma.1205)。
+
+定义
+
+$$
+p_\nu(s)=\frac{e^{-2i\nu P(s)}}{g(s)}=\frac1{k_+(s)},
+\qquad
+r_\nu(s)=g(s)e^{-2i\nu P(s)}=k_-(s).
+$$
+
+母函数的标量方程恰好等价于
+
+$$
+\boxed{(p_\nu y')'=\xi^2r_\nu y.}
+$$
+
+对物理函数 $\mathsf C,\mathsf H=\mathsf S/\alpha$，则为
+
+$$
+(p_\nu y')'=-\alpha^2r_\nu y.
+$$
+
+这就是 SPPS 中 $(py')'+qy=\Lambda r y$ 的情形，取 $q=0$、$\Lambda=-\alpha^2$，零谱参数的非零种子解为 $y_0=1$。这里 $\Lambda$ 只是数学上的谱参数，不是新引入的物理能级，也不是后文截面横轴 $\lambda$。
+
+用 $T_\pm\phi(s)=\int_0^s k_\pm(u)\phi(u)du$ 表示两个积分操作，SPPS 的两套交替系数可写为
+
+$$
+\begin{aligned}
+\widetilde X^{(0)}=X^{(0)}&=1,\\
+\widetilde X^{(m)}
+&=\begin{cases}
+T_-\widetilde X^{(m-1)},&m\text{ 为奇数},\\
+T_+\widetilde X^{(m-1)},&m\text{ 为偶数},
+\end{cases}\\
+X^{(m)}
+&=\begin{cases}
+T_+X^{(m-1)},&m\text{ 为奇数},\\
+T_-X^{(m-1)},&m\text{ 为偶数}.
+\end{cases}
+\end{aligned}
+$$
+
+逐阶对应为
+
+$$
+\widetilde X^{(2n)}=J_{2n}(s;\nu),\qquad
+X^{(2n+1)}=J_{2n+1}(s;\nu).
+$$
+
+因此该 SPPS 构造的两个规范解恰是
+
+$$
+y_1=\sum_{n\ge0}(-\alpha^2)^n\widetilde X^{(2n)}=\mathsf C_\nu,
+\qquad
+y_2=\sum_{n\ge0}(-\alpha^2)^nX^{(2n+1)}=\mathsf H_\nu.
+$$
+
+**端点需要单独处理。** 本模型 $g(0)=0$，故 $p_\nu$ 在零点发散，不能原封不动套用要求展开中心 $p$ 有限且非零的常规初值定理。在任意内部中心 $s_0>0$ 可使用常规定理；在实际端点，$1/p_\nu=k_+$ 与 $r_\nu=k_-$ 都连续并趋于零，交替积分、阶乘界和第 3.4 节的二分量初值问题仍直接证明此构造成立。独立性由
+
+$$
+\mathsf C\mathsf H'-\mathsf C'\mathsf H=k_+(s)\ne0
+\quad(0<s\le1)
+$$
+
+保证。对于实 $\nu\ne0$，$p_\nu,r_\nu$ 通常是复系数，故这里的 Sturm–Liouville **形式**不意味着已得到自伴算子，不能直接套用实谱、零点交错或正交完备结论。
+
+这种对应的意义是给已有函数构造一个明确的文献位置，并提供进一步使用谱参数移位、求导和零点方法的入口；它没有证明当前脉冲可以用有限个标准函数表示。SPPS 也已被推广到多项式谱参数问题和一维 Dirac 系统，属于可进一步借鉴的已有工具。[相关原始研究](https://arxiv.org/abs/1401.1520)。
+
+### 3.7 母函数何时可以显式求和
+
+首先，在原模型的 $\nu=0$ 轴上，$k_+=k_-=g$，因此
+
+$$
+\boxed{\Phi_0(\xi,s)=e^{\xi G(s)}.}
+$$
+
+取奇偶部分后正好得到 $\mathsf C_0=\cos(\alpha G)$、$\mathsf S_0=\sin(\alpha G)$。这也说明 $\Phi$ 可以理解为包含交替相位的一种广义指数，而不是已确认具有标准名称的新函数。
+
+再考虑一个可解析比较的波形条件：若同类有效两态方程中可实现 $b(s)=c_0g(s)$，其中 $c_0$ 为常数，则 $P(s)=c_0G(s)$。令 $\ell=G(s)$、$\kappa=\nu c_0$，母函数满足常系数方程
+
+$$
+\frac{d^2\Phi}{d\ell^2}-2i\kappa\frac{d\Phi}{d\ell}
+-\xi^2\Phi=0,\qquad \Phi(0)=1,\quad \Phi_\ell(0)=\xi.
+$$
+
+由此得到真正的初等函数求和：
+
+$$
+\boxed{
+\Phi_\nu(\xi,s)=e^{i\kappa G(s)}
+\left[
+\cosh\!\big(\omega G(s)\big)
++\frac{\xi-i\kappa}{\omega}\sinh\!\big(\omega G(s)\big)
+\right],\qquad \omega^2=\xi^2-\kappa^2.
+}
+$$
+
+$\omega=0$ 处取连续极限；$\cosh(\omega G)$ 和 $\sinh(\omega G)/\omega$ 都是 $\omega$ 的偶函数，所以平方根没有造成母函数关于 $\xi$ 的真实分支。对应的物理函数为
+
+$$
+\begin{aligned}
+\mathsf C_\nu
+&=e^{i\kappa G}\left[\cos(\Omega G)
+-i\frac{\kappa}{\Omega}\sin(\Omega G)\right],\\
+\mathsf S_\nu
+&=e^{i\kappa G}\frac{\alpha}{\Omega}\sin(\Omega G),
+\qquad \Omega=\sqrt{\alpha^2+\kappa^2}.
+\end{aligned}
+$$
+
+其原因是此时第二段的无量纲生成元 $g(s)(\nu c_0Z+\alpha Y)$ 的旋转轴不变，所有时刻的哈密顿量对易。原论文脉冲的 $b/g$ 随时间变化，并不满足该条件；这里只得到一个精确可解的比较模型，尚未证明能在原控制约束和编织端点要求下实现这种波形。
+
 ## 4. 有限递推与实际解析延拓
 
 ### 4.1 有理化变量及局部级数
@@ -426,6 +783,29 @@ e^{|\Delta|G(s)}\frac{(|\Delta|G(s))^{N+1}}{(N+1)!}.
 $$
 
 固定有限时间，有限参数空间内不需要绕开真实奇点，参数延拓无路径歧义。复时间则涉及 $q=\sqrt{a^2+b^2}$ 的分支，需从 $q(0)=1$ 沿指定路径延拓。实 $s\in[0,1]$ 无分支歧义；复时间连接矩阵或 Stokes 分析是另一问题，未用作本次绘图的拟合依据。
+
+### 4.3 与标准 Heun 函数比较：已知结论与尚未解决的归约
+
+第 4.1 节说明，在固定 $\alpha,\nu$ 下，$\mathsf C,\mathsf H$ 作为 $z=\tan(\pi s/2)$ 的函数满足多项式系数线性方程，因此属于 **D-finite 函数类**。这里的变量是 $z$；不能由此直接断言终点读出作为所有物理参数的函数也是 D-finite。[定义与基本性质](https://cs.uwaterloo.ca/~h2huang/Papers/HuKa2018.pdf)。
+
+为检查是否能进一步识别为标准 Heun 函数，记第 4.1 节方程为 $u_{zz}+\mathcal A(z)u_z+\mathcal B(z)u=0$。在一般 $\nu\ne0$ 情况下，直接计算系数的极点可得：
+
+| 位置 | 方程的局部性质 | 依据 |
+|---|---|---|
+| $z=0$ | 表观正则奇点，指标 $0,3$ | $\mathcal A\sim-2/z$、$\mathcal B=O(z^4)$；第 4.1 节给出两个解析独立解，没有对数支 |
+| $z^4=-1$ 的四个根 | 正则奇点，指标 $0,1/2$ | $\operatorname{Res}\mathcal A=1/2$，$\mathcal B$ 至多一阶极点 |
+| $z=\pm i$ | 不规则奇点 | $\mathcal A$ 含非零二阶极点，来自 $-4i\nu/[\pi(1+z^2)^2]$ |
+| $z=\infty$ | 在 $w=1/z$ 坐标中是普通点 | $\mathcal A=2/z+O(z^{-3})$、$\mathcal B=O(z^{-4})$，变换后系数解析 |
+
+奇点判据采用线性二阶方程的 Frobenius 分类。[NIST DLMF §2.7](https://dlmf.nist.gov/2.7)。这些奇点位于复时间延拓中，并不意味着实物理区间出现不可计算点。
+
+标准一般 Heun 方程有四个正则奇点；单合流 Heun 有两个正则奇点和一个不规则奇点；双合流 Heun 有两个不规则奇点。[一般 Heun 的定义](https://dlmf.nist.gov/31.2)，[合流形式](https://dlmf.nist.gov/31.12)。本方程的额外四个半整数指标奇点，使它不能仅靠重命名参数或 Möbius 坐标变换就变成上述标准形式。乘以局部单值非零因子也不会消去这些非平凡局部单值化特征。
+
+**这个比较不是不可归约定理。** 高次有理或代数换元可以产生、合并或解开分支点；也可能存在特殊参数关系下的化简。尤其两个不规则点本身不能排除来自单合流方程的高次拉回。本次没有求得这样的变换，也没有排除所有可能的拉回、微分变换或有限组合表示，因此不声称“不能用任何已知特殊函数表示”。
+
+已有研究确实把若干特定驱动两态模型归约为合流 Heun 函数，但这要求匹配其幅度和失谐的函数关系，不是任意两态哈密顿量的通用结论。[Ishkhanyan–Grigoryan 的两态可解模型](https://arxiv.org/abs/1402.1326)。
+
+目前严谨的定位是：**一般脉冲下已有母函数、SPPS 的明确对应和 $z$ 变量的 D-finite 描述；标准单一 Heun 或超几何函数的有限归约仍未建立。** 第 3.7 节的可解极限和固定轴比较模型已经可以显式求和。这些补充均由解析方程、递推和初值推出，本次未运行新的动力学数值验证。
 
 ## 5. 函数性质及退化检查
 
